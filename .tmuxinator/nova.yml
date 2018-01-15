@@ -1,0 +1,21 @@
+# vim:ft=ansible:
+name: dev
+
+windows:
+  - main:
+      layout: 7a3c,362x97,0,0{225x97,0,0,0,136x97,226,0[136x48,226,0,2,136x48,226,49,7]}
+      #we change the directory here because tmuxinator expands the alias and
+      #makes a really long path
+      panes:
+        - vim:
+          - cd ~/dev/nova
+          - vim
+        - upper:
+          - ssh pi@192.168.30.61
+        - lower:
+          - cd ~/dev/nova
+          - clear
+
+  - cli:
+      panes:
+        - cd ~/dev && clear

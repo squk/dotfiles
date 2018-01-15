@@ -1,0 +1,60 @@
+# hilight keywords
+regexp=[^a-zA-Z](gbreak|default|func|interface|select|gcase|defer|go|map|struct|gchan|else|goto|package|switch|gconst|fallthrough|if|range|type|gcontinue|for|import|return|var)[^a-zA-Z]
+colors=magenta
+
+---------
+
+# hilight  numbers
+regexp=(0x[0-9a-fA-F]+|[0-9]+)
+colours=magenta
+
+---------
+
+# match go file name and line number
+regexp=^.*(/|\\)([_a-zA-Z][_a-zA-Z0-9]+\.go:)(\d*)(:\d*)?
+colours=blue, blue, bold blue, bold green, default
+
+---------
+
+# hilight unused decl
+regexp=[_a-zA-Z][_a-zA-Z0-9]+ (declared and not used)
+colours=bold yellow, yellow
+-
+#hilight missing [argument, return, etc.]
+regexp=: missing(.*)
+colours=yellow
+
+---------
+
+# bold undefined
+regexp=undefined
+colours=bold
+
+---------
+
+# match undefined and bold the identifier.
+regexp=: (undefined|error|error)(.*)
+colours=default, bold red, red
+
+---------
+
+regexp=panic:
+colours=white on_red
+
+---------
+
+# match unexepected and bold identifiers.
+# e.g expected 'keyword', found 'IDENT' an_identifier
+regexp=expected ('.*')(, found )(.*$)
+colours=red, bold red, red, bold red
+--
+regexp=unexpected (.*)(, expecting)(.*$)
+colours=red, bold red, red, bold red
+
+---------
+
+# match "go run:"
+regexp=go run:(.*$)
+colours=green, white
+
+---------

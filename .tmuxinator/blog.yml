@@ -1,0 +1,23 @@
+# vim:ft=ansible:
+name: projects
+
+windows:
+  - blog:
+      root: ~/dev/sites/blog
+      layout: 7a3c,362x97,0,0{225x97,0,0,0,136x97,226,0[136x48,226,0,2,136x48,226,49,7]}
+      panes:
+        - vim:
+          #- cd ~/dev/sites/blog/
+          - vim
+        - server:
+          #- cd ~/dev/blog/
+          #- clear
+          - hexo server
+        - cli:
+          #- cd ~/dev/blog/
+          - clear
+  - cli:
+      root: ~/dev/sites/blog
+      layout: 7a3c,362x97,0,0{225x97,0,0,0,136x97,226,0[136x48,226,0,2,136x48,226,49,7]}
+      panes:
+        - cli:

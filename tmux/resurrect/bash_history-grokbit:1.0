@@ -1,0 +1,500 @@
+git gr
+git checkout master
+git checkout java
+git st
+/usr/local/Cellar/macvim/7.4-98/MacVim.app/Contents/MacOS/Vim -S
+python
+tmux new -s omniparse
+python
+tmux attach -t omniparse
+/Users/christian/Downloads/EasyAVR-master/easykeymap.sh 
+brew install dfu-programmer
+dfu-programmer
+dfu-programmer --targets
+dfu-programmer --help
+dfu-programmer cd ~/Dropbox/
+cd ~/Dropbox/
+vim program_planck.sh
+vim program_planck.sh
+sh program_planck.sh 
+sh program_planck.sh
+tmux new -s omniparse
+sh tests/run.sh 
+/usr/local/Cellar/macvim/7.4-98/MacVim.app/Contents/MacOS/Vim -S
+tmux new -s omniparse
+/Users/christian/Downloads/EasyAVR-master/easykeymap.sh 
+cd Dropbox/
+sh 
+/Users/christian/Downloads/EasyAVR-master/easykeymap.sh 
+sh tests/run.sh 
+s tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh Python_lang.parse_lamda_function
+sh tests/run.sh Python_lang.parse_lamda_function
+sh tests/run.sh Python_lang.parse_lamda_function
+sh tests/run.sh Python_lang.parse_lamda_function
+sh tests/run.sh Python_lang.parse_lamda_function -d
+sh tests/run.sh Python_lang.parse_lamda_function -d
+sh tests/run.sh Python_lang.parse_lamda_function -d
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+k
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh 
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+/express
+/express
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sh tests/run.sh Python_lang.parse_lamda_function -d --defs
+sht r
+sh tests/run.sh 
+git diff
+git add src/
+git commit -v
+git commit -av
+git gr
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/
+sh tests/build-omniverse.sh 
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/testcore.h 
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh Python_files*
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/run.sh Python_files* -d
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+k
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+git diff
+git add src/
+git commit -v
+git commit -v
+git st
+sh tests/run.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d
+sh tests/run.sh 
+sh tests/run.sh Python_lang.parse_lamda_function
+sh tests/run.sh Python_lang.parse_lamda_function -d
+sh tests/run.sh Python_lang.parse_lamda_function -d
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+git diff
+git add src/ -p
+git commit -v
+git add src/ -p
+git commit -v
+git add src/ -p
+git commit -v
+git commit -av
+git add src/
+git commit -v
+git commit -av
+git st
+rm tests/Python/Python_lexer.test.cc 
+git add .
+git commit -av
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+sh tests/run.sh Python_files* -d
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh 
+sh tests/run.sh Python_files* -w
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d 
+sh tests/run.sh Python_files* -d 
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh tests/run.sh Python_files* -d -p
+sh t r
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+git diff
+git add src/Python/Python_parser.cc 
+git commit -v
+git add src/
+git commit -v
+git commit -av
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ --defs
+sh tests/run.sh 
+git gr
+git push origin
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ --defs
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+sh tests/build-omnivers
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+ping http://roar.grokbit.com/
+ping www.roar.grokbit.com/
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -w -i
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -i
+sh tests/build-omniverse.sh 
+ping http://roar.grokbit.com
+ping roar.grokbit.com
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -i
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -i
+sh tests/build-omniverse.sh 
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/ -i
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/XX-Net/
+sh tests/run.sh parse ~/Dropbox/dev/grokbit/test-omniverse/python/XX-Net/ -w
+sh tests/run.sh 
+git gr
+git commit  -av
+git push origin
+ggit gr
+git grgq
+git gr
+git checkout simple_html
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh Html*
+sh tests/run.sh Html*-d
+sh tests/run.sh Html*-d
+git commit -av
+git gr
+git commit -av
+sh tests/run.sh Html*-d
+sh tests/run.sh Html* -d
+sh tests/run.sh Html* -p
+sh tests/run.sh Html* -p
+sh tests/run.sh Html* -p
+sh tests/run.sh Html* -p
+sh tests/run.sh Html* -p
+sh tests/run.sh Html* -p
+git commit -av
+git reset HEAD^
+git gr
+git st
+git add src/
+git commit -av
+git st
+git commit -v
+git commit -av
+git gr
+git push origin
+/usr/local/Cellar/macvim/7.4-98/MacVim.app/Contents/MacOS/Vim -S
+i fucking ahate not being excellent at anything
+/usr/local/Cellar/macvim/7.4-98/MacVim.app/Contents/MacOS/Vim -S
+ls -l
+git st
+tmux new -s omniparse
+tmux new -s omniparse
+brew install ack
+cd ~/Dropbox/dotfiles/vim/bundle/YouCompleteMe/
+ls -l
+python install.py 
+brew install python2
+brew update
+sudo brew update
+sudo brew update
+brew update
+sudo chown $(USER):admin /usr/local
+sudo chown christian:admin /usr/local
+brew update
+brew doctor
+brew upgrade
+brew update
+python2
+ln -sf /usr/local/bin/python2.7 /usr/local/bin/python2
+ln -sf /usr/bin/python2.7 /usr/bin/python2
+sudo ln -sf /usr/bin/python2.7 /usr/bin/python2
+ls -l
+cd ..
+ls -l
+cd YCM-Generator/
+ls -l
+./config_gen.py ~/Dropbox/dev/grokbit/omniparse/
+clang --version
+cd ../YouCompleteMe/
+./install.sh --clang-completer
+cd ../YCM-Generator/
+./config_gen.py ~/Dropbox/dev/grokbit/omniparse/
+./config_gen.py ~/Dropbox/dev/grokbit/omniparse/ --verbose
+cd ~/Dropbox/dev/grokbit/omniparse/
+sh tests/run.sh 
+sh tests/run.sh 
+/usr/local/Cellar/macvim/7.4-98/MacVim.app/Contents/MacOS/Vim -S
+vim -s
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+vim -S
+tmux new -s omniparse
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+tmux new -s omniparse
+ll
+. ~/.tmux.conf 
+source ~/.bashrc 
+ll
+ls -la
+ls -la
+source ~/.bashrc
+ls -la
+ls
+source ~/.bashrc
+ls -la
+source ~/.bashrc
+ll
+source ~/.bashrc
+ll
+ls
+ls -laa
+ls -la
+l.
+source ~/.bashrc
+l.
+source ~/.bashrc
+ll
+source ~/.bashrc
+kk
+ll
+source ~/.bashrc
+ll
+git
+git gr
+ls la
+ls
+ll
+git checkout master
+git checkout csds
+git checkout css
+source ~/.bashrc
+ls -la
+source ~/.bashrc
+ls -la
+source ~/.bashrc
+source ~/.bashrc
+ll
+source ~/.bashrc
+ll
+cd ~/Dropbox/dotfiles/
+git st
+git add .tmux.conf
+git commit -v
+git st
+git add .bashrc
+git commit -v
+git st
+git add com.googlecode.iterm2.plist 
+git commit -v
+git st
+rm *.swp
+rm -f *.swp
+git st
+;q
+vim ~/Dropbox/dotfiles/.tmux.conf
+ls -la
+source ~/.bash
+source ~/.bashrc 
+ll
+sh tests/run.sh 
+vim ~/Dropbox/dotfiles/.tmux.conf
+tmux new -s omniparse
+tmux attach -t omiparse
+tmux attach -t omniparse
+cd Dropbox/
+sh program_planck.sh
+sh program_planck.sh
+ sh program_planck.sh
+cd Dropbox/
+/Users/christian/Downloads/EasyAVR-master/easykeymap.sh 
+vim ~/.tmux.conf 
+sh tests/run.sh 
+[A
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh 
+sh tests/run.sh 
+./build/tests/test_omniparse 
+export OMNI_ROOT=~/Dropbox/dev/grokbit/omniparse/
+./build/tests/test_omniparse 
+./build/tests/test_omniparse 
+./build/tests/test_omniparse 
+brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim /Users/christian/Dropbox/dotfiles/.tmux.conf
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim /Users/christian/Dropbox/dotfiles/.tmux.conf
+;3D;3D;3D;3Dj
+vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim /Users/christian/Dropbox/dotfiles/.tmux.conf
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim -S
+vim ~/Dropbox/dotfiles/.tmux.conf
+cd ~/Dropbox/dotfiles/
+git st
+gi st
+vim .tmux.conf
+git st
+git diff .tmux.conf 
+git commit -v
+vim .tmux.conf
+git reset
+vim .tmux.conf
+git commit -v
+vim .tmux.conf
+git commit -v
+vim .tmux.conf
+git commit -v
+git st
+git reset
+git st
+vim .tmux.conf
+git commit -v
+vim .tmux.conf
+git reset
+vim .tmux.conf
+git commit -v
+git commit --amend
+git st
+git diff
+cd ~/Dropbox/dotfiles/.tmux.conf
+cd ~/Dropbox/dotfiles/
+git gr
+git show 2b288a6
+git st
+touch .gitignore
+vim .gitignore 
+git st
+git diff
+vim -S
+/usr/local/Cellar/macvim/7.4-104/MacVim.app/Contents/MacOS/Vim /Users/christian/Dropbox/dotfiles/.tmux.conf
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'
+ history -w '/Users/christian/.tmux/resurrect/bash_history-grokbit:1.0'

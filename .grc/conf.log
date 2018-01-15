@@ -1,0 +1,8 @@
+regexp=func main
+colour=green
+
+regexp=\.go
+colour=cyan
+
+regexp=\b .*
+colour=red

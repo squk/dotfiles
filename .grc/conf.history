@@ -1,0 +1,10 @@
+# conf.history for grc
+# sequence number
+regexp=^\s+\d+
+colours=yellow
+=======
+# date/time stamp
+regexp=go
+colours=red
+#count=once
+

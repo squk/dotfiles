@@ -18,6 +18,7 @@ export PATH=$DYLD_LIBRARY_PATH:$PATH
 #export ANDROID_NDK_PATH=~/android-ndk-r14b
 #export PYTHONPATH=/usr/local/lib/python2.7/site-packages/:${PYTHONPATH}
 
+alias vim='vim -v'
 export EDITOR='vim'
 
 # ------------------------------
@@ -47,6 +48,9 @@ alias ~="cd ~"                       # ~:            Go Home
 
 # Recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
+# recursively  delete .DS_Store files
+alias ds_clean='find ./ -name ".DS_Store" -depth -exec rm {} \;'
 
 alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
 alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1mb size (all zeros)

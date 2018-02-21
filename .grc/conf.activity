@@ -1,0 +1,48 @@
+# match "NUMBER   WORD_OR_WORDS    NUMBER_WITH_DOT    MEM_SIZE    USER"
+# default color all bold red
+regexp=^(\d+-?)\s+(.+?)\s+(\d+\.\d)\s+(\d+[KMG][+-]?)\s+([_]?\w+)
+colors=bold red
+
+---------
+
+# less than 49%, color yellow
+regexp=^(\d+-?)\s+(.+?)\s+([1-4]?[0-9]\.\d)\s+(\d+[KMG][+-]?)\s+([_]?\w+)
+colors=yellow
+
+---------
+
+# less than 29%, color blue
+regexp=^(\d+-?)\s+(.+?)\s+([1-2]?[0-9]\.\d)\s+(\d+[KMG][+-]?)\s+([_]?\w+)
+colors=blue
+
+---------
+
+# color mem yellow if 500M+
+regexp=([5-9][0-9][0-9]M[+-]?)
+colors=default, yellow
+
+---------
+
+# color mem red if 1G+
+regexp=^\d+-?\s+.+?\s+\d+\.\d\s+(\d+G[+-]?)\s+[_]?\w+
+colors=default, red
+
+---------
+
+# color mem red if 1000M+
+regexp=([1-9][0-9][0-9][0-9]M[+-]?)
+colors=default, red
+
+---------
+
+# less than 9%, color white
+regexp=^(\d+-?)\s+(.+?)\s+([0-9]\.\d)\s+(\d+[KMG][+-]?)\s+([_]?\w+)
+colors=default
+
+---------
+
+# color mem red if 1G+
+regexp=^\d+-?\s+.+?\s+\d+\.\d\s+([1-9]?[2-9]G[+-]?)\s+[_]?\w+
+colors=default, red
+
+---------

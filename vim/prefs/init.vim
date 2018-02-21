@@ -1,3 +1,7 @@
+set directory=~/.vim/tmp/swap
+set undodir=~/.vim/tmp/undo
+set backupdir=~/.vim/tmp/bak
+
 set backspace=indent,eol,start
 
 autocmd BufWritePre * StripWhitespace
@@ -9,7 +13,7 @@ set ttyfast
 set relativenumber
 set copyindent
 set preserveindent
-set nolazyredraw " Enable if running slow...
+"set nolazyredraw " Enable if running slow...
 set autoindent
 
 set wrap
@@ -47,4 +51,5 @@ set splitbelow     " Puts new split windows to the bottom of the current
 set scrolljump=5   " Line to scroll when cursor leaves screen
 set scrolloff=3    " Minumum lines to keep above and below cursor
 
-
+"set clipboard=unnamed
+set shortmess+=A

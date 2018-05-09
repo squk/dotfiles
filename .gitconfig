@@ -5,30 +5,41 @@
 [alias]
     a = add
     ap = add -p
+
     c = !sh -c 'git add $1 && git commit -v' -
     ca = commit --amend -v
     cav = commit -av
+    cv = commit -v
+
     co = checkout
     cob = checkout -b
-    cv = commit -v
+
     dc = diff --cached
+
     f = grep -Ii
+
+    # show detailed tree of branches and commits
     gr = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) - %C(dim white)%an%C(reset)' --all
+
     po = push origin
+    pg = push github
+    pn = push nieves
     pr = pull --rebase
+
     r = reset
     rh = reset --hard
+
     s = diff --stat
     st = status -s
+
     sl = stash list
     sa = stash apply
     ss = stash save
 [core]
 	excludesfile = /Users/christian/.gitignore_global
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-;[credential]
-    ;helper = osxkeychain

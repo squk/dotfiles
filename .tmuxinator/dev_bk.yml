@@ -1,5 +1,5 @@
 # vim:ft=ansible:
-name: go
+name: dev
 
 windows:
   - main:
@@ -8,16 +8,21 @@ windows:
       #makes a really long path
       panes:
         - vim:
-          - cd ~/go/src/github.com/ctnieves
+          - cd ~/dev/
           - vim
         - upper:
-          - cd ~/go/src/github.com/ctnieves
+          - cd ~/dev/
           - clear
         - lower:
-          - cd ~/go/src/github.com/ctnieves
+          - cd ~/dev/
           - clear
 
   - cli:
+      layout: 7bca,362x97,0,0{291x97,0,0,1,70x97,292,0,11}
       panes:
-          - cd ~/go/src/github.com/ctnieves
-          - clear
+        - main:
+          - cd ~/dev && clear
+        - activity:
+          # must use this with grc.activity config found in dotfiles/.grc/
+          - grc top -F -R -o cpu -s 2 -i 5 -n 35 -stats pid,command,cpu,mem,user
+

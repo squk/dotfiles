@@ -1,5 +1,6 @@
 # vim:ft=ansible:
-name: dev
+name: esg
+root: ~/dev
 
 windows:
   - main:
@@ -9,18 +10,20 @@ windows:
       #makes a really long path
       panes:
         - vim:
-          - cd ~/dev/ && clear
-          - vim
+          - cd ~/go/src/github.com/ctnieves/esgauto && clear
+          - vim -S
         - lower1:
-          - cd ~/dev/ && clear
+          - cd ~/go/src/github.com/ctnieves/esgauto && clear
         - lower2:
-          - cd ~/dev/ && clear
+          - cd ~/go/src/github.com/ctnieves/esgauto && clear
         - lower3:
-          - cd ~/dev/ && clear
+          - cd ~/go/src/github.com/ctnieves/esgauto && clear
+          - ssh -i ~/.ssh/ctn-esg ctn-esg@devwiki.equitysg.com
 
   - cli:
       layout: 7bca,362x97,0,0{291x97,0,0,1,70x97,292,0,11}
       panes:
         - main:
-          - cd ~/dev && clear
+          - cd ~/dev/esg && clear
         - other:
+

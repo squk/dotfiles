@@ -1,5 +1,5 @@
 # vim:ft=ansible:
-name: dev
+name: spl
 
 windows:
   - main:
@@ -9,14 +9,17 @@ windows:
       #makes a really long path
       panes:
         - vim:
-          - cd ~/dev/ && clear
+          - cd ~/dev/
           - vim
         - lower1:
-          - cd ~/dev/ && clear
+          - cd ~/dev/
+          - clear
         - lower2:
-          - cd ~/dev/ && clear
+          - cd ~/dev/
+          - clear
         - lower3:
-          - cd ~/dev/ && clear
+          - cd ~/dev/
+          - clear
 
   - cli:
       layout: 7bca,362x97,0,0{291x97,0,0,1,70x97,292,0,11}
@@ -24,3 +27,7 @@ windows:
         - main:
           - cd ~/dev && clear
         - other:
+        #- activity:
+          ## must use this with grc.activity config found in dotfiles/.grc/
+          #- grc top -F -R -o cpu -s 2 -i 5 -n 35 -stats pid,command,cpu,mem,user
+

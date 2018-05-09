@@ -2,20 +2,35 @@
 name: dev
 
 windows:
-  - main:
+  - nova:
       layout: 7a3c,362x97,0,0{225x97,0,0,0,136x97,226,0[136x48,226,0,2,136x48,226,49,7]}
       #we change the directory here because tmuxinator expands the alias and
       #makes a really long path
       panes:
         - vim:
           - cd ~/dev/nova
-          - vim
+          - vim -S
         - upper:
-          - ssh pi@192.168.30.61
+          - cd ~/dev/nova
+          - clear
         - lower:
           - cd ~/dev/nova
           - clear
 
+  - libalexandria:
+      layout: 7a3c,362x97,0,0{225x97,0,0,0,136x97,226,0[136x48,226,0,2,136x48,226,49,7]}
+      panes:
+        - vim:
+          - cd ~/dev/libalexandria
+          - vim -S
+        - upper:
+          - cd ~/dev/libalexandria
+          - clear
+        - lower:
+          - cd ~/dev/libalexandria
+          - clear
+
   - cli:
       panes:
-        - cd ~/dev && clear
+          - cd ~/dev/nova
+          - clear

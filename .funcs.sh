@@ -30,8 +30,10 @@ gitra() {
     if [[ $? -eq 0 ]]; then
         base=$(basename "$PWD")
         git remote remove origin
+        git remote remove github
+        git remote remove nieves
         git remote add github git@github.com:ctnieves/$base.git
-        git remote add nieves git@nieves.io:ctnieves/$base.git
+        git remote add nieves git@git.nieves.io:christian/$base.git
     fi
 }
 

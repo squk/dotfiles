@@ -60,6 +60,7 @@ nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
 
    " EZ Ack search
     nnoremap <leader>a :Ack!<Space>
+    nnoremap <leader>A :Ack!<Space> <C-r><C-w>
 
 
 " --------- CLIPBOARD MAPPINGS ---------

@@ -5,16 +5,15 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " INTEGRATION
 Plug 'tpope/vim-fugitive'             " git
+Plug 'tpope/vim-git'
 Plug 'airblade/vim-gitgutter'         " live git diff gutter
 Plug 'tmux-plugins/vim-tmux'          " tmux
 Plug 'christoomey/vim-tmux-navigator' " tmux
 
-" VIEW / SPLITS
-"Plug 'zhaocai/GoldenView.Vim'
-
-
 " AUTO-COMPLETION
 Plug 'maralla/completor.vim'
+"Plug 'vim-syntastic/syntastic'
+Plug 'christoomey/vim-titlecase'
 
 " FILE INTERACTIONS
 Plug 'mileszs/ack.vim'      " Ack bindings
@@ -33,6 +32,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'hdima/python-syntax'
 Plug 'vim-ruby/vim-ruby'
 Plug 'posva/vim-vue'
+Plug 'vim-scripts/matlab.vim'
+Plug 'artur-shaik/vim-javacomplete2'
 
 Plug 'wavded/vim-stylus'
 Plug 'nikvdp/ejs-syntax'
@@ -44,6 +45,8 @@ Plug 'elzr/vim-json'
 " FUNCTIONALITY STUFF
 Plug 'tpope/vim-obsession'     " auto vim-sessions session
 Plug 'Valloric/MatchTagAlways' " hilight closing tags in HTML etc.
+Plug 'wesQ3/vim-windowswap'
+Plug 'tpope/vim-dispatch'
 
 " FORMATTING
 Plug 'tpope/vim-surround'       " easily surround with delimiters

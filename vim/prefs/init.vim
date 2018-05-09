@@ -9,6 +9,7 @@ set term=xterm-256color
 syntax on
 
 set laststatus=2
+set cmdheight=1
 set ttyfast
 set relativenumber
 set copyindent
@@ -19,7 +20,6 @@ set autoindent
 set wrap
 set nofoldenable  " I really don't like folds..
 set linebreak
-"set breakindent  " linebreaks preserve indentation
 set textwidth=79
 set showbreak=⇇
 
@@ -52,4 +52,5 @@ set scrolljump=5   " Line to scroll when cursor leaves screen
 set scrolloff=3    " Minumum lines to keep above and below cursor
 
 "set clipboard=unnamed
-set shortmess+=A
+set shortmess=A
+

@@ -1,9 +1,3 @@
-" -------- NERDTree --------
-map <C-n> :NERDTreeToggle<CR>
-map <C-t> :TagbarToggle<CR>
-let NERDTreeShowHidden=1
-
-
 " -------- VIM-GO --------
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
@@ -26,7 +20,7 @@ let g:go_def_mapping_enabled = 0
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*/tmp/*,*.so,*.swo,*.swp,*.zip,*.o,*.d " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|build|bin)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_extensions = ['smarttabs']
 let g:ctrlp_switch_buffer = 'ETVH'
 let g:ctrlp_open_new_file = 't'
@@ -49,3 +43,18 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 "
 let g:ansible_options = {'ignore_blank_lines': 0}
+
+
+"
+let g:windowswap_map_keys = 0 "prevent default bindings
+"nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
+"nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+
+" this setting controls how long to wait (in ms) before fetching type / symbol information.
+set updatetime=500
+
+"Don't ask to save when changing buffers (i.e. when jumping to a type definition)
+set hidden
+
+autocmd FileType java setlocal omnifunc=javacomplete#Complete

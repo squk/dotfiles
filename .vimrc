@@ -34,6 +34,8 @@ set encoding=utf-8
 
 let base16colorspace=256
 set colorcolumn=80
+let g:python3_host_prog='/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python'
 
 set background=dark
 colorscheme osiris

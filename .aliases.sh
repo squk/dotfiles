@@ -1,4 +1,4 @@
-alias vim='vim -v'
+#alias vim='vim -v'
 alias mux='tmuxinator'
 alias tmux='tmux -2'
 alias go='grc -e go'
@@ -6,6 +6,8 @@ alias go='grc -e go'
 alias ls='ls -Gp'                    # Colorize the ls output ##
 alias ll='ls -la'                    # Use a long listing format ##
 alias l.='ls -d .*'                  # Show hidden files ##
+
+alias grep='grep --colour'
 
 alias cp='cp -iv'                    # Preferred 'cp' implementation
 alias mv='mv -iv'                    # Preferred 'mv' implementation

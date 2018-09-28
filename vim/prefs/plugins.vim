@@ -9,6 +9,10 @@ Plug 'tpope/vim-git'
 Plug 'airblade/vim-gitgutter'         " live git diff gutter
 Plug 'tmux-plugins/vim-tmux'          " tmux
 Plug 'christoomey/vim-tmux-navigator' " tmux
+"Plug 'neilagabriel/vim-geeknote'     " evernote
+Plug 'ferrine/md-img-paste.vim'       " copy-paste images to markdown
+Plug 'junegunn/vim-easy-align'        " markdown table aligns
+Plug 'vim-vdebug/vdebug'              " xdebug
 
 " AUTO-COMPLETION
 Plug 'maralla/completor.vim'
@@ -34,6 +38,8 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'posva/vim-vue'
 Plug 'vim-scripts/matlab.vim'
 Plug 'artur-shaik/vim-javacomplete2'
+Plug 'kchmck/vim-coffee-script'
+Plug 'kelwin/vim-smali'
 
 Plug 'wavded/vim-stylus'
 Plug 'nikvdp/ejs-syntax'
@@ -57,8 +63,9 @@ Plug 'machakann/vim-swap'       " swap delimited items with g> g< and gs
 
 " THEMES
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jdkanani/vim-material-theme'
-Plug 'kristijanhusak/vim-hybrid-material'
+"Plug 'jdkanani/vim-material-theme'
+"Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'tyrannicaltoucan/vim-quantum'
+"Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'ajmwagar/vim-deus'
+Plug 'joshdick/onedark.vim'

@@ -1,15 +1,23 @@
 [user]
 	email = christian@nieves.io
 	name = Christian Nieves
+	signingkey = 2AC308CA75172D37!
 
 [alias]
     a = add
     ap = add -p
 
-    c = !sh -c 'git add $1 && git commit -v' -
+    ;c = !sh -c 'git add $1 && git commit -v' -
+    ;cs = !sh -c 'git add $1 && git commit -v' -
+
     ca = commit --amend -v
+    cas = commit --amend -vS
+
     cav = commit -av
+    cavs = commit -avS
+
     cv = commit -v
+    cvs = commit -vS
 
     co = checkout
     cob = checkout -b

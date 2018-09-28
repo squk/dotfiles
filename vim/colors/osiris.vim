@@ -1724,8 +1724,12 @@ fun! s:set_highlightings_variable()
   call s:HL("StartifySpecial", s:aqua, "", "")
 
   " Git
-  call s:HL("diffAdded", s:olive, "", "")
-  call s:HL("diffRemoved", s:pink, "", "")
+    hi diffAdded   ctermbg=NONE ctermfg=46  cterm=NONE guibg=NONE guifg=#00FF00 gui=NONE
+    hi diffRemoved ctermbg=NONE ctermfg=196 cterm=NONE guibg=NONE guifg=#FF0000 gui=NONE
+    hi link diffLine String
+    hi link diffSubname Normal
+  "call s:HL("diffAdded", s:olive, "", "")
+  "call s:HL("diffRemoved", s:pink, "", "")
   " call s:HL("gitcommitSummary", "", "", s:bold)
 
 endfun

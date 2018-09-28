@@ -3,21 +3,23 @@ name: go
 
 windows:
   - main:
-      layout: 7a3c,362x97,0,0{225x97,0,0,0,136x97,226,0[136x48,226,0,2,136x48,226,49,7]}
+      layout: a5c5,364x99,0,0[364x69,0,0,0,364x29,0,70{120x29,0,70,2,120x29,121,70,3,122x29,242,70,4}]
+
       #we change the directory here because tmuxinator expands the alias and
       #makes a really long path
       panes:
         - vim:
-          - cd ~/go/src/github.com/ctnieves
-          - vim
-        - upper:
-          - cd ~/go/src/github.com/ctnieves
-          - clear
-        - lower:
-          - cd ~/go/src/github.com/ctnieves
-          - clear
+          - cd ~/go/src/github.com/ctnieves && clear
+        - lower1:
+          - cd ~/go/src/github.com/ctnieves && clear
+        - lower2:
+          - cd ~/go/src/github.com/ctnieves && clear
+        - lower3:
+          - cd ~/go/src/github.com/ctnieves && clear
 
   - cli:
+      layout: 7bca,362x97,0,0{291x97,0,0,1,70x97,292,0,11}
       panes:
-          - cd ~/go/src/github.com/ctnieves
-          - clear
+        - main:
+          - cd ~/dev && clear
+        - other:

@@ -9,25 +9,17 @@ windows:
       #makes a really long path
       panes:
         - vim:
-          - cd ~/Dropbox/
-          - vim
+          - cd ~/ && clear
         - lower1:
-          - cd ~/Dropbox/
-          - clear
+          - cd ~/ && clear
         - lower2:
-          - cd ~/Dropbox/
-          - clear
+          - cd ~/ && clear
         - lower3:
-          - cd ~/Dropbox/
-          - clear
+          - cd ~/ && clear
 
   - cli:
       layout: 7bca,362x97,0,0{291x97,0,0,1,70x97,292,0,11}
       panes:
         - main:
-          - cd ~/dev && clear
+          - cd ~/ && clear
         - other:
-        #- activity:
-          ## must use this with grc.activity config found in dotfiles/.grc/
-          #- grc top -F -R -o cpu -s 2 -i 5 -n 35 -stats pid,command,cpu,mem,user
-

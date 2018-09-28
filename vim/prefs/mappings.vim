@@ -58,5 +58,5 @@ nnoremap <silent> ss <C-w>s
 map <C-n> :NERDTreeToggle<CR>
 
 " always use very magic mode when searching
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v

@@ -1,0 +1,56 @@
+{
+    "languageserver": {
+        "ciderlsp": {
+            "command": "/google/bin/releases/cider/ciderlsp/ciderlsp",
+            "args": [
+                "--tooltag=coc-nvim",
+                "--noforward_sync_responses",
+                "-hub_addr=blade:languageservices-staging"
+
+            ],
+            "filetypes": [
+                "borg",
+                "c",
+                "cpp",
+                "go",
+                "java",
+                "kotlin",
+                "proto",
+                "python",
+                "textproto"
+            ]
+        }
+    },
+     "diagnostic-languageserver.filetypes": {
+         "borg":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "c":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "cpp":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "go":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "java":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "kt":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "kotlin":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "proto":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "python":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "textproto": "/google/bin/releases/cider/ciderlsp/ciderlsp"
+    },
+     "diagnostic-languageserver.linters": {
+         "borg":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "c":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "cpp":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "go":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "java":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "kt":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "kotlin":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "proto":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "python":"/google/bin/releases/cider/ciderlsp/ciderlsp",
+         "textproto": "/google/bin/releases/cider/ciderlsp/ciderlsp"
+    },
+    "java.completion.guessMethodArguments": true,
+    "java.progressReports.enabled": true,
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "coc.preferences.willSaveHandlerTimeout":1000,
+    "codeLens.enable": true,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false
+}

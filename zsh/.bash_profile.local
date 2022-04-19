@@ -1,0 +1,58 @@
+# ---------------
+# Google Specific
+# ---------------
+# For running crow against a remote X server
+export PATH=$PATH:/google/src/head/depot/google3/experimental/users/cnieves/util
+export XAUTHORITY=~/.Xauthority
+export GOROOT=/usr/lib/google-golang
+export PATH=$GOROOT/bin:$PATH
+export JAVA_HOME=$(readlink -ne /usr/local/buildtools/java/jdk)
+
+source /etc/bash_completion.d/hgd
+
+function gcert() {
+  if [[ -n $TMUX ]]; then
+    eval $(tmux show-environment -s)
+  fi
+
+  command gcert "$@"
+}
+
+function tmux_title() {
+  if [[ $PWD =~ /google/src/cloud/[^/]+/([^/]+)/.* ]]; then
+    tmx2 rename-window "${match[1]}"
+  else
+    tmx2 rename-window "$(basename "`pwd`")"
+  fi
+}
+if [[ ! -z "$TMUX" ]]; then
+  precmd_functions+=(tmux_title)
+fi
+
+prodcertstatus &> /dev/null &&
+  /google/data/ro/users/di/diamondm/engfortunes/fortune.sh
+
+# Install fzf-query
+export PATH="${PATH}:/google/bin/releases/editor-devtools"
+# General fzf settings.
+export FZF_DEFAULT_OPTS=" \
+  --inline-info \
+  --reverse \
+  --color=fg+:#F8F8F8,bg+:#515559,pointer:#F8F8F8,marker:226 \
+  --bind=ctrl-e:select-all+accept \
+  --bind=ctrl-d:half-page-down \
+  --bind=ctrl-e:half-page-up
+  --bind=ctrl-t:toggle+down
+  --bind=ctrl-b:toggle+up
+  --bind=ctrl-g:select-all+accept \
+  "
+# Preview code with pygmentize.
+export FZF_CS_PREVIEW_COMMAND="python third_party/py/pygments/google/google_pygmentize.py -f terminal16m -O style=native"
+# Preview highlight: foreground: RG(248, 248, 248) = #F8F8F8, background: RGB(81, 85, 89) = #515559.
+export FZF_CS_PREVIEW_HIGHLIGHT="\x1b[38;2;248;248;248m\x1b[48;2;81;85;89m"
+
+source ~/fzf-at-google.zsh
+
+# source /google/src/cloud/cnieves/gms-codelab/google3/java/com/google/android/gmscore/g3doc/quickstart/gmscore.sh
+source ~/g3path.zsh
+export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh

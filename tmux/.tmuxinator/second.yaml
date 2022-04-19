@@ -1,0 +1,27 @@
+# vim:ft=ansible
+name: second
+
+windows:
+  - notes:
+      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      panes:
+        - main:
+          - hgd notes
+          - cd ../company/users/cnieves/
+          - vim -S ~/.sessions/notes.vim
+        - other:
+          - hgd notes
+          - cd ../company/users/cnieves/
+        - other2:
+          - hgd notes
+          - cd ../company/users/cnieves/
+
+  - secondary:
+      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      panes:
+        - main:
+          - cd ~/
+        - other:
+          - cd ~/
+        - other2:
+          - cd ~/

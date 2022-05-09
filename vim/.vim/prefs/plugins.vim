@@ -10,7 +10,8 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'neovim/nvim-lspconfig'
-Plug 'onsails/lspkind-nvim'
+Plug 'onsails/lspkind.nvim'
+" required only for diagnostics
 Plug 'folke/trouble.nvim'
 
 " UI EXTENSIONS
@@ -19,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'         " ...
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " INTEGRATION
 Plug 'tpope/vim-fugitive'             " git
@@ -27,13 +29,11 @@ Plug 'tpope/vim-git'
 Plug 'airblade/vim-gitgutter'         " live git diff gutter
 Plug 'tmux-plugins/vim-tmux'          " tmux
 Plug 'benmills/vimux'
-" Plug 'dense-analysis/ale'
-
+Plug 'nvim-lua/plenary.nvim'
 Plug 'christoomey/vim-tmux-navigator' " tmux
 Plug 'ferrine/md-img-paste.vim'       " copy-paste images to markdown
 Plug 'junegunn/vim-easy-align'        " markdown table aligns
 Plug 'skywind3000/asyncrun.vim'
-" Plug 'vim-vdebug/vdebug'              " xdebug
 Plug 'dhruvasagar/vim-table-mode'     " git readme tables
 Plug 'NLKNguyen/cloudformation-syntax.vim'
 Plug 'stephpy/vim-yaml'
@@ -42,6 +42,7 @@ Plug 'tell-k/vim-autoflake' " remove unused python imports
 Plug 'embear/vim-uncrustify'
 Plug 'sakhnik/nvim-gdb', { 'do': 'bash ./install.sh \| UpdateRemotePlugins' }
 Plug 'kburdett/vim-nuuid'
+Plug 'easymotion/vim-easymotion'
 
 " AUTO-COMPLETION
 Plug 'christoomey/vim-titlecase'
@@ -98,6 +99,9 @@ Plug 'tommcdo/vim-exchange'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jdkanani/vim-material-theme'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'jacoborus/tender.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tyrannicaltoucan/vim-quantum'
@@ -109,6 +113,7 @@ Plug 'robertmeta/nofrils'
 Plug 'kristiandupont/shades-of-teal'
 Plug 'joshdick/onedark.vim'
 Plug 'google/vim-colorscheme-primary'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 " Plug 'google/vim-maktaba'
 " Plug 'google/vim-glaive'

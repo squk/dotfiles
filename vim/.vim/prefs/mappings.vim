@@ -39,8 +39,8 @@ nnoremap J :tabprevious<CR>
 nnoremap K :tabnext<CR>
 
 " tab arrangement, Shift-H and Shift-L to move tabs
-"nnoremap <silent> <S-H> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-"nnoremap <silent> <S-L> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+" nnoremap <silent> <lt> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+" nnoremap <silent> > :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 "
 " tab opening
 nnoremap tt  :tabedit<Space>

@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()            " required
 
 source ~/.vim/prefs/cmp.vim
+source ~/.vim/prefs/google_comments.vim
 " source ~/.vim/prefs/ale.vim
 
 filetype plugin on     " redundant?
@@ -45,6 +46,8 @@ autocmd BufWritePre * call NewInitBex()
 set noshowmode
 set encoding=utf-8
 
+set t_Co=256
+
 let base16colorspace=256
 set colorcolumn=100
 if has('macunix')
@@ -55,8 +58,11 @@ else
     let g:python_host_prog='/usr/bin/python'
 endif
 
+if (has("termguicolors"))
+ set termguicolors
+endif
 set background=dark
-colorscheme onedark
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme quantum
+let g:airline_theme='quantum'
 set modifiable
-"highlight Normal ctermbg=NONE guibg=NONE
-"highlight NonText ctermbg=NONE guibg=NONE

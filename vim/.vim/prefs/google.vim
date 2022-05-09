@@ -4,6 +4,7 @@ source /google/data/ro/projects/vigor/vigor.vim
 " source /usr/share/vim/google/google.vim
 
 Plug 'vim-scripts/vcscommand.vim'
+Plug 'sso://user/chmnchiang/google-comments'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'

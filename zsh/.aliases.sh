@@ -55,6 +55,10 @@ sl_gms() {
     sl integ GmsCore_prodnext_xxhdpi_debug
 }
 
+build_gms() {
+  blaze build --config gmscore_arm64 //java/com/google/android/gmscore/integ:GmsCore_prodnext_xxhdpi_debug
+}
+
 cdm() {
     adb shell am start -n com.google.android.gms/.chimera.debug.ChimeraDebugActivity
 }
@@ -82,6 +86,14 @@ jt() {
 
 get_current_activity() {
     adb shell dumpsys window | grep -E 'mCurrentFocus'
+}
+
+cl_search() {
+    hg whatsout | xargs -i sh -c "echo {} && rg $1 {}"
+}
+
+cl_replace() {
+    hg whatsout | xargs -i sh -c "sed -i '$1' {}"
 }
 
 restart_gms() {

@@ -20,9 +20,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'         " ...
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
-Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 " INTEGRATION
+Plug 'AndrewRadev/linediff.vim'
 Plug 'tpope/vim-fugitive'             " git
 Plug 'junegunn/gv.vim'                " git commit browser
 Plug 'tpope/vim-git'
@@ -49,10 +51,10 @@ Plug 'christoomey/vim-titlecase'
 Plug 'chiedo/vim-case-convert'
 
 " FILE INTERACTIONS
-Plug 'mileszs/ack.vim'      " Ack bindings
+" Plug 'mileszs/ack.vim'      " Ack bindings
+Plug 'jremmen/vim-ripgrep'
 
 Plug 'preservim/nerdtree'  " File Tree
-Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " LANGUAGE PLUGINS

@@ -23,7 +23,6 @@ tnoremap <C-L> <C-\><C-n><C-w>l
 inoremap <Nul> <C-n>
 
 " Fox for Ack
-cnoreabbrev Ack Ack!
 cnoremap %% <C-R>=fnameescape(expand("%:p:h")."/")<CR>
 
 " move vertically by visual line

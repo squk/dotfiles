@@ -53,4 +53,4 @@ vim.api.nvim_set_keymap("n", "<Leader>xx", "<Cmd>Trouble<CR>", { silent = true, 
 vim.api.nvim_set_keymap("n", "<Leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<Leader>xd", "<Cmd>Trouble document_diagnostics<CR>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<Leader>xl", "<Cmd>Trouble loclist<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>xq", "<Cmd>Trouble quick`ix<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>xq", "<Cmd>Trouble quickfix<CR>", { silent = true, noremap = true })

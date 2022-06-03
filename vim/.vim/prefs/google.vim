@@ -38,8 +38,8 @@ Glug relatedfiles plugin[mappings]
 Glug g4
 Glug corpweb
 Glug google-csimporter
-Glug blazedeps
 
+" Update the current file's build deps
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, 'commit': '3f75a83' }
 Plug 'junegunn/fzf.vim'
 Glug outline-window
@@ -47,10 +47,14 @@ Glug fzf-query
 
 function s:blazeExec(cmd, targets)
     if len(a:targets) == 0
-        exe VimuxRunCommand("build_target.py " . expand('%:p') . " " . a:cmd)<CR>
+        exe VimuxRunCommand("build_target.py " . expand('%:p') . " " . a:cmd)
     else
         exe VimuxRunCommand(a:cmd . " " . join(a:targets, ' '))
     endif
+endfunction
+
+function BlazeRun() abort
+    call <SID>blazeExec("blaze run", blaze#GetTargets())
 endfunction
 
 function BlazeBuild() abort
@@ -65,9 +69,15 @@ function BlazeTestDebug() abort
     call <SID>blazeExec("blaze test --java_debug", blaze#GetTargets())
 endfunction
 
+function BuildCleaner() abort
+    exe VimuxRunCommand("build_cleaner " . expand('%'))
+endfunction
+
+nnoremap <Leader>br  :call BlazeRun()<cr>
 nnoremap <Leader>bb  :call BlazeBuild()<cr>
 nnoremap <Leader>bt  :call BlazeTest()<cr>
 nnoremap <Leader>btd  :call BlazeTestDebug()<cr>
+nnoremap <Leader>bc  :call BuildCleaner()<cr>
 
 let g:asyncrun_open = 1
 
@@ -154,6 +164,10 @@ endfunction
 com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 
 nnoremap <leader>cs :FzfCs<space>
+" The buffer n can be replaced by any other unused buffer.
+" <c-u> removes the visual range because csearch doesn't support ranges.
+" Removes newlines to allow the entire line search using V-LINE mode.
+vnoremap <leader>cs "ny:<c-u>FzfCs "<c-r>=substitute(@n, '\n', '', '')<cr>"<cr>
 nnoremap <leader>csi :CsImporter<cr>
 nnoremap <leader>CS :FzfCs<Space> <C-r><C-w> <cr>
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>

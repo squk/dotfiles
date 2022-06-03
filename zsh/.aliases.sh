@@ -89,7 +89,7 @@ get_current_activity() {
 }
 
 cl_search() {
-    hg whatsout | xargs -i sh -c "echo {} && rg $1 {}"
+    hg whatsout | xargs -i sh -c "echo {} && grep $1 {}"
 }
 
 cl_replace() {

@@ -2,6 +2,24 @@
 
 export FZF_SOURCE="${HOME}/fzf-relevant-files.zsh"
 
+# General fzf settings.
+export FZF_DEFAULT_OPTS=" \
+  --inline-info \
+  --reverse \
+  --exact \
+  --color=fg+:#F8F8F8,bg+:#515559,pointer:#F8F8F8,marker:226 \
+  --bind=ctrl-e:select-all+accept \
+  --bind=ctrl-d:half-page-down \
+  --bind=ctrl-e:half-page-up
+  --bind=ctrl-t:toggle+down
+  --bind=ctrl-b:toggle+up
+  --bind=ctrl-g:select-all+accept \
+  "
+# Preview code with pygmentize.
+# export FZF_CS_PREVIEW_COMMAND="python /google/src/files/head/depot/google3/third_party/py/pygments/google/google_pygmentize.py -f terminal16m -O style=native"
+# Preview highlight: foreground: RG(248, 248, 248) = #F8F8F8, background: RGB(81, 85, 89) = #515559.
+export FZF_CS_PREVIEW_HIGHLIGHT="\x1b[38;2;248;248;248m\x1b[48;2;81;85;89m"
+
 function create_fzf_command() {
   rg --files $(${FZF_SOURCE})
 }

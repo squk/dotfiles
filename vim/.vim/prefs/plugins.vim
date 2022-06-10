@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'         " ...
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
+Plug 'guns/xterm-color-table.vim'
 " Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'ryanoasis/vim-devicons'
 

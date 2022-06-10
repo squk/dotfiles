@@ -61,7 +61,18 @@ set scrolloff=3    " Minumum lines to keep above and below cursor
 " makes sure that when opening, files are normal, i.e. not folded.
 set nofoldenable
 
-" set clipboard=unnamed
+let g:clipboard = #{
+      \   name: 'xsel',
+      \   copy: {
+      \     '+': ['xclip', '--nodetach', '-i', '-b'],
+      \     '*': ['xclip', '--nodetach', '-i', '-p'],
+      \   },
+      \   paste: {
+      \     '+': ['xclip', '-o', '-b'],
+      \     '*': ['xclip', '-o', '-p'],
+      \   },
+      \   cache_enabled: 1,
+      \ }
 set shortmess=A
 
 set updatetime=100

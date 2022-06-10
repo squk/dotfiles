@@ -83,18 +83,14 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 " --------- CLIPBOARD MAPPINGS ---------
 " Paste from OS clipboard
-map <leader>v i<ESC> :r!xclip -o<CR>
-vmap <leader>v c<ESC> :r!xclip -o<CR>
-imap <leader>v <ESC> :r!xclip -o<CR>
-" map <leader>v    i<ESC>"+pa<ESC>
-" vmap <leader>v   c<ESC>"+p<ESC>
-" imap <leader>v    <ESC>"+pa
-"
+map <leader>v    i<ESC>"+pa<ESC>
+vmap <leader>v   c<ESC>"+p<ESC>
+imap <leader>v    <ESC>"+pa
 
 " Copy to OS clipboard
- vnoremap <silent><Leader>y "yy <Bar> :call system('xclip', @y)<CR>
-" map <leader>y !xclip -selection clipboard
-" vmap <leader>y !xclip -selection clipboard<cr>
+ " vnoremap <silent><Leader>y "yy <Bar> :call system('xclip', @y)<CR>
+map <leader>y !xclip -selection clipboard
+vmap <leader>y !xclip -selection clipboard<cr>
 " map <leader>y   "+Y
 " vmap <leader>y  "+y
 

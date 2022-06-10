@@ -101,6 +101,11 @@ restart_gms() {
     adb shell am broadcast -a com.google.android.gms.INITIALIZE
 }
 
+objfs_cp() {
+    tmp=$(mktemp) && \
+    fileutil cp -f $1 $tmp && unzip $tmp $2 && unlink $tmp
+}
+
 alias acid=/google/bin/releases/mobile-devx-platform/acid/acid
 alias apido='/google/data/ro/teams/oneplatform/apido'
 alias bugs=/google/data/rw/users/mk/mkannan/www/bin/bugs

@@ -21,8 +21,6 @@ On gLinux you can install stow with apt.
 $ sudo apt install stow
 ```
 
-On gMac you can install stow with
-[homebrew](https://g3doc.corp.google.com/company/teams/mac-road-warrior/index.md#homebrew).
 
 ```shell
 $ brew install stow
@@ -65,10 +63,6 @@ Which will establish the following symlinks.
 Neat! You can also "unstow" files as well to unlink. See the
 [docs](https://www.gnu.org/software/stow/manual/stow.html#Invoking-Stow).
 
-If you store your dotfiles in Piper in your experimental user directory you can
-use the following command. Remember you need to have run `gcert` before you can
-access Piper.
-
 Assuming you have the following directory structure:
 
 ```none
@@ -84,7 +78,7 @@ experimental/users/{{USERNAME}}
 Then run:
 
 ```shell
-stow -t $HOME -d /google/src/head/depot/google3/experimental/users/$USER/dotfiles vim zsh
+stow -t $HOME -d /$repo/dotfiles vim zsh
 ```
 
 If you get a `existing target is not owned by stow` error, make sure any

@@ -3,7 +3,9 @@ local nvim_lsp = require("lspconfig")
 local configs = require("lspconfig.configs")
 configs.ciderlsp = {
   default_config = {
-    cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-lsp", "--noforward_sync_responses", "--enable_semantic_tokens" },
+    cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-lsp", "--noforward_sync_responses",
+    "--enable_semantic_tokens",
+    "--relay_mode=true", "--hub_addr=blade:languageservices-staging" },
     filetypes = { "c", "cpp", "java", "kotlin", "proto", "textproto", "go", "python", "bzl" },
     root_dir = nvim_lsp.util.root_pattern("BUILD"),
     settings = {},
@@ -172,7 +174,18 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command("augroup END")
 end
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.codeAction = {
+	codeActionLiteralSupport = {
+		codeActionKind = {
+			valueSet = {
+				'', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports'
+			}
+		}
+	}
+}
+capabilities.textDocument.publishDiagnostics['versionSupport'] = false
 nvim_lsp.ciderlsp.setup({
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = capabilities,
   on_attach = on_attach,
 })

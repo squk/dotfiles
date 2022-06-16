@@ -163,13 +163,14 @@ endfunction
 
 com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 
-nnoremap <leader>cs :FzfCs<space>
+" nnoremap <leader>cs :FzfCs<space>
 " The buffer n can be replaced by any other unused buffer.
 " <c-u> removes the visual range because csearch doesn't support ranges.
 " Removes newlines to allow the entire line search using V-LINE mode.
-vnoremap <leader>cs "ny:<c-u>FzfCs "<c-r>=substitute(@n, '\n', '', '')<cr>"<cr>
+" vnoremap <leader>cs "ny:<c-u>FzfCs "<c-r>=substitute(@n, '\n', '', '')<cr>"<cr>
 nnoremap <leader>csi :CsImporter<cr>
-nnoremap <leader>CS :FzfCs<Space> <C-r><C-w> <cr>
+" nnoremap <leader>CS :FzfCs<Space> <C-r><C-w> <cr>
+
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
 nnoremap <leader>s :call CitCObsession()<CR>
 nnoremap <leader>g :GoogleOutlineWindow<CR>

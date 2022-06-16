@@ -16,6 +16,10 @@ Plug 'folke/trouble.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'nvim-lua/plenary.nvim'           " lua helpers
+Plug 'nvim-telescope/telescope.nvim'   " actual plugin
+Plug 'sso://user/vintharas/telescope-codesearch.nvim'
+
 " UI EXTENSIONS
 Plug 'ntpeters/vim-better-whitespace'  "auto-set tab/space size
 Plug 'junegunn/fzf.vim'

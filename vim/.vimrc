@@ -94,9 +94,6 @@ call plug#begin('~/.vim/plugged')
   source ~/.vim/prefs/golang.vim
   source ~/.vim/prefs/ultisnips.vim
   source ~/.vim/prefs/ripgrep.vim
-  " source ~/.vim/prefs/coc.vim
-  " source ~/.vim/prefs/asynclsp.vim
-  " source ~/.vim/prefs/ycm.vim
 call plug#end()            " required
 
 " Require CiderLSP and Diagnostics modules
@@ -109,13 +106,14 @@ lua << EOF
   require("lsp")
   require("diagnostics")
   require("treesitter")
+  require("telescope_config")
+
 
 EOF
 source ~/.vim/prefs/cmp.vim
 if filereadable(expand("~/.vim/prefs/use_google.vim"))
     source ~/.vim/prefs/google_comments.vim
 endif
-" source ~/.vim/prefs/ale.vim
 
 filetype plugin on     " redundant?
 filetype plugin indent on
@@ -155,3 +153,4 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colorscheme quantum
 let g:airline_theme='quantum'
 set modifiable
+set omnifunc= completeopt=menuone,noinsert,noselect

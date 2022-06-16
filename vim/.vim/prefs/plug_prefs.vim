@@ -2,7 +2,7 @@ let pyxversion = 3
 
 
 " -------- FZF --------
-nmap <C-P> :FZF<CR>
+" nmap <C-P> :FZF<CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)

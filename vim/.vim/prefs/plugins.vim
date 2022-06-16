@@ -14,6 +14,8 @@ Plug 'onsails/lspkind.nvim'
 " required only for diagnostics
 Plug 'folke/trouble.nvim'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " UI EXTENSIONS
 Plug 'ntpeters/vim-better-whitespace'  "auto-set tab/space size
 Plug 'junegunn/fzf.vim'
@@ -21,7 +23,7 @@ Plug 'vim-airline/vim-airline'         " ...
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
 Plug 'guns/xterm-color-table.vim'
-" Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'ryanoasis/vim-devicons'
 
 " INTEGRATION

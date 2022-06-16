@@ -60,16 +60,17 @@ set scrolloff=3    " Minumum lines to keep above and below cursor
 
 " makes sure that when opening, files are normal, i.e. not folded.
 set nofoldenable
+set foldmethod=syntax
 
 let g:clipboard = #{
       \   name: 'xsel',
       \   copy: {
-      \     '+': ['xclip', '--nodetach', '-i', '-b'],
-      \     '*': ['xclip', '--nodetach', '-i', '-p'],
+      \     '+': ['xsel', '--nodetach', '-i', '-b'],
+      \     '*': ['xsel', '--nodetach', '-i', '-p'],
       \   },
       \   paste: {
-      \     '+': ['xclip', '-o', '-b'],
-      \     '*': ['xclip', '-o', '-p'],
+      \     '+': ['xsel', '-o', '-b'],
+      \     '*': ['xsel', '-o', '-p'],
       \   },
       \   cache_enabled: 1,
       \ }
@@ -79,7 +80,6 @@ set updatetime=100
 
 call plug#begin('~/.vim/plugged')
   source ~/.vim/prefs/plugins.vim
-  source ~/.vim/prefs/init.vim
   if filereadable(expand("~/.vimrc.local"))
       source ~/.vim/prefs/google.vim
   endif
@@ -96,6 +96,18 @@ call plug#begin('~/.vim/plugged')
   " source ~/.vim/prefs/ycm.vim
 call plug#end()            " required
 
+" Require CiderLSP and Diagnostics modules
+" IMPORTANT: Must come after plugins are loaded
+lua << EOF
+  -- CiderLSP
+  vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+  require 'lspconfig'
+  require("lsp")
+  require("diagnostics")
+  require("treesitter")
+
+EOF
 source ~/.vim/prefs/cmp.vim
 source ~/.vim/prefs/google_comments.vim
 " source ~/.vim/prefs/ale.vim

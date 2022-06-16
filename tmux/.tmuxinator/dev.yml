@@ -2,25 +2,27 @@
 name: dev
 
 windows:
-  - main:
+  - gmscore:
       layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
       panes:
         - main:
-          - cd ~/
+          - hgd gmscore
+          - vim -S ~/.sessions/gmscore.vim
         - other:
-          - cd ~/
+          - hgd gmscore
         - other2:
-          - cd ~/
+          - hgd gmscore
 
-  - secondary:
+  - experimental:
       layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
       panes:
         - main:
-          - cd ~/
+          - hgd experimental
+          - vim -S ~/.sessions/experimental.vim
         - other:
-          - cd ~/
+          - hgd experimental
         - other2:
-          - cd ~/
+          - hgd experimental
   - notes:
       layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
       panes:
@@ -34,3 +36,13 @@ windows:
         - other2:
           - hgd notes
           - cd ../company/users/cnieves/
+  - vim:
+      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      panes:
+        - main:
+          - cd ~/.vim/prefs
+          - vim -S ~/.sessions/vim.vim
+        - other:
+          - cd ~/.vim/prefs
+        - other2:
+          - cd ~/.vim/prefs

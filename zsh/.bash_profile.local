@@ -2,6 +2,7 @@
 # Google Specific
 # ---------------
 # For running crow against a remote X server
+xhost +
 export PATH=$PATH:/google/src/head/depot/google3/experimental/users/cnieves/util
 export XAUTHORITY=~/.Xauthority
 export GOROOT=/usr/lib/google-golang

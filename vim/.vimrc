@@ -81,6 +81,9 @@ set updatetime=100
 call plug#begin('~/.vim/plugged')
   source ~/.vim/prefs/plugins.vim
   if filereadable(expand("~/.vimrc.local"))
+      source ~/.vimrc.local
+  endif
+  if filereadable(expand("~/.vim/prefs/google.vim"))
       source ~/.vim/prefs/google.vim
   endif
 
@@ -109,7 +112,9 @@ lua << EOF
 
 EOF
 source ~/.vim/prefs/cmp.vim
-source ~/.vim/prefs/google_comments.vim
+if filereadable(expand("~/.vim/prefs/google.vim"))
+    source ~/.vim/prefs/google_comments.vim
+endif
 " source ~/.vim/prefs/ale.vim
 
 filetype plugin on     " redundant?

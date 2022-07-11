@@ -9,6 +9,8 @@ SSH_OPTS="-YXC -R 5037:localhost:5037 -oServerAliveInterval=$alive_interval"
 
 tmux_cmd="gcertstatus || gcert; mux dev"
 
+gcertstatus || gcert
+
 # Just keep reconnecting upon failure
 while [ 1 ]; do
   ssh -t $host $SSH_OPTS "$tmux_cmd"

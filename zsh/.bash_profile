@@ -1,4 +1,5 @@
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/scripts
 export MOCWORD_DATA=$HOME/mocword/mocword.sqlite
 
 export PATH=$PATH:.

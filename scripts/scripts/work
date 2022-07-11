@@ -7,7 +7,7 @@ host=baggins.c.googlers.com
 
 SSH_OPTS="-YXC -R 5037:localhost:5037 -oServerAliveInterval=$alive_interval"
 
-tmux_cmd="gcertstatus || gcert; mux dev"
+tmux_cmd="gcertstatus || gcert; tmuxinator dev"
 
 gcertstatus || gcert
 

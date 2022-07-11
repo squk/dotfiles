@@ -83,7 +83,7 @@ call plug#begin('~/.vim/plugged')
   if filereadable(expand("~/.vimrc.local"))
       source ~/.vimrc.local
   endif
-  if filereadable(expand("~/.vim/prefs/google.vim"))
+  if filereadable(expand("~/.vim/prefs/use_google.vim"))
       source ~/.vim/prefs/google.vim
   endif
 
@@ -112,7 +112,7 @@ lua << EOF
 
 EOF
 source ~/.vim/prefs/cmp.vim
-if filereadable(expand("~/.vim/prefs/google.vim"))
+if filereadable(expand("~/.vim/prefs/use_google.vim"))
     source ~/.vim/prefs/google_comments.vim
 endif
 " source ~/.vim/prefs/ale.vim

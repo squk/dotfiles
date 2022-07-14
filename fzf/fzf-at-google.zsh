@@ -233,7 +233,7 @@ awk -v match_prefix=${match_prefix} ' { for (i = 1; i <= NF; i++) {
 
 }
 
-# CTRL-Q - Paste the selected flags into the command line. Copied from CTRL-T
+# CTRL-F - Paste the selected flags into the command line. Copied from CTRL-T
 # bindings shown here:
 # https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 __flagsel() {
@@ -270,4 +270,4 @@ fzf-flag-widget() {
   return $ret
 }
 zle     -N   fzf-flag-widget
-bindkey '^Q' fzf-flag-widget
+bindkey '^F' fzf-flag-widget

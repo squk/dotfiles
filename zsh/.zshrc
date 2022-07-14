@@ -248,3 +248,19 @@ source ~/zsh-async/async.zsh
 
 export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind ?:toggle-preview"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+fixup_ssh_auth_sock() {
+  if [[ -n ${SSH_AUTH_SOCK} && ! -e ${SSH_AUTH_SOCK} ]]
+  then
+    local new_sock=$(echo /tmp/ssh-*/agent.*(=UNom[1]))
+     if [[ -n ${new_sock} ]]
+     then
+       export SSH_AUTH_SOCK=${new_sock}
+     fi
+  fi
+}
+if [[ -n ${SSH_AUTH_SOCK} ]]
+then
+  autoload -U add-zsh-hook
+  add-zsh-hook preexec fixup_ssh_auth_sock
+fi

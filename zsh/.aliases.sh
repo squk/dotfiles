@@ -119,3 +119,4 @@ alias jadep=/google/data/ro/teams/jade/jadep
 alias replace_string=/google/src/head/depot/google3/devtools/scripts/replace_string
 alias safergcp=/google/bin/releases/safer-gcp/tools/safergcp
 alias add_deps_to_usages='/google/src/head/depot/google3/apps/framework/tools/add_deps_to_usages.sh'
+alias plxutil='/google/data/ro/teams/plx/plxutil'

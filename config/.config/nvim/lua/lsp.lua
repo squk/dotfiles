@@ -30,6 +30,7 @@ cmp.setup({
     ["<C-e>"] = cmp.mapping.close(),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-m>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
     ["<Tab>"] = cmp.mapping(function(fallback)
     if cmp.visible() then
       cmp.select_next_item()

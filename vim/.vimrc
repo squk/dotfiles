@@ -65,12 +65,12 @@ set foldmethod=syntax
 let g:clipboard = #{
       \   name: 'xsel',
       \   copy: {
-      \     '+': ['xsel', '--nodetach', '-i', '-b'],
-      \     '*': ['xsel', '--nodetach', '-i', '-p'],
+      \     '+': ['xclip', '--nodetach', '-i', '-b'],
+      \     '*': ['xclip', '--nodetach', '-i', '-p'],
       \   },
       \   paste: {
-      \     '+': ['xsel', '-o', '-b'],
-      \     '*': ['xsel', '-o', '-p'],
+      \     '+': ['xclip', '-o', '-b'],
+      \     '*': ['xclip', '-o', '-p'],
       \   },
       \   cache_enabled: 1,
       \ }
@@ -100,6 +100,7 @@ call plug#end()            " required
 " IMPORTANT: Must come after plugins are loaded
 lua << EOF
   -- CiderLSP
+  vim.lsp.set_log_level("trace")
   vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
   require 'lspconfig'
@@ -154,3 +155,6 @@ colorscheme quantum
 let g:airline_theme='quantum'
 set modifiable
 set omnifunc= completeopt=menuone,noinsert,noselect
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')

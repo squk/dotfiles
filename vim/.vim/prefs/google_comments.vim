@@ -3,8 +3,8 @@ lua << EOF
 require('google.comments').setup {
   -- The command for fetching comments, refer to `get_comments.par --help` to
   -- see all the options.
-  -- command = {'/google/bin/releases/editor-devtools/get_comments.par', '--full', '--noresolved', '--json', "-x=''"},
-  command = {'/google/bin/releases/editor-devtools/get_comments.par', '--nofull', '-u', '--json', "-x=''"},
+  -- command = {'/google/bin/releases/editor-devtools/get_comments.par', '--nofull', '-u', '--json', "-x=''"},
+  command = {'/google/bin/releases/editor-devtools/get_comments.par', '--nofull', '--json', '--noresolved', '--cl_comments', '--file_comments', '--unreplied_only'},
   -- Define your own icon by `vim.fn.sign_define('ICON_NAME', {text = ' '})`.
   -- See :help sign_define
   -- The sign property passed to setup should be the 'ICON_NAME' in the define
@@ -37,4 +37,3 @@ vim.fn.sign_define('COMMENT_ICON', {text = ''})
 EOF
 
 autocmd InsertLeave * :lua require('google.comments').update_signs()
-autocmd FileType * :lua require('google.comments').fetch_comments()

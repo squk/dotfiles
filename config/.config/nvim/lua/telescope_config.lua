@@ -74,20 +74,10 @@ vim.api.nvim_set_keymap('v', '<leader>sd',
 { noremap = true, silent=true }
 )
 
-
-
-
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>cs",
-  [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
-  { noremap = true, silent = true }
-)
-
 -- Search using codesearch queries.
 vim.api.nvim_set_keymap(
   "n",
-  "<leader>csd",
+  "<leader>cs",
   [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
   { noremap = true, silent = true }
 )
@@ -111,7 +101,7 @@ vim.api.nvim_set_keymap(
 -- Search for text selected in Visual mode.
 vim.api.nvim_set_keymap(
   "v",
-  "<leader>csd",
+  "<leader>cs",
   [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
   { noremap = true, silent = true }
 )

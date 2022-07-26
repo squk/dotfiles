@@ -1,6 +1,7 @@
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/scripts
 export MOCWORD_DATA=$HOME/mocword/mocword.sqlite
+export BASH_PROFILE_SOURCED=true
 
 export PATH=$PATH:.
 export GOPATH=$HOME/go
@@ -21,10 +22,6 @@ export EDITOR='nvim'
 
 HISTCONTROL=ignoreboth
 
-source ~/.aliases.sh
-# source ~/.funcs.sh
-
-source ~/.bash-powerline.sh
 
 export DEVKITPRO=/opt/devkitpro
 export DEVKITARM=${DEVKITPRO}/devkitARM
@@ -39,3 +36,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source ~/.bash_profile.local
+source ~/.aliases.sh

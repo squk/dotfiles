@@ -1,3 +1,15 @@
+set -xv
+
+if [ -f ${HOME}/.zplug/init.zsh ]; then
+    source ${HOME}/.zplug/init.zsh
+fi
+
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+
+unset PS1
+source ~/.bash_profile
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,22 +18,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/.bash_profile
-plugins=(git google3 gcert zsh-autosuggestions)
+plugins=(zsh-autosuggestions)
 
 ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE=true
 
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
-
-function get_fig_prompt_template() {
-  echo -n '%F{yellow}FIG_PROMPT_MODIFIED %F{green}FIG_PROMPT_ADDED'
-  echo -n ' %F{red}FIG_PROMPT_DELETED %F{magenta}FIG_PROMPT_UNKNOWN'
-  echo -n ' %F{magenta}FIG_PROMPT_HAS_SHELVE %F{white}FIG_PROMPT_DESCRIPTION '
-  echo -n ' %F{blue}FIG_PROMPT_UNEXPORTED %F{red}FIG_PROMPT_OBSOLETE'
-  echo -n ' %F{white}FIG_PROMPT_CL'
-}
 
 # Put standard ANSI color codes in shell parameters for easy use.
 # Note that some terminals do not support all combinations.
@@ -241,10 +244,6 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 
 # "transport endpoint is not connected" errors
 autoload -Uz add-zsh-hook
-
-source /etc/bash_completion.d/g4d
-source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/zsh-async/async.zsh
 
 export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind ?:toggle-preview"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

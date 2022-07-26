@@ -2,14 +2,12 @@
 # Google Specific
 # ---------------
 # For running crow against a remote X server
-xhost +
+# xhost +
 export PATH=$PATH:/google/src/head/depot/google3/experimental/users/cnieves/util
 export XAUTHORITY=~/.Xauthority
 export GOROOT=/usr/lib/google-golang
 export PATH=$GOROOT/bin:$PATH
 export JAVA_HOME=$(readlink -ne /usr/local/buildtools/java/jdk)
-
-source /etc/bash_completion.d/hgd
 
 function gcert() {
   if [[ -n $TMUX ]]; then
@@ -30,8 +28,11 @@ if [[ ! -z "$TMUX" ]]; then
   precmd_functions+=(tmux_title)
 fi
 
-prodcertstatus &> /dev/null &&
-  /google/data/ro/users/di/diamondm/engfortunes/fortune.sh
+
+FORTUNES=/google/data/ro/users/di/diamondm/engfortunes/fortune.sh
+if [ -f "$FORTUNES" ]; then
+    prodcertstatus &> /dev/null && $FORTUNES
+fi
 
 # Install fzf-query
 export PATH="${PATH}:/google/bin/releases/editor-devtools"

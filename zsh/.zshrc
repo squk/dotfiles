@@ -1,14 +1,15 @@
-set -xv
+# set -xv
+
+# source ~/fig_prompt
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
 
 if [ -f ${HOME}/.zplug/init.zsh ]; then
     source ${HOME}/.zplug/init.zsh
 fi
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-
-unset PS1
-source ~/.bash_profile
+# zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -18,7 +19,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-plugins=(zsh-autosuggestions)
+plugins=(zsh-async zsh-autosuggestions)
 
 ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE=true
@@ -192,10 +193,6 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 typeset POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='▓▒░'
 typeset POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='░▒▓'
 
-export ZSH="$HOME/.oh-my-zsh"
-
-source $ZSH/oh-my-zsh.sh
-
 # color customization
 
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='216'
@@ -235,31 +232,10 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-source ~/.aliases.sh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-export PATH="/usr/local/opt/curl/bin:$PATH"
-
 # "transport endpoint is not connected" errors
 autoload -Uz add-zsh-hook
 
 export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind ?:toggle-preview"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-fixup_ssh_auth_sock() {
-  if [[ -n ${SSH_AUTH_SOCK} && ! -e ${SSH_AUTH_SOCK} ]]
-  then
-    local new_sock=$(echo /tmp/ssh-*/agent.*(=UNom[1]))
-     if [[ -n ${new_sock} ]]
-     then
-       export SSH_AUTH_SOCK=${new_sock}
-     fi
-  fi
-}
-if [[ -n ${SSH_AUTH_SOCK} ]]
-then
-  autoload -U add-zsh-hook
-  add-zsh-hook preexec fixup_ssh_auth_sock
-fi
+source ~/.bash_profile
+

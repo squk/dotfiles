@@ -10,10 +10,19 @@ FIG_STATE_HASH_FILE="state.hash"
 # in here that do not change the Fig state.
 BLACKBOX_IGNORE=">.*(xl|ll|figstatus|status|diff|root|exportedcl|preloading|debugfetchconfig)"
 
+# Choose an md5 tool that's available.
+if command -v md5sum >> /dev/null; then
+  MD5TOOL=md5sum
+elif command -v md5 >> /dev/null; then
+  MD5TOOL=md5
+else
+  MD5TOOL=cat
+fi
+
 # Returns the root directory of the current Fig client. Should only be called
 # from within a Fig client.
 function get_fig_client_root() {
-  local root_dir="${PWD%/google3*}"
+  local root_dir="${$(pwd -P)%/google3*}"
   echo "$root_dir"
 }
 
@@ -21,7 +30,7 @@ function get_fig_client_root() {
 # a Fig client.
 function get_fig_client_name() {
   local root_dir="$( get_fig_client_root )"
-  local client_name="${root_dir##/google/*/}"
+  local client_name="${root_dir##/*google/*/}"
   echo "$client_name"
 }
 
@@ -43,10 +52,10 @@ function get_fig_client_state_hash() {
     file="$( get_fig_client_root )/${file}"
     if [ -f "$file" ]; then
       if [[ "$file" =~ ".*blackbox.log" ]]; then
-        state_hash="${state_hash}\n$( egrep -v "${BLACKBOX_IGNORE}" "$file" | \
-                                      md5sum )"
+        state_hash="${state_hash}\n$( egrep -a -v "${BLACKBOX_IGNORE}" "$file" \
+                                      | ${MD5TOOL} )"
       else
-        state_hash="${state_hash}\n$( md5sum "$file" )"
+        state_hash="${state_hash}\n$( ${MD5TOOL} "$file" )"
       fi
     fi
   done
@@ -99,8 +108,8 @@ function fig_status() {
 
 # Returns whether the current directory is (likely) a Fig-on-CITC client.
 function is_fig_client() {
-  if [[ "$PWD" =~ /google/src/cloud/$USER/* ]] && \
-     [[ -d ${PWD%%/google3*}/.hg ]]; then
+  if [[ "$(pwd -P)" =~ /google/src/cloud/$USER/* ]] && \
+     [[ -d ${$(pwd -P)%%/google3*}/.hg ]]; then
     return 0
   fi
   return 1
@@ -123,6 +132,7 @@ function is_fig_client() {
 #   FIG_PROMPT_DESCRIPTION: Replaced with $description
 #   FIG_PROMPT_CHANGENAME: Replaced with $changename
 #   FIG_PROMPT_HAS_SHELVE: Replaced with $has_shelve
+#   FIG_PROMPT_SHORT: Replaced with $short
 function get_fig_prompt_template() {
   echo -n '%b:%B%F{white}['
   echo -n '%F{yellow}FIG_PROMPT_MODIFIED%F{green}FIG_PROMPT_ADDED'
@@ -145,7 +155,25 @@ function get_fig_prompt() {
   unknown=$figstatus[4]
   unexported=$figstatus[5]
   obsolete=$figstatus[6]
-  cl=$figstatus[7]
+  # Turn the cl number into a hyperlink.
+  # This can be disabled by setting the environment variable
+  # "FIG_PROMPT_NO_HYPERLINKS=1"
+  #
+  # This works in most terminals. Complete list can be found
+  # here: https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda
+  # According to the above link, there is no way to reliably determine whether
+  # a terminal emulator supports hyperlinks. Use color support as a way to
+  # attempt to determine hyperlink support. If a terminal emulator supports
+  # > 8 colors, it likely supports hyperlinks.
+  COLORS=$(tput colors 2> /dev/null)
+  if [ $? != 0 ] || [ $COLORS -le 8 ] || [ "${FIG_PROMPT_NO_HYPERLINKS:-unset}" != "unset" ]; then
+    # Colors are not supported; although this does not mean that hyperlinks
+    # are not supported, we will disable by default.
+    cl=$figstatus[7]
+  else
+    # Colors are supported; enable hyperlinks
+    cl="\e]8;;http://cl/${figstatus[7]}\e\\\\${figstatus[7]}\e]8;;\e\\\\ "
+  fi
   description=$figstatus[8]
   branch=$figstatus[9]
   if [ -z "$branch" ]; then
@@ -161,6 +189,7 @@ function get_fig_prompt() {
   if [ -d "$shelve_dir" ] && /bin/ls -1qA "$shelve_dir" | grep -q .; then
     has_shelve="!"
   fi
+  short=$figstatus[14]
 
   local tpl="$(get_fig_prompt_template)"
   tpl="${tpl//FIG_PROMPT_MODIFIED/$modified}"
@@ -173,6 +202,7 @@ function get_fig_prompt() {
   tpl="${tpl//FIG_PROMPT_DESCRIPTION/$description}"
   tpl="${tpl//FIG_PROMPT_CHANGENAME/$changename}"
   tpl="${tpl//FIG_PROMPT_HAS_SHELVE/$has_shelve}"
+  tpl="${tpl//FIG_PROMPT_SHORT/$short}"
   echo "$tpl"
 }
 
@@ -222,4 +252,31 @@ function fig_prop() {
 
   figstatus=("${(@f)$( fig_status )}")
   echo "${figstatus[$FIG_STATUS_INDICES[$1]]}"
+}
+
+# Collects the properties of the current Fig repository into the FIG_PROPS
+# global associative array.
+#
+# Example usage:
+#   function my_hg_prompt {
+#     collect_fig_props
+#     echo "${FIG_PROPS["modified"]} ${FIG_PROPS["cl"]} ${FIG_PROPS["description"]}"
+#   }
+#   PROMPT='%n@%m[$(my_hg_prompt)] %#'
+#
+# See fig_prop for a list of valid properties
+function collect_fig_props() {
+  if ! is_fig_client; then
+    return 0
+  fi
+
+  typeset -Ag FIG_PROPS
+
+  figstatus=("${(@f)$( fig_status )}")
+
+  # Map to global associative array FIG_PROPS
+  for index in "${(@k)FIG_STATUS_INDICES}" ; do
+    FIG_PROPS[${index}]="${figstatus[${FIG_STATUS_INDICES[${index}]}]}"
+  done
+
 }

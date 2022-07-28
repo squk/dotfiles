@@ -1,4 +1,0 @@
-_blaze_cmd_list=( ${(Q)"${(z)$(<<\EO:_blaze_cmd_list
-'analyze-profile' 'aquery' 'build' 'canonicalize-flags' 'clean' 'coverage' 'cquery' 'dump' 'help' 'info' 'javahotswap' 'mobile-install' 'mpm' 'print_action' 'query' 'run' 'shutdown' 'test' 'version'
-EO:_blaze_cmd_list
-)}"} )

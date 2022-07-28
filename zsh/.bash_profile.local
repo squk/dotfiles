@@ -54,7 +54,9 @@ export FZF_CS_PREVIEW_COMMAND="python third_party/py/pygments/google/google_pygm
 export FZF_CS_PREVIEW_HIGHLIGHT="\x1b[38;2;248;248;248m\x1b[48;2;81;85;89m"
 
 source ~/fzf-at-google.zsh
-
-# source /google/src/cloud/cnieves/gms-codelab/google3/java/com/google/android/gmscore/g3doc/quickstart/gmscore.sh
 source ~/g3path.zsh
+source /etc/bash_completion.d/hgd
+
+export HGSHORT_CMDS="ls cat head tail mv cp rm chmod g4 diff merge patch meld trim less more"
+alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd.sh'
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh

@@ -89,7 +89,7 @@ get_current_activity() {
 }
 
 cl_search() {
-    hg whatsout | xargs -i sh -c "echo {} && grep $1 {}"
+    hg whatsout | xargs -i sh -c "echo {} && grep '$1' {}"
 }
 
 cl_replace() {
@@ -104,6 +104,26 @@ restart_gms() {
 objfs_cp() {
     tmp=$(mktemp) && \
     fileutil cp -f $1 $tmp && unzip $tmp $2 && unlink $tmp
+}
+
+from_cloud(){
+    scp baggins.c.googlers.com:$1 ~/Downloads/
+    echo "Saved $1 to downloads"
+}
+
+to_cloud(){
+    scp $1 baggins.c.googlers.com:~/Downloads
+    echo "Saved $1 to downloads"
+}
+
+from_mac(){
+    scp cnieves-macbookpro.roam.internal:$1 ~/Downloads/
+    echo "Saved $1 to downloads"
+}
+
+to_mac(){
+    scp $1 cnieves-macbookpro.roam.internal:~/Downloads
+    echo "Saved $1 to downloads"
 }
 
 alias acid=/google/bin/releases/mobile-devx-platform/acid/acid

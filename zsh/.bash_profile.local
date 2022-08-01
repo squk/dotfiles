@@ -58,5 +58,5 @@ source ~/g3path.zsh
 source /etc/bash_completion.d/hgd
 
 export HGSHORT_CMDS="ls cat head tail mv cp rm chmod g4 diff merge patch meld trim less more"
-alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd.sh'
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
+alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd.sh'

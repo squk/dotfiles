@@ -1,15 +1,13 @@
 # set -xv
 
 # source ~/fig_prompt
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-
 if [ -f ${HOME}/.zplug/init.zsh ]; then
     source ${HOME}/.zplug/init.zsh
 fi
 
-# zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug load
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -19,7 +17,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-plugins=(zsh-async zsh-autosuggestions)
+plugins=(zsh-autosuggestions)
 
 ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE=true
@@ -238,3 +236,5 @@ autoload -Uz add-zsh-hook
 export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind ?:toggle-preview"
 
 source ~/.bash_profile
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh

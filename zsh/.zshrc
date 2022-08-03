@@ -26,9 +26,18 @@ fi
 ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE=true
 
-bindkey "^A" vi-beginning-of-line
-bindkey "^E" vi-end-of-line
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^K" kill-line
+bindkey "^L" clear-screen
+bindkey "^R" history-incremental-search-backward
+bindkey "^U" kill-whole-line
+bindkey "^W" backward-kill-word
+bindkey "^Y" yank
 bindkey '\e.' insert-last-word
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
 
 # Put standard ANSI color codes in shell parameters for easy use.
 # Note that some terminals do not support all combinations.
@@ -188,7 +197,7 @@ POWERLEVEL9K_CUSTOM_FIG='get_fig_prompt'
 POWERLEVEL9K_CUSTOM_FIG_BACKGROUND="237"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status workspace google3 dir_writable vcs custom_fig)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(ssh command_execution_time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(host command_execution_time)
 
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 

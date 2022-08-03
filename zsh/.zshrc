@@ -1,6 +1,8 @@
 # set -xv
 if [ -f ${HOME}/.zplug/init.zsh ]; then
     source ${HOME}/.zplug/init.zsh
+else
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2

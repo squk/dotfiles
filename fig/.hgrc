@@ -1,26 +1,49 @@
-# example user config (see 'hg help config' for more info)
+%include ~/hgshort/hgshort.hgrc
+
 [ui]
-# name and email, e.g.
-# username = Jane Doe <jdoe@example.com>
-username = Christian Nieves <cnieves@google.com>
-
-# We recommend enabling tweakdefaults to get slight improvements to
-# the UI over time. Make sure to set HGPLAIN in the environment when
-# writing scripts!
-tweakdefaults = True
-
-# uncomment to disable color in command output
-# (see 'hg help color' for details)
-# color = never
-
-# uncomment to disable command output pagination
-# (see 'hg help pager' for details)
+editor = vim
 paginate = never
+merge = vimdiff
+username = Christian Nieves <cnieves@google.com>
+# graphnodetemplate = {label("graphnode.{graphnode}", graphnode)}
+
+[extdiff]
+cmd.meld = /usr/bin/meld
+cmd.pmeld = /usr/bin/meld
 
 [extensions]
-# uncomment the lines below to enable some popular extensions
-# (see 'hg help extensions' for more info)
-#
-# histedit =
-# rebase =
-# uncommit =
+unsupported.tree =
+unsupported.alices =
+extdiff =
+color =
+beautifygraph =
+
+[alices]
+findings.extra_args = --proxy
+summarize.extra_args = --proxy
+
+[merge-tools]
+# meld.args = --auto-merge --label='incoming' $local --label='merged' $base --label='existing' $other -o $output
+# https://www.mercurial-scm.org/wiki/MergingWithVim#More_Useful_3-Way_Diff
+vimdiff.executable = vimdiff
+vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
+vimdiff.premerge = keep
+
+[committemplate]
+changeset = {desc}\n\n
+    HG: {extramsg}
+    HG: user: {author}\n{ifeq(p2rev, "-1", "",
+   "HG: branch merge\n")
+   }HG: branch '{branch}'\n{if(currentbookmark,
+   "HG: bookmark '{currentbookmark}'\n")  }{subrepos %
+   "HG: subrepo {subrepo}\n"              }
+   {splitlines(diff()) % 'HG: {line}\n'}
+
+[alias]
+whatsout = status -n --change .
+whatsoutall = status --rev p4base --no-status
+# unbranch = cp --forget --at-rev . $1
+unbranch = !$HG uncommit --keep $1 && $HG forget $1 && $HG add $1 && $HG amend $1
+
+[trainingwheels]
+warn-head-paths=False

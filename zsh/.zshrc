@@ -28,6 +28,7 @@ DISABLE_AUTO_TITLE=true
 
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
+bindkey '\e.' insert-last-word
 
 # Put standard ANSI color codes in shell parameters for easy use.
 # Note that some terminals do not support all combinations.

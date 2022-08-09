@@ -100,7 +100,6 @@ call plug#end()            " required
 " IMPORTANT: Must come after plugins are loaded
 lua << EOF
   -- CiderLSP
-  vim.lsp.set_log_level("trace")
   vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
   require 'lspconfig'

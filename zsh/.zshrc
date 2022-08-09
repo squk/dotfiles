@@ -250,3 +250,5 @@ autoload -Uz add-zsh-hook
 export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind ?:toggle-preview"
 
 source ~/.bash_profile
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh

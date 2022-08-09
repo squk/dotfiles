@@ -176,11 +176,11 @@ done
 
 prompt_google3() {
   if [[ $PWD =~ '/google/src/cloud/[^/]+/(.+)/google3(.*)' ]]; then
-    GPROMPT=$(print -r -- "%F{white}//${match[2]#/}")
+    GPROMPT=$(print -r -- "//${match[2]#/}")
   else
-    GPROMPT=$(print -r -- "%F{white}$PWD")
+    GPROMPT=$(print -r -- "$PWD")
   fi
-  p10k segment -b 147 -t $GPROMPT
+  p10k segment -b '#afafff' -f '#fff'  -t $GPROMPT
 }
 
 prompt_workspace() {

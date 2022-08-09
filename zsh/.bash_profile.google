@@ -57,4 +57,21 @@ source ~/fzf-at-google.zsh
 source ~/g3path.zsh
 source /etc/bash_completion.d/hgd
 
+alias acid=/google/bin/releases/mobile-devx-platform/acid/acid
+alias apido='/google/data/ro/teams/oneplatform/apido'
+alias bugs=/google/data/rw/users/mk/mkannan/www/bin/bugs
+alias cider='/google/src/head/depot/google3/experimental/cider_here/cider_here.sh'
+alias crow=/google/bin/releases/mobile-devx-platform/crow/crow.par
+alias er=/google/data/ro/users/ho/hooper/er
+alias fixjs=/google/src/files/head/depot/google3/third_party/java_src/jscomp/java/com/google/javascript/jscomp/lint/fixjs.sh
+alias fortune=/google/data/ro/users/di/diamondm/engfortunes/fortune.sh
+alias hgcdg4='cd $(g4 g4d $(hg exportedcl))'
+alias jadep=/google/data/ro/teams/jade/jadep
+alias replace_string=/google/src/head/depot/google3/devtools/scripts/replace_string
+alias safergcp=/google/bin/releases/safer-gcp/tools/safergcp
+alias add_deps_to_usages='/google/src/head/depot/google3/apps/framework/tools/add_deps_to_usages.sh'
+alias plxutil='/google/data/ro/teams/plx/plxutil'
+export HGSHORT_CMDS="cat head tail mv cp rm chmod g4 diff merge patch meld trim less more"
+alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd.sh'
+
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh

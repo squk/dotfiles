@@ -67,7 +67,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " LANGUAGE PLUGINS
 Plug 'udalov/kotlin-vim'
 Plug 'hsanson/vim-android'
-Plug 'uiiaoo/java-syntax.vim'
+Plug 'squk/java-syntax.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'whatyouhide/vim-tmux-syntax'
 Plug 'chase/vim-ansible-yaml'

@@ -1,0 +1,51 @@
+# Performance optimization flags (go/blaze-unleashed)
+#
+# Section of flags to improve build performance, especially for incremental
+# builds, and that are either experimental or we can't easily change the
+# defaults. DO NOT USE these flags for release builds.
+#
+# --nostamp: Disables stamping of binaries. Do not use for release builds, both for
+#     release to prod (go/buildhorizon) and for releases to corp (go/toolsearch)!
+#     The stamp is applied during linking, and is also applied if the binary is depended
+#     upon by e.g., an integration test. If the link or the integration test is
+#     expensive, then this is costly. You also don't get any forge caching with TAP or
+#     other devs, because the stamp contains your username.
+# --workspace_status_command: If your build needs information about the
+#     client it runs in (CL synced to, etc.), don’t use this flag. Do not use
+#     for release builds, both for release to prod (go/buildhorizon) and for releases
+#     to corp (go/toolsearch)!
+# --experimental_spawn_scheduler: Run actions locally instead of remotely for
+#     incremental builds as long as enough resources are available to execute all
+#     runnable actions in parallel.
+# --trim_test_configuration: Rollout is being tracked in b/65401043 and b/122499394.
+#     This flag prevents many situations where Blaze has to re-analyze before being able
+#     to build.
+# --show_progress_rate_limit=1: Show at most one message per second (useful when working
+#     over SSH or Remote Desktop to reduce the amount of network traffic and screen
+#     updates).
+# --order_output=no: By default, blaze query orders the outputs. This can be expensive,
+#     so this flag disables the ordering step.
+build --nostamp
+# build --workspace_status_command=/bin/true
+# build --experimental_spawn_scheduler
+build --trim_test_configuration
+build --show_progress_rate_limit=1
+# query --order_output=no
+
+# --test_output / --test_summary obviously don’t do anything for performance,
+# keep them if you like what they do.
+# test --test_output=errors --test_summary=detailed --build_tests_only
+
+# In C++, failing tests will print a lot of noisy thread output. Use
+# -undefok to allow other languages to ignore the
+# -suppress_failure_output flag.
+# Unfortunately, some test runners don't support --undefok, and therefore break when this is set.
+# test --test_arg=--undefok=suppress_failure_output --test_arg=--suppress_failure_output
+
+import %workspace%/java/com/google/android/gmscore/blaze/blazerc
+build --config=gmscore_tap
+test --config=gmscore_test
+test --test_output=errors
+#
+# https://g3doc.corp.google.com/devtools/blaze/g3doc/faq.md?cl=head#BlazeOom
+startup --host_jvm_args=-Xmx18G --host_jvm_args=-Xms18G

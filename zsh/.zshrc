@@ -251,5 +251,4 @@ export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind
 
 source ~/.bash_profile
 export ZSH="$HOME/.oh-my-zsh"
-source /etc/bash_completion.d/hgd
 source $ZSH/oh-my-zsh.sh

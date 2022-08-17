@@ -21,7 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-if [[ -f "~/use_google" ]]; then
-    source ~/.bash_profile.google
+if [[ -f "$HOME/use_google" ]]; then
+    source $HOME/.bash_profile.google
 fi
 source ~/.aliases.sh

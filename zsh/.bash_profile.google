@@ -76,3 +76,4 @@ source /etc/bash_completion.d/hgd
 alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd.sh'
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
+export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin

@@ -15,6 +15,7 @@ let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 
 Glug alert
 Glug csearch
+Glug codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`
 Glug codefmt-google
 Glug languages
 " applies google coding style settings to files whitelisted as google code. probably also want
@@ -26,6 +27,7 @@ Glug googlepaths
 " core syntax and filetype settings for google-internal filetypes.
 Glug google-filetypes
 Glug ft-java
+Glug ft-kotlin
 Glug ft-proto
 Glug critique
 Glug piper
@@ -116,7 +118,7 @@ augroup autoformat_settings
   autocmd FileType textpb AutoFormatBuffer text-proto-format
   autocmd FileType proto AutoFormatBuffer protofmt
   autocmd FileType sql AutoFormatBuffer format_sql
-  autocmd FileType kt AutoFormatBuffer ktfmt
+  autocmd FileType kotlin AutoFormatBuffer ktfmt
   " autocmd FileType html,css,json AutoFormatBuffer js-beautify
 augroup END
 

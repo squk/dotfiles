@@ -113,7 +113,7 @@ Plug 'gosukiwi/vim-atom-dark'
 Plug 'jacoborus/tender.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'squk/vim-quantum'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chase/focuspoint-vim'
 Plug 'patstockwell/vim-monokai-tasty' " airline

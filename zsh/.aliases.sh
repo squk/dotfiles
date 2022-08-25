@@ -89,11 +89,11 @@ get_current_activity() {
 }
 
 cl_search() {
-    hg whatsout | xargs -i sh -c "echo {} && grep '$1' {}"
+    hg status -n --change . --template= | xargs -i sh -c "echo {} && grep '$1' {}"
 }
 
 cl_replace() {
-    hg whatsout | xargs -i sh -c "sed -i '$1' {}"
+    hg status -n --change . --template= | xargs -i sh -c "sed -i '$1' {}"
 }
 
 restart_gms() {

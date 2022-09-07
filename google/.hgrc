@@ -1,4 +1,4 @@
-%include ~/hgshort/hgshort.hgrc
+%include /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgshort.hgrc
 
 [ui]
 editor = vim

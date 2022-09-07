@@ -172,8 +172,11 @@ let g:NERDTrimTrailingWhitespace = 1
  "Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-nnoremap ,c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
-vnoremap ,c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
+nnoremap <leader>c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
+vnoremap <leader>c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
 
-nnoremap ,c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
-vnoremap ,c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
+nnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
+vnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
+
+nmap <leader>yf :let @" = expand("%")<cr>
+nmap <leader>ut :UndotreeToggle<cr>

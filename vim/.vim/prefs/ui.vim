@@ -39,7 +39,6 @@ let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-
 let g:airline_mode_map = {
             \ '__' : '------',
             \ 'n'  : 'NORMAL',

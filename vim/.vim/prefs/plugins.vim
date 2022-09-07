@@ -28,6 +28,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
 Plug 'guns/xterm-color-table.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'mbbill/undotree'
+Plug 'tversteeg/registers.nvim', { 'branch': 'main' }
 " Plug 'ryanoasis/vim-devicons'
 
 " INTEGRATION

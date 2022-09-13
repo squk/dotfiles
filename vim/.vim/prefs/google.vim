@@ -5,6 +5,8 @@ source /google/data/ro/projects/vigor/vigor.vim
 
 Plug 'vim-scripts/vcscommand.vim'
 Plug 'sso://user/chmnchiang/google-comments'
+Plug 'sso://googler@user/piloto/cmp-nvim-ciderlsp'
+Plug 'williamboman/nvim-lsp-installer'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
@@ -185,3 +187,5 @@ nnoremap <leader>po :PiperOpenPath<CR>
 nnoremap <leader>ws :CorpWebCs <cword> <CR>
 " search in codesearch for the current file
 nnoremap <leader>wf :CorpWebCsFile<CR>
+
+nmap <leader>rbs ss <leader>rb

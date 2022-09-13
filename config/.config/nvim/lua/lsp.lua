@@ -3,9 +3,8 @@ local nvim_lsp = require("lspconfig")
 local configs = require("lspconfig.configs")
 configs.ciderlsp = {
   default_config = {
-    cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-lsp", "--noforward_sync_responses",
-    "--enable_semantic_tokens",
-    "--relay_mode=true", "--hub_addr=blade:languageservices-staging" },
+    cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-lsp", "--noforward_sync_responses", "--enable_semantic_tokens", "--relay_mode=true", "--hub_addr=blade:languageservices-staging" ,"--enable_document_highlight"},
+      -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--forward_sync_responses', '--enable_document_highlight'};
     filetypes = { "c", "cpp", "java", "kotlin", "proto", "textproto", "go", "python", "bzl" },
     root_dir = nvim_lsp.util.root_pattern("BUILD"),
     settings = {},
@@ -82,6 +81,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "vim_vsnip" },
+    { name = 'nvim_ciderlsp', priority = 9 },
     { name = "buffer", keyword_length = 5 },
   },
 
@@ -121,6 +121,7 @@ cmp.setup({
       with_text = true,
       maxwidth = 40, -- half max width
       menu = {
+        nvim_ciderlsp = "(ﮧ)",
         buffer = "[buffer]",
         nvim_lsp = "[CiderLSP]",
         nvim_lua = "[API]",
@@ -181,17 +182,22 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command("augroup END")
 end
 
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.codeAction = {
-	codeActionLiteralSupport = {
-		codeActionKind = {
-			valueSet = {
-				'', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports'
-			}
-		}
-	}
-}
-capabilities.textDocument.publishDiagnostics['versionSupport'] = false
+
+capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
+
+-- capabilities.textDocument.codeAction = {
+--     codeActionLiteralSupport = {
+--         codeActionKind = {
+--             valueSet = {
+--                 '', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports'
+--             }
+--         }
+--     }
+-- }
+-- capabilities.textDocument.publishDiagnostics['versionSupport'] = false
+
 nvim_lsp.ciderlsp.setup({
   capabilities = capabilities,
   on_attach = on_attach,

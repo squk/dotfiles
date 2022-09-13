@@ -108,7 +108,6 @@ lua << EOF
   require("treesitter")
   require("telescope_config")
 
-
 EOF
 source ~/.vim/prefs/cmp.vim
 if filereadable(expand("~/use_google"))

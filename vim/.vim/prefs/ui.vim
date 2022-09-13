@@ -39,6 +39,18 @@ let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+lua << EOF
+function getCitc()
+    local fname = vim.api.nvim_buf_get_name(0)
+    if string.find(fname, '/google/src/cloud/', 1, true) then
+      local parts = split(fname, '/')
+      return parts[5]
+    end
+end
+EOF
+
+" let g:airline_section_c = execute("lua getCitc()")
+
 let g:airline_mode_map = {
             \ '__' : '------',
             \ 'n'  : 'NORMAL',

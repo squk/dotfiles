@@ -1,5 +1,7 @@
 packadd termdebug
-" packadd lspconfig
+" MINE
+Plug 'squk/vim-quantum'
+Plug 'squk/java-syntax.vim'
 
 " LSP
 Plug 'hrsh7th/cmp-buffer'
@@ -24,6 +26,7 @@ Plug 'sso://user/vintharas/telescope-codesearch.nvim'
 Plug 'ntpeters/vim-better-whitespace'  "auto-set tab/space size
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'         " ...
+Plug 'vim-airline/vim-airline-themes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
 Plug 'guns/xterm-color-table.vim'
@@ -69,7 +72,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " LANGUAGE PLUGINS
 Plug 'udalov/kotlin-vim'
 Plug 'hsanson/vim-android'
-Plug 'squk/java-syntax.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'whatyouhide/vim-tmux-syntax'
 Plug 'chase/vim-ansible-yaml'
@@ -115,7 +117,6 @@ Plug 'gosukiwi/vim-atom-dark'
 Plug 'jacoborus/tender.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'squk/vim-quantum'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chase/focuspoint-vim'
 Plug 'patstockwell/vim-monokai-tasty' " airline
@@ -125,8 +126,3 @@ Plug 'kristiandupont/shades-of-teal'
 Plug 'joshdick/onedark.vim'
 Plug 'google/vim-colorscheme-primary'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
-
-" Plug 'google/vim-maktaba'
-" Plug 'google/vim-glaive'
-"
-" call glaive#Install()

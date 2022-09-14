@@ -1,7 +1,5 @@
 source /usr/share/vim/google/glug/bootstrap.vim
 source /usr/share/vim/google/core.vim
-source /google/data/ro/projects/vigor/vigor.vim
-" source /usr/share/vim/google/google.vim
 
 Plug 'vim-scripts/vcscommand.vim'
 Plug 'sso://user/chmnchiang/google-comments'
@@ -40,8 +38,7 @@ let g:blazevim_quickfix_autoopen = 1
 Glug buganizer plugin[mappings]
 Glug relatedfiles plugin[mappings]
 Glug g4
-Glug corpweb
-Glug google-csimporter
+"Glug google-csimporter
 
 " Update the current file's build deps
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, 'commit': '3f75a83' }
@@ -172,7 +169,7 @@ com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 " <c-u> removes the visual range because csearch doesn't support ranges.
 " Removes newlines to allow the entire line search using V-LINE mode.
 " vnoremap <leader>cs "ny:<c-u>FzfCs "<c-r>=substitute(@n, '\n', '', '')<cr>"<cr>
-nnoremap <leader>csi :CsImporter<cr>
+"
 " nnoremap <leader>CS :FzfCs<Space> <C-r><C-w> <cr>
 
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>

@@ -18,7 +18,6 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 syntax on
 
-
 set laststatus=2
 set cmdheight=1
 set ttyfast
@@ -87,13 +86,13 @@ call plug#begin('~/.vim/plugged')
       source ~/.vim/prefs/google.vim
   endif
 
-  source ~/.vim/prefs/mappings.vim
-  source ~/.vim/prefs/leader.vim
-  source ~/.vim/prefs/plug_prefs.vim
-  source ~/.vim/prefs/ui.vim
-  source ~/.vim/prefs/golang.vim
-  source ~/.vim/prefs/ultisnips.vim
-  source ~/.vim/prefs/ripgrep.vim
+   source ~/.vim/prefs/mappings.vim
+   source ~/.vim/prefs/leader.vim
+   source ~/.vim/prefs/plug_prefs.vim
+   source ~/.vim/prefs/ui.vim
+   source ~/.vim/prefs/golang.vim
+   source ~/.vim/prefs/ultisnips.vim
+   source ~/.vim/prefs/ripgrep.vim
 call plug#end()            " required
 
 " Require CiderLSP and Diagnostics modules
@@ -109,9 +108,9 @@ lua << EOF
   require("telescope_config")
 
 EOF
-source ~/.vim/prefs/cmp.vim
 if filereadable(expand("~/use_google"))
-    source ~/.vim/prefs/google_comments.vim
+    source ~/.vim/prefs/cmp.vim
+    source ~/.vim/prefs/imp.vim
 endif
 
 filetype plugin on     " redundant?

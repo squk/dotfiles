@@ -1,52 +1,5 @@
-" --------- MAPPINGS FOR QUICK CONFIG EDITS ---------
-" mnemonic: (e)dit (v)imrc
-nmap <leader>ev :tabedit $MYVIMRC<cr>
-
-" mnemonic: (e)dit (t)mux.conf
-nmap <leader>et :tabedit ~/.tmux.conf<cr>
-
-" mnemonic: (e)dit (g)oogle.vim
-nmap <leader>eg :tabedit ~/.vim/prefs/google.vim<cr>
-
-" mnemonic: (e)dit (b)ash_profile
-nmap <leader>eb :tabedit ~/.bash_profile<cr>
-
-" mnemonic: (e)dit (f)tplugin
-nmap <leader>ef :tabedit ~/.vim/after/ftplugin<cr>
-
-" mnemonic: (e)dit (p)lugins
-nmap <leader>ep :tabedit ~/.vim/prefs/plugins.vim<cr>
-
-" mnemonic: (e)dit (c)onfigs     * opens NERDTree on the prefs dir
-nmap <leader>ec :tabedit ~/.vim/prefs/<cr>
-
-" mnemonic: (e)dit (p)refs, (i)nit.vim
-nmap <leader>epi :tabedit ~/.vim/prefs/init.vim<cr>
-
-" mnemonic: (e)dit (p)refs, (l)eader.vim
-nmap <leader>epl :tabedit ~/.vim/prefs/leader.vim<cr>
-
-" mnemonic: (e)dit (p)refs, (c)oc.vim
-nmap <leader>epc :tabedit ~/.vim/prefs/coc.vim<cr>
-
-" mnemonic: (e)dit (p)refs, (m)appings.vim
-nmap <leader>epm :tabedit ~/.vim/prefs/mappings.vim<cr>
-
-" mnemonic: (e)dit (p)refs, (p)lug_prefs.vim
-nmap <leader>epp :tabedit ~/.vim/prefs/plug_prefs.vim<cr>
-
-" mnemonic: (e)dit (p)refs, (u)i.vim
-nmap <leader>epu :tabedit ~/.vim/prefs/ui.vim<cr>
-"
-" mnemonic: (e)dit (p)refs, (g)olang.vim
-nmap <leader>epg :tabedit ~/.vim/prefs/google.vim<cr>
-
-" mnemonic: (e)dit (z)shrc
-nmap <leader>ez :tabedit ~/.zshrc<cr>
-"
 " mnemonic: (i)nsert (l)ambda
 imap <leader>il <C-K>l*
-
 
 " HEX<->ASCII
 " mnemonic: (h)ex (t)o (a)scii
@@ -180,3 +133,4 @@ vnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
 
 nmap <leader>yf :let @" = expand("%")<cr>
 nmap <leader>ut :UndotreeToggle<cr>
+nmap <leader>e :e %%

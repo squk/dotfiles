@@ -9,16 +9,6 @@ map <Esc>[B <Down>
 map <Esc>[C <Right>
 map <Esc>[D <Left>
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-tnoremap <C-H> <C-\><C-n><C-w>h
-tnoremap <C-J> <C-\><C-n><C-w>j
-tnoremap <C-K> <C-\><C-n><C-w>k
-tnoremap <C-L> <C-\><C-n><C-w>l
-
 " remove mapping to be used in nerdtree
 inoremap <Nul> <C-n>
 
@@ -37,10 +27,6 @@ vnoremap ; :
 nnoremap J :tabprevious<CR>
 nnoremap K :tabnext<CR>
 
-" tab arrangement, Shift-H and Shift-L to move tabs
-" nnoremap <silent> <lt> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-" nnoremap <silent> > :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-"
 " tab opening
 nnoremap tt  :tabedit<Space>
 nnoremap td  :tabclose<CR>

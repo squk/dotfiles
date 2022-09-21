@@ -134,3 +134,7 @@ vnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
 nmap <leader>yf :let @" = expand("%")<cr>
 nmap <leader>ut :UndotreeToggle<cr>
 nmap <leader>e :e %%
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP

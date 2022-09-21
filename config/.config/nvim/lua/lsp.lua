@@ -121,7 +121,7 @@ cmp.setup({
       with_text = true,
       maxwidth = 40, -- half max width
       menu = {
-        nvim_ciderlsp = "(ﮧ)",
+        nvim_ciderlsp = "[🤖]",
         buffer = "[buffer]",
         nvim_lsp = "[CiderLSP]",
         nvim_lua = "[API]",
@@ -184,19 +184,7 @@ end
 
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
-
--- capabilities.textDocument.codeAction = {
---     codeActionLiteralSupport = {
---         codeActionKind = {
---             valueSet = {
---                 '', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports'
---             }
---         }
---     }
--- }
--- capabilities.textDocument.publishDiagnostics['versionSupport'] = false
 
 nvim_lsp.ciderlsp.setup({
   capabilities = capabilities,

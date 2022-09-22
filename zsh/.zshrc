@@ -21,7 +21,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE=true
@@ -30,7 +30,6 @@ bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^K" kill-line
 bindkey "^L" clear-screen
-bindkey "^R" history-incremental-search-backward
 bindkey "^U" kill-whole-line
 bindkey "^W" backward-kill-word
 bindkey "^Y" yank
@@ -247,8 +246,8 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # "transport endpoint is not connected" errors
 autoload -Uz add-zsh-hook
 
-export FZF_DEFAULT_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind ?:toggle-preview"
-
-source ~/.bash_profile
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+
+source ~/.bash_profile

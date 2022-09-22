@@ -2,24 +2,6 @@
 
 export FZF_SOURCE="${HOME}/fzf-relevant-files.zsh"
 
-# General fzf settings.
-export FZF_DEFAULT_OPTS=" \
-  --inline-info \
-  --reverse \
-  --exact \
-  --color=fg+:#F8F8F8,bg+:#515559,pointer:#F8F8F8,marker:226 \
-  --bind=ctrl-e:select-all+accept \
-  --bind=ctrl-d:half-page-down \
-  --bind=ctrl-e:half-page-up
-  --bind=ctrl-t:toggle+down
-  --bind=ctrl-b:toggle+up
-  --bind=ctrl-g:select-all+accept \
-  "
-# Preview code with pygmentize.
-# export FZF_CS_PREVIEW_COMMAND="python /google/src/files/head/depot/google3/third_party/py/pygments/google/google_pygmentize.py -f terminal16m -O style=native"
-# Preview highlight: foreground: RG(248, 248, 248) = #F8F8F8, background: RGB(81, 85, 89) = #515559.
-export FZF_CS_PREVIEW_HIGHLIGHT="\x1b[38;2;248;248;248m\x1b[48;2;81;85;89m"
-
 function create_fzf_command() {
   rg --files $(${FZF_SOURCE})
 }
@@ -36,50 +18,57 @@ _find_fig_workspaces() {
 }
 
 _find_blaze_targets() {
-  # Our tool outputs space-separated directories of interest. Conver these to a
+  # Our tool outputs space-separated directories of interest. Convert these to a
   # list, which we'll refer to later.
   local pkg
   local cleandir
   local DIRS=( $(${FZF_SOURCE}) )
-  # for dir in "${DIRS[@]}"; do
-  #   echo "$dir"
-  # done
+  local is_first_iteration=1
+  local query=""
+
   for dir in "${DIRS[@]}"; do
     # Here we want:
     # .* - match all targets
     # //foo/bar/baz/... - the blaze package we're searching under
-    # We do a trailing '&' so that we run all of these in parallel.
-    # We shunt 2>/dev/null to silence its info output, which for some reason
-    # comes out on stderr. This isn't ideal, because we'll swallow real errors.
-    # Looking at `blaze help query`, I can't find any options to turn this off.
-    # `--logging=0` doesn't do it; `--show_loading_progress=false` doesn't do
-    # it.
     # Strip any leading // and trailing /. This allows more flexibility in how
     # people want to define their targets in their FZF_SOURCE file.
-    cleandir=`echo $dir | sed 's/^\/\///; s/\/$//'`
+    # Finally we will append each directory's query together with a "+" which
+    # allows us to query all targets with a single blaze query call.
+    if ((is_first_iteration)); then
+      is_first_iteration=0
+    else
+      query+=" + "
+    fi
+    cleandir=`echo $dir | sed 's:^//::; s:/$::'`
     pkg="//${cleandir}/..."
-    blaze query "filter(.*, ${pkg})" 2>/dev/null &
+    query+="filter(.*, ${pkg})"
   done
+
+  # We shunt 2>/dev/null to silence its info output, which for some reason
+  # comes out on stderr. This isn't ideal, because we'll swallow real errors.
+  # Looking at `blaze help query`, I can't find any options to turn this off.
+  # `--logging=0` doesn't do it; `--show_loading_progress=false` doesn't do
+  # it.
+  # --keep_going is required in case any of the pkgs have no subtargets, if not
+  # provided the query will exit before evaluating other pkgs.
+  blaze query --keep_going "${query}" 2> /dev/null
 }
 
 
-# fzf completion for blaze targets beneath the current directory. eg:
+# fzf completion for blaze targets beneath the current directory. Works on
+# programs that use the blaze CLI eg:
 #
 #   blaze build **<TAB>
+#   rabbit build **<TAB>
+#   iblaze build **<TAB>
 #
 # Syntax for this style of completion is taken from:
 # https://github.com/junegunn/fzf/wiki/Examples-(completion)#writing-custom-fuzzy-completion
 _fzf_complete_blaze() {
   _fzf_complete "" "$@" < <(_find_blaze_targets)
 }
-
-# fzf completion for rabbit targets beneath the current directory. eg:
-#
-#   rabbit test **<TAB>
-#
-_fzf_complete_rabbit() {
-  _fzf_complete "" "$@" < <(_find_blaze_targets)
-}
+alias _fzf_complete_rabbit="_fzf_complete_blaze"
+alias _fzf_complete_iblaze="_fzf_complete_blaze"
 
 _fzf_complete_hgd() {
   _fzf_complete "" "$@" < <(_find_fig_workspaces)
@@ -233,7 +222,7 @@ awk -v match_prefix=${match_prefix} ' { for (i = 1; i <= NF; i++) {
 
 }
 
-# CTRL-F - Paste the selected flags into the command line. Copied from CTRL-T
+# CTRL-Q - Paste the selected flags into the command line. Copied from CTRL-T
 # bindings shown here:
 # https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 __flagsel() {
@@ -271,3 +260,5 @@ fzf-flag-widget() {
 }
 zle     -N   fzf-flag-widget
 bindkey '^F' fzf-flag-widget
+bindkey '^T' fzf-file-widget
+bindkey '^R' fzf-history-widget

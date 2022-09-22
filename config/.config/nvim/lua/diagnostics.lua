@@ -32,7 +32,7 @@ require("trouble").setup({
   },
   indent_lines = true, -- add an indent guide below the fold icons
   auto_open = false, -- automatically open the list when you have diagnostics
-  auto_close = false, -- automatically close the list when you have no diagnostics
+  auto_close = true, -- automatically close the list when you have no diagnostics
   auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
   auto_fold = false, -- automatically fold a file trouble list at creation
   auto_jump = { "lsp_definitions" }, -- for the given modes, automatically jump if there is only a single result
@@ -48,9 +48,12 @@ require("trouble").setup({
 })
 
 -- Mappings
-vim.api.nvim_set_keymap("n", "gr", "<Cmd>Trouble lsp_references<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>xx", "<Cmd>Trouble<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>xd", "<Cmd>Trouble document_diagnostics<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>xl", "<Cmd>Trouble loclist<CR>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>xq", "<Cmd>Trouble quickfix<CR>", { silent = true, noremap = true })
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "gr", "<Cmd>Trouble lsp_references<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Leader>xx", "<Cmd>Trouble<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Leader>xd", "<Cmd>Trouble document_diagnostics<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Leader>xl", "<Cmd>Trouble loclist<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Leader>xq", "<Cmd>Trouble quickfix<CR>", opts)
+vim.api.nvim_set_keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+vim.api.nvim_set_keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)

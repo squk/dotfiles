@@ -11,7 +11,6 @@ export EDITOR='nvim'
 
 HISTCONTROL=ignoreboth
 
-
 export DEVKITPRO=/opt/devkitpro
 export DEVKITARM=${DEVKITPRO}/devkitARM
 export DEVKITPPC=${DEVKITPRO}/devkitPPC

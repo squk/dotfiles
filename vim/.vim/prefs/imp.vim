@@ -4,7 +4,7 @@ set runtimepath+=/google/src/files/head/depot/google3/experimental/users/tstone/
 set runtimepath+=/google/src/files/head/depot/google3/experimental/users/tstone/vim/imp-csearch
 
 Glug! glaive
-Glaive imp plugin[mappings] Suggest[default]=buffer,primp,csearch,prompt Report[default]=popupnotify
+Glaive imp plugin[mappings] Suggest[default]=buffer,csearch,prompt,primp Report[default]=popupnotify
 "
 " nnoremap <leader>csi :CsImporter<cr>
 nnoremap <leader>csi :ImpSuggest

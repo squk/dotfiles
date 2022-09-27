@@ -10,15 +10,16 @@ omap <leader><tab> <plug>(fzf-maps-o)
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
 let g:fzf_command_prefix = 'Fzf'
-" use the same keybindings for fzf as in shell
-" nnoremap <silent> <c-s-t> :FzfHgFiles<CR>
-" nnoremap <silent> <c-s-f> :FzfHgRg<space>
-let s:hg_command = 'hg files 2>/dev/null'
+let s:hg_command = 'hg whatsout --template= -- '
+
+" command! -bang -nargs=* HgFiles
+"   \ call fzf#vim#grep(
+"   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+"   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 command! -bang FzfHgFiles
 \ call fzf#run(fzf#wrap({
 \     'source': s:hg_command,
-\     'options': $FZF_DEFAULT_OPTS . " " . $FZF_CTRL_T_OPTS,
 \   }),
 \   <bang>0
 \ )

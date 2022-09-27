@@ -24,6 +24,7 @@ Plug 'sso://user/vintharas/telescope-codesearch.nvim'
 
 " UI EXTENSIONS
 Plug 'ntpeters/vim-better-whitespace'  "auto-set tab/space size
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'         " ...
 Plug 'vim-airline/vim-airline-themes'

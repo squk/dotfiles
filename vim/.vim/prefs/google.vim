@@ -176,7 +176,8 @@ nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
 nnoremap <leader>s :call CitCObsession()<CR>
 nnoremap <leader>g :GoogleOutlineWindow<CR>
 
-nnoremap <leader>ps :PiperSelectActiveFiles<CR>
+" nnoremap <leader>ps :PiperSelectActiveFiles<CR>
+nnoremap <leader>ps :FzfHgFiles<CR>
 nnoremap <leader>pl :PiperLoadActiveAsBuffers<CR>
 nnoremap <leader>po :PiperOpenPath<CR>
 

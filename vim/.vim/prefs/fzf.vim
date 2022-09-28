@@ -12,12 +12,11 @@ let g:fzf_command_prefix = 'Fzf'
 " use the same keybindings for fzf as in shell
 " nnoremap <silent> <c-s-t> :FzfHgFiles<CR>
 " nnoremap <silent> <c-s-f> :FzfHgRg<space>
-let s:hg_command = 'hg files 2>/dev/null'
+let s:hg_command = 'hg whatsout --template= -- 2>/dev/null'
 
 command! -bang FzfHgFiles
 \ call fzf#run(fzf#wrap({
 \     'source': s:hg_command,
-\     'options': $FZF_DEFAULT_OPTS . " " . $FZF_CTRL_T_OPTS,
 \   }),
 \   <bang>0
 \ )

@@ -1,17 +1,5 @@
-" mnemonic: (i)nsert (l)ambda
-imap <leader>il <C-K>l*
-
-" HEX<->ASCII
-" mnemonic: (h)ex (t)o (a)scii
-vnoremap <leader>hta :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
-" mnemonic: (a)scii (t)o (h)ex
-vnoremap <leader>ath :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
-
-
-
 let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
-
 
 " --------- SURROUND MAPPINGS ---------
 " <leader>" Surround a word with "quotes"
@@ -85,20 +73,6 @@ endfunction
 
 
 nmap <leader>toi :CocCommand tsserver.organizeImports<cr>
-
-
-" --------- FUGITIVE MAPPINGS ---------
-nmap <leader>dg :diffget<cr>
-nmap <leader>dp :diffput<cr>
-nmap <leader>du :diffupdate<cr>
-vmap <leader>dg :diffget<cr>
-vmap <leader>dp :diffput<cr>
-vmap <leader>du :diffupdate<cr>
-
-nmap <leader>giw :Gwrite<cr>
-nmap <leader>gic :Gcommit -v<cr>
-nmap <leader>gid :Gdiff<cr>
-nmap <leader>gis :Gstatus<cr>
 
 "" --------- NERD Commenter
 " Create default mappings

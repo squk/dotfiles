@@ -12,7 +12,6 @@ map <Esc>[D <Left>
 " remove mapping to be used in nerdtree
 inoremap <Nul> <C-n>
 
-" Fox for Ack
 cnoremap %% <C-R>=fnameescape(expand("%:p:h")."/")<CR>
 
 " move vertically by visual line
@@ -40,7 +39,7 @@ nnoremap <S-D> <C-D>
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 
-" Create window splits easier. The default
+" Create window splits easier
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
@@ -49,7 +48,4 @@ nnoremap <C-t> <Cmd>CocCommand explorer<CR>
 " always use very magic mode when searching
 "nnoremap / /\v
 "vnoremap / /\v
-"
-vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
-
-nmap <F1> :CocCommand java.debug.vimspector.start<CR>
+nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>

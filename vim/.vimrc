@@ -82,6 +82,7 @@ call plug#begin('~/.vim/plugged')
   if filereadable(expand("~/.vimrc.local"))
       source ~/.vimrc.local
   endif
+
   if filereadable(expand("~/use_google"))
       source ~/.vim/prefs/google.vim
   endif
@@ -93,6 +94,9 @@ call plug#begin('~/.vim/plugged')
    source ~/.vim/prefs/golang.vim
    source ~/.vim/prefs/ultisnips.vim
    source ~/.vim/prefs/ripgrep.vim
+   source ~/.vim/prefs/fzf.vim
+   source ~/.vim/prefs/devicons.vim
+   source ~/.vim/prefs/airline.vim
 call plug#end()            " required
 
 " Require CiderLSP and Diagnostics modules
@@ -155,3 +159,6 @@ set omnifunc= completeopt=menuone,noinsert,noselect
 
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/vim-lsp.log')
+
+"Don't ask to save when changing buffers (i.e. when jumping to a type definition)
+set hidden

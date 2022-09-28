@@ -62,6 +62,7 @@ alias plxutil='/google/data/ro/teams/plx/plxutil'
 export HGSHORT_CMDS="cat head tail mv cp rm chmod g4 diff merge patch meld trim less more"
 source /etc/bash_completion.d/hgd
 alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd-local.sh'
+alias builddoctor=/google/bin/releases/build-doctor/builddoctor
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
 export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin

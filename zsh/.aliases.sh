@@ -89,7 +89,12 @@ get_current_activity() {
 }
 
 cl_search() {
-    hg status -n --change . --template= | xargs -i sh -c "echo {} && grep '$1' {}"
+    # hg status -n --change . --template= | xargs -i sh -c "echo {} && grep '$1' {}"
+    rg --ignore-case $1 $(hg pstatus -ma -n  --template= -- 2>/dev/null)
+}
+
+todos() {
+    cl_search "TODO"
 }
 
 cl_replace() {

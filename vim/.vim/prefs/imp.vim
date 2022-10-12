@@ -1,5 +1,3 @@
-source ~/.vim/prefs/google_comments.vim
-
 set runtimepath+=/google/src/files/head/depot/google3/experimental/users/tstone/vim/vim-imp
 set runtimepath+=/google/src/files/head/depot/google3/experimental/users/tstone/vim/imp-csearch
 

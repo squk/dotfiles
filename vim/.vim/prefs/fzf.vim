@@ -12,7 +12,8 @@ let g:fzf_command_prefix = 'Fzf'
 " use the same keybindings for fzf as in shell
 " nnoremap <silent> <c-s-t> :FzfHgFiles<CR>
 " nnoremap <silent> <c-s-f> :FzfHgRg<space>
-let s:hg_command = 'hg whatsout --template= -- 2>/dev/null'
+let s:hg_command = 'hg pstatus -ma -n --template= -- 2>/dev/null'
+let s:rg_command = 'rg --ignore-case --hidden --follow --color auto --line-number'
 
 command! -bang FzfHgFiles
 \ call fzf#run(fzf#wrap({
@@ -20,7 +21,7 @@ command! -bang FzfHgFiles
 \   }),
 \   <bang>0
 \ )
-command! -bang -nargs=* FzfHgRg
+command! -bang -nargs=* ClSearch
 \ call fzf#vim#grep(
 \   s:rg_command . " " . <q-args> . " " . "$(" . s:hg_command . ")", 1,
 \   <bang>0 ? fzf#vim#with_preview('up:60%')

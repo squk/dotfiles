@@ -3,6 +3,7 @@ lua << EOF
 require('google.comments').setup {
   -- The command for fetching comments, refer to `get_comments.par --help` to
   -- see all the options.
+  -- command = {'/google/bin/releases/editor-devtools/get_comments.par', '--full', '--json', "-x=''"},
   command = {'/google/bin/releases/editor-devtools/get_comments.par', '--json', '--full', '--noresolved', '--cl_comments', '--file_comments', ' -x ""'},
   -- Define your own icon by `vim.fn.sign_define('ICON_NAME', {text = ' '})`.
   -- See :help sign_define
@@ -17,6 +18,11 @@ require('google.comments').setup {
     -- When showing file paths, use relative paths or not.
     relative_path = true,
   },
+  --- Enable viewing comments through floating window
+  floating = true,
+  --- Options used when creating the floating window.
+  floating_window_options = require('google.comments.options')
+  .default_floating_window_options,
 }
 -- here are some mappings you might want:
 vim.api.nvim_set_keymap('n', '<Leader>nc',
@@ -36,3 +42,4 @@ vim.fn.sign_define('COMMENT_ICON', {text = ''})
 EOF
 
 autocmd InsertLeave * :lua require('google.comments').update_signs()
+autocmd InsertLeave * :GoogleCommentsFetchComments

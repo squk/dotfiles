@@ -89,7 +89,6 @@ call plug#begin('~/.vim/plugged')
 
    source ~/.vim/prefs/mappings.vim
    source ~/.vim/prefs/leader.vim
-   source ~/.vim/prefs/plug_prefs.vim
    source ~/.vim/prefs/ui.vim
    source ~/.vim/prefs/golang.vim
    source ~/.vim/prefs/ultisnips.vim
@@ -115,6 +114,7 @@ EOF
 if filereadable(expand("~/use_google"))
     source ~/.vim/prefs/cmp.vim
     source ~/.vim/prefs/imp.vim
+    source ~/.vim/prefs/google_comments.vim
 endif
 
 filetype plugin on     " redundant?

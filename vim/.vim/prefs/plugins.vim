@@ -43,8 +43,7 @@ Plug 'junegunn/gv.vim'                " git commit browser
 Plug 'tpope/vim-git'
 Plug 'airblade/vim-gitgutter'         " live git diff gutter
 Plug 'tmux-plugins/vim-tmux'          " tmux
-Plug 'benmills/vimux'
-Plug 'nvim-lua/plenary.nvim'
+Plug 'preservim/vimux'
 Plug 'christoomey/vim-tmux-navigator' " tmux
 Plug 'ferrine/md-img-paste.vim'       " copy-paste images to markdown
 Plug 'junegunn/vim-easy-align'        " markdown table aligns
@@ -127,3 +126,8 @@ Plug 'kristiandupont/shades-of-teal'
 Plug 'joshdick/onedark.vim'
 Plug 'google/vim-colorscheme-primary'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
+
+" ONE LINERS ONLY
+set statusline=%{pathshorten(expand('%:f'))}
+
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle

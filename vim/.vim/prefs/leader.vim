@@ -29,9 +29,10 @@ vmap <leader>v   c<ESC>"+p<ESC>
 imap <leader>v    <ESC>"+pa
 
 " Copy to OS clipboard
- " vnoremap <silent><Leader>y "yy <Bar> :call system('xclip', @y)<CR>
-map <leader>y !xclip -selection clipboard
-vmap <leader>y !xclip -selection clipboard<cr>
+vnoremap <leader>y "yy <Bar> :call system('xclip', @y)<CR>
+map <leader>y "yy <Bar> :call system('xclip', @y)<CR>
+" map <leader>y !xclip -selection clipboard
+" vmap <leader>y !xclip -selection clipboard<cr>
 " map <leader>y   "+Y
 " vmap <leader>y  "+y
 
@@ -96,7 +97,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
- "Enable NERDCommenterToggle to check all selected lines is commented or not
+"Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 nnoremap <leader>c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
@@ -112,3 +113,5 @@ nmap <leader>e :e %%
 " replace currently selected text with default register
 " without yanking it
 vnoremap <leader>p "_dP
+
+nnoremap <leader>rp :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>

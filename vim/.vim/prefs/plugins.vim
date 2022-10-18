@@ -13,6 +13,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind.nvim'
+Plug 'j-hui/fidget.nvim'
+Plug 'simrat39/symbols-outline.nvim'
 " required only for diagnostics
 Plug 'folke/trouble.nvim'
 
@@ -26,8 +28,10 @@ Plug 'sso://user/vintharas/telescope-codesearch.nvim'
 Plug 'ntpeters/vim-better-whitespace'  "auto-set tab/space size
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline'         " ...
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'rcarriga/nvim-notify'
+" Plug 'vim-airline/vim-airline'         " ...
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
 Plug 'guns/xterm-color-table.vim'
@@ -109,6 +113,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tommcdo/vim-exchange'
 
 " THEMES
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jdkanani/vim-material-theme'

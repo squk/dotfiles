@@ -2,6 +2,7 @@ set nocompatible              " be iMproved, required
 
 let mapleader="," " BEST LEADER OF ALL TIME (BLOT)
 filetype off                  " required
+set rtp+=~/.vim
 set rtp+=~/.vim/after
 
 set directory=/tmp
@@ -98,19 +99,8 @@ call plug#begin('~/.vim/plugged')
    source ~/.vim/prefs/airline.vim
 call plug#end()            " required
 
-" Require CiderLSP and Diagnostics modules
-" IMPORTANT: Must come after plugins are loaded
-lua << EOF
-  -- CiderLSP
-  vim.opt.completeopt = { "menu", "menuone", "noselect" }
+lua require("plugins")
 
-  require 'lspconfig'
-  require("lsp")
-  require("diagnostics")
-  require("treesitter")
-  require("telescope_config")
-
-EOF
 if filereadable(expand("~/use_google"))
     source ~/.vim/prefs/cmp.vim
     source ~/.vim/prefs/imp.vim
@@ -152,8 +142,12 @@ if (has("termguicolors"))
 endif
 set background=dark
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colorscheme quantum
+
+" colorscheme quantum
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+colorscheme catppuccin
 let g:airline_theme='quantum'
+
 set modifiable
 set omnifunc= completeopt=menuone,noinsert,noselect
 

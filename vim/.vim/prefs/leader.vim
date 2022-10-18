@@ -115,3 +115,13 @@ nmap <leader>e :e %%
 vnoremap <leader>p "_dP
 
 nnoremap <leader>rp :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
+
+"Showing highlight groups
+" nmap <leader>sp :call <SID>SynStack()<CR>
+nmap <leader>shg :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

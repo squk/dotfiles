@@ -38,14 +38,16 @@ require('telescope').setup {
   }
 }
 
+local map = require("utils").map
+
 -- These custom mappings let you open telescope-codesearch quickly:
-vim.api.nvim_set_keymap('n', '<C-P>',
+map('n', '<C-P>',
   [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
   { noremap = true, silent=true }
 )
 
 -- Search using codesearch queries.
-vim.api.nvim_set_keymap(
+map(
   "n",
   "<leader>cs",
   [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
@@ -53,7 +55,7 @@ vim.api.nvim_set_keymap(
 )
 --
 -- Search for files using codesearch queries.
-vim.api.nvim_set_keymap(
+map(
   "n",
   "<leader>cf",
   [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
@@ -61,7 +63,7 @@ vim.api.nvim_set_keymap(
 )
 
 -- Search for the word under cursor.
-vim.api.nvim_set_keymap(
+map(
   "n",
   "<leader>CS",
   [[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
@@ -69,7 +71,7 @@ vim.api.nvim_set_keymap(
 )
 
 -- Search for a file having word under cursor in its name.
-vim.api.nvim_set_keymap(
+map(
   "n",
   "<leader>CF",
   [[<cmd>lua require('telescope').extensions.codesearch.find_files{default_text_expand='<cword>'}<CR>]],
@@ -77,7 +79,7 @@ vim.api.nvim_set_keymap(
 )
 
 -- Search for text selected in Visual mode.
-vim.api.nvim_set_keymap(
+map(
   "v",
   "<leader>cs",
   [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
@@ -85,9 +87,13 @@ vim.api.nvim_set_keymap(
 )
 
 -- Search for file having text selected in Visual mode.
-vim.api.nvim_set_keymap(
+map(
   "v",
   "<leader>cf",
   [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
   { noremap = true, silent = true }
 )
+
+map("n",
+"<leader>ps",
+[[:Telescope find_files find_command=hg,pstatus,-ma,-n,--template=<CR>]])

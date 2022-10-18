@@ -35,7 +35,6 @@ Plug 'rcarriga/nvim-notify'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Konfekt/vim-scratchpad'
 Plug 'guns/xterm-color-table.vim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mbbill/undotree'
 Plug 'tversteeg/registers.nvim', { 'branch': 'main' }
 " Plug 'ryanoasis/vim-devicons'
@@ -131,6 +130,7 @@ Plug 'kristiandupont/shades-of-teal'
 Plug 'joshdick/onedark.vim'
 Plug 'google/vim-colorscheme-primary'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'kyazdani42/nvim-web-devicons'
 
 " ONE LINERS ONLY
 set statusline=%{pathshorten(expand('%:f'))}

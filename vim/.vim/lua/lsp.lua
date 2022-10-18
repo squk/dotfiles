@@ -1,11 +1,12 @@
 -- 1. Configure CiderLSP
 local nvim_lsp = require("lspconfig")
 local configs = require("lspconfig.configs")
+local notify = require 'notify'
 configs.ciderlsp = {
     default_config = {
-        cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-lsp", "--forward_sync_responses", "--enable_semantic_tokens", "--relay_mode=true", "--hub_addr=blade:languageservices-staging" ,"--enable_document_highlight"},
+        cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses", "--enable_semantic_tokens", "--relay_mode=true", "--hub_addr=blade:languageservices-staging" ,"--enable_document_highlight"},
         -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--forward_sync_responses', '--enable_document_highlight'};
-        filetypes = { "c", "cpp", "java", "kotlin", "proto", "textproto", "go", "python", "bzl" },
+        filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
         root_dir = nvim_lsp.util.root_pattern("BUILD"),
         settings = {},
     },
@@ -121,8 +122,9 @@ cmp.setup({
             with_text = true,
             maxwidth = 40, -- half max width
             menu = {
-                nvim_ciderlsp = "[🤖]",
-                buffer = "[buffer]",
+                -- nvim_ciderlsp = "[]",
+                nvim_ciderlsp = "",
+                buffer = "",
                 nvim_lsp = "[CiderLSP]",
                 nvim_lua = "[API]",
                 path = "[path]",
@@ -157,7 +159,7 @@ cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
     local first_fire = vim.b['is_cider_lsp_attached'] == 'no'
     vim.b['is_cider_lsp_attached'] = 'yes'
     if first_fire then
-        require('notify')('CiderLSP attached', 'info', {timeout=150})
+        notify('CiderLSP attached', 'info', {timeout=500})
         require('lualine').refresh()
     end
 end
@@ -167,6 +169,23 @@ cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
     VPrint(result)
     VPrint('ctx:')
     VPrint(ctx)
+end
+
+cider_lsp_handlers['window/showMessage'] = function(_, result, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  local lvl = ({
+    'ERROR',
+    'WARN',
+    'INFO',
+    'DEBUG',
+  })[result.type]
+  notify({ result.message }, lvl, {
+    title = 'LSP | ' .. client.name,
+    timeout = 1000,
+    keep = function()
+      return lvl == 'ERROR' or lvl == 'WARN'
+    end,
+  })
 end
 
 -- 3. Set up CiderLSP

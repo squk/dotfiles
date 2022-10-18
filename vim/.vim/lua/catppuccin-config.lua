@@ -1,9 +1,13 @@
+vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+
+local colors = require("catppuccin.palettes").get_palette()
+
 require("catppuccin").setup({
 	compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 	transparent_background = false,
 	term_colors = false,
 	dim_inactive = {
-		enabled = false,
+		enabled = true,
 		shade = "dark",
 		percentage = 0.15,
 	},
@@ -83,5 +87,15 @@ require("catppuccin").setup({
 		},
 	},
 	color_overrides = {},
-	custom_highlights = {},
+    custom_highlights = {
+    --     Type = { fg = colors.blue },
+    --     Function = { fg = colors.sapphire },
+    --     Identifier = { fg = colors.mauve },
+    --     --
+        Function = { fg = colors.mauve },
+    },
 })
+
+require('catppuccin').compile()
+
+vim.api.nvim_command "colorscheme catppuccin"

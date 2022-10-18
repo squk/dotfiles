@@ -1,5 +1,6 @@
 alias go=colorgo
 alias vim='nvim'
+alias vimdiff='nvim -d'
 # alias cat='bat'
 alias ls='exa'
 alias mux='tmuxinator'

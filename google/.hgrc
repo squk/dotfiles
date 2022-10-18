@@ -1,7 +1,7 @@
 %include /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgshort.hgrc
 
 [ui]
-editor = vim
+editor = nvim
 paginate = never
 merge = vimdiff
 username = Christian Nieves <cnieves@google.com>
@@ -41,6 +41,7 @@ changeset = {desc}\n\n
 
 [alias]
 whatsout = status -n --change . --template=hgshort_status
+what = status -n --change . --template=hgshort_status
 whatsoutall = status --rev p4base --no-status --template=hgshort_status
 # unbranch = cp --forget --at-rev . $1
 unbranch = !$HG uncommit --keep $1 && $HG forget $1 && $HG add $1 && $HG amend $1

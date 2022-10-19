@@ -104,7 +104,6 @@ call plug#end()            " required
 lua require("plugins")
 
 if filereadable(expand("~/use_google"))
-    source ~/.vim/prefs/cmp.vim
     source ~/.vim/prefs/imp.vim
     source ~/.vim/prefs/google_comments.vim
     lua require("google_comments")

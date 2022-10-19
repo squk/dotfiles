@@ -16,3 +16,9 @@ require("catppuccin-config")
 require("symbols-outline-config")
 
 require "fidget".setup{}
+
+-- redundant w/ lsp_lines
+vim.diagnostic.config({
+  virtual_text = false,
+})
+require("lsp_lines").setup()

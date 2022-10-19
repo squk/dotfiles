@@ -165,7 +165,9 @@ cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
 end
 
 cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
-    VPrint('result:')
+    notify('result:'..result, 'info', {timeout=900})
+    notify('ctx:'..ctx, 'info', {timeout=900})
+
     VPrint(result)
     VPrint('ctx:')
     VPrint(ctx)

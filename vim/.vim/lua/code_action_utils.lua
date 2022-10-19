@@ -1,4 +1,5 @@
 local M = {}
+local notify = require 'notify'
 
 local lsp_util = vim.lsp.util
 
@@ -7,7 +8,7 @@ function M.code_action_listener()
   local params = lsp_util.make_range_params()
   params.context = context
   vim.lsp.buf_request(0, 'textDocument/codeAction', params, function(err, _, result)
-    -- do something with result - e.g. check if empty and show some indication such as a sign
+    notify('codeAction '..result, 'info', {timeout=500})
   end)
 end
 

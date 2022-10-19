@@ -6,11 +6,6 @@ Plug 'sso://user/chmnchiang/google-comments'
 Plug 'sso://googler@user/piloto/cmp-nvim-ciderlsp'
 Plug 'williamboman/nvim-lsp-installer'
 
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-endif
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 
 Glug alert
@@ -38,7 +33,6 @@ let g:blazevim_quickfix_autoopen = 1
 Glug buganizer plugin[mappings]
 Glug relatedfiles plugin[mappings]
 Glug g4
-"Glug google-csimporter
 
 " Update the current file's build deps
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, 'commit': '3f75a83' }

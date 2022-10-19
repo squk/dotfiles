@@ -28,6 +28,20 @@ lspkind.init()
 
 local cmp = require("cmp")
 
+require'cmp'.setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline' }
+  }
+})
+
+cmp.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
+  })
+})
+
 cmp.setup({
     mapping = {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -82,6 +96,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "vim_vsnip" },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_ciderlsp', priority = 9 },
         { name = "buffer", keyword_length = 5 },
     },
@@ -230,7 +245,7 @@ local on_attach = function(client, bufnr)
 end
 
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
 capabilities['codeLens'] = {dynamicRegistration=false}
 -- capabilities.workspace.codeLens = {refreshSupport=true}

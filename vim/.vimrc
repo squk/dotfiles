@@ -81,7 +81,6 @@ set omnifunc= completeopt=menuone,noinsert,noselect
 set updatetime=100
 
 call plug#begin('~/.vim/plugged')
-  source ~/.vim/prefs/plugins.vim
   if filereadable(expand("~/.vimrc.local"))
       source ~/.vimrc.local
   endif

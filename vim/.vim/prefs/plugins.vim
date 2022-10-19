@@ -22,6 +22,7 @@ Plug 'folke/trouble.nvim'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'jghauser/mkdir.nvim'
+Plug 'petertriho/nvim-scrollbar'
 Plug 'ErichDonGubler/lsp_lines.nvim'
 
 Plug 'nvim-lua/plenary.nvim'           " lua helpers

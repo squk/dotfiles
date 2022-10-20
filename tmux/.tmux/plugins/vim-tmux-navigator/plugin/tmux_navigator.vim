@@ -16,11 +16,11 @@ function! s:VimNavigate(direction)
 endfunction
 
 if !get(g:, 'tmux_navigator_no_mappings', 0)
-  nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-  nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-  nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-  nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-  nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+  noremap <silent> <c-h> :<C-U>TmuxNavigateLeft<cr>
+  noremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
+  noremap <silent> <c-k> :<C-U>TmuxNavigateUp<cr>
+  noremap <silent> <c-l> :<C-U>TmuxNavigateRight<cr>
+  noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
 endif
 
 if empty($TMUX)
@@ -49,6 +49,12 @@ endif
 if !exists("g:tmux_navigator_preserve_zoom")
   let g:tmux_navigator_preserve_zoom = 0
 endif
+
+if !exists("g:tmux_navigator_no_wrap")
+  let g:tmux_navigator_no_wrap = 0
+endif
+
+let s:pane_position_from_direction = {'h': 'left', 'j': 'bottom', 'k': 'top', 'l': 'right'}
 
 function! s:TmuxOrTmateExecutable()
   return (match($TMUX, 'tmate') != -1 ? 'tmate' : 'tmux')
@@ -119,6 +125,9 @@ function! s:TmuxAwareNavigate(direction)
     let args = 'select-pane -t ' . shellescape($TMUX_PANE) . ' -' . tr(a:direction, 'phjkl', 'lLDUR')
     if g:tmux_navigator_preserve_zoom == 1
       let l:args .= ' -Z'
+    endif
+    if g:tmux_navigator_no_wrap == 1
+      let args = 'if -F "#{pane_at_' . s:pane_position_from_direction[a:direction] . '}" "" "' . args . '"'
     endif
     silent call s:TmuxCommand(args)
     if s:NeedsVitalityRedraw()

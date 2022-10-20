@@ -174,7 +174,7 @@ clipboard_copy_command() {
 }
 
 # Cache the TMUX version for speed.
-tmux_version="$(tmux -V | cut -d ' ' -f 2)"
+tmux_version="$(tmux -V | cut -d ' ' -f 2 | sed 's/next-//')"
 
 tmux_is_at_least() {
     if [[ $tmux_version == "$1" ]] || [[ $tmux_version == master ]]; then
@@ -199,6 +199,9 @@ tmux_is_at_least() {
     for ((i = 0; i < ${#current_version[@]}; i++)); do
         if ((10#${current_version[i]} < 10#${wanted_version[i]})); then
             return 1
+        fi
+        if ((10#${current_version[i]} > 10#${wanted_version[i]})); then
+            return 0
         fi
     done
     return 0

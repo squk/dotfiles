@@ -115,16 +115,16 @@ Add the following to your `~/.vimrc` to define your custom maps:
 ``` vim
 let g:tmux_navigator_no_mappings = 1
 
-nnoremap <silent> {Left-Mapping} :TmuxNavigateLeft<cr>
-nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
-nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
-nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
-nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+noremap <silent> {Left-Mapping} :<C-U>TmuxNavigateLeft<cr>
+noremap <silent> {Down-Mapping} :<C-U>TmuxNavigateDown<cr>
+noremap <silent> {Up-Mapping} :<C-U>TmuxNavigateUp<cr>
+noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<cr>
+noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 ```
 
 *Note* Each instance of `{Left-Mapping}` or `{Down-Mapping}` must be replaced
 in the above code with the desired mapping. Ie, the mapping for `<ctrl-h>` =>
-Left would be created with `nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>`.
+Left would be created with `noremap <silent> <c-h> :<C-U>TmuxNavigateLeft<cr>`.
 
 ##### Autosave on leave
 
@@ -199,6 +199,33 @@ With this enabled you can use `<prefix> C-l` to clear the screen.
 
 Thanks to [Brian Hogan][] for the tip on how to re-map the clear screen binding.
 
+#### Disable Wrapping
+
+By default, if you tru to move past the edge of the screen, tmux/vim will
+"wrap" around to the opposite side. To disable this, you'll need to
+configure both tmux and vim:
+
+For vim, you only need to enable this option:
+```vim
+let  g:tmux_navigator_no_wrap = 1
+```
+
+Tmux doesn't haave an option, so whatever key bindings you have need to be set
+to conditionally wrap based on position on screen:
+```tmux
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" { send-keys C-h } { if-shell -F '#{pane_at_left}'   {} { select-pane -L } }
+bind-key -n 'C-j' if-shell "$is_vim" { send-keys C-j } { if-shell -F '#{pane_at_bottom}' {} { select-pane -D } }
+bind-key -n 'C-k' if-shell "$is_vim" { send-keys C-k } { if-shell -F '#{pane_at_top}'    {} { select-pane -U } }
+bind-key -n 'C-l' if-shell "$is_vim" { send-keys C-l } { if-shell -F '#{pane_at_right}'  {} { select-pane -R } }
+
+bind-key -T copy-mode-vi 'C-h' if-shell -F '#{pane_at_left}'   {} { select-pane -L }
+bind-key -T copy-mode-vi 'C-j' if-shell -F '#{pane_at_bottom}' {} { select-pane -D }
+bind-key -T copy-mode-vi 'C-k' if-shell -F '#{pane_at_top}'    {} { select-pane -U }
+bind-key -T copy-mode-vi 'C-l' if-shell -F '#{pane_at_right}'  {} { select-pane -R }
+```
+
 #### Nesting
 If you like to nest your tmux sessions, this plugin is not going to work
 properly. It probably never will, as it would require detecting when Tmux would
@@ -236,7 +263,7 @@ Troubleshooting
 
 This is likely due to conflicting key mappings in your `~/.vimrc`. You can use
 the following search pattern to find conflicting mappings
-`\vn(nore)?map\s+\<c-[hjkl]\>`. Any matching lines should be deleted or
+`\v(nore)?map\s+\<c-[hjkl]\>`. Any matching lines should be deleted or
 altered to avoid conflicting with the mappings from the plugin.
 
 Another option is that the pattern matching included in the `.tmux.conf` is

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# shellcheck source=scripts/helpers.sh
 source "$CURRENT_DIR/helpers.sh"
 
 gram_percentage_format="%3.1f%%"
@@ -17,10 +18,10 @@ print_gram_percentage() {
     echo "No GPU"
     return
   fi
-  echo "$loads" | awk -v format="$gram_percentage_format" '{used+=$1; tot+=$2} END {printf format, 100*$1/$2}'
+  echo "$loads" | awk -v format="$gram_percentage_format" '{used+=$1; tot+=$2} END {printf format, 100*used/tot}'
 }
 
 main() {
   print_gram_percentage
 }
-main
+main "$@"

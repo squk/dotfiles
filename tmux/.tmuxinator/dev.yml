@@ -7,7 +7,7 @@ windows:
       panes:
         - main:
           - hgd gmscore
-          - vim -S ~/.sessions/gmscore.vim
+          - vim
         - other:
           - hgd gmscore
         - other2:
@@ -18,7 +18,7 @@ windows:
       panes:
         - main:
           - hgd experimental
-          - vim -S ~/.sessions/experimental.vim
+          - vim
         - other:
           - hgd experimental
         - other2:
@@ -29,7 +29,7 @@ windows:
         - main:
           - hgd notes
           - cd ../company/users/cnieves/
-          - vim -S ~/.sessions/notes.vim
+          - vim
         - other:
           - hgd notes
           - cd ../company/users/cnieves/
@@ -41,7 +41,7 @@ windows:
       panes:
         - main:
           - cd ~/.vim/prefs
-          - vim -S ~/.sessions/vim.vim
+          - vim
         - other:
           - cd ~/.vim/prefs
         - other2:

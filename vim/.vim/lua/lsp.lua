@@ -1,5 +1,5 @@
 -- 1. Configure CiderLSP
-local nvim_lsp = require("lspconfig")
+local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local notify = require 'notify'
 configs.ciderlsp = {
@@ -7,7 +7,7 @@ configs.ciderlsp = {
         cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses", "--enable_semantic_tokens", "--relay_mode=true", "--hub_addr=blade:languageservices-staging" ,"--enable_document_highlight"},
         -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--forward_sync_responses', '--enable_document_highlight'};
         filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
-        root_dir = nvim_lsp.util.root_pattern("BUILD"),
+        root_dir = lspconfig.util.root_pattern("BUILD"),
         settings = {},
     },
 }
@@ -28,18 +28,18 @@ lspkind.init()
 
 local cmp = require("cmp")
 
-require'cmp'.setup.cmdline(':', {
-  sources = {
-    { name = 'cmdline' }
-  }
+cmp.setup.cmdline(':', {
+    sources = {
+        { name = 'cmdline' }
+    }
 })
 
 cmp.setup.cmdline('/', {
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp_document_symbol' }
-  }, {
-    { name = 'buffer' }
-  })
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp_document_symbol' }
+    }, {
+        { name = 'buffer' }
+    })
 })
 
 cmp.setup({
@@ -182,27 +182,23 @@ end
 cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
     notify('result:'..result, 'info', {timeout=900})
     notify('ctx:'..ctx, 'info', {timeout=900})
-
-    VPrint(result)
-    VPrint('ctx:')
-    VPrint(ctx)
 end
 
 cider_lsp_handlers['window/showMessage'] = function(_, result, ctx)
-  local client = vim.lsp.get_client_by_id(ctx.client_id)
-  local lvl = ({
-    'ERROR',
-    'WARN',
-    'INFO',
-    'DEBUG',
-  })[result.type]
-  notify({ result.message }, lvl, {
-    title = 'LSP | ' .. client.name,
-    timeout = 1000,
-    keep = function()
-      return lvl == 'ERROR' or lvl == 'WARN'
-    end,
-  })
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    local lvl = ({
+        'ERROR',
+        'WARN',
+        'INFO',
+        'DEBUG',
+    })[result.type]
+    notify({ result.message }, lvl, {
+        title = 'LSP | ' .. client.name,
+        timeout = 1000,
+        keep = function()
+            return lvl == 'ERROR' or lvl == 'WARN'
+        end,
+    })
 end
 
 -- 3. Set up CiderLSP
@@ -264,8 +260,37 @@ capabilities.textDocument.publishDiagnostics={
     --layeredDiagnostics=true
 }
 
-nvim_lsp.ciderlsp.setup({
+lspconfig.ciderlsp.setup({
     capabilities = capabilities,
     on_attach = on_attach,
     handlers = cider_lsp_handlers,
+})
+
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+lspconfig.sumneko_lua.setup({
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+                -- Setup your lua path
+                path = runtime_path,
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
 })

@@ -4,6 +4,7 @@
 # For running crow against a remote X server
 # xhost +
 export PATH=$PATH:/google/src/head/depot/google3/experimental/users/cnieves/util
+export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
 export XAUTHORITY=~/.Xauthority
 export GOROOT=/usr/lib/google-golang
 export PATH=$GOROOT/bin:$PATH

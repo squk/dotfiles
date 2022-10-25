@@ -89,6 +89,7 @@ require("catppuccin").setup({
 	color_overrides = {},
     custom_highlights = {
         Identifier = { fg = colors.lavender },
+        Statement = { fg = colors.rosewater },
         -- Identifier = { fg = colors.sapphire },
         Function = { fg = colors.mauve },
     },

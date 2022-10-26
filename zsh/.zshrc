@@ -26,6 +26,17 @@ fi
 ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE=true
 
+fancy-ctrl-z () {
+if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line -w
+else
+    zle push-input -w
+    zle clear-screen -w
+fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^K" kill-line

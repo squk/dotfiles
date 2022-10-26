@@ -54,6 +54,18 @@ require('packer').startup(function(use)
     }
     use 'folke/trouble.nvim'
 
+    use {
+        'LucHermitte/vim-refactor',
+        requires = {
+            'LucHermitte/lh-vim-lib',
+            'LucHermitte/lh-tags',
+            'LucHermitte/lh-dev',
+            'LucHermitte/lh-style',
+            'LucHermitte/lh-brackets',
+        },
+        cmd = 'ExtractFunction'
+    }
+
     use 'hrsh7th/vim-vsnip'
     use 'kosayoda/nvim-lightbulb'
     use {'andymass/vim-matchup', event = 'VimEnter'}

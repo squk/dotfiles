@@ -1,30 +1,8 @@
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-
 local colors = require("catppuccin.palettes").get_palette()
 
 require("catppuccin").setup({
-	compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-	transparent_background = false,
-	term_colors = false,
-	dim_inactive = {
-		enabled = true,
-		shade = "dark",
-		percentage = 0.15,
-	},
-	styles = {
-		comments = { "italic" },
-		conditionals = { "italic" },
-		loops = {},
-		functions = {},
-		keywords = {},
-		strings = {},
-		variables = {},
-		numbers = {},
-		booleans = {},
-		properties = {},
-		types = {},
-		operators = {},
-	},
+    -- flavour = "macchiato",
 	integrations = {
 		cmp = true,
 		-- coc_nvim = false,
@@ -81,12 +59,7 @@ require("catppuccin").setup({
 				information = { "underline" },
 			},
 		},
-		navic = {
-			enabled = false,
-			custom_bg = "NONE",
-		},
 	},
-	color_overrides = {},
     custom_highlights = {
         Identifier = { fg = colors.lavender },
         Statement = { fg = colors.rosewater },
@@ -94,7 +67,5 @@ require("catppuccin").setup({
         Function = { fg = colors.mauve },
     },
 })
-
-require('catppuccin').compile()
 
 vim.api.nvim_command "colorscheme catppuccin"

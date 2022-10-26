@@ -8,7 +8,7 @@ end
 local packerGroup = vim.api.nvim_create_augroup("packer_auto_compile", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*/vim/lua/plugins.lua",
-    command = "source <afile> | PackerCompile",
+    command = "luafile <afile> | PackerCompile",
     group = packerGroup,
 })
 
@@ -54,18 +54,6 @@ require('packer').startup(function(use)
     }
     use 'folke/trouble.nvim'
 
-    use {
-        'LucHermitte/vim-refactor',
-        requires = {
-            'LucHermitte/lh-vim-lib',
-            'LucHermitte/lh-tags',
-            'LucHermitte/lh-dev',
-            'LucHermitte/lh-style',
-            'LucHermitte/lh-brackets',
-        },
-        cmd = 'ExtractFunction'
-    }
-
     use 'hrsh7th/vim-vsnip'
     use 'kosayoda/nvim-lightbulb'
     use {'andymass/vim-matchup', event = 'VimEnter'}
@@ -109,7 +97,8 @@ require('packer').startup(function(use)
         }
     }
 
-    use { "catppuccin/nvim", as = "catppuccin"}
+    -- use { "catppuccin/nvim", as = "catppuccin" }
+    use { "catppuccin/nvim", as = "catppuccin", config = [[require("catppuccin-config")]]}
 
     -- mine
     use {
@@ -124,7 +113,6 @@ require('packer').startup(function(use)
     use 'nathanaelkane/vim-indent-guides'
     use 'tversteeg/registers.nvim'
 
-    use 'airblade/vim-gitgutter'
     use 'preservim/vimux'
     use 'tmux-plugins/vim-tmux'
     use 'christoomey/vim-tmux-navigator'
@@ -168,7 +156,6 @@ require("treesitter")
 require("telescope_config")
 require("lualine_config")
 require("notify_config")
-require("catppuccin-config")
 require("symbols-outline-config")
 
 -- redundant w/ lsp_lines

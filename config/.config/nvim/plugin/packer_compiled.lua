@@ -96,6 +96,7 @@ _G.packer_plugins = {
     url = "https://github.com/rmagatti/auto-session"
   },
   catppuccin = {
+    config = { 'require("catppuccin-config")' },
     loaded = true,
     path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
@@ -318,11 +319,6 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/vim-case-convert",
     url = "https://github.com/chiedo/vim-case-convert"
   },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
-    url = "https://github.com/airblade/vim-gitgutter"
-  },
   ["vim-indent-guides"] = {
     loaded = true,
     path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/vim-indent-guides",
@@ -409,10 +405,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-scrollbar
-time([[Config for nvim-scrollbar]], true)
-require("scrollbar").setup()
-time([[Config for nvim-scrollbar]], false)
 -- Config for: lsp_lines.nvim
 time([[Config for lsp_lines.nvim]], true)
 require("lsp_lines").setup()
@@ -425,6 +417,14 @@ time([[Config for fidget.nvim]], false)
 time([[Config for auto-session]], true)
 try_loadstring("\27LJ\2\n‰\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\31auto_session_suppress_dirs\1\4\0\0\a~/\16~/Downloads\6/\1\0\1\14log_level\nerror\nsetup\17auto-session\frequire\0", "config", "auto-session")
 time([[Config for auto-session]], false)
+-- Config for: nvim-scrollbar
+time([[Config for nvim-scrollbar]], true)
+require("scrollbar").setup()
+time([[Config for nvim-scrollbar]], false)
+-- Config for: catppuccin
+time([[Config for catppuccin]], true)
+require("catppuccin-config")
+time([[Config for catppuccin]], false)
 -- Config for: git-conflict.nvim
 time([[Config for git-conflict.nvim]], true)
 require('git-conflict').setup()

@@ -9,9 +9,8 @@ host=baggins.c.googlers.com
 SSH_OPTS="-YXC -R 5037:localhost:5037 -oServerAliveInterval=$alive_interval"
 
 initial_cloudtop_command="gcertstatus || gcert; tmuxinator dev"
-initial_client_command="gcertstatus || gcert"
 
-eval $inital_client_command
+gcertstatus || gcert
 
 # Just keep reconnecting upon failure
 while [ 1 ]; do

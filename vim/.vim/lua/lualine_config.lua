@@ -44,34 +44,41 @@ require('lualine').setup {
         lualine_a = {'mode'},
         lualine_b = {'branch', 'diff', getCitc, isCiderLspAttached},
         lualine_c = {'filename', {"aerial", depth=-1}, getLightbulb},
-        lualine_x = {'filetype'},
         lualine_x = {
             { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
             'encoding',
             'filetype'
         },
-        lualine_y = {},
+        lualine_y = {'searchcount'},
         lualine_z = {'location'}
+    },
+    tabline = {
+        lualine_a = {{'tabs', mode = 1}},
+        -- lualine_b = {'branch'},
+        -- lualine_c = {'filename'},
+        lualine_x = {
+            { 'diagnostics', sources = {"nvim_lsp", "nvim_workspace_diagnostic"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+        }
     },
     -- default
     -- sections = {
-    --   lualine_a = {'mode'},
-    --   lualine_b = {'branch', 'diff', 'diagnostics'},
-    --   lualine_c = {'filename'},
-    --   lualine_x = {'encoding', 'fileformat', 'filetype'},
-    --   lualine_y = {'progress'},
-    --   lualine_z = {'location'}
-    -- },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      -- lualine_c = {'filename'},
-      lualine_x = {'location'},
-      lualine_y = {},
-      lualine_z = {}
-    },
-    -- tabline = {},
-    -- winbar = {},
-    -- inactive_winbar = {},
-    -- extensions = {}
-}
+        --   lualine_a = {'mode'},
+        --   lualine_b = {'branch', 'diff', 'diagnostics'},
+        --   lualine_c = {'filename'},
+        --   lualine_x = {'encoding', 'fileformat', 'filetype'},
+        --   lualine_y = {'progress'},
+        --   lualine_z = {'location'}
+        -- },
+        inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            -- lualine_c = {'filename'},
+            lualine_x = {'location'},
+            lualine_y = {},
+            lualine_z = {}
+        },
+        -- tabline = {},
+        -- winbar = {},
+        -- inactive_winbar = {},
+        -- extensions = {}
+    }

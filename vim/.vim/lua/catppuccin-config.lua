@@ -2,7 +2,7 @@ vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 local colors = require("catppuccin.palettes").get_palette()
 
 require("catppuccin").setup({
-    -- flavour = "macchiato",
+    flavour = vim.g.catppuccin_flavour, --"macchiato",
 	integrations = {
 		cmp = true,
 		-- coc_nvim = false,
@@ -26,7 +26,7 @@ require("catppuccin").setup({
 		-- nvimtree = true,
 		-- overseer = false,
 		-- pounce = false,
-		symbols_outline = true,
+        symbols_outline = true,
 		telescope = true,
 		treesitter = true,
 		-- treesitter_context = false,

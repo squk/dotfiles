@@ -131,3 +131,10 @@ to_mac(){
     scp $1 cnieves-macbookpro.roam.internal:~/Downloads
     echo "Saved $1 to downloads"
 }
+
+bdoctor() {
+    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
+    default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
+    echo "DEFAULT: $default"
+    echo "HOURLY: $hourly"
+}

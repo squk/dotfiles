@@ -105,6 +105,15 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_ciderlsp', priority = 9 },
         { name = "buffer", keyword_length = 5 },
+        {
+            name = 'spell',
+            option = {
+                keep_all_entries = false,
+                enable_in_context = function()
+                    return true
+                end,
+            },
+        },
     },
 
     sorting = {
@@ -238,7 +247,7 @@ local on_attach = function(client, bufnr)
 
     vim.api.nvim_command("augroup LSP")
     vim.api.nvim_command("autocmd!")
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
         vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
         vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")

@@ -7,7 +7,6 @@ export GO111MODULE=auto
 export CLOUDSDK_PYTHON=python2
 
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-export EDITOR='nvim'
 
 HISTCONTROL=ignoreboth
 

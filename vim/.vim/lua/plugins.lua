@@ -5,12 +5,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
 end
 
-local packerGroup = vim.api.nvim_create_augroup("packer_auto_compile", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*/vim/lua/plugins.lua",
-    command = "luafile <afile> | PackerCompile",
-    group = packerGroup,
-})
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 require('packer').startup(function(use)
     -- Packer can manage itself
@@ -42,6 +42,7 @@ require('packer').startup(function(use)
             'hrsh7th/cmp-buffer',
             'lukas-reineke/cmp-under-comparator',
             'hrsh7th/cmp-cmdline',
+            'f3fora/cmp-spell',
             'hrsh7th/cmp-nvim-lsp-document-symbol',
             'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-nvim-lua',
@@ -60,7 +61,7 @@ require('packer').startup(function(use)
     use { 'ErichDonGubler/lsp_lines.nvim', config = [[require("lsp_lines").setup()]] }
 
     use 'jghauser/mkdir.nvim'
-    use 'simrat39/symbols-outline.nvim'
+    use { 'simrat39/symbols-outline.nvim' }
     use { 'petertriho/nvim-scrollbar', config = [[require("scrollbar").setup()]] }
 
     use {
@@ -78,7 +79,10 @@ require('packer').startup(function(use)
         end
     }
     use 'sso://googler@user/vintharas/telescope-codesearch.nvim'
-    use 'nvim-lualine/lualine.nvim'
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = [[ require("lualine_config") ]]
+    }
     use 'rcarriga/nvim-notify'
 
     -- Git
@@ -154,9 +158,9 @@ require("lsp")
 require("diagnostics")
 require("treesitter")
 require("telescope_config")
-require("lualine_config")
 require("notify_config")
 require("symbols-outline-config")
+require("spell_config")
 
 -- redundant w/ lsp_lines
 vim.diagnostic.config({

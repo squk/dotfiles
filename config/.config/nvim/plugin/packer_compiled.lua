@@ -136,6 +136,11 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-spell"] = {
+    loaded = true,
+    path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/cmp-spell",
+    url = "https://github.com/f3fora/cmp-spell"
+  },
   ["cmp-under-comparator"] = {
     loaded = true,
     path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/cmp-under-comparator",
@@ -201,6 +206,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lualine.nvim"] = {
+    config = { ' require("lualine_config") ' },
     loaded = true,
     path = "/usr/local/google/home/cnieves/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
@@ -405,30 +411,34 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: lsp_lines.nvim
-time([[Config for lsp_lines.nvim]], true)
-require("lsp_lines").setup()
-time([[Config for lsp_lines.nvim]], false)
--- Config for: fidget.nvim
-time([[Config for fidget.nvim]], true)
-require("fidget").setup()
-time([[Config for fidget.nvim]], false)
 -- Config for: auto-session
 time([[Config for auto-session]], true)
 try_loadstring("\27LJ\2\n‰\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\31auto_session_suppress_dirs\1\4\0\0\a~/\16~/Downloads\6/\1\0\1\14log_level\nerror\nsetup\17auto-session\frequire\0", "config", "auto-session")
 time([[Config for auto-session]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+ require("lualine_config") 
+time([[Config for lualine.nvim]], false)
 -- Config for: nvim-scrollbar
 time([[Config for nvim-scrollbar]], true)
 require("scrollbar").setup()
 time([[Config for nvim-scrollbar]], false)
--- Config for: catppuccin
-time([[Config for catppuccin]], true)
-require("catppuccin-config")
-time([[Config for catppuccin]], false)
 -- Config for: git-conflict.nvim
 time([[Config for git-conflict.nvim]], true)
 require('git-conflict').setup()
 time([[Config for git-conflict.nvim]], false)
+-- Config for: lsp_lines.nvim
+time([[Config for lsp_lines.nvim]], true)
+require("lsp_lines").setup()
+time([[Config for lsp_lines.nvim]], false)
+-- Config for: catppuccin
+time([[Config for catppuccin]], true)
+require("catppuccin-config")
+time([[Config for catppuccin]], false)
+-- Config for: fidget.nvim
+time([[Config for fidget.nvim]], true)
+require("fidget").setup()
+time([[Config for fidget.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd LuaSnip ]]
@@ -437,8 +447,8 @@ time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file UndotreeToggle lua require("packer.load")({'undotree'}, { cmd = "UndotreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neogit lua require("packer.load")({'neogit'}, { cmd = "Neogit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file UndotreeToggle lua require("packer.load")({'undotree'}, { cmd = "UndotreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]

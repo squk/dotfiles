@@ -35,6 +35,7 @@ else
     zle clear-screen -w
 fi
 }
+export EDITOR='nvim'
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 bindkey "^A" beginning-of-line

@@ -6,11 +6,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+augroup end
 ]])
+
+
+local file_exists = require("utils").file_exists
 
 require('packer').startup(function(use)
     -- Packer can manage itself
@@ -41,6 +44,7 @@ require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'lukas-reineke/cmp-under-comparator',
+            'williamboman/nvim-lsp-installer',
             'hrsh7th/cmp-cmdline',
             'f3fora/cmp-spell',
             'hrsh7th/cmp-nvim-lsp-document-symbol',
@@ -78,12 +82,34 @@ require('packer').startup(function(use)
             }
         end
     }
-    use 'sso://googler@user/vintharas/telescope-codesearch.nvim'
+
+    use {
+        'sso://googler@user/vintharas/telescope-codesearch.nvim',
+        cond = file_exists(os.getenv("HOME").."/use_google"),
+    }
+
+    use {
+        -- 'sso://googler@user/chmnchiang/google-comments',
+        -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
+        '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
+        cond = file_exists(os.getenv("HOME").."/use_google"),
+        requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
+        config = [[ require("google_comments") ]]
+    }
+
+    use {
+        '/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique',
+        config = [[ require("critique").setup() ]]
+    }
+
     use {
         'nvim-lualine/lualine.nvim',
         config = [[ require("lualine_config") ]]
     }
-    use 'rcarriga/nvim-notify'
+    use {
+        'rcarriga/nvim-notify',
+        config = [[ require("notify_config") ]]
+    }
 
     -- Git
     use {
@@ -158,7 +184,6 @@ require("lsp")
 require("diagnostics")
 require("treesitter")
 require("telescope_config")
-require("notify_config")
 require("symbols-outline-config")
 require("spell_config")
 

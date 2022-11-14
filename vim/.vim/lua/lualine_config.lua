@@ -30,6 +30,19 @@ local function getLightbulb()
     return require('nvim-lightbulb').get_status_text()
 end
 
+local comments = require("google.comments")
+local tracker = require("google.comments.tracker")
+local dump = require("utils").dump
+
+local function getLGTMs()
+    print(dump(tracker.get_all_comments()))
+    local lgtm = comments.get_lgtms()
+    local appr = comments.get_approvals()
+    print("lgtms"..dump(lgtm))
+    print("approvals"..dump(appr))
+    return "LGTM:"..table.concat(lgtm, ",").."   Approval:"..table.concat(appr, ",")
+end
+
 require('lualine').setup {
     options = {
         theme = 'auto',
@@ -58,7 +71,8 @@ require('lualine').setup {
         -- lualine_c = {'filename'},
         lualine_x = {
             { 'diagnostics', sources = {"nvim_lsp", "nvim_workspace_diagnostic"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
-        }
+        },
+        -- lualine_y = { getLGTMs }
     },
     -- default
     -- sections = {

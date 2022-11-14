@@ -2,9 +2,7 @@ source /usr/share/vim/google/glug/bootstrap.vim
 source /usr/share/vim/google/core.vim
 
 Plug 'vim-scripts/vcscommand.vim'
-Plug 'sso://user/chmnchiang/google-comments'
 Plug 'sso://googler@user/piloto/cmp-nvim-ciderlsp'
-Plug 'williamboman/nvim-lsp-installer'
 
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 

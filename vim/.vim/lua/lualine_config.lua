@@ -30,11 +30,11 @@ local function getLightbulb()
     return require('nvim-lightbulb').get_status_text()
 end
 
-local comments = require("google.comments")
-local tracker = require("google.comments.tracker")
-local dump = require("utils").dump
-
 local function getLGTMs()
+    local comments = require("google.comments")
+    local tracker = require("google.comments.tracker")
+    local dump = require("utils").dump
+
     print(dump(tracker.get_all_comments()))
     local lgtm = comments.get_lgtms()
     local appr = comments.get_approvals()

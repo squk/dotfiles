@@ -1,4 +1,6 @@
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Glug ultisnips-google
+if filereadable(expand("~/use_google"))
+    Glug ultisnips-google
+endif

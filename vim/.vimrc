@@ -95,18 +95,11 @@ call plug#begin('~/.vim/plugged')
    source ~/.vim/prefs/golang.vim
    source ~/.vim/prefs/ultisnips.vim
    source ~/.vim/prefs/ripgrep.vim
+    source ~/.vim/prefs/imp.vim
    source ~/.vim/prefs/fzf.vim
-   source ~/.vim/prefs/devicons.vim
-   source ~/.vim/prefs/airline.vim
 call plug#end()            " required
 
 lua require("plugins")
-
-if filereadable(expand("~/use_google"))
-    source ~/.vim/prefs/imp.vim
-    source ~/.vim/prefs/google_comments.vim
-    lua require("google_comments")
-endif
 
 filetype plugin on     " redundant?
 filetype plugin indent on

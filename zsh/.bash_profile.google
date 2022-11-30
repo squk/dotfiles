@@ -61,8 +61,8 @@ alias safergcp=/google/bin/releases/safer-gcp/tools/safergcp
 alias add_deps_to_usages='/google/src/head/depot/google3/apps/framework/tools/add_deps_to_usages.sh'
 alias plxutil='/google/data/ro/teams/plx/plxutil'
 export HGSHORT_CMDS="cat head tail mv cp rm chmod g4 diff merge patch meld trim less more"
-alias vim="source $HGSHORT_DIR/tobashargs.sh nvim"
-source /etc/bash_completion.d/hgd
+alias vim="source $HGSHORT_DIR/tobashargs.sh nvim || nvim"
+source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd-local.sh 2>/dev/null # just to get HGSHORT_DIR in env
 alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd-local.sh'
 alias builddoctor=/google/bin/releases/build-doctor/builddoctor
 alias rudi=/google/data/ro/teams/lsc/bin/rudi-cli
@@ -72,3 +72,109 @@ export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
 export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin
 
 source ~/fzf-at-google.zsh
+
+sl() {
+  blaze build --config gmscore_arm64 //java/com/google/android/gmscore/$1:$2
+
+  # some targets end in ".apk", this prevents adding the suffix to targets that
+  # already have it
+  if [[ "$2" == *".apk"* ]]; then
+      adb install -d -r blaze-bin/java/com/google/android/gmscore/$1/$2
+  else
+      adb install -d -r blaze-bin/java/com/google/android/gmscore/$1/$2.apk
+  fi
+}
+
+sl_gms() {
+    sl integ GmsCore_prodnext_xxhdpi_debug
+}
+
+build_gms() {
+  blaze build --config gmscore_arm64 //java/com/google/android/gmscore/integ:GmsCore_prodnext_xxhdpi_debug
+}
+
+cdm() {
+    adb shell am start -n com.google.android.gms/.chimera.debug.ChimeraDebugActivity
+}
+
+cdp() {
+    adb shell am start -n com.google.android.gms/.chimera.multipackage.debug.MultiPackageDebugActivity
+}
+
+icdm() {
+    adb shell am start -n com.google.android.gms.isolated/com.google.android.gms.chimera.debug.ChimeraDebugActivity
+}
+
+hgr() {
+  source /google/src/head/depot/google3/experimental/users/cnieves/util/hgr.sh || return
+  hgr "$@"
+}
+
+jt() {
+    if [[ $PWD =~ '(.*)/javatests(.*)' ]]; then
+        cd "${match[1]}/java${match[2]}"
+    else
+        cd "${PWD/\/google3\/java//google3/javatests}"
+    fi
+}
+
+get_current_activity() {
+    adb shell dumpsys window | grep -E 'mCurrentFocus'
+}
+
+cl_search() {
+    # hg status -n --change . --template= | xargs -i sh -c "echo {} && grep '$1' {}"
+    rg --ignore-case $1 $(hg pstatus -ma -n  --template= -- 2>/dev/null)
+}
+
+todos() {
+    cl_search "TODO"
+}
+
+cl_replace() {
+    hg status -n --change . --template= | xargs -i sh -c "sed -i '$1' {}"
+}
+
+restart_gms() {
+    adb shell am force-stop com.google.android.gms
+    adb shell am broadcast -a com.google.android.gms.INITIALIZE
+}
+
+objfs_cp() {
+    tmp=$(mktemp) && \
+    fileutil cp -f $1 $tmp && unzip $tmp $2 && unlink $tmp
+}
+
+from_cloud(){
+    scp baggins.c.googlers.com:$1 ~/Downloads/
+    echo "Saved $1 to downloads"
+}
+
+to_cloud(){
+    scp $1 baggins.c.googlers.com:~/Downloads
+    echo "Saved $1 to downloads"
+}
+
+from_mac(){
+    scp cnieves-macbookpro.roam.internal:$1 ~/Downloads/
+    echo "Saved $1 to downloads"
+}
+
+to_mac(){
+    scp $1 cnieves-macbookpro.roam.internal:~/Downloads
+    echo "Saved $1 to downloads"
+}
+
+bdoctor() {
+    default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
+    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
+    echo "DEFAULT(ANALYSIS): $default"
+    echo "HOURLY(EXECUTION): $hourly"
+}
+
+bdoctor_modules() {
+    default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.large.chimera.modules | grep http)
+    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.large.chimera.modules | grep http)
+    echo "DEFAULT(ANALYSIS): $default"
+    echo "HOURLY(EXECUTION): $hourly"
+}

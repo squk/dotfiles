@@ -4,7 +4,7 @@ local configs = require("lspconfig.configs")
 local notify = require 'notify'
 configs.ciderlsp = {
     default_config = {
-        cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses", "--enable_semantic_tokens", "--relay_mode=true", "--hub_addr=blade:languageservices-staging" ,"--enable_document_highlight"},
+        cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses" },
         -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--forward_sync_responses', '--enable_document_highlight'};
         filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
         root_dir = lspconfig.util.root_pattern("BUILD"),

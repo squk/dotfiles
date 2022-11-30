@@ -65,6 +65,8 @@ alias vim="source $HGSHORT_DIR/tobashargs.sh nvim"
 source /etc/bash_completion.d/hgd
 alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd-local.sh'
 alias builddoctor=/google/bin/releases/build-doctor/builddoctor
+alias rudi=/google/data/ro/teams/lsc/bin/rudi-cli
+alias rudi-cli=/google/data/ro/teams/lsc/bin/rudi-cli
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
 export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin

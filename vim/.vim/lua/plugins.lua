@@ -30,6 +30,8 @@ require('packer').startup(function(use)
 
     use 'nvim-lua/plenary.nvim'
 
+    use 'google/vim-searchindex'
+
     -- Pretty symbols
     use 'kyazdani42/nvim-web-devicons'
 
@@ -89,9 +91,9 @@ require('packer').startup(function(use)
     }
 
     use {
-        -- 'sso://googler@user/chmnchiang/google-comments',
+        'sso://googler@user/chmnchiang/google-comments',
         -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
-        '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
+        -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
         cond = file_exists(os.getenv("HOME").."/use_google"),
         requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
         config = [[ require("google_comments") ]]

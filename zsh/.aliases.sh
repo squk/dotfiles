@@ -133,8 +133,15 @@ to_mac(){
 }
 
 bdoctor() {
-    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
     default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
-    echo "DEFAULT: $default"
-    echo "HOURLY: $hourly"
+    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
+    echo "DEFAULT(ANALYSIS): $default"
+    echo "HOURLY(EXECUTION): $hourly"
+}
+
+bdoctor_modules() {
+    default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.large.chimera.modules | grep http)
+    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.large.chimera.modules | grep http)
+    echo "DEFAULT(ANALYSIS): $default"
+    echo "HOURLY(EXECUTION): $hourly"
 }

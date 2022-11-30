@@ -5,7 +5,8 @@ require('google.comments').setup {
     -- command = {'/google/bin/releases/editor-devtools/get_comments.par', '--full', '--json', "-x=''"},
     stubby = true,
     --
-    command = {'/google/bin/releases/editor-devtools/get_comments.par', '--json', '--full', '--resolved', '--cl_comments', '--file_comments'},
+    command = {'/google/bin/releases/editor-devtools/get_comments.par', '--json', '--full', '--noresolved', '--cl_comments', '--file_comments'},
+    -- /google/bin/releases/editor-devtools/get_comments.par --json --full --noresolved --cl_comments --file_comments  -x "" --cl 487267122
     -- command = {'stubby --output_json call blade:codereview-rpc CodereviewRpcService.GetComments "changelist_number: $(/google/data/ro/teams/fig/bin/vcstool pending-change-number)"'},
     -- Define your own icon by `vim.fn.sign_define('ICON_NAME', {text = ' '})`.
     -- See :help sign_define

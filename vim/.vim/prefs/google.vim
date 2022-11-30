@@ -4,6 +4,8 @@ source /usr/share/vim/google/core.vim
 Plug 'vim-scripts/vcscommand.vim'
 Plug 'sso://googler@user/piloto/cmp-nvim-ciderlsp'
 
+let g:VCSCommandDisableMappings = 1
+
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 
 Glug alert

@@ -160,3 +160,6 @@ function! GenerateUnicode(first, last)
     $put =c
   endwhile
 endfunction
+
+set colorcolumn=80
+set mouse=

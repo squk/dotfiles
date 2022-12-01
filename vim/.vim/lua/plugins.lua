@@ -29,6 +29,7 @@ require('packer').startup(function(use)
     }
 
     use 'nvim-lua/plenary.nvim'
+    use 'vimwiki/vimwiki'
 
     use 'google/vim-searchindex'
 
@@ -164,7 +165,10 @@ require('packer').startup(function(use)
     use 'tmux-plugins/vim-tmux-focus-events'
     use 'tpope/vim-obsession'
     use 'Valloric/MatchTagAlways'
-    use 'wesQ3/vim-windowswap'
+    use {
+        'wesQ3/vim-windowswap',
+        setup = [[ vim.g.windowswap_map_keys = 0 ]]
+    }
 
     use 'tpope/vim-surround'
     use 'scrooloose/nerdcommenter'

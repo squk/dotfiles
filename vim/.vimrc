@@ -8,6 +8,7 @@ set rtp+=~/.vim/after
 set directory=/tmp
 set undodir=/tmp
 set nobackup
+set formatoptions+=j
 set nowritebackup
 au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
 

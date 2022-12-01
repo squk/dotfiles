@@ -99,7 +99,6 @@ cmp.setup({
 
     sources = {
         { name = "nvim_lua" },
-        { name = 'orgmode' },
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "vim_vsnip" },

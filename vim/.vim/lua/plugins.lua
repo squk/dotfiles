@@ -21,11 +21,6 @@ require('packer').startup(function(use)
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-    use {
-        'nvim-orgmode/orgmode',
-        config = [[ require('orgconfig') ]]
-    }
-
     -- Undo tree
     use {
         'mbbill/undotree',

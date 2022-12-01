@@ -29,7 +29,9 @@ require('packer').startup(function(use)
     }
 
     use 'nvim-lua/plenary.nvim'
-    use 'vimwiki/vimwiki'
+    -- use 'vimwiki/vimwiki'
+    -- use 'michal-h21/vim-zettel'
+    use 'Furkanzmc/zettelkasten.nvim'
 
     use 'google/vim-searchindex'
 

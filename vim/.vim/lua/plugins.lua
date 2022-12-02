@@ -31,7 +31,12 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     -- use 'vimwiki/vimwiki'
     -- use 'michal-h21/vim-zettel'
-    use 'Furkanzmc/zettelkasten.nvim'
+    -- use 'Furkanzmc/zettelkasten.nvim'
+    use {
+        'renerocksai/telekasten.nvim',
+        config = [[ require("zettel") ]]
+    }
+    use 'renerocksai/calendar-vim'
 
     use 'google/vim-searchindex'
 

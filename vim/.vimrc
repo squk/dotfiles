@@ -4,6 +4,7 @@ let mapleader="," " BEST LEADER OF ALL TIME (BLOT)
 filetype off                  " required
 set rtp+=~/.vim
 set rtp+=~/.vim/after
+set rtp+=~/.config/nvim/after/
 
 set directory=/tmp
 set undodir=/tmp

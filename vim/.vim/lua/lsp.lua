@@ -1,16 +1,19 @@
 -- 1. Configure CiderLSP
+local use_google = require("utils").use_google
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local notify = require 'notify'
-configs.ciderlsp = {
-    default_config = {
-        cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses" },
-        -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--forward_sync_responses', '--enable_document_highlight'};
-        filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
-        root_dir = lspconfig.util.root_pattern("BUILD"),
-        settings = {},
-    },
-}
+if use_google() then
+    configs.ciderlsp = {
+        default_config = {
+            cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses" },
+            -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--forward_sync_responses', '--enable_document_highlight'};
+            filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
+            root_dir = lspconfig.util.root_pattern("BUILD"),
+            settings = {},
+        },
+    }
+end
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -47,6 +50,28 @@ cmp.setup.cmdline(':', {
         { name = 'cmdline' }
     })
 })
+
+local conditionalSources = {
+    { name = "nvim_lua" },
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "vim_vsnip" },
+    { name = 'nvim_lsp_signature_help' },
+    { name = "buffer", keyword_length = 5 },
+    {
+        name = 'spell',
+        option = {
+            keep_all_entries = false,
+            enable_in_context = function()
+                return true
+            end,
+        },
+    },
+}
+
+if use_google() then
+    table.insert(conditionalSources, { name = 'nvim_ciderlsp', priority = 9 })
+end
 
 cmp.setup({
     mapping = {
@@ -97,24 +122,7 @@ cmp.setup({
         end),
     },
 
-    sources = {
-        { name = "nvim_lua" },
-        { name = "nvim_lsp" },
-        { name = "path" },
-        { name = "vim_vsnip" },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'nvim_ciderlsp', priority = 9 },
-        { name = "buffer", keyword_length = 5 },
-        {
-            name = 'spell',
-            option = {
-                keep_all_entries = false,
-                enable_in_context = function()
-                    return true
-                end,
-            },
-        },
-    },
+    sources = conditionalSources,
 
     sorting = {
         comparators = {
@@ -257,7 +265,6 @@ end
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
 capabilities['codeLens'] = {dynamicRegistration=false}
 -- capabilities.workspace.codeLens = {refreshSupport=true}
 -- capabilities.workspace.diagnostics = {refreshSupport=true}
@@ -274,12 +281,14 @@ capabilities.textDocument.publishDiagnostics={
     dataSupport=true,
     --layeredDiagnostics=true
 }
-
-lspconfig.ciderlsp.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    handlers = cider_lsp_handlers,
-})
+if use_google() then
+    capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
+    lspconfig.ciderlsp.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        handlers = cider_lsp_handlers,
+    })
+end
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")

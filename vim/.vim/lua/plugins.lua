@@ -1,5 +1,6 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local use_google = require("utils").use_google
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
@@ -13,7 +14,6 @@ augroup end
 ]])
 
 
-local file_exists = require("utils").file_exists
 
 require('packer').startup(function(use)
     -- Packer can manage itself
@@ -90,20 +90,22 @@ require('packer').startup(function(use)
 
     use {
         'sso://googler@user/vintharas/telescope-codesearch.nvim',
-        cond = file_exists(os.getenv("HOME").."/use_google"),
+        cond = use_google(),
     }
 
     use {
         'sso://googler@user/chmnchiang/google-comments',
         -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
         -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
-        cond = file_exists(os.getenv("HOME").."/use_google"),
+        cond = use_google(),
         requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
         config = [[ require("google_comments") ]]
     }
 
     use {
         '/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique',
+        -- cond = file_exists(os.getenv("HOME").."/use_google"),
+        disable = not use_google(),
         config = [[ require("critique").setup() ]]
     }
 

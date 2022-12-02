@@ -8,6 +8,10 @@ function M.map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+function M.use_google()
+    return M.file_exists(os.getenv("HOME").."/use_google")
+end
+
 function M.file_exists(name)
    local f=io.open(name,"r")
    if f~=nil then io.close(f) return true else return false end

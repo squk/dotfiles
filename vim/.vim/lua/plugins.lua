@@ -40,6 +40,12 @@ require('packer').startup(function(use)
 
     use 'google/vim-searchindex'
 
+    use {
+        'filipdutescu/renamer.nvim',
+        branch = 'master',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
     -- Pretty symbols
     use 'kyazdani42/nvim-web-devicons'
 

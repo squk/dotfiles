@@ -3,46 +3,42 @@ name: dev
 
 windows:
   - gmscore:
-      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      layout: main-vertical
       panes:
         - main:
           - hgd gmscore
           - vim
         - other:
-          - hgd gmscore
-        - other2:
           - hgd gmscore
 
   - experimental:
-      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      layout: main-vertical
       panes:
         - main:
           - hgd experimental
           - vim
         - other:
-          - hgd experimental
-        - other2:
           - hgd experimental
   - notes:
-      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      layout: main-vertical
       panes:
         - main:
           - hgd notes
           - cd ../company/users/cnieves/
-          - vim
+          - vim ~/zettelkasten/
         - other:
           - hgd notes
           - cd ../company/users/cnieves/
-        - other2:
-          - hgd notes
-          - cd ../company/users/cnieves/
+          - vim ~/zettelkasten/Todo.md
   - vim:
-      layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+      layout: main-vertical
       panes:
         - main:
           - cd ~/.vim/prefs
           - vim
         - other:
-          - cd ~/.vim/prefs
-        - other2:
           - cd ~/.vim/prefs

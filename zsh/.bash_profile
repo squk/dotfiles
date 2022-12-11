@@ -3,6 +3,7 @@ export PATH=$PATH:$HOME/scripts
 
 export PATH=$PATH:.
 export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 export GO111MODULE=auto
 export CLOUDSDK_PYTHON=python2
 

@@ -39,13 +39,8 @@ require('packer').startup(function(use)
     use 'renerocksai/calendar-vim'
 
     use 'google/vim-searchindex'
-
-    use {
-        'filipdutescu/renamer.nvim',
-        branch = 'master',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
+    use 'ray-x/go.nvim'
+    use 'ray-x/guihua.lua'
     -- Pretty symbols
     use 'kyazdani42/nvim-web-devicons'
 
@@ -60,7 +55,6 @@ require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'lukas-reineke/cmp-under-comparator',
-            'williamboman/nvim-lsp-installer',
             'hrsh7th/cmp-cmdline',
             'f3fora/cmp-spell',
             'hrsh7th/cmp-nvim-lsp-document-symbol',
@@ -73,6 +67,12 @@ require('packer').startup(function(use)
         -- config = [[require('lsp')]],
         -- event = 'InsertEnter',
     }
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        'VonHeikemen/lsp-zero.nvim',
+    }
+    use 'simrat39/rust-tools.nvim'
     use 'folke/trouble.nvim'
 
     use 'hrsh7th/vim-vsnip'

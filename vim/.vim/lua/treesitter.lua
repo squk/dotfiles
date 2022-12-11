@@ -6,9 +6,9 @@ ensure_installed = "all",
 -- Install parsers synchronously (only applied to `ensure_installed`)
 sync_install = false,
 
-highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
+    highlight = {
+        -- `false` will disable the whole extension
+        enable = true,
         indent = {
             enable = true
         },
@@ -21,4 +21,8 @@ highlight = {
         -- additional_vim_regex_highlighting = true,
         -- additional_vim_regex_highlighting = {"java"},
     },
+    rainbow = {
+        enable = true,
+        extended_mode = true,
+    }
 }

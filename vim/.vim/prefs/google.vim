@@ -64,15 +64,25 @@ function BlazeTestDebug() abort
     call <SID>blazeExec("blaze test --java_debug", blaze#GetTargets())
 endfunction
 
-function BuildCleaner() abort
+function BuildCleanerFile() abort
     exe VimuxRunCommand("build_cleaner " . expand('%'))
+endfunction
+
+function UnusedDeps() abort
+    exe VimuxRunCommand("unused_deps --nouse_build_api --blaze_options='--config=gmscore_tap' " . join(blaze#GetTargets(), ' '))
+endfunction
+
+function BuildCleanerTarget() abort
+    exe VimuxRunCommand("build_cleaner " . join(blaze#GetTargets(), ' '))
 endfunction
 
 nnoremap <Leader>br  :call BlazeRun()<cr>
 nnoremap <Leader>bb  :call BlazeBuild()<cr>
 nnoremap <Leader>bt  :call BlazeTest()<cr>
 nnoremap <Leader>btd  :call BlazeTestDebug()<cr>
-nnoremap <Leader>bc  :call BuildCleaner()<cr>
+nnoremap <Leader>bc  :call BuildCleanerTarget()<cr>
+nnoremap <Leader>bcf  :call BuildCleanerFile()<cr>
+nnoremap <Leader>ud  :call UnusedDeps()<cr>
 
 let g:asyncrun_open = 1
 

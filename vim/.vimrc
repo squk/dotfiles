@@ -60,10 +60,6 @@ set splitbelow     " Puts new split windows to the bottom of the current
 set scrolljump=5   " Line to scroll when cursor leaves screen
 set scrolloff=3    " Minumum lines to keep above and below cursor
 
-" makes sure that when opening, files are normal, i.e. not folded.
-set nofoldenable
-set foldmethod=syntax
-
 let g:clipboard = #{
       \   name: 'xsel',
       \   copy: {
@@ -165,3 +161,6 @@ endfunction
 
 set colorcolumn=80
 set mouse=
+
+" makes sure that when opening, files are normal, i.e. not folded.
+set nofoldenable

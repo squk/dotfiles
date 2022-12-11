@@ -13,7 +13,7 @@ autoload -Uz add-zsh-hook
 add-zsh-hook chpwd g3path::hook
 
 g3path::zle::accept-line () {
-  if [[ -n $GOOGLE3_ROOT && ! $BUFFER =~ \\s*(blaze|g4|p4|g4d|add_dep|buildozer|build_cleaner|debug_android_lint|rabbit|hb|gqui|builddoctor) ]]; then
+  if [[ -n $GOOGLE3_ROOT && ! $BUFFER =~ \\s*(blaze|g4|p4|g4d|add_dep|buildozer|build_cleaner|debug_android_lint|rabbit|hb|gqui|builddoctor|unused_deps) ]]; then
     BUFFER=${BUFFER// \/\// $GOOGLE3_ROOT\/}
   fi
   zle .accept-line

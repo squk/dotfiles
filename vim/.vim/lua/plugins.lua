@@ -41,6 +41,7 @@ require('packer').startup(function(use)
     use 'google/vim-searchindex'
     use 'ray-x/go.nvim'
     use 'ray-x/guihua.lua'
+
     -- Pretty symbols
     use 'kyazdani42/nvim-web-devicons'
 
@@ -147,6 +148,15 @@ require('packer').startup(function(use)
 
     -- use { "catppuccin/nvim", as = "catppuccin" }
     use { "catppuccin/nvim", as = "catppuccin", config = [[require("catppuccin-config")]]}
+    -- Tmux
+    use {
+        'preservim/vimux',
+        'tmux-plugins/vim-tmux',
+        'christoomey/vim-tmux-navigator',
+        'whatyouhide/vim-tmux-syntax',
+        'tmux-plugins/vim-tmux-focus-events',
+        'skywind3000/asyncrun.vim',
+    }
 
     -- mine
     use {
@@ -161,14 +171,8 @@ require('packer').startup(function(use)
     use 'nathanaelkane/vim-indent-guides'
     use 'tversteeg/registers.nvim'
 
-    use 'preservim/vimux'
-    use 'tmux-plugins/vim-tmux'
-    use 'christoomey/vim-tmux-navigator'
-    use 'whatyouhide/vim-tmux-syntax'
-    use 'skywind3000/asyncrun.vim'
-
-    use 'christoomey/vim-titlecase'
-    use 'chiedo/vim-case-convert'
+    -- use 'christoomey/vim-titlecase'
+    -- use 'chiedo/vim-case-convert'
 
     use 'jremmen/vim-ripgrep'
 
@@ -177,7 +181,6 @@ require('packer').startup(function(use)
 
     use 'udalov/kotlin-vim'
 
-    use 'tmux-plugins/vim-tmux-focus-events'
     use 'tpope/vim-obsession'
     use 'Valloric/MatchTagAlways'
     use {

@@ -130,11 +130,6 @@ function! CitCWorkspace()
     return l:workspace
 endfunction
 
-function! CitCObsession()
-    execute 'Obsess ~/.sessions/' . CitCWorkspace() . '.vim'
-endfunction
-
-
 function! G4Blame(...)
   " Grab the filename from the argument, use expand() to expand '%'.
   if a:0 > 0
@@ -177,7 +172,6 @@ com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 " nnoremap <leader>CS :FzfCs<Space> <C-r><C-w> <cr>
 
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
-nnoremap <leader>s :call CitCObsession()<CR>
 
 " nnoremap <leader>ps :PiperSelectActiveFiles<CR>
 nnoremap <leader>ps :FzfHgFiles<CR>

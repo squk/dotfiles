@@ -3,6 +3,51 @@ local use_google = require("utils").use_google
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local notify = require 'notify'
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "sumneko_lua", "rust_analyzer" }
+})
+
+local lsp = require('lsp-zero')
+lsp.preset('manual-setup')
+
+local rust_lsp = lsp.build_options('rust_analyzer', {})
+
+lsp.nvim_workspace()
+lsp.setup()
+
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+lspconfig.sumneko_lua.setup({
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+                -- Setup your lua path
+                path = runtime_path,
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
+
+-- Initialize rust_analyzer with rust-tools
+require('rust-tools').setup({server = rust_lsp})
 if use_google() then
     configs.ciderlsp = {
         default_config = {
@@ -286,48 +331,3 @@ if use_google() then
         handlers = cider_lsp_handlers,
     })
 end
-
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-lspconfig.sumneko_lua.setup({
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
-                -- Setup your lua path
-                path = runtime_path,
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-})
-
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "rust_analyzer" }
-})
-
-
-local lsp = require('lsp-zero')
-lsp.preset('manual-setup')
-
-local rust_lsp = lsp.build_options('rust_analyzer', {})
-
-lsp.setup()
-
--- Initialize rust_analyzer with rust-tools
-require('rust-tools').setup({server = rust_lsp})

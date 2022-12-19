@@ -1,6 +1,10 @@
 local use_google = require("utils").use_google
 local notify = require 'notify'
 
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
+
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "sumneko_lua", "rust_analyzer" }
@@ -84,8 +88,6 @@ cider_lsp_handlers['window/showMessage'] = function(_, result, ctx)
     })
 end
 
-local lsp_status = require('lsp-status')
-
 -- 3. Set up CiderLSP
 local on_attach = function(client, bufnr)
     vim.b['is_cider_lsp_attached'] = 'no'
@@ -141,7 +143,6 @@ capabilities.textDocument.publishDiagnostics={
     layeredDiagnostics=true
 }
 
-lsp_status.register_progress()
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 local runtime_path = vim.split(package.path, ";")
@@ -186,6 +187,7 @@ if use_google() then
     })
     lspconfig.analysislsp.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
     })
 end
 

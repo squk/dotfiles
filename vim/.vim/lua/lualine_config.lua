@@ -17,7 +17,7 @@ local function isCiderLspAttached()
         if vim.b['is_cider_lsp_attached'] == 'yes' then
             return '✓'
         else
-            return 'LSP..'
+            return 'x'
         end
     else
         return ''
@@ -41,6 +41,8 @@ local function getLGTMs()
     return "LGTM:"..table.concat(lgtm, ",").."   Approval:"..table.concat(appr, ",")
 end
 
+local lsp_status = require('lsp-status')
+
 require('lualine').setup {
     options = {
         theme = 'auto',
@@ -53,8 +55,8 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', getCitc, isCiderLspAttached, 'lsp_progress'},
-        lualine_c = {'filename', getLightbulb},
+        lualine_b = {'branch', 'diff', getCitc, isCiderLspAttached},
+        lualine_c = {getLightbulb, 'filename'},
         lualine_x = {
             { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
             'encoding',

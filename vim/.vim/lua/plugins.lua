@@ -13,8 +13,6 @@ autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 augroup end
 ]])
 
-
-
 require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -73,6 +71,10 @@ require('packer').startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         'VonHeikemen/lsp-zero.nvim',
     }
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = [[ require("null_lsp") ]]
+    }
     use 'simrat39/rust-tools.nvim'
     use 'folke/trouble.nvim'
 
@@ -100,7 +102,10 @@ require('packer').startup(function(use)
         end
     }
 
+
     use {
+        -- 'sso://googler@user/lerm/glint-ale',
+        -- 'dense-analysis/ale',
         'sso://googler@user/vintharas/telescope-codesearch.nvim',
         disable = not use_google(),
     }
@@ -121,6 +126,7 @@ require('packer').startup(function(use)
         config = [[ require("critique").setup() ]]
     }
 
+    use 'nvim-lua/lsp-status.nvim'
     use {
         'nvim-lualine/lualine.nvim',
         config = [[ require("lualine_config") ]]
@@ -202,9 +208,12 @@ end)
 
 -- CiderLSP
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- Don't show the dumb matching stuff
+vim.opt.shortmess:append("c")
 
 require('lspconfig')
 require("lsp")
+
 require("diagnostics")
 require("treesitter")
 require("telescope_config")

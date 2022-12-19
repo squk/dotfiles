@@ -23,16 +23,22 @@ if use_google() then
         default_config = {
             cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses" },
             filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
-            root_dir = lspconfig.util.root_pattern("BUILD"),
+            -- root_dir = lspconfig.util.root_pattern("BUILD"),
+            root_dir = function(fname)
+                return string.match(fname, '(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$')
+            end;
             settings = {},
         },
     }
 
     configs.analysislsp = {
         default_config = {
-            cmd = { '/google/bin/users/lerm/glint-ale/analysis_lsp/server', '--lint_on_save=false', '--max_qps=10', },
+            cmd = { '/google/bin/users/lerm/glint-ale/analysis_lsp/server', '--lint_on_save=false', '--max_qps=10' },
             filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
-            root_dir = lspconfig.util.root_pattern('BUILD'),
+            -- root_dir = lspconfig.util.root_pattern('BUILD'),
+            root_dir = function(fname)
+                return string.match(fname, '(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$')
+            end;
             settings = {},
         },
     }
@@ -193,7 +199,7 @@ local has_words_before = function()
 end
 
 local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -292,7 +298,26 @@ cmp.setup({
     sources = conditionalSources,
 
     sorting = {
-        comparators = { },
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            function(entry1, entry2)
+                local _, entry1_under = entry1.completion_item.label:find("^_+")
+                local _, entry2_under = entry2.completion_item.label:find("^_+")
+                entry1_under = entry1_under or 0
+                entry2_under = entry2_under or 0
+                if entry1_under > entry2_under then
+                    return false
+                elseif entry1_under < entry2_under then
+                    return true
+                end
+            end,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
     },
 
     snippet = {

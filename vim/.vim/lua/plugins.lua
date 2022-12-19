@@ -111,6 +111,12 @@ require('packer').startup(function(use)
     }
 
     use {
+        'sso://googler@user/piloto/cmp-nvim-ciderlsp',
+        'sso://googler@user/kdark/ciderlsp-nvim',
+        disable = not use_google(),
+    }
+
+    use {
         'sso://googler@user/chmnchiang/google-comments',
         -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
         -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',

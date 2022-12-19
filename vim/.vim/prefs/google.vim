@@ -2,7 +2,6 @@ source /usr/share/vim/google/glug/bootstrap.vim
 source /usr/share/vim/google/core.vim
 
 Plug 'vim-scripts/vcscommand.vim'
-Plug 'sso://googler@user/piloto/cmp-nvim-ciderlsp'
 
 let g:VCSCommandDisableMappings = 1
 

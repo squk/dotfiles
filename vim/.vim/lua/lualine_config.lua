@@ -17,7 +17,7 @@ local function isCiderLspAttached()
         if vim.b['is_cider_lsp_attached'] == 'yes' then
             return '✓'
         else
-            return 'CiderLSP loading..'
+            return 'LSP..'
         end
     else
         return ''
@@ -53,8 +53,8 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', getCitc, isCiderLspAttached},
-        lualine_c = {'filename', 'lsp_progress', getLightbulb},
+        lualine_b = {'branch', 'diff', getCitc, isCiderLspAttached, 'lsp_progress'},
+        lualine_c = {'filename', getLightbulb},
         lualine_x = {
             { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
             'encoding',

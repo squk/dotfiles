@@ -13,13 +13,19 @@ autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 augroup end
 ]])
 
+require('lspconfig')
+
 require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
     use 'dstein64/vim-startuptime'
 
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config =[[ require("config.nvim-treesitter") ]]
+    }
 
     -- Undo tree
     use {
@@ -31,7 +37,7 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use {
         'renerocksai/telekasten.nvim',
-        config = [[ require("zettel") ]]
+        config = [[ require("config.telekasten") ]]
     }
     use 'renerocksai/calendar-vim'
 
@@ -63,7 +69,7 @@ require('packer').startup(function(use)
             'ray-x/cmp-treesitter',
             { 'saadparwaiz1/cmp_luasnip', after = {'LuaSnip'} },
         },
-        -- config = [[require('lsp')]],
+        config = [[ require("config.lsp") ]],
         -- event = 'InsertEnter',
     }
     use {
@@ -77,7 +83,7 @@ require('packer').startup(function(use)
     }
     use {
         'jose-elias-alvarez/null-ls.nvim',
-        config = [[ require("null_lsp") ]]
+        config = [[ require("config.null-ls") ]]
     }
     use {
         'saecki/crates.nvim',
@@ -86,22 +92,26 @@ require('packer').startup(function(use)
         config = [[ require('crates').setup() ]]
     }
     use 'simrat39/rust-tools.nvim'
-    use 'folke/trouble.nvim'
+    use {
+        'folke/trouble.nvim',
+        config = [[ require("config.trouble")]]
+    }
 
     use 'hrsh7th/vim-vsnip'
     use 'kosayoda/nvim-lightbulb'
     use {'andymass/vim-matchup', event = 'VimEnter'}
-    use { 'ErichDonGubler/lsp_lines.nvim', config = [[require("lsp_lines").setup()]] }
+    use { 'ErichDonGubler/lsp_lines.nvim', config = [[ require("lsp_lines").setup() ]] }
 
     use 'jghauser/mkdir.nvim'
-    use { 'simrat39/symbols-outline.nvim' }
-    use { 'petertriho/nvim-scrollbar', config = [[require("scrollbar").setup()]] }
+    use { 'simrat39/symbols-outline.nvim', config = [[ require("config.symbols-outline") ]]  }
+    use { 'petertriho/nvim-scrollbar', config = [[ require("scrollbar").setup() ]] }
 
     use {
-        'nvim-telescope/telescope.nvim' , branch = '0.1.x',
-        'nvim-telescope/telescope-file-browser.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        config = [[ require("config.telescope") ]]
     }
+    use 'nvim-telescope/telescope-file-browser.nvim'
 
     use {
         "nvim-telescope/telescope-frecency.nvim",
@@ -139,7 +149,7 @@ require('packer').startup(function(use)
         -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
         disable = not use_google(),
         requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
-        config = [[ require("google_comments") ]]
+        config = [[ require("config.google-comments") ]]
     }
 
     use {
@@ -151,11 +161,11 @@ require('packer').startup(function(use)
     use 'nvim-lua/lsp-status.nvim'
     use {
         'nvim-lualine/lualine.nvim',
-        config = [[ require("lualine_config") ]]
+        config = [[ require("config.lualine") ]]
     }
     use {
         'rcarriga/nvim-notify',
-        config = [[ require("notify_config") ]]
+        config = [[ require("config.notify") ]]
     }
 
     -- Git
@@ -234,14 +244,8 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show the dumb matching stuff
 vim.opt.shortmess:append("c")
 
-require('lspconfig')
-require("lsp")
-
-require("diagnostics")
-require("treesitter")
-require("telescope_config")
-require("symbols-outline-config")
-require("spell_config")
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 
 -- redundant w/ lsp_lines
 vim.diagnostic.config({

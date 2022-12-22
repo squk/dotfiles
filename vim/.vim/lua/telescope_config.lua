@@ -97,3 +97,8 @@ map(
 map("n",
 "<leader>ps",
 [[:Telescope find_files find_command=hg,pstatus,-ma,-n,--template=<CR>]])
+
+map( "n", "<space>tb", ":Telescope file_browser")
+map( "n", "<space>fb", ":Telescope file_browser")
+map("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
+

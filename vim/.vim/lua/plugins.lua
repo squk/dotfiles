@@ -16,6 +16,8 @@ augroup end
 require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+    use 'lewis6991/impatient.nvim'
+    use 'dstein64/vim-startuptime'
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
@@ -27,9 +29,6 @@ require('packer').startup(function(use)
     }
 
     use 'nvim-lua/plenary.nvim'
-    -- use 'vimwiki/vimwiki'
-    -- use 'michal-h21/vim-zettel'
-    -- use 'Furkanzmc/zettelkasten.nvim'
     use {
         'renerocksai/telekasten.nvim',
         config = [[ require("zettel") ]]
@@ -100,7 +99,16 @@ require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim' , branch = '0.1.x',
+        'nvim-telescope/telescope-file-browser.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
+    use {
+        "nvim-telescope/telescope-frecency.nvim",
+        config = function()
+            require"telescope".load_extension("frecency")
+        end,
+        requires = {"kkharji/sqlite.lua"}
     }
 
     use {
@@ -115,8 +123,6 @@ require('packer').startup(function(use)
 
 
     use {
-        -- 'sso://googler@user/lerm/glint-ale',
-        -- 'dense-analysis/ale',
         'sso://googler@user/vintharas/telescope-codesearch.nvim',
         disable = not use_google(),
     }
@@ -138,7 +144,6 @@ require('packer').startup(function(use)
 
     use {
         '/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique',
-        -- cond = file_exists(os.getenv("HOME").."/use_google"),
         disable = not use_google(),
         config = [[ require("critique").setup() ]]
     }
@@ -170,7 +175,7 @@ require('packer').startup(function(use)
     }
 
     -- use { "catppuccin/nvim", as = "catppuccin" }
-    use { "catppuccin/nvim", as = "catppuccin", config = [[require("catppuccin-config")]]}
+    use { "catppuccin/nvim", as = "catppuccin", config = [[require("config.catppuccin")]]}
     -- Tmux
     use {
         'preservim/vimux',
@@ -183,8 +188,12 @@ require('packer').startup(function(use)
 
     -- mine
     use {
-        'squk/vim-quantum',
-        'squk/java-syntax.vim'
+        'squk/java-syntax.vim', ft='java'
+    }
+
+    use {
+        "folke/which-key.nvim",
+        config = [[require("config.whichkey")]]
     }
 
     use 'ntpeters/vim-better-whitespace'
@@ -193,9 +202,6 @@ require('packer').startup(function(use)
 
     use 'nathanaelkane/vim-indent-guides'
     use 'tversteeg/registers.nvim'
-
-    -- use 'christoomey/vim-titlecase'
-    -- use 'chiedo/vim-case-convert'
 
     use 'jremmen/vim-ripgrep'
 

@@ -61,10 +61,15 @@ require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lua',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-vsnip',
+            'ray-x/cmp-treesitter',
             { 'saadparwaiz1/cmp_luasnip', after = {'LuaSnip'} },
         },
         -- config = [[require('lsp')]],
         -- event = 'InsertEnter',
+    }
+    use {
+        "tzachar/cmp-tabnine", run = "./install.sh",
+        disable = use_google(),
     }
     use {
         "williamboman/mason.nvim",
@@ -74,6 +79,12 @@ require('packer').startup(function(use)
     use {
         'jose-elias-alvarez/null-ls.nvim',
         config = [[ require("null_lsp") ]]
+    }
+    use {
+        'saecki/crates.nvim',
+        tag = 'v0.3.0',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = [[ require('crates').setup() ]]
     }
     use 'simrat39/rust-tools.nvim'
     use 'folke/trouble.nvim'

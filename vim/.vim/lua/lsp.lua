@@ -228,6 +228,8 @@ local conditionalSources = {
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "path" },
+    { name = "treesitter" },
+    { name = "crates" },
     { name = "vim_vsnip" },
     { name = 'nvim_lsp_signature_help' },
     { name = "buffer", keyword_length = 5 },
@@ -246,6 +248,9 @@ local use_google = require("utils").use_google
 if use_google() then
     table.insert(conditionalSources, { name = 'nvim_ciderlsp', priority = 9 })
     table.insert(conditionalSources, { name = 'analysislsp', priority = 9 })
+else
+    table.insert(conditionalSources, {name = 'cmp_tabnine'})
+
 end
 
 cmp.setup({
@@ -335,7 +340,9 @@ cmp.setup({
             menu = {
                 nvim_ciderlsp = "",
                 buffer = "",
+                crates = "📦",
                 nvim_lsp = "[CiderLSP]",
+                cmp_tabnine = "[TabNine]",
                 nvim_lua = "[API]",
                 path = "[path]",
                 tmux = "[TMUX]",

@@ -32,5 +32,12 @@ nnoremap <leader>zr :lua require('telekasten').rename_note()<CR>
 
 " on hesitation, bring up the panel
 nnoremap <leader>z :lua require('telekasten').panel()<CR>
+
+" colors
+hi tklink ctermfg=72 guifg=#689d6a cterm=bold,underline gui=bold,underline
+hi tkBrackets ctermfg=gray guifg=gray
+
+hi tkTagSep ctermfg=gray guifg=gray
+hi tkTag ctermfg=175 guifg=#d3869B
 ]])
 -- autocmd FileType markdown vnoremap <Enter> :norm ysiw\]ysa\]\] lua require('telekasten').follow_link()<CR>

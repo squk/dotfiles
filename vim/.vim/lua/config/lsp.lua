@@ -1,4 +1,7 @@
 local use_google = require("utils").use_google
+local tprint = require("utils").tprint
+local dump = require("utils").dump
+local log = require("utils").log
 local notify = require 'notify'
 
 local lsp_status = require('lsp-status')
@@ -244,13 +247,60 @@ local conditionalSources = {
     },
 }
 
-local use_google = require("utils").use_google
 if use_google() then
     table.insert(conditionalSources, { name = 'nvim_ciderlsp', priority = 9 })
     table.insert(conditionalSources, { name = 'analysislsp', priority = 9 })
 else
     table.insert(conditionalSources, {name = 'cmp_tabnine'})
 
+end
+
+local i = 0
+
+function cmp_format(opts)
+    if opts == nil then
+        opts = {}
+    end
+    if opts.preset or opts.symbol_map then
+        lspkind.init(opts)
+    end
+
+    return function(entry, vim_item)
+        if opts.before then
+            vim_item = opts.before(entry, vim_item)
+        end
+
+        vim_item.kind = lspkind.symbolic(vim_item.kind, opts)
+        if i == 0 then
+            if entry.source.name == "nvim_lsp" then
+                log(vim.json.encode(entry.source))
+                i = i + 1
+            end
+        end
+
+        if opts.menu ~= nil then
+            vim_item.menu = opts.menu[entry.source.name]
+            -- if entry.source.client ~= nil then
+            --     if entry.source.client.name ~= nil then
+            --         log(entry.source.client.name)
+            --     end
+            -- end
+            -- vim_item.menu = opts.menu[entry.source.name+":"+entry.source.client.name]
+        end
+
+        if opts.maxwidth ~= nil then
+            if opts.ellipsis_char == nil then
+                vim_item.abbr = string.sub(vim_item.abbr, 1, opts.maxwidth)
+            else
+                local label = vim_item.abbr
+                local truncated_label = vim.fn.strcharpart(label, 0, opts.maxwidth)
+                if truncated_label ~= label then
+                    vim_item.abbr = truncated_label .. opts.ellipsis_char
+                end
+            end
+        end
+        return vim_item
+    end
 end
 
 cmp.setup({
@@ -334,6 +384,7 @@ cmp.setup({
     },
 
     formatting = {
+        -- format = cmp_format({
         format = lspkind.cmp_format({
             with_text = true,
             maxwidth = 40, -- half max width

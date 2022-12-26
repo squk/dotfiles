@@ -7,7 +7,6 @@ local notify = require 'notify'
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
-
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "sumneko_lua", "rust_analyzer" }
@@ -110,7 +109,7 @@ local on_attach = function(client, bufnr)
         vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
     end
 
-    lsp_status.on_attach(client, bufnr)
+    lsp_status.on_attach(client)
 end
 
 local opts = { noremap = true, silent = true }

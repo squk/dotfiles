@@ -208,6 +208,8 @@ require('packer').startup(function(use)
 
     use 'ntpeters/vim-better-whitespace'
     use 'junegunn/fzf.vim'
+    use { 'junegunn/fzf', run = ":call fzf#install()" }
+
     vim.opt.rtp:append(os.getenv("HOME") .. "/.fzf")
 
     use 'nathanaelkane/vim-indent-guides'
@@ -221,7 +223,7 @@ require('packer').startup(function(use)
     use 'udalov/kotlin-vim'
 
     use 'tpope/vim-obsession'
-    use 'Valloric/MatchTagAlways'
+    -- use 'Valloric/MatchTagAlways'
     use {
         'wesQ3/vim-windowswap',
         setup = [[ vim.g.windowswap_map_keys = 0 ]]

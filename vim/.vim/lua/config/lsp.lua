@@ -12,16 +12,6 @@ require("mason-lspconfig").setup({
     ensure_installed = { "sumneko_lua", "rust_analyzer" }
 })
 
-local lsp = require('lsp-zero')
-lsp.preset('manual-setup')
-
-lsp.nvim_workspace()
-lsp.setup()
-
--- Initialize rust_analyzer with rust-tools
-local rust_lsp = lsp.build_options('rust_analyzer', {})
-require('rust-tools').setup({server = rust_lsp})
-
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 if use_google() then
@@ -110,23 +100,23 @@ local on_attach = function(client, bufnr)
     end
 
     lsp_status.on_attach(client)
+
+    local opts = { noremap = true, silent = true }
+    vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "L", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "grf", "<cmd>lua vim.lsp.buf.references()<CR>", opts)  -- diagnostics controls references
+    vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    vim.api.nvim_set_keymap("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
+    vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 end
-
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-vim.api.nvim_set_keymap("n", "L", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-vim.api.nvim_set_keymap("n", "grf", "<cmd>lua vim.lsp.buf.references()<CR>", opts)  -- diagnostics controls references
-vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-vim.api.nvim_set_keymap("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
-vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -177,6 +167,7 @@ lspconfig.sumneko_lua.setup({
         },
     },
 })
+
 
 if use_google() then
     capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
@@ -406,6 +397,33 @@ cmp.setup({
         ghost_text = true,
     },
 })
+
+local lsp = require('lsp-zero')
+-- lsp.preset('lsp-compe')
+lsp.set_preferences({
+  suggest_lsp_servers = true,
+  setup_servers_on_start = true,
+  set_lsp_keymaps = false,
+  configure_diagnostics = true,
+  cmp_capabilities = true,
+  manage_nvim_cmp = true,
+  call_servers = 'local',
+  sign_icons = {
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = ''
+  }
+})
+
+lsp.nvim_workspace()
+lsp.on_attach(on_attach)
+lsp.setup()
+
+-- Initialize rust_analyzer with rust-tools
+local rust_lsp = lsp.build_options('rust_analyzer', {})
+require('rust-tools').setup({ server = rust_lsp, })
+
 
 vim.cmd([[
 augroup CmpZsh

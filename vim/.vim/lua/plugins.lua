@@ -76,6 +76,7 @@ require('packer').startup(function(use)
         "tzachar/cmp-tabnine", run = "./install.sh",
         disable = use_google(),
     }
+    use { 'ErichDonGubler/lsp_lines.nvim', config = [[ require("lsp_lines").setup() ]] }
     use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
@@ -100,7 +101,6 @@ require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'kosayoda/nvim-lightbulb'
     use {'andymass/vim-matchup', event = 'VimEnter'}
-    use { 'ErichDonGubler/lsp_lines.nvim', config = [[ require("lsp_lines").setup() ]] }
 
     use 'jghauser/mkdir.nvim'
     use { 'simrat39/symbols-outline.nvim', config = [[ require("config.symbols-outline") ]]  }
@@ -250,8 +250,3 @@ vim.opt.shortmess:append("c")
 
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
-
--- redundant w/ lsp_lines
-vim.diagnostic.config({
-    virtual_text = false,
-})

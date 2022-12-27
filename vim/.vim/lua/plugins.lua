@@ -131,15 +131,12 @@ require('packer').startup(function(use)
         end
     }
 
-
-    use {
-        'sso://googler@user/vintharas/telescope-codesearch.nvim',
-        disable = not use_google(),
-    }
-
     use {
         'sso://googler@user/piloto/cmp-nvim-ciderlsp',
         'sso://googler@user/kdark/ciderlsp-nvim',
+        'sso://googler@user/vintharas/telescope-codesearch.nvim',
+        'sso://googler@user/aktau/telescope-citc.nvim',
+
         disable = not use_google(),
     }
 

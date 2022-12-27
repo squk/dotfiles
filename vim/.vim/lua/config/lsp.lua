@@ -18,7 +18,7 @@ if use_google() then
     configs.ciderlsp = {
         default_config = {
             cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses" },
-            filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
+            filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl", "typescript"},
             -- root_dir = lspconfig.util.root_pattern("BUILD"),
             root_dir = function(fname)
                 return string.match(fname, '(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$')
@@ -30,7 +30,7 @@ if use_google() then
     configs.analysislsp = {
         default_config = {
             cmd = { '/google/bin/users/lerm/glint-ale/analysis_lsp/server', '--lint_on_save=false', '--max_qps=10' },
-            filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl" },
+            filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl", "markdown","typescript", "javascript"},
             -- root_dir = lspconfig.util.root_pattern('BUILD'),
             root_dir = function(fname)
                 return string.match(fname, '(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$')

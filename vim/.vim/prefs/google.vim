@@ -183,3 +183,5 @@ nnoremap <leader>ws :CorpWebCs <cword> <CR>
 nnoremap <leader>wf :CorpWebCsFile<CR>
 
 nmap <leader>rbs ss <leader>rb
+
+nmap <leader>yb :let @" = join(blaze#GetTargets(), ' ')<cr>

@@ -98,6 +98,12 @@ require('packer').startup(function(use)
         config = [[ require("config.trouble")]]
     }
 
+    use {
+        'ThePrimeagen/refactoring.nvim',
+        config = [[ require("config.refactoring")]]
+    }
+    use 'apalmer1377/factorus'
+
     use 'hrsh7th/vim-vsnip'
     use 'kosayoda/nvim-lightbulb'
     use {'andymass/vim-matchup', event = 'VimEnter'}

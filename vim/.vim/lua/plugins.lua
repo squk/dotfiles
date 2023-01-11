@@ -120,14 +120,6 @@ require('packer').startup(function(use)
     use 'nvim-telescope/telescope-file-browser.nvim'
 
     use {
-        "nvim-telescope/telescope-frecency.nvim",
-        config = function()
-            require"telescope".load_extension("frecency")
-        end,
-        requires = {"kkharji/sqlite.lua"}
-    }
-
-    use {
         'rmagatti/auto-session',
         config = function()
             require("auto-session").setup {
@@ -142,6 +134,7 @@ require('packer').startup(function(use)
         'sso://googler@user/kdark/ciderlsp-nvim',
         'sso://googler@user/vintharas/telescope-codesearch.nvim',
         'sso://googler@user/aktau/telescope-citc.nvim',
+        'sso://googler@user/tylersaunders/telescope-fig.nvim',
 
         disable = not use_google(),
     }

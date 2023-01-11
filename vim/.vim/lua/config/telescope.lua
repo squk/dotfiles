@@ -80,6 +80,14 @@ if use_google() then
     map("n", "<leader>tw", ":Telescope citc workspaces<CR>")
     map("n", "<leader>tm", ":Telescope citc modified<CR>")
     map("n", "<leader>tb", ":Telescope file_browser<CR>")
-    map("n", "<leader>tf", ":lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
+
+    -- [F]ig [S]tatus
+    map('n', '<leader>fs', [[<cmd>lua require('telescope').extensions.fig.status{}<CR>]])
+
+    -- [F]ig [X]l
+    map('n', '<leader>fx', [[<cmd>lua require('telescope').extensions.fig.xl{}<CR>]])
+
+    -- [F]ig [W]hatsout
+    map('n', '<leader>fw', [[<cmd>lua require('telescope').extensions.fig.status{whatsout=true}<CR>]])
 
 end

@@ -40,46 +40,6 @@ if use_google() then
     }
 end
 
-local cider_lsp_handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-    })
-}
-
-cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
-    -- is_cider_lsp_attached has been setup via on_init, but hasn't received
-    -- sync response yet.
-    local first_fire = vim.b['is_cider_lsp_attached'] == 'no'
-    vim.b['is_cider_lsp_attached'] = 'yes'
-    if first_fire then
-        notify('CiderLSP attached', 'info', {timeout=500})
-        require('lualine').refresh()
-    end
-end
-
-cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
-    notify('result:'..result, 'info', {timeout=900})
-    notify('ctx:'..ctx, 'info', {timeout=900})
-end
-
-cider_lsp_handlers['window/showMessage'] = function(_, result, ctx)
-    local client = vim.lsp.get_client_by_id(ctx.client_id)
-    local lvl = ({
-        'ERROR',
-        'WARN',
-        'INFO',
-        'DEBUG',
-    })[result.type]
-    notify({ result.message }, lvl, {
-        title = 'LSP | ' .. client.name,
-        timeout = 1000,
-        keep = function()
-            return lvl == 'ERROR' or lvl == 'WARN'
-        end,
-    })
-end
-
 -- 3. Set up CiderLSP
 local on_attach = function(client, bufnr)
     vim.b['is_cider_lsp_attached'] = 'no'
@@ -111,6 +71,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_set_keymap("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     vim.api.nvim_set_keymap("n", "grf", "<cmd>lua vim.lsp.buf.references()<CR>", opts)  -- diagnostics controls references
     vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     vim.api.nvim_set_keymap("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
@@ -169,21 +130,6 @@ lspconfig.sumneko_lua.setup({
 })
 
 
-if use_google() then
-    capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
-    capabilities.workspace.codeLens = {refreshSupport=true}
-    capabilities.workspace.diagnostics = {refreshSupport=true}
-    lspconfig.ciderlsp.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        handlers = cider_lsp_handlers,
-    })
-    lspconfig.analysislsp.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-    })
-end
-
 local lspkind = require("lspkind")
 lspkind.init()
 local cmp = require("cmp")
@@ -220,12 +166,12 @@ cmp.setup.cmdline(':', {
 local conditionalSources = {
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
+    { name = 'nvim_lsp_signature_help', priority = 5 },
     { name = "path" },
     { name = "treesitter" },
     { name = "crates" },
     { name = "vim_vsnip" },
-    { name = 'nvim_lsp_signature_help' },
-    { name = "buffer", keyword_length = 5 },
+    { name = "buffer", keyword_length = 5, group_index = 2 },
     {
         name = 'spell',
         option = {
@@ -238,59 +184,62 @@ local conditionalSources = {
 }
 
 if use_google() then
+    local cider_lsp_handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+            underline = true,
+        })
+    }
+
+    cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
+        -- is_cider_lsp_attached has been setup via on_init, but hasn't received
+        -- sync response yet.
+        local first_fire = vim.b['is_cider_lsp_attached'] == 'no'
+        vim.b['is_cider_lsp_attached'] = 'yes'
+        if first_fire then
+            notify('CiderLSP attached', 'info', {timeout=500})
+            require('lualine').refresh()
+        end
+    end
+
+    cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
+        notify('result:'..result, 'info', {timeout=900})
+        notify('ctx:'..ctx, 'info', {timeout=900})
+    end
+
+    cider_lsp_handlers['window/showMessage'] = function(_, result, ctx)
+        local client = vim.lsp.get_client_by_id(ctx.client_id)
+        local lvl = ({
+            'ERROR',
+            'WARN',
+            'INFO',
+            'DEBUG',
+        })[result.type]
+        notify({ result.message }, lvl, {
+            title = 'LSP | ' .. client.name,
+            timeout = 1000,
+            keep = function()
+                return lvl == 'ERROR' or lvl == 'WARN'
+            end,
+        })
+    end
+
+    capabilities = require('cmp_nvim_ciderlsp').update_capabilities(capabilities)
+    capabilities.workspace.codeLens = {refreshSupport=true}
+    capabilities.workspace.diagnostics = {refreshSupport=true}
+    lspconfig.ciderlsp.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        handlers = cider_lsp_handlers,
+    })
+    lspconfig.analysislsp.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
     table.insert(conditionalSources, { name = 'nvim_ciderlsp', priority = 9 })
-    table.insert(conditionalSources, { name = 'analysislsp', priority = 9 })
+    table.insert(conditionalSources, { name = 'analysislsp' })
 else
     table.insert(conditionalSources, {name = 'cmp_tabnine'})
-
-end
-
-local i = 0
-
-function cmp_format(opts)
-    if opts == nil then
-        opts = {}
-    end
-    if opts.preset or opts.symbol_map then
-        lspkind.init(opts)
-    end
-
-    return function(entry, vim_item)
-        if opts.before then
-            vim_item = opts.before(entry, vim_item)
-        end
-
-        vim_item.kind = lspkind.symbolic(vim_item.kind, opts)
-        if i == 0 then
-            if entry.source.name == "nvim_lsp" then
-                log(vim.json.encode(entry.source))
-                i = i + 1
-            end
-        end
-
-        if opts.menu ~= nil then
-            vim_item.menu = opts.menu[entry.source.name]
-            -- if entry.source.client ~= nil then
-            --     if entry.source.client.name ~= nil then
-            --         log(entry.source.client.name)
-            --     end
-            -- end
-            -- vim_item.menu = opts.menu[entry.source.name+":"+entry.source.client.name]
-        end
-
-        if opts.maxwidth ~= nil then
-            if opts.ellipsis_char == nil then
-                vim_item.abbr = string.sub(vim_item.abbr, 1, opts.maxwidth)
-            else
-                local label = vim_item.abbr
-                local truncated_label = vim.fn.strcharpart(label, 0, opts.maxwidth)
-                if truncated_label ~= label then
-                    vim_item.abbr = truncated_label .. opts.ellipsis_char
-                end
-            end
-        end
-        return vim_item
-    end
 end
 
 cmp.setup({
@@ -344,6 +293,7 @@ cmp.setup({
 
     sources = conditionalSources,
 
+
     sorting = {
         comparators = {
             cmp.config.compare.offset,
@@ -364,7 +314,6 @@ cmp.setup({
     },
 
     formatting = {
-        -- format = cmp_format({
         format = lspkind.cmp_format({
             with_text = true,
             maxwidth = 40, -- half max width
@@ -388,37 +337,4 @@ cmp.setup({
     },
 })
 
-local lsp = require('lsp-zero')
--- lsp.preset('lsp-compe')
-lsp.set_preferences({
-  suggest_lsp_servers = true,
-  setup_servers_on_start = true,
-  set_lsp_keymaps = false,
-  configure_diagnostics = true,
-  cmp_capabilities = true,
-  manage_nvim_cmp = true,
-  call_servers = 'local',
-  sign_icons = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  }
-})
-
-lsp.nvim_workspace()
-lsp.on_attach(on_attach)
-lsp.setup()
-
--- Initialize rust_analyzer with rust-tools
-local rust_lsp = lsp.build_options('rust_analyzer', {})
-require('rust-tools').setup({ server = rust_lsp, })
-
-
-vim.cmd([[
-augroup CmpZsh
-au!
-autocmd Filetype zsh lua require'cmp'.setup.buffer { sources = { { name = "zsh" }, } }
-augroup END
-]])
-
+vim.cmd([[ augroup CmpZsh au! autocmd Filetype zsh lua require'cmp'.setup.buffer { sources = { { name = "zsh" }, } } augroup END ]])

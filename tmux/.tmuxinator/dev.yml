@@ -3,7 +3,6 @@ name: dev
 
 windows:
   - gmscore:
-      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
       layout: main-vertical
       panes:
         - main:
@@ -13,7 +12,6 @@ windows:
           - hgd gmscore
 
   - experimental:
-      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
       layout: main-vertical
       panes:
         - main:
@@ -21,24 +19,18 @@ windows:
           - vim
         - other:
           - hgd experimental
+
   - notes:
-      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
-      layout: main-vertical
       panes:
         - main:
-          - hgd notes
-          - cd ../company/users/cnieves/
-          - vim ~/zettelkasten/
-        - other:
           - hgd notes
           - cd ../company/users/cnieves/
           - vim ~/zettelkasten/Todo.md
-  - vim:
-      # layout: 02a8,363x89,0,0[363x74,0,0,14,363x14,0,75{181x14,0,75,15,181x14,182,75,17}]
+  - dotfiles:
       layout: main-vertical
       panes:
         - main:
-          - cd ~/.vim/prefs
+          - cd ~/dotfiles
           - vim
         - other:
-          - cd ~/.vim/prefs
+          - cd ~/dotfiles

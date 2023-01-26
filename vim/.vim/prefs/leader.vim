@@ -31,10 +31,6 @@ imap <leader>v    <ESC>"+pa
 " Copy to OS clipboard
 vnoremap <leader>y "yy <Bar> :call system('xclip', @y)<CR>
 map <leader>y "yy <Bar> :call system('xclip', @y)<CR>
-" map <leader>y !xclip -selection clipboard
-" vmap <leader>y !xclip -selection clipboard<cr>
-" map <leader>y   "+Y
-" vmap <leader>y  "+y
 
 " --------- WINDOW/PANE MAPPINGS ---------
 map <leader>wr <C-W>r

@@ -104,6 +104,13 @@ require('packer').startup(function(use)
     }
     use 'apalmer1377/factorus'
 
+    use {
+        'mfussenegger/nvim-dap',
+        'mfussenegger/nvim-jdtls',
+        config = [[ require("config.dap")]],
+        ft = {'java','kotlin'}
+    }
+
     use 'hrsh7th/vim-vsnip'
     use 'kosayoda/nvim-lightbulb'
     use {'andymass/vim-matchup', event = 'VimEnter'}

@@ -42,8 +42,8 @@ require('packer').startup(function(use)
     use 'renerocksai/calendar-vim'
 
     use 'google/vim-searchindex'
-    use 'ray-x/go.nvim'
-    use 'ray-x/guihua.lua'
+    use { 'ray-x/go.nvim',ft='go' }
+    use { 'ray-x/guihua.lua',ft='go' }
 
     -- Pretty symbols
     use 'kyazdani42/nvim-web-devicons'
@@ -86,13 +86,17 @@ require('packer').startup(function(use)
         'jose-elias-alvarez/null-ls.nvim',
         config = [[ require("config.null-ls") ]]
     }
+
+    -- Rust
     use {
         'saecki/crates.nvim',
+        ft = 'rust',
         tag = 'v0.3.0',
         requires = { 'nvim-lua/plenary.nvim' },
         config = [[ require('crates').setup() ]]
     }
-    use 'simrat39/rust-tools.nvim'
+    use {'simrat39/rust-tools.nvim', ft = 'rust'}
+
     use {
         'folke/trouble.nvim',
         config = [[ require("config.trouble")]]
@@ -107,8 +111,8 @@ require('packer').startup(function(use)
     use {
         'mfussenegger/nvim-dap',
         'mfussenegger/nvim-jdtls',
+        ft = {'java','kotlin'},
         config = [[ require("config.dap")]],
-        ft = {'java','kotlin'}
     }
 
     use 'hrsh7th/vim-vsnip'
@@ -223,10 +227,8 @@ require('packer').startup(function(use)
     use 'preservim/nerdtree'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-    use 'udalov/kotlin-vim'
+    use { 'udalov/kotlin-vim', ft='kotin' }
 
-    use 'tpope/vim-obsession'
-    -- use 'Valloric/MatchTagAlways'
     use {
         'wesQ3/vim-windowswap',
         setup = [[ vim.g.windowswap_map_keys = 0 ]]

@@ -49,8 +49,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>", opts)
     buf_set_keymap("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
 
-    buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
     vim.api.nvim_exec([[
     hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
     hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
@@ -136,7 +134,7 @@ config.settings = {
         };
     };
 }
-config.cmd = {'java-lsp', workspace_folder}
+config.cmd = {'javalsp', workspace_folder}
 config.on_attach = on_attach
 config.on_init = function(client, _)
     client.notify('workspace/didChangeConfiguration', { settings = config.settings })

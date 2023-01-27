@@ -193,4 +193,3 @@ dap.configurations.java = {
 
 -- Server
 require('jdtls').start_or_attach(config)
-

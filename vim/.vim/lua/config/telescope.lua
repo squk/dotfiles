@@ -76,18 +76,4 @@ if use_google() then
     -- map("n",
     -- "<leader>ps",
     -- [[:Telescope find_files find_command=hg,pstatus,-ma,-n,--template=<CR>]])
-
-    map("n", "<leader>tw", ":Telescope citc workspaces<CR>")
-    map("n", "<leader>tm", ":Telescope citc modified<CR>")
-    map("n", "<leader>tb", ":Telescope file_browser<CR>")
-
-    -- [F]ig [S]tatus
-    map('n', '<leader>fs', [[<cmd>lua require('telescope').extensions.fig.status{}<CR>]])
-
-    -- [F]ig [X]l
-    map('n', '<leader>fx', [[<cmd>lua require('telescope').extensions.fig.xl{}<CR>]])
-
-    -- [F]ig [W]hatsout
-    map('n', '<leader>fw', [[<cmd>lua require('telescope').extensions.fig.status{whatsout=true}<CR>]])
-
 end

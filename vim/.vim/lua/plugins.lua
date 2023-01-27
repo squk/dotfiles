@@ -108,150 +108,166 @@ require('packer').startup(function(use)
     }
     use 'apalmer1377/factorus'
 
-    use {
-        'mfussenegger/nvim-dap',
-        'mfussenegger/nvim-jdtls',
-        ft = {'java','kotlin'},
-        config = [[ require("config.dap")]],
-    }
+    -- use {
+        --     'mfussenegger/nvim-dap',
+        --     'mfussenegger/nvim-jdtls',
+        --     ft = {'java','kotlin'},
+        --     config = [[ require("config.dap")]],
+        -- }
 
-    use 'hrsh7th/vim-vsnip'
-    use 'kosayoda/nvim-lightbulb'
-    use {'andymass/vim-matchup', event = 'VimEnter'}
+        use 'hrsh7th/vim-vsnip'
+        use 'kosayoda/nvim-lightbulb'
+        use {'andymass/vim-matchup', event = 'VimEnter'}
 
-    use 'jghauser/mkdir.nvim'
-    use { 'simrat39/symbols-outline.nvim', config = [[ require("config.symbols-outline") ]]  }
-    use { 'petertriho/nvim-scrollbar', config = [[ require("scrollbar").setup() ]] }
+        use 'jghauser/mkdir.nvim'
+        use { 'simrat39/symbols-outline.nvim', config = [[ require("config.symbols-outline") ]]  }
+        use { 'petertriho/nvim-scrollbar', config = [[ require("scrollbar").setup() ]] }
 
-    use {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        config = [[ require("config.telescope") ]]
-    }
-    use 'nvim-telescope/telescope-file-browser.nvim'
-
-    use {
-        'rmagatti/auto-session',
-        config = function()
-            require("auto-session").setup {
-                log_level = "error",
-                auto_session_suppress_dirs = { "~/", "~/Downloads", "/", os.getenv("HOME")},
-            }
-        end
-    }
-
-    use {
-        'sso://googler@user/piloto/cmp-nvim-ciderlsp',
-        'sso://googler@user/kdark/ciderlsp-nvim',
-        'sso://googler@user/vintharas/telescope-codesearch.nvim',
-        'sso://googler@user/aktau/telescope-citc.nvim',
-        'sso://googler@user/tylersaunders/telescope-fig.nvim',
-
-        disable = not use_google(),
-    }
-
-    use {
-        'sso://googler@user/chmnchiang/google-comments',
-        -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
-        -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
-        disable = not use_google(),
-        requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
-        config = [[ require("config.google-comments") ]]
-    }
-
-    use {
-        '/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique',
-        disable = not use_google(),
-        config = [[ require("critique").setup() ]]
-    }
-
-    use 'nvim-lua/lsp-status.nvim'
-    use {
-        'nvim-lualine/lualine.nvim',
-        config = [[ require("config.lualine") ]]
-    }
-    use {
-        'rcarriga/nvim-notify',
-        config = [[ require("config.notify") ]]
-    }
-
-    -- Git
-    use {
-        {
-            'lewis6991/gitsigns.nvim',
-            requires = 'nvim-lua/plenary.nvim',
-            config = [[require('config.gitsigns')]],
-            event = 'User ActuallyEditing',
-        },
-        { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
-        {
-            'akinsho/git-conflict.nvim',
-            tag = '*',
-            config = [[require('git-conflict').setup()]]
+        use {
+            'nvim-telescope/telescope.nvim',
+            branch = '0.1.x',
+            config = [[ require("config.telescope") ]]
         }
-    }
+        use 'nvim-telescope/telescope-file-browser.nvim'
 
-    -- use { "catppuccin/nvim", as = "catppuccin" }
-    use { "catppuccin/nvim", as = "catppuccin", config = [[require("config.catppuccin")]]}
-    -- Tmux
-    use {
-        'preservim/vimux',
-        'tmux-plugins/vim-tmux',
-        'christoomey/vim-tmux-navigator',
-        'whatyouhide/vim-tmux-syntax',
-        'tmux-plugins/vim-tmux-focus-events',
-        'skywind3000/asyncrun.vim',
-    }
+        use {
+            'rmagatti/auto-session',
+            config = function()
+                require("auto-session").setup {
+                    log_level = "error",
+                    auto_session_suppress_dirs = { "~/", "~/Downloads", "/", os.getenv("HOME")},
+                }
+            end
+        }
 
-    -- mine
-    use {
-        'squk/java-syntax.vim', ft='java'
-    }
+        use {
+            'sso://googler@user/piloto/cmp-nvim-ciderlsp',
+            'sso://googler@user/kdark/ciderlsp-nvim',
+            'sso://googler@user/vintharas/telescope-codesearch.nvim',
+            'sso://googler@user/aktau/telescope-citc.nvim',
+            'sso://googler@user/tylersaunders/telescope-fig.nvim',
 
-    use {
-        "folke/which-key.nvim",
-        config = [[require("config.whichkey")]]
-    }
+            disable = not use_google(),
+        }
 
-    use 'ntpeters/vim-better-whitespace'
-    use 'junegunn/fzf.vim'
-    use { 'junegunn/fzf', run = ":call fzf#install()" }
+        use {
+            'sso://googler@user/chmnchiang/google-comments',
+            -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
+            -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
+            disable = not use_google(),
+            requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
+            config = [[ require("config.google-comments") ]]
+        }
 
-    vim.opt.rtp:append(os.getenv("HOME") .. "/.fzf")
+        use {
+            '/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique',
+            disable = not use_google(),
+            config = [[ require("critique").setup() ]]
+        }
 
-    use 'nathanaelkane/vim-indent-guides'
-    use 'tversteeg/registers.nvim'
+        use {
+            "ipod825/libp.nvim",
+            config = function()
+                require("libp").setup()
+            end,
+        }
+        use {
+            "sso://googler@user/smwang/hg.nvim",
+            "sso://googler@user/jackcogdill/nvim-figtree",
+            config = function()
+                require("hg").setup()
+                require("config.fig")
+            end,
+            disable = not use_google(),
+        }
 
-    use 'jremmen/vim-ripgrep'
+        use 'nvim-lua/lsp-status.nvim'
+        use {
+            'nvim-lualine/lualine.nvim',
+            config = [[ require("config.lualine") ]]
+        }
+        use {
+            'rcarriga/nvim-notify',
+            config = [[ require("config.notify") ]]
+        }
 
-    use 'preservim/nerdtree'
-    use 'tiagofumo/vim-nerdtree-syntax-highlight'
+        -- Git
+        use {
+            {
+                'lewis6991/gitsigns.nvim',
+                requires = 'nvim-lua/plenary.nvim',
+                config = [[require('config.gitsigns')]],
+                event = 'User ActuallyEditing',
+            },
+            { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
+            {
+                'akinsho/git-conflict.nvim',
+                tag = '*',
+                config = [[require('git-conflict').setup()]]
+            }
+        }
 
-    use { 'udalov/kotlin-vim', ft='kotin' }
+        -- use { "catppuccin/nvim", as = "catppuccin" }
+        use { "catppuccin/nvim", as = "catppuccin", config = [[require("config.catppuccin")]]}
+        -- Tmux
+        use {
+            'preservim/vimux',
+            'tmux-plugins/vim-tmux',
+            'christoomey/vim-tmux-navigator',
+            'whatyouhide/vim-tmux-syntax',
+            'tmux-plugins/vim-tmux-focus-events',
+            'skywind3000/asyncrun.vim',
+        }
 
-    use {
-        'wesQ3/vim-windowswap',
-        setup = [[ vim.g.windowswap_map_keys = 0 ]]
-    }
+        -- mine
+        use {
+            'squk/java-syntax.vim', ft='java'
+        }
 
-    use 'tpope/vim-surround'
-    use 'scrooloose/nerdcommenter'
-    use 'mhinz/vim-signify'
-    use { 'j-hui/fidget.nvim', config = [[require("fidget").setup()]] }
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+        use {
+            "folke/which-key.nvim",
+            config = [[require("config.whichkey")]]
+        }
+
+        use 'ntpeters/vim-better-whitespace'
+        use 'junegunn/fzf.vim'
+        use { 'junegunn/fzf', run = ":call fzf#install()" }
+
+        vim.opt.rtp:append(os.getenv("HOME") .. "/.fzf")
+
+        use 'nathanaelkane/vim-indent-guides'
+        use 'tversteeg/registers.nvim'
+
+        use 'jremmen/vim-ripgrep'
+
+        use 'preservim/nerdtree'
+        use 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+        use { 'udalov/kotlin-vim', ft='kotin' }
+
+        use {
+            'wesQ3/vim-windowswap',
+            setup = [[ vim.g.windowswap_map_keys = 0 ]]
+        }
+
+        use 'tpope/vim-surround'
+        use 'scrooloose/nerdcommenter'
+        use 'mhinz/vim-signify'
+        use { 'j-hui/fidget.nvim', config = [[require("fidget").setup()]] }
+        use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end)
+        -- Automatically set up your configuration after cloning packer.nvim
+        -- Put this at the end after all plugins
+        if packer_bootstrap then
+            require('packer').sync()
+        end
+    end)
 
--- CiderLSP
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
--- Don't show the dumb matching stuff
-vim.opt.shortmess:append("c")
+    -- CiderLSP
+    vim.opt.completeopt = { "menu", "menuone", "noselect" }
+    -- Don't show the dumb matching stuff
+    vim.opt.shortmess:append("c")
 
-vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
+    vim.opt.spell = true
+    vim.opt.spelllang = { 'en_us' }

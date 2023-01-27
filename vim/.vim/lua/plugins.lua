@@ -74,7 +74,7 @@ require('packer').startup(function(use)
     }
     use {
         "tzachar/cmp-tabnine", run = "./install.sh",
-        disable = use_google(),
+        cond = not use_google(),
     }
     use { 'ErichDonGubler/lsp_lines.nvim', config = [[ require("lsp_lines").setup() ]] }
     use {
@@ -147,21 +147,21 @@ require('packer').startup(function(use)
             'sso://googler@user/aktau/telescope-citc.nvim',
             'sso://googler@user/tylersaunders/telescope-fig.nvim',
 
-            disable = not use_google(),
+            cond = use_google(),
         }
 
         use {
             'sso://googler@user/chmnchiang/google-comments',
             -- '/google/src/head/depot/google3/experimental/users/chmnchiang/neovim/google-comments',
             -- '/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments',
-            disable = not use_google(),
+            cond = use_google(),
             requires = {'rcarriga/nvim-notify', 'nvim-lua/plenary.nvim'},
             config = [[ require("config.google-comments") ]]
         }
 
         use {
             '/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique',
-            disable = not use_google(),
+            cond = use_google(),
             config = [[ require("critique").setup() ]]
         }
 
@@ -172,13 +172,17 @@ require('packer').startup(function(use)
             end,
         }
         use {
-            "sso://googler@user/smwang/hg.nvim",
             "sso://googler@user/jackcogdill/nvim-figtree",
+            cond = use_google(),
+        }
+        use {
+            "sso://googler@user/smwang/hg.nvim",
+            requires =  { "ipod825/libp.nvim" },
             config = function()
-                require("hg").setup()
                 require("config.fig")
+                require("hg").setup()
             end,
-            disable = not use_google(),
+            cond = use_google(),
         }
 
         use 'nvim-lua/lsp-status.nvim'

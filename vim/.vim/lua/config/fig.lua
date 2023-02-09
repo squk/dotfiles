@@ -15,11 +15,11 @@ if use_google() then
     -- [F]ig [W]hatsout
     map('n', '<leader>fw', [[<cmd>lua require('telescope').extensions.fig.status{whatsout=true}<CR>]])
 
-    -- [F]ig [A]bsorb
-    map('n', '<leader>fa', [[<cmd>Hg absorb<CR>]])
-    --
-    -- [F]ig [A]bsorb
-    map('n', '<leader>fA', [[<cmd>Hg amend<CR>]])
+    -- [F]ig [A]mend
+    map('n', '<leader>fa', [[<cmd>Hg amend<CR>]])
+
+    -- [F]ig [A]mend
+    map('n', '<leader>fe', [[<cmd>Hg evolve<CR>]])
 
     -- [F]ig [N]ext
     map('n', '<leader>fn', [[<cmd>Hg next<CR>]])

@@ -73,6 +73,7 @@ let g:clipboard = #{
       \   cache_enabled: 1,
       \ }
 set shortmess=A
+set shortmess+=O
 set modifiable
 set omnifunc= completeopt=menuone,noinsert,noselect
 

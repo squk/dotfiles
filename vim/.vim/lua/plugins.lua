@@ -222,6 +222,10 @@ require('packer').startup(function(use)
             'tmux-plugins/vim-tmux-focus-events',
             'skywind3000/asyncrun.vim',
         }
+        use {
+            'ojroques/vim-oscyank',
+            config = [[ require("config.oscyank") ]]
+        }
 
         -- mine
         use {

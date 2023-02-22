@@ -30,5 +30,5 @@ if use_google() then
     -- [F]ig [U]pload
     map('n', '<leader>fu', [[<cmd>Hg upload tree<CR>]])
 
-    map('n', '<Leader>f', ':Figtree<CR>', { silent = true })
+    -- map('n', '<Leader>f', ':Figtree<CR>', { silent = true })
 end

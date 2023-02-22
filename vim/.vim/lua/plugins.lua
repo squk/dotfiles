@@ -22,6 +22,23 @@ require('packer').startup(function(use)
     use 'dstein64/vim-startuptime'
 
     use {
+        'google/vim-maktaba',
+        config = [[ vim.cmd("call glaive#Install()")]],
+        disable = use_google(),
+        after  =  {
+            'flwyd/vim-imp',
+        }
+    }
+    use {
+        'flwyd/vim-imp',
+        disable = use_google(),
+    }
+    use {
+        'google/vim-glaive',
+        disable = use_google(),
+    }
+
+    use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config =[[ require("config.nvim-treesitter") ]]
@@ -279,3 +296,5 @@ require('packer').startup(function(use)
 
     vim.opt.spell = true
     vim.opt.spelllang = { 'en_us' }
+
+    require("config.imp")

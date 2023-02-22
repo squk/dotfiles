@@ -98,7 +98,6 @@ call plug#begin('~/.vim/plugged')
    source ~/.vim/prefs/ui.vim
    source ~/.vim/prefs/ultisnips.vim
    source ~/.vim/prefs/ripgrep.vim
-    source ~/.vim/prefs/imp.vim
    source ~/.vim/prefs/fzf.vim
 call plug#end()            " required
 

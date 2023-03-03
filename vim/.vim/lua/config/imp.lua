@@ -19,7 +19,8 @@ if use_google() then
     -- To search for imports in the file's parent directory before using Code Search across all of google3, install ripgrep and try
     vim.cmd([[
 Glaive imp Suggest[gcl]=buffer,ripgrep,csearch,prompt
-    \ Suggest[borg]=buffer,ripgrep,csearch,prompt
     \ Location[gcl]=parent Location[borg]=parent
+    \ Suggest[borg]=buffer,ripgrep,csearch,prompt
+    \ Suggest[aidl]=buffer,ripgrep,csearch,prompt
     ]])
 end

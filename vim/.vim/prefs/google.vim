@@ -177,11 +177,10 @@ nnoremap <leader>ps :FzfHgFiles<CR>
 nnoremap <leader>pl :PiperLoadActiveAsBuffers<CR>
 nnoremap <leader>po :PiperOpenPath<CR>
 
-" search in codesearch for the word under the cursor
-nnoremap <leader>ws :CorpWebCs <cword> <CR>
-" search in codesearch for the current file
-nnoremap <leader>wf :CorpWebCsFile<CR>
-
 nmap <leader>rbs ss <leader>rb
 
 nmap <leader>yb :let @" = join(blaze#GetTargets(), ' ')<cr>
+
+Glug corpweb
+nnoremap <leader>csw :CorpWebCsFile<cr>
+

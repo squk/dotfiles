@@ -277,7 +277,11 @@ require('packer').startup(function(use)
 
         use 'tpope/vim-surround'
         use 'scrooloose/nerdcommenter'
-        use 'mhinz/vim-signify'
+
+        use 'mhinz/vim-signify' {
+            config= [[require('config.signify')]]
+        }
+
         use { 'j-hui/fidget.nvim', config = [[require("fidget").setup()]] }
         use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 

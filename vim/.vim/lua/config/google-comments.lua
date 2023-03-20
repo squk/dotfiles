@@ -41,8 +41,8 @@ end
 
 local map = require("utils").map
 -- here are some mappings you might want:
-map('n', '[c', [[<Cmd>GoogleCommentsGotoNextComment<CR>]])
-map('n', ']c', [[<Cmd>GoogleCommentsGotoPrevComment<CR>]])
+map('n', ']c', [[<Cmd>GoogleCommentsGotoNextComment<CR>]])
+map('n', '[c', [[<Cmd>GoogleCommentsGotoPrevComment<CR>]])
 
 map('n', '<Leader>nc', [[<Cmd>GoogleCommentsGotoNextComment<CR>]])
 map('n', '<Leader>pc', [[<Cmd>GoogleCommentsGotoPrevComment<CR>]])

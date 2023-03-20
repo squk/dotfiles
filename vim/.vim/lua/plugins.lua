@@ -220,12 +220,13 @@ require('packer').startup(function(use)
                 config = [[require('config.gitsigns')]],
                 event = 'User ActuallyEditing',
             },
-            { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
+            -- { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
             {
                 'akinsho/git-conflict.nvim',
                 tag = '*',
                 config = [[require('git-conflict').setup()]]
-            }
+            },
+            { 'rhysd/conflict-marker.vim' }
         }
 
         -- use { "catppuccin/nvim", as = "catppuccin" }
@@ -237,10 +238,11 @@ require('packer').startup(function(use)
             'christoomey/vim-tmux-navigator',
             'whatyouhide/vim-tmux-syntax',
             'tmux-plugins/vim-tmux-focus-events',
+            'jabirali/vim-tmux-yank',
             'skywind3000/asyncrun.vim',
         }
         use {
-            'ojroques/vim-oscyank',
+            'ojroques/nvim-osc52',
             config = [[ require("config.oscyank") ]]
         }
 
@@ -278,7 +280,8 @@ require('packer').startup(function(use)
         use 'tpope/vim-surround'
         use 'scrooloose/nerdcommenter'
 
-        use 'mhinz/vim-signify' {
+        use {
+            'mhinz/vim-signify',
             config= [[require('config.signify')]]
         }
 

@@ -42,6 +42,9 @@ require('telescope').setup {
 
 local map = require("utils").map
 
+map('n', '<leader><space>', [[ <cmd>lua require('telescope.builtin').buffers ]], { desc = '[ ] Find existing buffers' })
+
+
 if use_google() then
     -- These custom mappings let you open telescope-codesearch quickly:
     map('n', '<C-P>',

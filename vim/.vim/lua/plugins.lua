@@ -44,6 +44,11 @@ require('packer').startup(function(use)
         config =[[ require("config.nvim-treesitter") ]]
     }
 
+    use {
+        'nvim-tree/nvim-tree.lua',
+        config =[[ require("config.nvim-tree") ]]
+    }
+
     -- Undo tree
     use {
         'mbbill/undotree',
@@ -267,8 +272,8 @@ require('packer').startup(function(use)
 
         use 'jremmen/vim-ripgrep'
 
-        use 'preservim/nerdtree'
-        use 'tiagofumo/vim-nerdtree-syntax-highlight'
+        -- use 'preservim/nerdtree'
+        -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
         use { 'udalov/kotlin-vim', ft='kotin' }
 

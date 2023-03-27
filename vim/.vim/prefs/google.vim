@@ -1,8 +1,6 @@
 source /usr/share/vim/google/glug/bootstrap.vim
 source /usr/share/vim/google/core.vim
 
-Plug 'vim-scripts/vcscommand.vim'
-
 let g:VCSCommandDisableMappings = 1
 
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
@@ -33,9 +31,6 @@ Glug buganizer plugin[mappings]
 Glug relatedfiles plugin[mappings]
 Glug g4
 
-" Update the current file's build deps
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, 'commit': '3f75a83' }
-Plug 'junegunn/fzf.vim'
 Glug outline-window
 Glug fzf-query
 

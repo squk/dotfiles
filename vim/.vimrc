@@ -84,22 +84,18 @@ lua require('impatient')
 " lua require'impatient'.enable_profile()
 
 
-call plug#begin('~/.vim/plugged')
-  if filereadable(expand("~/.vimrc.local"))
-      source ~/.vimrc.local
-  endif
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
 
-  if filereadable(expand("~/use_google"))
-      source ~/.vim/prefs/google.vim
-  endif
+if filereadable(expand("~/use_google"))
+  source ~/.vim/prefs/google.vim
+endif
 
-   source ~/.vim/prefs/mappings.vim
-   source ~/.vim/prefs/leader.vim
-   source ~/.vim/prefs/ui.vim
-   source ~/.vim/prefs/ultisnips.vim
-   source ~/.vim/prefs/ripgrep.vim
-   source ~/.vim/prefs/fzf.vim
-call plug#end()            " required
+source ~/.vim/prefs/mappings.vim
+source ~/.vim/prefs/leader.vim
+source ~/.vim/prefs/ui.vim
+" source ~/.vim/prefs/fzf.vim
 
 lua require("plugins")
 

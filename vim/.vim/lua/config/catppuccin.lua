@@ -17,11 +17,11 @@ require("catppuccin").setup({
 		-- lightspeed = false,
 		-- lsp_saga = false,
 		lsp_trouble = true,
-		-- mason = true,
-		-- markdown = true,
+        mason = true,
+        markdown = true,
 		-- neogit = false,
 		-- neotest = false,
-		-- neotree = false,
+        neotree = true,
 		notify = true,
 		-- nvimtree = true,
 		-- overseer = false,
@@ -29,11 +29,11 @@ require("catppuccin").setup({
         symbols_outline = true,
 		telescope = true,
 		treesitter = true,
-		-- treesitter_context = false,
+        treesitter_context = false,
 		-- ts_rainbow = false,
 		-- vim_sneak = false,
 		-- vimwiki = false,
-		-- which_key = false,
+        which_key = true,
 
 		-- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
 		dap = {

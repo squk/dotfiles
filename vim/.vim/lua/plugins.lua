@@ -51,13 +51,22 @@ require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config =[[ require("config.nvim-treesitter") ]]
+        config = require("config.nvim-treesitter")
     }
 
-    -- use {
-    --     'nvim-tree/nvim-tree.lua',
-    --     config =[[ require("config.nvim-tree") ]]
-    -- }
+    -- Unless you are still migrating, remove the deprecated commands from v1.x
+    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+    use {
+      "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        -- config = require("config.neotree"),
+        requires = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+        }
+      }
 
     -- Undo tree
     use {
@@ -69,7 +78,7 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use {
         'renerocksai/telekasten.nvim',
-        config = [[ require("config.telekasten") ]]
+        config = require("config.telekasten")
     }
     use 'renerocksai/calendar-vim'
 
@@ -101,42 +110,45 @@ require('packer').startup(function(use)
             'ray-x/cmp-treesitter',
             { 'saadparwaiz1/cmp_luasnip', after = {'LuaSnip'} },
         },
-        config = [[ require("config.lsp") ]],
-        -- event = 'InsertEnter',
+        config = require("config.lsp"),
+        event = 'InsertEnter',
     }
     use {
         "tzachar/cmp-tabnine", run = "./install.sh",
+        event = 'InsertEnter',
         cond = not use_google(),
     }
-    use { 'ErichDonGubler/lsp_lines.nvim', config = [[ require("lsp_lines").setup() ]] }
+    use { 'ErichDonGubler/lsp_lines.nvim', config = require("lsp_lines").setup() }
     use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         'VonHeikemen/lsp-zero.nvim',
+        event = 'InsertEnter',
     }
     use {
         'jose-elias-alvarez/null-ls.nvim',
-        config = [[ require("config.null-ls") ]]
+        config = require("config.null-ls"),
+        event = 'InsertEnter',
     }
 
     -- Rust
-    use {
-        'saecki/crates.nvim',
-        ft = 'rust',
-        tag = 'v0.3.0',
-        requires = { 'nvim-lua/plenary.nvim' },
-        config = [[ require('crates').setup() ]]
-    }
+    -- use {
+    --     'saecki/crates.nvim',
+    --     ft = 'rust',
+    --     tag = 'v0.3.0',
+    --     requires = { 'nvim-lua/plenary.nvim' },
+    --     config = require('crates').setup()
+    -- }
     use {'simrat39/rust-tools.nvim', ft = 'rust'}
 
     use {
         'folke/trouble.nvim',
-        config = [[ require("config.trouble")]]
+        config = require("config.trouble")
     }
 
     use {
         'ThePrimeagen/refactoring.nvim',
-        config = [[ require("config.refactoring")]]
+        config = require("config.refactoring")
     }
     use 'apalmer1377/factorus'
 
@@ -145,13 +157,13 @@ require('packer').startup(function(use)
     use {'andymass/vim-matchup', event = 'VimEnter'}
 
     use 'jghauser/mkdir.nvim'
-    use { 'simrat39/symbols-outline.nvim', config = [[ require("config.symbols-outline") ]]  }
-    use { 'petertriho/nvim-scrollbar', config = [[ require("scrollbar").setup() ]] }
+    use { 'simrat39/symbols-outline.nvim', config = require("config.symbols-outline")  }
+    use { 'petertriho/nvim-scrollbar', config = require("scrollbar").setup() }
 
     use {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        config = [[ require("config.telescope") ]]
+        config = require("config.telescope")
     }
     use 'nvim-telescope/telescope-file-browser.nvim'
 
@@ -176,11 +188,11 @@ require('packer').startup(function(use)
     use 'nvim-lua/lsp-status.nvim'
     use {
         'nvim-lualine/lualine.nvim',
-        config = [[ require("config.lualine") ]]
+        config = require("config.lualine")
     }
     use {
         'rcarriga/nvim-notify',
-        config = [[ require("config.notify") ]]
+        config =require("config.notify")
     }
 
     -- Git
@@ -188,20 +200,18 @@ require('packer').startup(function(use)
         {
             'lewis6991/gitsigns.nvim',
             requires = 'nvim-lua/plenary.nvim',
-            config = [[require('config.gitsigns')]],
             event = 'User ActuallyEditing',
         },
-        -- { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
         {
             'akinsho/git-conflict.nvim',
             tag = '*',
-            config = [[require('git-conflict').setup()]]
+            config = require('git-conflict').setup(),
         },
         { 'rhysd/conflict-marker.vim' }
     }
 
     -- use { "catppuccin/nvim", as = "catppuccin" }
-    use { "catppuccin/nvim", as = "catppuccin", config = [[require("config.catppuccin")]]}
+    use { "catppuccin/nvim", as = "catppuccin", config = require("config.catppuccin")}
     -- Tmux
     use {
         'preservim/vimux',
@@ -214,7 +224,7 @@ require('packer').startup(function(use)
     }
     use {
         'ojroques/nvim-osc52',
-        config = [[ require("config.oscyank") ]]
+        config = require("config.oscyank")
     }
 
     -- mine
@@ -224,7 +234,7 @@ require('packer').startup(function(use)
 
     use {
         "folke/which-key.nvim",
-        config = [[require("config.whichkey")]]
+        config = require("config.whichkey")
     }
 
     use 'ntpeters/vim-better-whitespace'
@@ -257,7 +267,7 @@ require('packer').startup(function(use)
     }
     use {
         'j-hui/fidget.nvim',
-        config = [[require("fidget").setup()]]
+        config = require("fidget").setup()
     }
     use {
         "iamcco/markdown-preview.nvim",

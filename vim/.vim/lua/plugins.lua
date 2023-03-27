@@ -54,10 +54,10 @@ require('packer').startup(function(use)
         config =[[ require("config.nvim-treesitter") ]]
     }
 
-    use {
-        'nvim-tree/nvim-tree.lua',
-        config =[[ require("config.nvim-tree") ]]
-    }
+    -- use {
+    --     'nvim-tree/nvim-tree.lua',
+    --     config =[[ require("config.nvim-tree") ]]
+    -- }
 
     -- Undo tree
     use {

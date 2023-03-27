@@ -69,9 +69,9 @@ require('lualine').setup {
         lualine_a = {{'tabs', mode = 1}},
         -- lualine_b = {'branch'},
         -- lualine_c = {'filename'},
-        lualine_c = {
-            { 'diagnostics', sources = {"nvim_lsp", "nvim_workspace_diagnostic"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
-        },
+        -- lualine_c = {
+        --     { 'diagnostics', sources = {"nvim_lsp", "nvim_workspace_diagnostic"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+        -- },
         -- lualine_y = { getLGTMs }
     },
     -- default

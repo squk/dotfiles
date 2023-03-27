@@ -44,8 +44,9 @@ nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
 " always use very magic mode when searching
-"nnoremap / /\v
-"vnoremap / /\v
+nnoremap / /\v
+vnoremap / /\v
+
 nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 
 function! s:createHabitsMappings(keys, message) abort

@@ -124,9 +124,12 @@ require('packer').startup(function(use)
         config = [[ require("config.null-ls") ]],
     }
 
-    if use_google() then
-        require 'config.google'.config(use)
-    end
+    use {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        config = [[ require("config.telescope") ]]
+    }
+    use 'nvim-telescope/telescope-file-browser.nvim'
 
     use { 'vim-scripts/vcscommand.vim' }
 
@@ -158,13 +161,6 @@ require('packer').startup(function(use)
     use 'jghauser/mkdir.nvim'
     use { 'simrat39/symbols-outline.nvim', config = [[ require("config.symbols-outline")]]  }
     use { 'petertriho/nvim-scrollbar', config = [[ require("scrollbar").setup()]] }
-
-    use {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        config = [[ require("config.telescope") ]]
-    }
-    use 'nvim-telescope/telescope-file-browser.nvim'
 
     use {
         'rmagatti/auto-session',
@@ -272,6 +268,9 @@ require('packer').startup(function(use)
         ft = { "markdown" }
     }
 
+    if use_google() then
+        require 'config.google'.config(use)
+    end
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

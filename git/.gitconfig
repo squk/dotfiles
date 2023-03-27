@@ -35,3 +35,5 @@
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
     po = push origin
+[core]
+	autocrlf = false

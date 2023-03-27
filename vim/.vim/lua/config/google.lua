@@ -7,15 +7,15 @@ function M.config(use)
     }
     use {
         'sso://googler@user/vintharas/telescope-codesearch.nvim',
-        after = { 'nvim-telescope/telescope.nvim' }
+        requires = { 'nvim-telescope/telescope.nvim' }
     }
     use {
         'sso://googler@user/aktau/telescope-citc.nvim',
-        after = { 'nvim-telescope/telescope.nvim' }
+        requires = { 'nvim-telescope/telescope.nvim' }
     }
     use {
         'sso://googler@user/tylersaunders/telescope-fig.nvim',
-        after = { 'nvim-telescope/telescope.nvim' }
+        requires = { 'nvim-telescope/telescope.nvim' }
     }
 
     use {
@@ -39,4 +39,5 @@ function M.config(use)
         end,
     }
 end
+
 return M

@@ -131,8 +131,6 @@ require('packer').startup(function(use)
     }
     use 'nvim-telescope/telescope-file-browser.nvim'
 
-    use { 'vim-scripts/vcscommand.vim' }
-
     -- Rust
     use {
         'saecki/crates.nvim',
@@ -253,10 +251,12 @@ require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'scrooloose/nerdcommenter'
 
+    use { 'vim-scripts/vcscommand.vim' }
     use {
         'mhinz/vim-signify',
         config= [[require('config.signify')]]
     }
+
     use {
         'j-hui/fidget.nvim',
         config = [[ require("fidget").setup() ]]

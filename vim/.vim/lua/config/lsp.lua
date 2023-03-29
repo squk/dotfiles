@@ -17,7 +17,7 @@ local configs = require("lspconfig.configs")
 if use_google() then
     configs.ciderlsp = {
         default_config = {
-            cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses" },
+            cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-cmp", "--forward_sync_responses", "--merge_diagnostic_layers" },
             filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl", "typescript"},
             -- root_dir = lspconfig.util.root_pattern("BUILD"),
             root_dir = function(fname)

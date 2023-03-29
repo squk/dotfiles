@@ -23,8 +23,7 @@ windows:
   - notes:
       panes:
         - main:
-          - hgd notes
-          - cd ../company/users/cnieves/
+          - cd ~/zettelkasten
           - vim ~/zettelkasten/Todo.md
   - dotfiles:
       layout: main-vertical

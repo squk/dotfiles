@@ -9,6 +9,7 @@ export XAUTHORITY=~/.Xauthority
 export GOROOT=/usr/lib/google-golang
 export PATH=$GOROOT/bin:$PATH
 export JAVA_HOME=$(readlink -ne /usr/local/buildtools/java/jdk)
+source /google/bin/releases/knock/knock.sh
 
 function gcert() {
   if [[ -n $TMUX ]]; then
@@ -16,6 +17,7 @@ function gcert() {
   fi
 
   command gcert "$@"
+  source /google/bin/releases/knock/knock.sh
 }
 
 function tmux_title() {

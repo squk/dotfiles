@@ -8,8 +8,13 @@ username = Christian Nieves <cnieves@google.com>
 # graphnodetemplate = {label("graphnode.{graphnode}", graphnode)}
 
 [extdiff]
+icdiff = icdiff --recursive --line-numbers
 cmd.meld = /usr/bin/meld
 cmd.pmeld = /usr/bin/meld
+cmd.vimdiff = nvim
+_real_multidiff = hg-multi-diff
+# opts.vimdiff = -d $base $local $output $other +close +close
+# opts.vimdiff = -f '+next' '+execute "DirDiff" fnameescape(argv(0)) fnameescape(argv(1))'
 
 [extensions]
 unsupported.tree =
@@ -29,6 +34,10 @@ vimdiff.executable = nvim
 vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
 vimdiff.premerge = keep
 
+[diff-tools]
+vimdiff.executable = nvim
+vimdiff.args = -d $base $local $output $other +close +close
+
 [committemplate]
 changeset = {desc}\n\n
     HG: {extramsg}
@@ -40,11 +49,24 @@ changeset = {desc}\n\n
    {splitlines(diff()) % 'HG: {line}\n'}
 
 [alias]
+dt = icdiff --pager=on
+dtex = dt -r exported(.)
+dtp4 = dt -r p4base
+dtup = dt -r .^
+
 whatsout = status -n --change . --template=hgshort_status
 what = status -n --change . --template=hgshort_status
 whatsoutall = status --rev p4base --no-status --template=hgshort_status
 # unbranch = cp --forget --at-rev . $1
 unbranch = !$HG uncommit --keep $1 && $HG forget $1 && $HG add $1 && $HG amend $1
+g3docpreview = ! $HG status --rev p4base --no-status -I re:.*\.md$ | xargs -I PATH -n 1 echo "https://g3doc.corp.google.com/PATH?cl=$(citctools info | grep Workspace.ID | cut '-d ' -f 3)"
+
+mdiff = ! HG_ROOT=$(hg root) hg _real_multidiff "$@"
+# For some reason, aliases that reuse mdiff don't work, so the
+# entire thing has to be copied.
+mdiffp4 = ! HG_ROOT=$(hg root) hg _real_multidiff --rev p4base "$@"
+mdiffup = ! HG_ROOT=$(hg root) hg _real_multidiff --rev .^ "$@"
 
 [trainingwheels]
 warn-head-paths=False
+prevent-push-dirty=false

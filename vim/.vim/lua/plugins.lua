@@ -20,6 +20,7 @@ require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
     use 'dstein64/vim-startuptime'
+    use 'will133/vim-dirdiff'
 
     -- use {
     --     'google/vim-glaive',

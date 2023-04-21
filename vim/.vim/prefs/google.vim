@@ -174,7 +174,7 @@ nnoremap <leader>po :PiperOpenPath<CR>
 
 nmap <leader>rbs ss <leader>rb
 
-nmap <leader>yb :let @" = join(blaze#GetTargets(), ' ')<cr>
+nmap <leader>yb :let @+ = join(blaze#GetTargets(), ' ')<cr>
 
 Glug corpweb
 nnoremap <leader>csw :CorpWebCsFile<cr>

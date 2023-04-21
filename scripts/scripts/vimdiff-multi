@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Like gvimdiff, but can diff multiple pairs of files.
+cmd='nvim'
+exec $cmd -R -f \
+  -c 'silent call TabMultiDiff()' \
+  -c 'tabdo windo set nofoldenable foldcolumn=0' \
+  -c 'tabfirst' \
+  "$@"

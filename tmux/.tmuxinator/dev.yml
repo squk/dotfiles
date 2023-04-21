@@ -3,7 +3,7 @@ name: dev
 
 windows:
   - gmscore:
-      layout: main-vertical
+      layout: main-horizontal
       panes:
         - main:
           - hgd gmscore
@@ -12,7 +12,7 @@ windows:
           - hgd gmscore
 
   - experimental:
-      layout: main-vertical
+      layout: main-horizontal
       panes:
         - main:
           - hgd experimental
@@ -26,7 +26,7 @@ windows:
           - cd ~/zettelkasten
           - vim ~/zettelkasten/Todo.md
   - dotfiles:
-      layout: main-vertical
+      layout: main-horizontal
       panes:
         - main:
           - cd ~/dotfiles

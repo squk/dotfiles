@@ -180,4 +180,38 @@ let g:loaded_netrwPlugin       = 1
 let g:loaded_tutor_mode_plugin = 1
 let g:loaded_remote_plugins    = 1
 
+
+" Permanent "very magic" mode
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
+
+function! TabMultiDiff()
+  let s:tab_multi_diff = 0
+  argdo call s:AddBufferToTab()
+  tabclose
+endfun
+
+" Helper function used by TabMultiDiff(). Adds current buffer to new tab
+" or last tab as appropriate, and sets new window's "diff" option.
+function! s:AddBufferToTab()
+  let buf = bufnr("%")
+  if s:tab_multi_diff
+    tablast
+    vsplit
+    wincmd w
+  else
+    tab split
+    tabmove
+  endif
+  let s:tab_multi_diff = ! s:tab_multi_diff
+  exe 'b ' . buf
+  diffthis
+  tabfirst
+endfun
+
 lua require("plugins")
+

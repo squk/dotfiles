@@ -102,7 +102,7 @@ vnoremap <leader>c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
 nnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
 vnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
 
-nmap <leader>yf :let @" = expand("%")<cr>
+nmap <leader>yf :let @+ = expand("%")<cr>
 nmap <leader>ut :UndotreeToggle<cr>
 nmap <leader>e :e %%
 

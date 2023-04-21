@@ -1,0 +1,24 @@
+#!/bin/bash
+left=$2
+right=$1
+prefix=
+# The directory name format seems to be the $repo[.$hash],
+# where the hash is optional if we're comparing to the working directory
+if [[ -d "$left" && "$right" != *.* ]]; then
+  prefix=$(dirname $HG_ROOT)/
+fi
+if [ -n "$DISPLAY" ]; then
+  meld_arg="--diff "
+fi
+# "#" is used as the pattern delimiter because paths might start with "/",
+# which would create an invalid pattern.
+files=$(find $left $right -type f | sed -e "s#^$left\/##" -e "s#^$right\/##" \
+  | sort | uniq | xargs -I{} -n 1 echo $left/{} $right/{} \
+  | awk -v pre=$prefix -v meld_arg="$meld_arg" \
+    '{ print meld_arg $1 " " pre $2 }')
+if [ -z "$DISPLAY" ]; then
+  exec vimdiff-multi $files
+else
+  # pass $@ so that the left-most tab is a directory tree tab.
+  meld --diff "$@" $files
+fi

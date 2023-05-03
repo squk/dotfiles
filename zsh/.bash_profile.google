@@ -192,3 +192,4 @@ bdoctor_modules() {
     echo "DEFAULT(ANALYSIS): $default"
     echo "HOURLY(EXECUTION): $hourly"
 }
+alias bisect=/google/data/ro/teams/tetralight/bin/bisect

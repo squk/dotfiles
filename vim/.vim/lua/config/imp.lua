@@ -14,7 +14,7 @@ if use_google() then
     set runtimepath+=/google/src/files/head/depot/google3/experimental/users/tstone/vim/vim-imp
     set runtimepath+=/google/src/files/head/depot/google3/experimental/users/tstone/vim/imp-csearch
     Glug imp-google
-    Glaive imp Suggest[default]=buffer,csearch,prompt
+    Glaive imp Suggest[default]=buffer,csearch,prompt  Pick[default]=fzf
     ]])
     -- To search for imports in the file's parent directory before using Code Search across all of google3, install ripgrep and try
     vim.cmd([[

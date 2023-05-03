@@ -2,7 +2,6 @@ local map = require("utils").map
 local use_google = require("utils").use_google
 
 if use_google() then
-    map("n", "<leader>tw", ":Telescope citc workspaces<CR>")
     map("n", "<leader>tm", ":Telescope citc modified<CR>")
     map("n", "<leader>tb", ":Telescope file_browser<CR>")
 

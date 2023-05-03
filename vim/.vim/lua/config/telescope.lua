@@ -42,7 +42,7 @@ require('telescope').setup {
 
 local map = require("utils").map
 
-map('n', '<leader>tb', ":Telescope file_browser", { desc = '[T]elescope [B]rowse' })
+map('n', '<leader>tb', ":Telescope file_buffers", { desc = '[T]elescope [B]uffers' })
 map('n', '<leader>tf', [[:lua require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!node_modules/**'} }<cr>]], { desc = '[T]elescope [F]iles' })
 map('n', '<leader>th', require('telescope.builtin').help_tags, { desc = '[T]elescope [H]elp' })
 map('n', '<leader>tw', require('telescope.builtin').grep_string, { desc = '[T]elescope current [W]ord' })

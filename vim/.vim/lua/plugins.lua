@@ -149,6 +149,10 @@ require('packer').startup(function(use)
 
     use {
         'ThePrimeagen/refactoring.nvim',
+         requires = {
+            {"nvim-lua/plenary.nvim"},
+            {"nvim-treesitter/nvim-treesitter"}
+        },
         config = [[ require("config.refactoring") ]]
     }
     use 'apalmer1377/factorus'

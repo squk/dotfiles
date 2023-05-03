@@ -3,9 +3,9 @@ require("symbols-outline").setup(
     show_relative_numbers = true,
         keymaps = { -- These keymaps can be a string or a table for multiple keys
             -- close = {"<Esc>", "q"},
-            -- goto_location = "<Cr>",
+            goto_location = "<Cr>",
             -- focus_location = "o",
-            -- hover_symbol = "<C-space>",
+            hover_symbol = "<C-space>",
             toggle_preview = "L",
             -- rename_symbol = "r",
             -- code_actions = "a",

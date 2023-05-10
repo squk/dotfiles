@@ -95,16 +95,6 @@ endif
 source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
 source ~/.vim/prefs/ui.vim
-" source ~/.vim/prefs/fzf.vim
-
-filetype plugin on     " redundant?
-filetype plugin indent on
-
-" auto-reload vimrc on save
-augroup myvimrc
-    au!
-au BufWritePost .vimrc,_vimrc,.vimrc.local,vimrc,.gvimrc,_gvimrc,gvimrc,*.vim nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
 
 fun! NewInitBex()
     let &bex = '-' . strftime("(%Y%m%d)-{%H%M}")
@@ -119,13 +109,6 @@ set t_Co=256
 
 let base16colorspace=256
 set colorcolumn=100
-if has('macunix')
-    let g:python3_host_prog='/usr/local/bin/python3'
-    let g:python_host_prog='/usr/local/bin/python3'
-else
-    let g:python3_host_prog='/usr/bin/python3'
-    let g:python_host_prog='/usr/bin/python'
-endif
 
 if (has("termguicolors"))
  set termguicolors
@@ -213,4 +196,5 @@ function! s:AddBufferToTab()
   tabfirst
 endfun
 
+filetype plugin indent on
 lua require("plugins")

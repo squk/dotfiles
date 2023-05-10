@@ -1,6 +1,4 @@
 local use_google = require("utils").use_google
--- local tprint = require("utils").tprint
--- local dump = require("utils").dump
 local log = require("utils").log
 local notify = require 'notify'
 

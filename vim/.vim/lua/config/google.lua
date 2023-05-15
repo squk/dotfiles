@@ -1,5 +1,6 @@
 local M = {}
 function M.config(use)
+    use 'sso://googler@user/vvvv/ai.nvim'
     use {
         'sso://googler@user/piloto/cmp-nvim-ciderlsp',
         'sso://googler@user/kdark/ciderlsp-nvim',

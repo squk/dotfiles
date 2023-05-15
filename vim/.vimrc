@@ -214,4 +214,3 @@ function! s:AddBufferToTab()
 endfun
 
 lua require("plugins")
-

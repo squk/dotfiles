@@ -15,7 +15,6 @@ return
     'hrsh7th/vim-vsnip',
     'kosayoda/nvim-lightbulb',
     'tpope/vim-surround',
-    'scrooloose/nerdcommenter',
     'ntpeters/vim-better-whitespace',
     'junegunn/fzf.vim',
     'nathanaelkane/vim-indent-guides',
@@ -23,6 +22,18 @@ return
     'jremmen/vim-ripgrep',
     'nvim-lua/plenary.nvim',
 
+    {
+        'scrooloose/nerdcommenter',
+        config = function()
+            require("config.nerdcommenter")
+        end,
+        keys = {
+            { "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>" },
+            { "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>", 'v' },
+            { "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>" },
+            { "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>", 'v' },
+        }
+    },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
@@ -122,9 +133,27 @@ return
         branch = '0.1.x',
         config = function()
             require("config.telescope")
-        end
+        end,
+        dependencies = {
+            "telescope_codesearch",
+            "telescope_citc",
+            "telescope_fig",
+            'nvim-telescope/telescope-file-browser.nvim',
+        },
+        keys = {
+            { '<leader>tb', ":Telescope file_buffers", desc = '[T]elescope [B]uffers' } ,
+            { '<leader>tf', [[:lua require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!node_modules/**'} }<cr>]], desc = '[T]elescope [F]iles' },
+            { '<leader>th', [[:lua require('telescope.builtin').help_tags<cr>]],  desc = '[T]elescope [H]elp' },
+            { '<leader>tw', [[:lua require('telescope.builtin').grep_string<cr>]],  desc = '[T]elescope current [W]ord' },
+            { '<leader>tg', [[:lua require('telescope.builtin').live_grep<cr>]],  desc = '[T]elescope by [G]rep' },
+            -- Google mappings
+            { '<C-P>', [[:lua require('telescope').extensions.codesearch.find_files{}<CR>]],'n', { noremap = true, silent=true }},
+            { '<C-Space>', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], { noremap = true, silent = true }},
+            { '<leader>cs', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], { noremap = true, silent = true }},
+            { '<leader>cs', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], 'v', { noremap = true, silent = true }},
+            { '<leader>CS', [[:lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]], { noremap = true, silent = true } },
+        },
     },
-    'nvim-telescope/telescope-file-browser.nvim',
 
     -- Rust
     {

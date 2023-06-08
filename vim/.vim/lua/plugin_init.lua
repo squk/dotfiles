@@ -18,10 +18,3 @@ package.path = package.path .. ';' .. vim.env.HOME .. "/.vim/lua/?.lua"
 
 require("lazy").setup("plugins")
 
--- CiderLSP
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
--- Don't show the dumb matching stuff
-vim.opt.shortmess:append("c")
-
-vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }

@@ -28,7 +28,7 @@ return {
     {
         name = "telescope_codesearch",
         url = 'sso://googler@user/vintharas/telescope-codesearch.nvim',
-        dependencies = { 'nvim-telescope/telescope.nvim' }
+        dependencies = { 'nvim-telescope/telescope.nvim' },
     },
     {
         name = "telescope_citc",

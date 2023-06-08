@@ -10,6 +10,14 @@ require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls", "rust_analyzer" }
 })
 
+-- CiderLSP
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- Don't show the dumb matching stuff
+vim.opt.shortmess:append("c")
+
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
+
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 

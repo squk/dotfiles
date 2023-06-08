@@ -5,7 +5,6 @@ return
     -- Pretty symbols
     'kyazdani42/nvim-web-devicons',
 
-    'nvim-lua/lsp-status.nvim',
     'jghauser/mkdir.nvim',
     'lewis6991/impatient.nvim',
     'dstein64/vim-startuptime',
@@ -15,11 +14,6 @@ return
     'apalmer1377/factorus',
     'hrsh7th/vim-vsnip',
     'kosayoda/nvim-lightbulb',
-
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    'VonHeikemen/lsp-zero.nvim',
-
     'tpope/vim-surround',
     'scrooloose/nerdcommenter',
     'ntpeters/vim-better-whitespace',
@@ -28,7 +22,6 @@ return
     'tversteeg/registers.nvim',
     'jremmen/vim-ripgrep',
     'nvim-lua/plenary.nvim',
-
 
     {
         'nvim-treesitter/nvim-treesitter',
@@ -75,14 +68,19 @@ return
     { 'ray-x/go.nvim',ft='go' },
     { 'ray-x/guihua.lua',ft='go' },
 
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    'nvim-lua/lsp-status.nvim',
+    'VonHeikemen/lsp-zero.nvim',
+
     -- Completion and linting
-    'neovim/nvim-lspconfig',
     {
         'hrsh7th/nvim-cmp',
-        event = "InsertEnter",
+        event = "VimEnter",
 
         dependencies = {
             'onsails/lspkind.nvim',
+            'neovim/nvim-lspconfig',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'lukas-reineke/cmp-under-comparator',
@@ -106,14 +104,14 @@ return
     },
     {
         'ErichDonGubler/lsp_lines.nvim',
-        event = "InsertEnter",
-        config = function()
-            require("lsp_lines").setup()
-        end
+        event = "VimEnter",
+        keys = {
+          { "<leader>l", function() require("lsp_lines").toggle() end, desc = "Toggle LSP Lines" },
+        },
     },
     {
         'jose-elias-alvarez/null-ls.nvim',
-        event = "InsertEnter",
+        event = "VimEnter",
         config = function()
             require("config.null-ls")
         end
@@ -143,9 +141,10 @@ return
 
     {
         'folke/trouble.nvim',
+        event = "VimEnter",
         config = function()
             require("config.trouble")
-        end
+        end,
     },
 
     {
@@ -160,16 +159,18 @@ return
     },
     {'andymass/vim-matchup', event = 'VimEnter'},
 
-    { 'simrat39/symbols-outline.nvim', config = function()
-        require("config.symbols-outline")
-    end
-},
+    { 'simrat39/symbols-outline.nvim',
+        config = function()
+            require("config.symbols-outline")
+        end
+    },
     {
-        'petertriho/nvim-scrollbar', config = function()
-        require("scrollbar").setup()
+        'petertriho/nvim-scrollbar',
+        config = function()
+            require("scrollbar").setup()
         end,
         lazy = false,
-},
+    },
 
     {
         'rmagatti/auto-session',
@@ -180,7 +181,6 @@ return
             }
         end
     },
-
 
     {
         "ipod825/libp.nvim",
@@ -203,23 +203,6 @@ return
         end
     },
 
-    -- Git
-    {
-        {
-            'lewis6991/gitsigns.nvim',
-            dependencies = 'nvim-lua/plenary.nvim',
-            event = 'User ActuallyEditing',
-        },
-        {
-            'akinsho/git-conflict.nvim',
-            version = '*',
-            config = function()
-                require('git-conflict').setup()
-            end,
-        },
-        { 'rhysd/conflict-marker.vim' }
-    },
-
     {
         "catppuccin/nvim",
     name = "catppuccin",
@@ -238,7 +221,8 @@ return
 
     -- mine
     {
-        'squk/java-syntax.vim', ft='java'
+        'squk/java-syntax.vim',
+        lazy = false,
     },
 
     {

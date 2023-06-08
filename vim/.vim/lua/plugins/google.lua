@@ -8,10 +8,18 @@ return {
     {
         name = "cmp_nvim_ciderlsp",
         url = 'sso://googler@user/piloto/cmp-nvim-ciderlsp',
+        lazy = false;
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+        }
     },
     {
         name = "ciderlsp_nvim",
         url = 'sso://googler@user/kdark/ciderlsp-nvim',
+        lazy = false;
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+        }
     },
     {
         name = "nvim_figtree",
@@ -80,4 +88,3 @@ return {
     --         'google/vim-glaive',
     --     }
     -- }
-

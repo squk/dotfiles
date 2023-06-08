@@ -7,8 +7,8 @@ let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 
 Glug alert
 Glug csearch
-" Glug codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`
-Glug codefmt
+" Glug! codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`
+Glug! codefmt
 Glug codefmt-google
 Glug languages
 " applies google coding style settings to files whitelisted as google code. probably also want
@@ -179,4 +179,3 @@ nmap <leader>yb :let @+ = join(blaze#GetTargets(), ' ')<cr>
 
 Glug corpweb
 nnoremap <leader>csw :CorpWebCsFile<cr>
-

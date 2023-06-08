@@ -14,6 +14,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+package.path = package.path .. ';' .. vim.env.HOME .. "/.vim/lua/?.lua"
+
 require("lazy").setup("plugins")
 
 -- CiderLSP
@@ -23,5 +25,3 @@ vim.opt.shortmess:append("c")
 
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
-
-require("config.imp")

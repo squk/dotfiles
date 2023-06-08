@@ -12,6 +12,7 @@ require("mason-lspconfig").setup({
 
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
+
 if use_google() then
     configs.ciderlsp = {
         default_config = {

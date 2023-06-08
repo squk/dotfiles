@@ -5,7 +5,6 @@ filetype off                  " required
 set runtimepath+=,~/.vim
 set runtimepath+=,~/.vim/after
 set runtimepath+=,~/.vim/lua/
-set runtimepath+=,~/.vim/lua/plugins
 set runtimepath+=,~/.config/nvim/after/
 let &runtimepath = &runtimepath
 
@@ -22,7 +21,6 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
-syntax on
 
 set laststatus=2
 set cmdheight=1
@@ -82,13 +80,7 @@ set omnifunc= completeopt=menuone,noinsert,noselect
 
 set updatetime=100
 
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
-if filereadable(expand("~/use_google"))
-  source ~/.vim/prefs/google.vim
-endif
+lua require('plugin_init')
 
 source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
@@ -194,7 +186,12 @@ function! s:AddBufferToTab()
   tabfirst
 endfun
 
-lua require('plugin_init')
 
 filetype plugin indent on
 syntax on
+
+if filereadable(expand("~/use_google"))
+  source ~/.vim/prefs/google.vim
+endif
+lua require("config.imp")
+

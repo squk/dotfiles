@@ -70,6 +70,8 @@ alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshor
 alias builddoctor=/google/bin/releases/build-doctor/builddoctor
 alias rudi=/google/data/ro/teams/lsc/bin/rudi-cli
 alias rudi-cli=/google/data/ro/teams/lsc/bin/rudi-cli
+alias tmux=tmx2
+compdef tmx2=tmux
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
 export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin
@@ -180,8 +182,9 @@ to_mac(){
 }
 
 bdoctor() {
-    default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
-    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http)
+    default=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http | sed 's/Created Analysis TaskSet (results will appear here): //')
+    hourly=$(builddoctor analyze --blueprint //depot/google3/java/com/google/android/gmscore/tools/build_doctor/build_doctor.blueprint --cl $1 --analysis_type=PERIODIC --analysis_name=hourly --buildable_unit_type BUILD --buildable_unit gmscore.build_doctor.debug_container | grep http | sed 's/Created Analysis TaskSet (results will appear here): //')
+
     echo "DEFAULT(ANALYSIS): $default"
     echo "HOURLY(EXECUTION): $hourly"
 }

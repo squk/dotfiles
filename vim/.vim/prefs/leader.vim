@@ -122,7 +122,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-nnoremap <leader>s :SaveSession<CR>
+nnoremap <leader>s :SessionSave<CR>
 
 " copy to attached terminal using the yank(1) script:
 " https://github.com/sunaku/home/blob/master/bin/yank

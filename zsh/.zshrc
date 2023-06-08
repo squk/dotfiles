@@ -266,3 +266,4 @@ source ~/.bash_profile
 
 alias luamake=/luamake
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

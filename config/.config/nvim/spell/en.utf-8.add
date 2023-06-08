@@ -2,3 +2,4 @@ private
 handlePackageIntent
 for/!
 tooling/!
+createApkDescriptor

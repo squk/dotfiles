@@ -2,9 +2,12 @@ set nocompatible              " be iMproved, required
 
 let mapleader="," " BEST LEADER OF ALL TIME (BLOT)
 filetype off                  " required
-set rtp+=~/.vim
-set rtp+=~/.vim/after
-set rtp+=~/.config/nvim/after/
+set runtimepath+=,~/.vim
+set runtimepath+=,~/.vim/after
+set runtimepath+=,~/.vim/lua/
+set runtimepath+=,~/.vim/lua/plugins
+set runtimepath+=,~/.config/nvim/after/
+let &runtimepath = &runtimepath
 
 set directory=/tmp
 set undodir=/tmp
@@ -78,11 +81,6 @@ set modifiable
 set omnifunc= completeopt=menuone,noinsert,noselect
 
 set updatetime=100
-
-lua require('impatient')
-" Enable profiling data
-" lua require'impatient'.enable_profile()
-
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
@@ -196,5 +194,7 @@ function! s:AddBufferToTab()
   tabfirst
 endfun
 
+lua require('plugin_init')
+
 filetype plugin indent on
-lua require("plugins")
+syntax on

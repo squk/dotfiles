@@ -5,36 +5,6 @@ let g:VCSCommandDisableMappings = 1
 
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 
-Glug alert
-Glug csearch
-" Glug! codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`
-Glug! codefmt
-Glug codefmt-google
-Glug languages
-" applies google coding style settings to files whitelisted as google code. probably also want
-Glug googlestyle
-" internal spell-checking integration and improved default configuration.
-Glug googlespell
-" hooks for google-internal virtual file paths such as //depot and /cns.
-Glug googlepaths
-" core syntax and filetype settings for google-internal filetypes.
-Glug google-filetypes
-Glug ft-java
-Glug ft-kotlin
-Glug ft-proto
-Glug critique
-Glug piper
-Glug gtimporter
-Glug blaze
-let g:blazevim_quickfix_autoopen = 1
-
-Glug buganizer plugin[mappings]
-Glug relatedfiles plugin[mappings]
-Glug g4
-
-Glug outline-window
-Glug fzf-query
-
 function s:blazeExec(cmd, targets)
     if len(a:targets) == 0
         exe VimuxRunCommand("build_target.py " . expand('%:p') . " " . a:cmd)
@@ -159,11 +129,6 @@ endfunction
 com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
-
-" nnoremap <leader>ps :PiperSelectActiveFiles<CR>
-nnoremap <leader>ps :FzfHgFiles<CR>
-nnoremap <leader>pl :PiperLoadActiveAsBuffers<CR>
-nnoremap <leader>po :PiperOpenPath<CR>
 
 nmap <leader>rbs ss <leader>rb
 

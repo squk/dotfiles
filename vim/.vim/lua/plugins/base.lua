@@ -23,15 +23,19 @@ return
     'nvim-lua/plenary.nvim',
 
     {
-        'scrooloose/nerdcommenter',
-        config = function()
+        'preservim/nerdcommenter',
+        init = function()
             require("config.nerdcommenter")
         end,
         keys = {
             { "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>" },
-            { "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>", 'v' },
+            { "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>", mode='v' },
+
+            { "<leader>cS", ":call nerdcommenter#Comment(0, 'sexy')<CR>" },
+            { "<leader>cS", ":call nerdcommenter#Comment(0, 'sexy')<CR>", mode='v' },
+
             { "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>" },
-            { "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>", 'v' },
+            { "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>", mode='v' },
         }
     },
     {
@@ -150,7 +154,7 @@ return
             { '<C-P>', [[:lua require('telescope').extensions.codesearch.find_files{}<CR>]],'n', { noremap = true, silent=true }},
             { '<C-Space>', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], { noremap = true, silent = true }},
             { '<leader>cs', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], { noremap = true, silent = true }},
-            { '<leader>cs', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], 'v', { noremap = true, silent = true }},
+            { '<leader>cs', [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], mode='v', { noremap = true, silent = true }},
             { '<leader>CS', [[:lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]], { noremap = true, silent = true } },
         },
     },
@@ -286,7 +290,7 @@ return
     {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
-        setup = function()
+        init = function()
             vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown" }

@@ -22,9 +22,3 @@ vim.g.NERDTrimTrailingWhitespace = 1
 
 --Enable NERDCommenterToggle to check all selected lines is commented or not
 vim.g.NERDToggleCheckAllLines = 1
-
-nnoremap <leader>c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
-vnoremap <leader>c<Space> :call nerdcommenter#Comment(0,"toggle")<CR>
-
-nnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>
-vnoremap <leader>c$ :call nerdcommenter#Comment(0,"ToEOL")<CR>

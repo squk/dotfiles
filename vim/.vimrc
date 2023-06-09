@@ -193,5 +193,3 @@ syntax on
 if filereadable(expand("~/use_google"))
   source ~/.vim/prefs/google.vim
 endif
-lua require("config.imp")
-

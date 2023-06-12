@@ -126,7 +126,7 @@ end
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
+        { name = 'buffer', max_item_count = 5 }
     }
 })
 
@@ -150,7 +150,7 @@ local conditionalSources = {
     { name = "treesitter" },
     { name = "crates" },
     { name = "vim_vsnip" },
-    { name = "buffer", keyword_length = 5, group_index = 2 },
+    { name = "buffer", max_item_count = 5, keyword_length = 5, group_index = 2 },
     {
         name = 'spell',
         option = {
@@ -163,6 +163,8 @@ local conditionalSources = {
 }
 
 if use_google() then
+    require('cmp_nvim_ciderlsp').setup()
+
     local cider_lsp_handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {

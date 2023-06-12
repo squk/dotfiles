@@ -22,7 +22,12 @@ if use_google() then
         goog("glaive"),
         goog("alert"),
         goog("csearch"),
-        goog("codefmt"),
+        goog(
+            "codefmt",
+            function()
+                vim.cmd([[Glaive codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`]])
+            end
+        ),
         goog("codefmt-google"),
         goog("languages"),
         goog("googlestyle"),
@@ -203,8 +208,7 @@ augroup autoformat_settings
   autocmd FileType textpb AutoFormatBuffer text-proto-format
   autocmd FileType proto AutoFormatBuffer protofmt
   autocmd FileType sql AutoFormatBuffer format_sql
-  autocmd FileType kotlin AutoFormatBuffer google-java-format
-  -- autocmd FileType kotlin AutoFormatBuffer ktfmt
+  autocmd FileType kotlin AutoFormatBuffer ktfmt
   " autocmd FileType html,css,json AutoFormatBuffer js-beautify
 augroup END
 

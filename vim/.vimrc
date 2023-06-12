@@ -189,7 +189,3 @@ endfun
 
 filetype plugin indent on
 syntax on
-
-if filereadable(expand("~/use_google"))
-  source ~/.vim/prefs/google.vim
-endif

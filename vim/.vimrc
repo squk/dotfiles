@@ -189,3 +189,5 @@ endfun
 
 filetype plugin indent on
 syntax on
+
+lua require("config.google")

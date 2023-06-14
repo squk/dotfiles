@@ -6,8 +6,6 @@ return
     'kyazdani42/nvim-web-devicons',
 
     'jghauser/mkdir.nvim',
-    'lewis6991/impatient.nvim',
-    'dstein64/vim-startuptime',
     'will133/vim-dirdiff',
     'renerocksai/calendar-vim',
     'google/vim-searchindex',
@@ -146,7 +144,7 @@ return
         },
         keys = {
             { '<leader>tb', ":Telescope file_buffers", desc = '[T]elescope [B]uffers' } ,
-            { '<leader>tf', [[:lua require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!node_modules/**'} }<cr>]], desc = '[T]elescope [F]iles' },
+            { '<leader>tf', [[:lua require "telescope".extensions.file_browser.file_browser{}<cr>]], desc = '[T]elescope [F]iles' },
             { '<leader>th', [[:lua require('telescope.builtin').help_tags<cr>]],  desc = '[T]elescope [H]elp' },
             { '<leader>tw', [[:lua require('telescope.builtin').grep_string<cr>]],  desc = '[T]elescope current [W]ord' },
             { '<leader>tg', [[:lua require('telescope.builtin').live_grep<cr>]],  desc = '[T]elescope by [G]rep' },

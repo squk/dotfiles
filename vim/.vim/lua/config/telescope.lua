@@ -34,48 +34,13 @@ require('telescope').setup {
         end,
     },
     extensions = { -- this block is optional, and if omitted, defaults will be used
-    codesearch = {
-        experimental = true           -- enable results from google3/experimental
+        file_browser = {
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+        },
+        codesearch = {
+            experimental = true           -- enable results from google3/experimental
+        }
     }
 }
-}
-
-local map = require("utils").map
-
-map('n', '<leader>tb', ":Telescope file_buffers", { desc = '[T]elescope [B]uffers' })
-map('n', '<leader>tf', [[:lua require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!node_modules/**'} }<cr>]], { desc = '[T]elescope [F]iles' })
-map('n', '<leader>th', require('telescope.builtin').help_tags, { desc = '[T]elescope [H]elp' })
-map('n', '<leader>tw', require('telescope.builtin').grep_string, { desc = '[T]elescope current [W]ord' })
-map('n', '<leader>tg', require('telescope.builtin').live_grep, { desc = '[T]elescope by [G]rep' })
-
-if use_google() then
-    -- These custom mappings let you open telescope-codesearch quickly:
-    map('n', '<C-P>',
-    [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
-    { noremap = true, silent=true }
-    )
-
-    -- Search using codesearch queries.
-    map(
-    "n",
-    "<leader>cs",
-    [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-    { noremap = true, silent = true }
-    )
-
-    -- Search for the word under cursor.
-    map(
-    "n",
-    "<leader>CS",
-    [[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
-    { noremap = true, silent = true }
-    )
-
-    -- Search for text selected in Visual mode.
-    map(
-    "v",
-    "<leader>cs",
-    [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-    { noremap = true, silent = true }
-    )
-end
+require("telescope").load_extension "file_browser"

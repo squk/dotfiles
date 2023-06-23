@@ -9,7 +9,7 @@ vim.g.NERDSpaceDelims = 1
 vim.g.NERDCompactSexyComs = 1
 
 -- Align line-wise comment delimiters flush left instead of following code indentation
-vim.g.NERDDefaultAlign = 'left'
+vim.g.NERDDefaultAlign = "left"
 
 -- Set a language to use its alternate delimiters by default
 vim.g.NERDAltDelims_java = 1

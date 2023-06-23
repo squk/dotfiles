@@ -1,7 +1,7 @@
 local home = vim.fn.expand("~/zettelkasten")
 
-require('telekasten').setup({
-    home         = home,
+require("telekasten").setup({
+	home = home,
 })
 
 vim.cmd([[

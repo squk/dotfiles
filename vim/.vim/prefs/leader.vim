@@ -112,5 +112,5 @@ function! CopyYank() abort
 endfunction
 
 " autocmd TextYankPost * call CopyYank()
-noremap <leader>y call CopyYank()
-vnoremap <leader>y call CopyYank()
+noremap <leader>y :call CopyYank()
+vnoremap <leader>y :call CopyYank()

@@ -9,6 +9,7 @@ export XAUTHORITY=~/.Xauthority
 export GOROOT=/usr/lib/google-golang
 export PATH=$GOROOT/bin:$PATH
 export JAVA_HOME=$(readlink -ne /usr/local/buildtools/java/jdk)
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
 source /google/bin/releases/knock/knock.sh
 
 function gcert() {

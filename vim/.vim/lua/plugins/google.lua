@@ -36,10 +36,17 @@ if use_google() then
         goog("gtimporter"),
         goog("blaze"),
         goog("buganizer"),
-        goog("relatedfiles"),
         goog("g4"),
         goog("outline-window"),
         goog("fzf-query"),
+        {
+            name = "relatedfiles",
+            dir = "/usr/share/vim/google/relatedfiles",
+            dependencies = { "maktaba", "glaive" },
+            config = function()
+                vim.cmd([[ Glaive relatedfiles plugin[mappings] ]])
+            end
+        },
         {
             name = "codefmt",
             dir = "/usr/share/vim/google/codefmt",

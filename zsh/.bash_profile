@@ -7,6 +7,8 @@ export PATH=$PATH:$GOPATH/bin
 export GO111MODULE=auto
 export CLOUDSDK_PYTHON=python2
 
+export PATH=$PATH:$HOME/.cargo/bin
+
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 HISTCONTROL=ignoreboth

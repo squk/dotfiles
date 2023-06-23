@@ -2,7 +2,7 @@ vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 local colors = require("catppuccin.palettes").get_palette()
 
 require("catppuccin").setup({
-    flavour = "macchiato",
+	flavour = "macchiato",
 	integrations = {
 		cmp = true,
 		-- coc_nvim = false,
@@ -17,23 +17,23 @@ require("catppuccin").setup({
 		-- lightspeed = false,
 		-- lsp_saga = false,
 		lsp_trouble = true,
-        mason = true,
-        markdown = true,
+		mason = true,
+		markdown = true,
 		-- neogit = false,
 		-- neotest = false,
-        neotree = true,
+		neotree = true,
 		notify = true,
 		-- nvimtree = true,
 		-- overseer = false,
 		-- pounce = false,
-        symbols_outline = true,
+		symbols_outline = true,
 		telescope = true,
 		treesitter = true,
-        treesitter_context = false,
+		treesitter_context = false,
 		-- ts_rainbow = false,
 		-- vim_sneak = false,
 		-- vimwiki = false,
-        which_key = true,
+		which_key = true,
 
 		-- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
 		dap = {
@@ -60,12 +60,12 @@ require("catppuccin").setup({
 			},
 		},
 	},
-    custom_highlights = {
-        Identifier = { fg = colors.lavender },
-        Statement = { fg = colors.rosewater },
-        -- Identifier = { fg = colors.sapphire },
-        Function = { fg = colors.mauve },
-    },
+	custom_highlights = {
+		Identifier = { fg = colors.lavender },
+		Statement = { fg = colors.rosewater },
+		-- Identifier = { fg = colors.sapphire },
+		Function = { fg = colors.mauve },
+	},
 })
 
-vim.api.nvim_command "colorscheme catppuccin"
+vim.api.nvim_command("colorscheme catppuccin")

@@ -1,4 +1,5 @@
 {
+  "aerial.nvim": { "branch": "master", "commit": "c663d1b55f002930187a09b9eeb5bd0bad0ea23c" },
   "ai.nvim": { "branch": "main", "commit": "d7391d4782b90ad3501f6f716f2b308092981787" },
   "asyncrun.vim": { "branch": "master", "commit": "7191d0c30dd105e5d7f897b9a6ee19cabe734466" },
   "auto-session": { "branch": "main", "commit": "7afbb149f87be279778689596c781882014f7eef" },
@@ -60,7 +61,6 @@
   "refactoring.nvim": { "branch": "master", "commit": "9f28801ed1803306ddbe5b8058849da412a90648" },
   "registers.nvim": { "branch": "main", "commit": "2ab8372bb837f05fae6b43091f10a0b725d113ca" },
   "rust-tools.nvim": { "branch": "master", "commit": "71d2cf67b5ed120a0e31b2c8adb210dd2834242f" },
-  "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
   "telekasten.nvim": { "branch": "main", "commit": "36dad2692974a5cc69813441442ccce8c53fbfd4" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "87dfaa9a9c251388cf4f01b9d4078c29d1fc8803" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },

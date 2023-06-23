@@ -2,8 +2,10 @@ local use_google = require("utils").use_google
 
 return {
 	-- Pretty symbols
-	"kyazdani42/nvim-web-devicons",
-
+	{
+		"nvim-tree/nvim-web-devicons",
+		lazy = false,
+	},
 	"jghauser/mkdir.nvim",
 	"will133/vim-dirdiff",
 	"renerocksai/calendar-vim",
@@ -202,12 +204,17 @@ return {
 		},
 	},
 	{ "andymass/vim-matchup", event = "VimEnter" },
-
 	{
-		"simrat39/symbols-outline.nvim",
-		config = function()
-			require("config.symbols-outline")
-		end,
+		"stevearc/aerial.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		cmd = { "AerialToggle", "AerialOn" },
+		keys = {
+			{ "<leader>so", ":AerialToggle<CR>", desc = "[S]ymbols [O]utline" },
+		},
 	},
 	{
 		"petertriho/nvim-scrollbar",
@@ -231,14 +238,6 @@ return {
 		"ipod825/libp.nvim",
 		config = function()
 			require("libp").setup()
-		end,
-	},
-
-	{
-		"nvim-lualine/lualine.nvim",
-		lazy = false,
-		config = function()
-			require("config.lualine")
 		end,
 	},
 	{

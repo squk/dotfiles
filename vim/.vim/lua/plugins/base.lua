@@ -88,7 +88,6 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		event = "VimEnter",
-
 		dependencies = {
 			"onsails/lspkind.nvim",
 			"neovim/nvim-lspconfig",
@@ -115,26 +114,12 @@ return {
 		cond = not use_google(),
 	},
 	{
-		"ErichDonGubler/lsp_lines.nvim",
-		event = "VimEnter",
-		keys = {
-			{
-				"<leader>l",
-				function()
-					require("lsp_lines").toggle()
-				end,
-				desc = "Toggle LSP Lines",
-			},
-		},
-	},
-	{
 		"jose-elias-alvarez/null-ls.nvim",
 		event = "VimEnter",
 		config = function()
 			require("config.null-ls")
 		end,
 	},
-
 	-- Rust
 	{
 		"saecki/crates.nvim",
@@ -147,14 +132,6 @@ return {
 	},
 
 	{ "simrat39/rust-tools.nvim", ft = "rust" },
-
-	{
-		"folke/trouble.nvim",
-		event = "VimEnter",
-		config = function()
-			require("config.trouble")
-		end,
-	},
 
 	{
 		"ThePrimeagen/refactoring.nvim",

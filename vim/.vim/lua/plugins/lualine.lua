@@ -78,6 +78,7 @@ return {
 					{
 						"tabs",
 						mode = 1,
+						use_mode_colors = true,
 						max_length = (vim.o.columns / 5) * 4,
 						fmt = function(name, context)
 							-- Show + if buffer is modified in tab
@@ -91,7 +92,7 @@ return {
 					},
 				},
 				lualine_b = { "branch" },
-				lualine_c = { "filename" },
+				-- lualine_c = { "filename" },
 				lualine_c = {
 					{
 						"diagnostics",

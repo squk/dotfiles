@@ -2,13 +2,6 @@ return {
 	"folke/trouble.nvim",
 	event = "VimEnter",
 	config = function()
-		vim.diagnostic.config({
-			virtual_lines = true,
-			virtual_text = true,
-			severity_sort = true,
-			update_in_insert = true,
-		})
-
 		-- Diagnostics
 		require("trouble").setup({
 			signs = {

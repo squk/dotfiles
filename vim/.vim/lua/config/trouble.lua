@@ -1,7 +1,8 @@
 vim.diagnostic.config({
 	virtual_lines = true,
-	virtual_text = false,
+	virtual_text = true,
 	severity_sort = true,
+	update_in_insert = true,
 })
 
 -- Diagnostics
@@ -28,4 +29,4 @@ vim.api.nvim_set_keymap("n", "<Leader>xq", "<Cmd>Trouble quickfix<CR>", opts)
 vim.api.nvim_set_keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 vim.api.nvim_set_keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])

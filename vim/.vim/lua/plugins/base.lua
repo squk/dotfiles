@@ -8,7 +8,6 @@ return {
 	"will133/vim-dirdiff",
 	"renerocksai/calendar-vim",
 	"google/vim-searchindex",
-	-- 'apalmer1377/factorus',
 	"hrsh7th/vim-vsnip",
 	"kosayoda/nvim-lightbulb",
 	"tpope/vim-surround",

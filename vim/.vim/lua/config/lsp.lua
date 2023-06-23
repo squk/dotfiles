@@ -21,6 +21,23 @@ vim.opt.spelllang = { "en_us" }
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 
+vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+	local client = vim.lsp.get_client_by_id(ctx.client_id)
+	local lvl = ({
+		"ERROR",
+		"WARN",
+		"INFO",
+		"DEBUG",
+	})[result.type]
+	notify({ result.message }, lvl, {
+		title = "LSP | " .. client.name,
+		timeout = 1000,
+		keep = function()
+			return lvl == "ERROR" or lvl == "WARN"
+		end,
+	})
+end
+
 if use_google() then
 	configs.ciderlsp = {
 		default_config = {
@@ -71,45 +88,6 @@ if use_google() then
 			settings = {},
 		},
 	}
-end
-
--- 3. Set up CiderLSP
-local on_attach = function(client, bufnr)
-	vim.b["is_cider_lsp_attached"] = "no"
-	require("lualine").refresh()
-
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-	if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.
-		vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr")
-	end
-	if vim.lsp.tagfunc then
-		vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-	end
-
-	if client.server_capabilities.document_highlight then
-		vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
-		vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
-		vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
-	end
-
-	lsp_status.on_attach(client)
-
-	local opts = { noremap = true, silent = true }
-	vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "L", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- diagnostics controls references
-	vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	vim.api.nvim_set_keymap("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
-	vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -187,25 +165,49 @@ local conditionalSources = {
 	},
 }
 
-vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
-	local client = vim.lsp.get_client_by_id(ctx.client_id)
-	local lvl = ({
-		"ERROR",
-		"WARN",
-		"INFO",
-		"DEBUG",
-	})[result.type]
-	notify({ result.message }, lvl, {
-		title = "LSP | " .. client.name,
-		timeout = 1000,
-		keep = function()
-			return lvl == "ERROR" or lvl == "WARN"
-		end,
-	})
+local my_on_attach = function(client, bufnr)
+	require("lualine").refresh()
+
+	vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
+	vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
+	vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
+
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.
+		vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr")
+	end
+	if vim.lsp.tagfunc then
+		vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
+	end
+
+	lsp_status.on_attach(client)
+
+	local opts = { noremap = true, silent = true }
+	vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "L", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
+	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- diagnostics controls references
+	vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	vim.api.nvim_set_keymap("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
+	vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 end
 
 if use_google() then
 	require("cmp_nvim_ciderlsp").setup()
+
+	-- 3. Set up CiderLSP
+	local cider_on_attach = function(client, bufnr)
+		my_on_attach(client, bufnr)
+		vim.b["is_cider_lsp_attached"] = "no"
+	end
 
 	local cider_lsp_handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -224,25 +226,19 @@ if use_google() then
 		end
 	end
 
-	cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
-		notify("result:" .. result, "info", { timeout = 900 })
-		notify("ctx:" .. ctx, "info", { timeout = 900 })
-	end
-
 	capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)
 	capabilities.workspace.codeLens = { refreshSupport = true }
 	capabilities.workspace.diagnostics = { refreshSupport = true }
-	lspconfig.ciderlsp.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		handlers = cider_lsp_handlers,
-	})
 	lspconfig.analysislsp.setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
+	})
+	table.insert(conditionalSources, { name = "analysislsp" })
+	lspconfig.ciderlsp.setup({
+		capabilities = capabilities,
+		on_attach = cider_on_attach,
+		handlers = cider_lsp_handlers,
 	})
 	table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
-	table.insert(conditionalSources, { name = "analysislsp" })
 else
 	table.insert(conditionalSources, { name = "cmp_tabnine" })
 end

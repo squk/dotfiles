@@ -187,6 +187,23 @@ local conditionalSources = {
 	},
 }
 
+vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+	local client = vim.lsp.get_client_by_id(ctx.client_id)
+	local lvl = ({
+		"ERROR",
+		"WARN",
+		"INFO",
+		"DEBUG",
+	})[result.type]
+	notify({ result.message }, lvl, {
+		title = "LSP | " .. client.name,
+		timeout = 1000,
+		keep = function()
+			return lvl == "ERROR" or lvl == "WARN"
+		end,
+	})
+end
+
 if use_google() then
 	require("cmp_nvim_ciderlsp").setup()
 
@@ -210,23 +227,6 @@ if use_google() then
 	cider_lsp_handlers["workspace/diagnostic/refresh"] = function(_, result, ctx)
 		notify("result:" .. result, "info", { timeout = 900 })
 		notify("ctx:" .. ctx, "info", { timeout = 900 })
-	end
-
-	cider_lsp_handlers["window/showMessage"] = function(_, result, ctx)
-		local client = vim.lsp.get_client_by_id(ctx.client_id)
-		local lvl = ({
-			"ERROR",
-			"WARN",
-			"INFO",
-			"DEBUG",
-		})[result.type]
-		notify({ result.message }, lvl, {
-			title = "LSP | " .. client.name,
-			timeout = 1000,
-			keep = function()
-				return lvl == "ERROR" or lvl == "WARN"
-			end,
-		})
 	end
 
 	capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)

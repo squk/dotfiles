@@ -35,19 +35,23 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-vsnip",
 			"ray-x/cmp-treesitter",
+			"hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-calc",
 		},
 		config = function()
 			local cmp = require("cmp")
 
 			local conditionalSources = cmp.config.sources({
 				{ name = "buffer", max_item_count = 5, keyword_length = 5, group_index = 2 },
+				{ name = "calc" },
 				{ name = "crates" },
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help", priority = 5 },
 				{ name = "nvim_lua" },
 				{ name = "path" },
 				{ name = "treesitter" },
-				{ name = "vim_vsnip" },
+				{ name = "vsnip" },
+				{ name = "emoji" },
 				{
 					name = "spell",
 					option = {

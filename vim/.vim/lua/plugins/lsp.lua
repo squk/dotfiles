@@ -1,14 +1,15 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		-- event = "VimEnter",
 		dependencies = {
+			"hrsh7th/nvim-cmp",
 			"nvim-lua/lsp-status.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 			"rcarriga/nvim-notify",
 		},
 		config = function()
 			local use_google = require("utils").use_google
-			local log = require("utils").log
 			local notify = require("notify")
 
 			local lspconfig = require("lspconfig")
@@ -82,10 +83,10 @@ return {
 							"bzl",
 							"typescript",
 						},
-						root_dir = lspconfig.util.root_pattern("BUILD"),
-						-- root_dir = function(fname)
-						--     return string.match(fname, '(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$')
-						-- end;
+						-- required for proto generated files jump
+						root_dir = function(fname)
+							return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
+						end,
 						settings = {},
 					},
 				}
@@ -112,10 +113,9 @@ return {
 							"typescript",
 							"javascript",
 						},
-						root_dir = lspconfig.util.root_pattern("BUILD"),
-						-- root_dir = function(fname)
-						--     return string.match(fname, '(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$')
-						-- end;
+						root_dir = function(fname)
+							return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
+						end,
 						settings = {},
 					},
 				}
@@ -139,10 +139,6 @@ return {
 			}
 
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
-
-			local runtime_path = vim.split(package.path, ";")
-			table.insert(runtime_path, "lua/?.lua")
-			table.insert(runtime_path, "lua/?/init.lua")
 
 			local my_on_attach = function(client, bufnr)
 				require("lualine").refresh()
@@ -180,9 +176,6 @@ return {
 			end
 
 			if use_google() then
-				require("cmp_nvim_ciderlsp").setup()
-
-				-- 3. Set up CiderLSP
 				local cider_on_attach = function(client, bufnr)
 					my_on_attach(client, bufnr)
 					vim.b["is_cider_lsp_attached"] = "no"

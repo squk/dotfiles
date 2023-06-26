@@ -1,4 +1,7 @@
 local use_google = require("utils").use_google
+local tprint = require("utils").tprint
+local dump = require("utils").dump
+local log = require("utils").log
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -21,37 +24,54 @@ return {
 		},
 	},
 	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			local autopairs = require("nvim-autopairs")
+
+			autopairs.setup({
+				check_ts = true, -- treesitter integration
+				disable_filetype = { "TelescopePrompt" },
+			})
+
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp_status_ok, cmp = pcall(require, "cmp")
+			if not cmp_status_ok then
+				return
+			end
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
+		end,
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		event = "VimEnter",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"lukas-reineke/cmp-under-comparator",
-			"hrsh7th/cmp-cmdline",
 			"f3fora/cmp-spell",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-calc",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-vsnip",
+			"lukas-reineke/cmp-under-comparator",
 			"ray-x/cmp-treesitter",
-			"hrsh7th/cmp-emoji",
-			"hrsh7th/cmp-calc",
 		},
 		config = function()
 			local cmp = require("cmp")
 
 			local conditionalSources = cmp.config.sources({
-				{ name = "buffer", max_item_count = 5, keyword_length = 5, group_index = 2 },
+				{ name = "nvim_lsp", priority = 6 },
+				{ name = "nvim_lsp_signature_help", priority = 7 },
+				{ name = "luasnip", priority = 8 },
 				{ name = "calc" },
 				{ name = "crates" },
-				{ name = "nvim_lsp" },
-				{ name = "nvim_lsp_signature_help", priority = 5 },
 				{ name = "nvim_lua" },
+				{ name = "emoji" },
 				{ name = "path" },
 				{ name = "treesitter" },
-				{ name = "vsnip" },
-				{ name = "emoji" },
 				{
 					name = "spell",
 					option = {
@@ -61,9 +81,11 @@ return {
 						end,
 					},
 				},
+				{ name = "buffer", max_item_count = 5, keyword_length = 5 },
 			})
 
 			if use_google() then
+				require("cmp_nvim_ciderlsp").setup()
 				table.insert(conditionalSources, { name = "analysislsp" })
 				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
 			else
@@ -103,8 +125,6 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif vim.fn["vsnip#available"](1) == 1 then
-							feedkey("<Plug>(vsnip-expand-or-jump)", "")
 						elseif has_words_before() then
 							cmp.complete()
 						else
@@ -115,16 +135,12 @@ return {
 					["<S-Tab>"] = cmp.mapping(function()
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-							feedkey("<Plug>(vsnip-jump-prev)", "")
 						end
 					end, { "i", "s" }),
 
 					["<Up>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif vim.fn["vsnip#available"](1) == 1 then
-							feedkey("<Plug>(vsnip-jump-prev)", "")
 						else
 							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end
@@ -133,8 +149,6 @@ return {
 					["<Down>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif vim.fn["vsnip#available"](1) == 1 then
-							feedkey("<Plug>(vsnip-expand-or-jump)", "")
 						else
 							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end
@@ -153,41 +167,49 @@ return {
 						cmp.config.compare.sort_text,
 						cmp.config.compare.length,
 						cmp.config.compare.order,
+						cmp.config.compare.priority,
 					},
 				},
 
 				snippet = {
 					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
+						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 
 				formatting = {
 					format = lspkind.cmp_format({
-						with_text = true,
+						mode = "symbol_text",
+						-- before = function(entry, vim_item)
+						--     if entry.source.name == "nvim_ciderlsp" then
+						--         if entry.completion_item.is_multiline then
+						--             -- multi-line specific formatting here
+						--             vim_item.menu = "  "
+						--         else
+						--             vim_item.menu = ""
+						--         end
+						--     end
+						--     return vim_item
+						-- end,
 						maxwidth = 40, -- half max width
 						menu = {
 							nvim_ciderlsp = "",
 							buffer = "",
 							crates = "",
-							nvim_lsp = "",
+							nvim_lsp = "[LSP]",
 							nvim_lua = "",
+							luasnip = "[LuaSnip]",
 							cmp_tabnine = "[TabNine]",
 							path = "[path]",
 							tmux = "[TMUX]",
-							vim_vsnip = "[snip]",
 						},
 					}),
 				},
 
 				experimental = {
-					ghost_text = false,
+					ghost_text = true,
 				},
 			})
-
-			vim.cmd(
-				[[ augroup CmpZsh au! autocmd Filetype zsh lua require'cmp'.setup.buffer { sources = { { name = "zsh" }, } } augroup END ]]
-			)
 		end,
 	},
 }

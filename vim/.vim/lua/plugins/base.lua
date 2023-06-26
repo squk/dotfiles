@@ -10,9 +10,16 @@ return {
 	"will133/vim-dirdiff",
 	"renerocksai/calendar-vim",
 	"google/vim-searchindex",
-	"hrsh7th/vim-vsnip",
 	"kosayoda/nvim-lightbulb",
 	"tpope/vim-surround",
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+		dependencies = { "rafamadriz/friendly-snippets" },
+	},
 	"ntpeters/vim-better-whitespace",
 	"junegunn/fzf.vim",
 	"nathanaelkane/vim-indent-guides",

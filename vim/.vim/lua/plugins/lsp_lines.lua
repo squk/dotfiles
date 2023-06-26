@@ -6,7 +6,7 @@ return {
 		vim.diagnostic.config({
 			virtual_lines = { only_current_line = true },
 
-			update_in_insert = true,
+			-- update_in_insert = true,
 			virtual_text = false,
 		})
 

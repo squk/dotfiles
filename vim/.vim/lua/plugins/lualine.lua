@@ -96,7 +96,7 @@ return {
 				lualine_c = {
 					{
 						"diagnostics",
-						sources = { "nvim_lsp", "nvim_workspace_diagnostic" },
+						sources = { "nvim_workspace_diagnostic" },
 						symbols = { error = " ", warn = " ", info = " ", hint = " " },
 					},
 				},

@@ -19,47 +19,6 @@ return {
 	"tversteeg/registers.nvim",
 	"jremmen/vim-ripgrep",
 	"nvim-lua/plenary.nvim",
-
-	{
-		"preservim/nerdcommenter",
-		init = function()
-			require("config.nerdcommenter")
-		end,
-		keys = {
-			{ "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>" },
-			{ "<leader>c<Space>", ":call nerdcommenter#Comment(0, 'toggle')<CR>", mode = "v" },
-
-			{ "<leader>cS", ":call nerdcommenter#Comment(0, 'sexy')<CR>" },
-			{ "<leader>cS", ":call nerdcommenter#Comment(0, 'sexy')<CR>", mode = "v" },
-
-			{ "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>" },
-			{ "<leader>c$", ":call nerdcommenter#Comment(0, 'ToEOL')<CR>", mode = "v" },
-		},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		config = function()
-			require("config.nvim-treesitter")
-		end,
-		lazy = false,
-	},
-
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
-		config = function()
-			require("config.neotree")
-		end,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-		},
-		keys = {
-			{ "<C-n>", ":Neotree filesystem reveal toggle reveal_force_cwd<cr>", desc = "Open NeoTree" },
-		},
-	},
-
 	-- Undo tree
 	{
 		"mbbill/undotree",
@@ -81,47 +40,6 @@ return {
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },
 
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	"nvim-lua/lsp-status.nvim",
-	"VonHeikemen/lsp-zero.nvim",
-
-	-- Completion and linting
-	{
-		"hrsh7th/nvim-cmp",
-		event = "VimEnter",
-		dependencies = {
-			"onsails/lspkind.nvim",
-			"neovim/nvim-lspconfig",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"lukas-reineke/cmp-under-comparator",
-			"hrsh7th/cmp-cmdline",
-			"f3fora/cmp-spell",
-			"hrsh7th/cmp-nvim-lsp-document-symbol",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-vsnip",
-			"ray-x/cmp-treesitter",
-		},
-		config = function()
-			require("config.lsp")
-		end,
-	},
-	{
-		"tzachar/cmp-tabnine",
-		build = "./install.sh",
-		event = "InsertEnter",
-		cond = not use_google(),
-	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = "VimEnter",
-		config = function()
-			require("config.null-ls")
-		end,
-	},
 	-- Rust
 	{
 		"saecki/crates.nvim",
@@ -132,77 +50,8 @@ return {
 			require("crates").setup()
 		end,
 	},
-
 	{ "simrat39/rust-tools.nvim", ft = "rust" },
 
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		config = function()
-			require("config.refactoring")
-		end,
-		keys = {
-			-- remap to open the Telescope refactoring menu in visual mode
-			{
-				"<leader>rr",
-				"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-				{ noremap = true },
-			},
-
-			-- Remaps for the refactoring operations currently offered by the plugin
-			{
-				"<leader>rx",
-				[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
-				mode = "v",
-				{ noremap = true, silent = true, expr = false },
-			},
-			{
-				"<leader>rxf",
-				[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
-				mode = "v",
-				{ noremap = true, silent = true, expr = false },
-			},
-			{
-				"<leader>rxv",
-				[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
-				mode = "v",
-				{ noremap = true, silent = true, expr = false },
-			},
-			{
-				"<leader>ri",
-				[[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-				mode = "v",
-				{ noremap = true, silent = true, expr = false },
-			},
-
-			-- Extract block doesn't need visual mode
-			{
-				"<leader>rxb",
-				[[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]],
-				{ noremap = true, silent = true, expr = false },
-			},
-			{
-				"<leader>rxbf",
-				[[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]],
-				{ noremap = true, silent = true, expr = false },
-			},
-
-			-- Inline variable can also pick up the identifier currently under the cursor without visual mode
-			{
-				"<leader>ri",
-				[[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-				{ noremap = true, silent = true, expr = false },
-			},
-			{
-				"<leader>rx",
-				[[ <Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
-				{ noremap = true, silent = true, expr = false },
-			},
-		},
-	},
 	{ "andymass/vim-matchup", event = "VimEnter" },
 	{
 		"stevearc/aerial.nvim",
@@ -223,7 +72,6 @@ return {
 		end,
 		lazy = false,
 	},
-
 	{
 		"rmagatti/auto-session",
 		config = function()
@@ -233,17 +81,10 @@ return {
 			})
 		end,
 	},
-
 	{
 		"ipod825/libp.nvim",
 		config = function()
 			require("libp").setup()
-		end,
-	},
-	{
-		"rcarriga/nvim-notify",
-		config = function()
-			require("config.notify")
 		end,
 	},
 	{
@@ -261,13 +102,10 @@ return {
 			require("config.oscyank")
 		end,
 	},
-
-	-- mine
 	{
 		"squk/java-syntax.vim",
 		lazy = false,
 	},
-
 	{
 		"folke/which-key.nvim",
 		config = function()

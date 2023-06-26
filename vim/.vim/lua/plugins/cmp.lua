@@ -165,10 +165,10 @@ return {
 						menu = {
 							nvim_ciderlsp = "",
 							buffer = "",
-							crates = "📦",
-							nvim_lsp = "[CiderLSP]",
+							crates = "",
+							nvim_lsp = "",
+							nvim_lua = "",
 							cmp_tabnine = "[TabNine]",
-							nvim_lua = "[API]",
 							path = "[path]",
 							tmux = "[TMUX]",
 							vim_vsnip = "[snip]",

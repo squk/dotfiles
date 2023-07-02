@@ -1,4 +1,7 @@
-vim.cmd([[
+local use_google = require("utils").use_google
+
+if use_google() then
+	vim.cmd([[
 let g:VCSCommandDisableMappings = 1
 
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
@@ -132,3 +135,4 @@ nmap <leader>rbs ss <leader>rb
 
 nmap <leader>yb :let @+ = join(blaze#GetTargets(), ' ')<cr>
 ]])
+end

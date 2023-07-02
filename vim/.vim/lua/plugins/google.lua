@@ -12,7 +12,6 @@ end
 if not use_google() then
 	return {}
 end
-
 return {
 	{
 		name = "maktaba",

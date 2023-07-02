@@ -1,4 +1,9 @@
 return {
+	"nvim-telescope/telescope-file-browser.nvim",
+	dependencies = {
+		"nvim-telescope/telescope.nvim",
+	},
+}, {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
 	config = function()
@@ -47,12 +52,6 @@ return {
 		})
 		require("telescope").load_extension("file_browser")
 	end,
-	dependencies = {
-		"telescope_codesearch",
-		"telescope_citc",
-		"telescope_fig",
-		"nvim-telescope/telescope-file-browser.nvim",
-	},
 	keys = {
 		{
 			"<leader>fb",

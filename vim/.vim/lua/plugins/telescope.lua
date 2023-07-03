@@ -1,11 +1,31 @@
+local use_google = require("utils").use_google
+local TableConcat = require("utils").TableConcat
+local keys = {
+	{ "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "[F]ile [B]rowser" },
+	{ "<leader>tb", ":Telescope file_buffers<CR>", desc = "[T]elescope [B]uffers" },
+	{ "<leader>th", [[:lua require('telescope.builtin').help_tags<cr>]], desc = "[T]elescope [H]elp" },
+	{ "<leader>t*", [[:lua require('telescope.builtin').grep_string<cr>]], desc = "[T]elescope current [W]ord" },
+	{ "<leader>tg", [[:lua require('telescope.builtin').live_grep<cr>]], desc = "[T]elescope by [G]rep" },
+}
+
+if use_google() then
+	TableConcat(keys, {
+		{ "<C-P>", [[:lua require('telescope').extensions.codesearch.find_files{}<CR>]], "n" },
+		{ "<C-Space>", [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]] },
+		{ "<leader>cs", [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]] },
+		{ "<leader>cs", [[:lua require('telescope').extensions.codesearch.find_query{}<CR>]], mode = "v" },
+		{
+			"<leader>CS",
+			[[:lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
+		},
+	})
+end
+
 return {
-	"nvim-telescope/telescope-file-browser.nvim",
-	dependencies = {
-		"nvim-telescope/telescope.nvim",
-	},
-}, {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	dependencies = {
+		"nvim-telescope/telescope-file-browser.nvim",
+	},
 	config = function()
 		require("telescope").setup({
 			defaults = {
@@ -52,51 +72,5 @@ return {
 		})
 		require("telescope").load_extension("file_browser")
 	end,
-	keys = {
-		{
-			"<leader>fb",
-			":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-			{ noremap = true },
-			desc = "[F]ile [B]rowser",
-		},
-		{
-			"<leader>tf",
-			":Telescope file_browser",
-			{ noremap = true },
-			desc = "[T]elescope [F]ilebrowser",
-		},
-		{ "<leader>tb", ":Telescope file_buffers", desc = "[T]elescope [B]uffers" },
-		{ "<leader>th", [[:lua require('telescope.builtin').help_tags<cr>]], desc = "[T]elescope [H]elp" },
-		{ "<leader>tw", [[:lua require('telescope.builtin').grep_string<cr>]], desc = "[T]elescope current [W]ord" },
-		{ "<leader>tg", [[:lua require('telescope.builtin').live_grep<cr>]], desc = "[T]elescope by [G]rep" },
-
-		-- Google mappings
-		{
-			"<C-P>",
-			[[:lua require('telescope').extensions.codesearch.find_files{}<CR>]],
-			"n",
-			{ noremap = true, silent = true },
-		},
-		{
-			"<C-Space>",
-			[[:lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-			{ noremap = true, silent = true },
-		},
-		{
-			"<leader>cs",
-			[[:lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-			{ noremap = true, silent = true },
-		},
-		{
-			"<leader>cs",
-			[[:lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-			mode = "v",
-			{ noremap = true, silent = true },
-		},
-		{
-			"<leader>CS",
-			[[:lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
-			{ noremap = true, silent = true },
-		},
-	},
+	keys = keys,
 }

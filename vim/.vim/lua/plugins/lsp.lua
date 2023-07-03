@@ -201,9 +201,11 @@ return {
 				capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)
 				capabilities.workspace.codeLens = { refreshSupport = true }
 				capabilities.workspace.diagnostics = { refreshSupport = true }
+
 				lspconfig.analysislsp.setup({
 					capabilities = capabilities,
 				})
+
 				lspconfig.ciderlsp.setup({
 					capabilities = capabilities,
 					on_attach = cider_on_attach,

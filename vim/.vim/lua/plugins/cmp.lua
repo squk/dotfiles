@@ -24,31 +24,13 @@ return {
 		},
 	},
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			local autopairs = require("nvim-autopairs")
-
-			autopairs.setup({
-				check_ts = true, -- treesitter integration
-				disable_filetype = { "TelescopePrompt" },
-			})
-
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			local cmp_status_ok, cmp = pcall(require, "cmp")
-			if not cmp_status_ok then
-				return
-			end
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
-		end,
-	},
-	{
 		"hrsh7th/nvim-cmp",
 		event = "VimEnter",
 		dependencies = {
 			"f3fora/cmp-spell",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-calc",
+			"onsails/lspkind.nvim",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
@@ -108,8 +90,7 @@ return {
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp_document_symbol" },
-					{ name = "path" },
+					{ name = "path", priority = 9 },
 					{ name = "cmdline" },
 				}),
 			})
@@ -159,6 +140,7 @@ return {
 
 				sorting = {
 					comparators = {
+						cmp.config.compare.priority,
 						cmp.config.compare.offset,
 						cmp.config.compare.exact,
 						cmp.config.compare.score,
@@ -167,7 +149,6 @@ return {
 						cmp.config.compare.sort_text,
 						cmp.config.compare.length,
 						cmp.config.compare.order,
-						cmp.config.compare.priority,
 					},
 				},
 
@@ -179,7 +160,7 @@ return {
 
 				formatting = {
 					format = lspkind.cmp_format({
-						mode = "symbol_text",
+						-- mode = "symbol_text",
 						-- before = function(entry, vim_item)
 						--     if entry.source.name == "nvim_ciderlsp" then
 						--         if entry.completion_item.is_multiline then

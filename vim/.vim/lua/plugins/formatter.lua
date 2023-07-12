@@ -17,7 +17,49 @@ return {
 				lua = {
 					-- "formatter.filetypes.lua" defines default configurations for the
 					-- "lua" filetype
-					require("formatter.filetypes.lua").stylua,
+					-- require("formatter.filetypes.lua").stylua,
+					-- You can also define your own configuration
+					function()
+						-- Supports conditional formatting
+						if util.get_current_buffer_file_name() == "special.lua" then
+							return nil
+						end
+
+						-- Full specification of configurations is down below and in Vim help
+						-- files
+						return {
+							exe = "stylua",
+							args = {
+								"--search-parent-directories",
+								"--stdin-filepath",
+								util.escape_path(util.get_current_buffer_file_path()),
+								"--",
+								"-",
+							},
+							stdin = true,
+						}
+					end,
+				},
+
+				html = {
+					require("formatter.defaults").prettier,
+				},
+				xml = {
+					function()
+						return {
+							exe = "tidy",
+							args = {
+								"-quiet",
+								"-xml",
+								"--indent auto",
+								"--indent-spaces 2",
+								"--verical-space yes",
+								"--tidy-mark no",
+							},
+							stdin = true,
+							try_node_modules = true,
+						}
+					end,
 				},
 
 				-- Use the special "*" filetype for defining formatter configurations on

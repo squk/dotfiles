@@ -15,7 +15,6 @@ set formatoptions+=j
 set nowritebackup
 au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
 
-autocmd BufWritePre * StripWhitespace
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

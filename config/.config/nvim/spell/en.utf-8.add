@@ -3,3 +3,4 @@ handlePackageIntent
 for/!
 tooling/!
 createApkDescriptor
+setInstance

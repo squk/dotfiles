@@ -3,6 +3,7 @@ local TableConcat = require("utils").TableConcat
 local keys = {
 	{ "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "[F]ile [B]rowser" },
 	{ "<leader>tb", ":Telescope file_buffers<CR>", desc = "[T]elescope [B]uffers" },
+	{ "<leader>tg", ":Telescope git_files<CR>", desc = "[T]elescope [G]it Files" },
 	{ "<leader>th", [[:lua require('telescope.builtin').help_tags<cr>]], desc = "[T]elescope [H]elp" },
 	{ "<leader>t*", [[:lua require('telescope.builtin').grep_string<cr>]], desc = "[T]elescope current [W]ord" },
 	{ "<leader>tg", [[:lua require('telescope.builtin').live_grep<cr>]], desc = "[T]elescope by [G]rep" },

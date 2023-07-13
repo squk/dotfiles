@@ -7,6 +7,8 @@ return {
 		local TableConcat = require("utils").TableConcat
 
 		local sources = {
+			-- *
+			null_ls.builtins.formatting.trim_whitespace,
 			-- Catch insensitive, inconsiderate writing.
 			null_ls.builtins.diagnostics.alex,
 
@@ -22,6 +24,12 @@ return {
 
 			-- Reformats Java source code according to Google Java Style.
 			null_ls.builtins.formatting.google_java_format,
+
+			-- XML
+			null_ls.builtins.diagnostics.tidy,
+			-- null_ls.builtins.formatting.xmlformat
+
+			null_ls.builtins.formatting.stylua,
 		}
 
 		if not use_google then

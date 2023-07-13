@@ -18,19 +18,11 @@ vmap <leader>` c`<C-R>"`<ESC>
 " unhilight search
 nnoremap <leader><space> :nohlsearch<CR>
 
-" EZ Ack search
-" nnoremap <leader>a :Ack!<Space>
-" nnoremap <leader>A :Ack!<Space> <C-r><C-w>
-
 " --------- CLIPBOARD MAPPINGS ---------
 " Paste from OS clipboard
 map <leader>v    i<ESC>"+pa<ESC>
 vmap <leader>v   c<ESC>"+p<ESC>
 imap <leader>v    <ESC>"+pa
-
-" Copy to OS clipboard
-" vnoremap <leader>y "yy <Bar> :call system('xclip', @y)<CR>
-" map <leader>y "yy <Bar> :call system('xclip', @y)<CR>
 
 " --------- WINDOW/PANE MAPPINGS ---------
 map <leader>wr <C-W>r
@@ -48,31 +40,11 @@ nnoremap <silent> <Leader>s- :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
 nnoremap <silent> <Leader>x+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>x- :exe "resize " . (winheight(0) * 2/3)<CR>
 
-
 " --------- FORMATTING MAPPINGS ---------
 " indent file
 map <leader>= gg=G ``
 
-" format HTML/JSON
-map <leader>fh :%s/>\s*</>\r</g<cr>
-map <leader>fj :%!python -m json.tool<cr>
-
-map <leader>fjs :call UnMinify()<cr>
-"command! UnMinify call UnMinify()
-function! UnMinify()
-    %s/{\ze[^\r\n]/{\r/g
-    %s/){/) {/g
-    %s/};\?\ze[^\r\n]/\0\r/g
-    %s/;\ze[^\r\n]/;\r/g
-    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
-    normal ggVG=
-endfunction
-
-
-nmap <leader>toi :CocCommand tsserver.organizeImports<cr>
-
 nmap <leader>yf :let @+ = expand("%")<cr>
-nmap <leader>ut :UndotreeToggle<cr>
 nmap <leader>e :e %%
 
 " replace currently selected text with default register
@@ -80,16 +52,6 @@ nmap <leader>e :e %%
 vnoremap <leader>p "_dP
 
 nnoremap <leader>rp :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
-
-"Showing highlight groups
-" nmap <leader>sp :call <SID>SynStack()<CR>
-nmap <leader>shg :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 nnoremap <leader>s :SessionSave<CR>
 

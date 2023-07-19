@@ -12,10 +12,6 @@ return {
 			-- Catch insensitive, inconsiderate writing.
 			null_ls.builtins.diagnostics.alex,
 
-			-- buildifier is a tool for formatting and linting bazel BUILD, WORKSPACE, and .bzl files.
-			null_ls.builtins.diagnostics.buildifier,
-			null_ls.builtins.formatting.buildifier,
-
 			-- Codespell finds common misspellings in text files.
 			null_ls.builtins.diagnostics.codespell,
 			-- null_ls.builtins.diagnostics.cspell, null_ls.builtins.code_actions.cspell,

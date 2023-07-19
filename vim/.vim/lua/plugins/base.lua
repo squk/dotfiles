@@ -11,7 +11,6 @@ return {
 	"renerocksai/calendar-vim",
 	"google/vim-searchindex",
 	"kosayoda/nvim-lightbulb",
-	"tpope/vim-surround",
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",

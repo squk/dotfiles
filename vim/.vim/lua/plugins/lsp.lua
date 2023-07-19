@@ -8,6 +8,22 @@ return {
 			"VonHeikemen/lsp-zero.nvim",
 			"rcarriga/nvim-notify",
 		},
+		keys = {
+                {"<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>"},
+                {"<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>"},
+                {"L", "<cmd>lua vim.lsp.buf.hover()<CR>"},
+                {"g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>"},
+                {"gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"},
+                {"gd", "<cmd>lua vim.lsp.buf.definition()<CR>"},
+                {"gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>"},
+                {"gi", "<cmd>lua vim.lsp.buf.implementation()<CR>"},
+                {"gI", "<cmd>lua vim.lsp.buf.implementation()<CR>"},
+                {"gR", "<cmd>lua vim.lsp.buf.references()<CR>"},
+                {"<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
+                {"gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>"},
+                { "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", mode = "i"},
+                {"<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "v"},
+		},
 		config = function()
 			local use_google = require("utils").use_google
 			local notify = require("notify")
@@ -156,24 +172,6 @@ return {
 				end
 
 				lsp_status.on_attach(client)
-
-				local opts = { noremap = true, silent = true }
-				vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-				vim.api.nvim_set_keymap("v", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "L", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
-				-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-				vim.api.nvim_set_keymap("n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- diagnostics controls references
-				vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-				vim.api.nvim_set_keymap("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
-				vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 			end
 
 			if use_google() then

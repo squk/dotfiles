@@ -9,7 +9,7 @@ set runtimepath+=,~/.config/nvim/after/
 let &runtimepath = &runtimepath
 
 set directory=/tmp
-set undodir=/tmp
+set undofile
 set nobackup
 set formatoptions+=j
 set nowritebackup

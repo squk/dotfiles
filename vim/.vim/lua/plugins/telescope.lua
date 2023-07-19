@@ -1,12 +1,11 @@
 local use_google = require("utils").use_google
 local TableConcat = require("utils").TableConcat
 local keys = {
-	{ "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "[F]ile [B]rowser" },
 	{ "<leader>tb", ":Telescope file_buffers<CR>", desc = "[T]elescope [B]uffers" },
+	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
+	{ "<leader>t*", ":lua require('telescope.builtin').grep_string{}<CR>", desc = "[T]elescope current [W]ord" },
+	{ "<leader>tf", ":lua require('telescope.builtin').live_grep{}<CR>", desc = "[T]elescope by [G]rep" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "[T]elescope [G]it Files" },
-	{ "<leader>th", [[:lua require('telescope.builtin').help_tags<cr>]], desc = "[T]elescope [H]elp" },
-	{ "<leader>t*", [[:lua require('telescope.builtin').grep_string<cr>]], desc = "[T]elescope current [W]ord" },
-	{ "<leader>tg", [[:lua require('telescope.builtin').live_grep<cr>]], desc = "[T]elescope by [G]rep" },
 }
 
 if use_google() then
@@ -61,7 +60,8 @@ return {
 					return path
 				end,
 			},
-			extensions = { -- this block is optional, and if omitted, defaults will be used
+			extensions = {
+				-- this block is optional, and if omitted, defaults will be used
 				file_browser = {
 					-- disables netrw and use telescope-file-browser in its place
 					hijack_netrw = false,

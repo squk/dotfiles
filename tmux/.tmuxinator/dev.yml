@@ -11,20 +11,21 @@ windows:
         - other:
           - hgd gmscore
 
-  - experimental:
+  - experiments:
       layout: main-horizontal
       panes:
         - main:
-          - hgd experimental
+          - hgd experiments
           - vim
         - other:
-          - hgd experimental
+          - hgd experiments
 
   - notes:
       panes:
         - main:
           - cd ~/zettelkasten
           - vim ~/zettelkasten/Todo.md
+
   - dotfiles:
       layout: main-horizontal
       panes:

@@ -9,20 +9,20 @@ return {
 			"rcarriga/nvim-notify",
 		},
 		keys = {
-                {"<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>"},
-                {"<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>"},
-                {"L", "<cmd>lua vim.lsp.buf.hover()<CR>"},
-                {"g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>"},
-                {"gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"},
-                {"gd", "<cmd>lua vim.lsp.buf.definition()<CR>"},
-                {"gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>"},
-                {"gi", "<cmd>lua vim.lsp.buf.implementation()<CR>"},
-                {"gI", "<cmd>lua vim.lsp.buf.implementation()<CR>"},
-                {"gR", "<cmd>lua vim.lsp.buf.references()<CR>"},
-                {"<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
-                {"gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>"},
-                { "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", mode = "i"},
-                {"<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "v"},
+			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
+			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
+			{ "L", "<cmd>lua vim.lsp.buf.hover()<CR>" },
+			{ "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>" },
+			{ "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>" },
+			{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>" },
+			{ "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>" },
+			{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
+			{ "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
+			{ "gR", "<cmd>lua vim.lsp.buf.references()<CR>" },
+			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
+			{ "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
+			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", mode = "i" },
+			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "v" },
 		},
 		config = function()
 			local use_google = require("utils").use_google
@@ -161,10 +161,6 @@ return {
 
 			local my_on_attach = function(client, bufnr)
 				require("lualine").refresh()
-
-				vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
-				vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
-				vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
 
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 				if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.

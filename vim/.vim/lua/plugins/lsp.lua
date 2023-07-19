@@ -60,6 +60,7 @@ return {
 			configs.ast_grep = {
 				default_config = {
 					cmd = { "sg", "lsp" },
+					offset_encoding = "utf-8",
 					filetypes = {
 						"c",
 						"cpp",
@@ -86,6 +87,7 @@ return {
 							"--tooltag=nvim-cmp",
 							"--forward_sync_responses",
 						},
+						offset_encoding = "utf-8",
 						filetypes = {
 							"c",
 							"cpp",
@@ -114,6 +116,7 @@ return {
 							"--lint_on_save=false",
 							"--max_qps=10",
 						},
+						offset_encoding = "utf-8",
 						filetypes = {
 							"c",
 							"cpp",

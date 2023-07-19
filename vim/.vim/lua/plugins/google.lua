@@ -44,15 +44,30 @@ return {
 	{
 		name = "relatedfiles",
 		dir = "/usr/share/vim/google/relatedfiles",
-		dependencies = { "maktaba", "glaive" },
+		dependencies = { "glaive" },
 		config = function()
-			vim.cmd([[ Glaive relatedfiles plugin[mappings] ]])
+			vim.cmd([[Glaive relatedfiles]])
 		end,
+
+		keys = {
+			{
+				"<leader>rb",
+				":exec relatedfiles#selector#JumpToBuild()<CR>",
+			},
+			{
+				"<leader>rt",
+				":exec relatedfiles#selector#JumpToTestFile()<CR>",
+			},
+			{
+				"<leader>rc",
+				":exec relatedfiles#selector#JumpToCodeFile()<CR>",
+			},
+		},
 	},
 	{
 		name = "codefmt",
 		dir = "/usr/share/vim/google/codefmt",
-		dependencies = { "maktaba", "glaive" },
+		dependencies = { "glaive" },
 		config = function()
 			vim.cmd(
 				[[Glaive codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`]]
@@ -62,7 +77,7 @@ return {
 	{
 		name = "imp-google",
 		dir = "/usr/share/vim/google/imp-google",
-		dependencies = { "maktaba", "vim-imp", "glaive" },
+		dependencies = { "vim-imp", "glaive" },
 		config = function()
 			require("config.imp-google")
 		end,

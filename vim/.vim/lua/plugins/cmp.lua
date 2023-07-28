@@ -45,7 +45,7 @@ return {
 			local cmp = require("cmp")
 
 			local conditionalSources = cmp.config.sources({
-				{ name = "nvim_lsp", priority = 6 },
+				{ name = "nvim_lsp", priority = 100 },
 				{ name = "nvim_lsp_signature_help", priority = 6 },
 				{ name = "luasnip", priority = 7 },
 				{ name = "calc" },
@@ -69,7 +69,7 @@ return {
 			if use_google() then
 				require("cmp_nvim_ciderlsp").setup()
 				table.insert(conditionalSources, { name = "analysislsp" })
-				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
+				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 80 })
 			else
 				table.insert(conditionalSources, { name = "cmp_tabnine" })
 			end
@@ -160,20 +160,18 @@ return {
 
 				formatting = {
 					format = lspkind.cmp_format({
-						with_text = true,
-
-						-- mode = "symbol_text",
-						-- before = function(entry, vim_item)
-						--     if entry.source.name == "nvim_ciderlsp" then
-						--         if entry.completion_item.is_multiline then
-						--             -- multi-line specific formatting here
-						--             vim_item.menu = "  "
-						--         else
-						--             vim_item.menu = ""
-						--         end
-						--     end
-						--     return vim_item
-						-- end,
+						mode = "symbol_text",
+						before = function(entry, vim_item)
+							if entry.source.name == "nvim_ciderlsp" then
+								if entry.completion_item.is_multiline then
+									-- multi-line specific formatting here
+									vim_item.menu = "  "
+								else
+									vim_item.menu = ""
+								end
+							end
+							return vim_item
+						end,
 						maxwidth = 50, -- half max width
 						menu = {
 							nvim_ciderlsp = "",
@@ -188,8 +186,8 @@ return {
 						},
 					}),
 				},
-
 				experimental = {
+					native_menu = false,
 					ghost_text = true,
 				},
 			})

@@ -4,7 +4,8 @@ return {
 	lazy = false,
 	config = function()
 		vim.diagnostic.config({
-			virtual_lines = { only_current_line = true },
+			-- virtual_lines = { only_current_line = true },
+			virtual_lines = true,
 
 			-- update_in_insert = true,
 			virtual_text = false,

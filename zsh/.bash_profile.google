@@ -49,6 +49,7 @@ export FZF_CS_PREVIEW_HIGHLIGHT="\x1b[38;2;248;248;248m\x1b[48;2;81;85;89m"
 source ~/g3path.zsh
 source /etc/bash_completion.d/hgd
 
+source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
 alias acid=/google/bin/releases/mobile-devx-platform/acid/acid
 alias apido='/google/data/ro/teams/oneplatform/apido'
 alias bugs=/google/data/rw/users/mk/mkannan/www/bin/bugs

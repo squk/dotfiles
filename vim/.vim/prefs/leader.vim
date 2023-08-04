@@ -30,6 +30,7 @@ map <leader>H :wincmd H<cr>
 map <leader>K :wincmd K<cr>
 map <leader>L :wincmd L<cr>
 map <leader>J :wincmd J<cr>
+map <leader>T :wincmd T<cr>
 map <leader>x :wincmd x<cr>
 
 " resize vertical split to 1/3 or 2/3 size
@@ -54,25 +55,3 @@ vnoremap <leader>p "_dP
 nnoremap <leader>rp :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
 
 nnoremap <leader>s :SessionSave<CR>
-
-" copy to attached terminal using the yank(1) script:
-" https://github.com/sunaku/home/blob/master/bin/yank
-function! Yank(text) abort
-  let escape = system('yank', a:text)
-  if v:shell_error
-    echoerr escape
-  else
-    call writefile([escape], '/dev/tty', 'b')
-  endif
-endfunction
-noremap <silent> <Leader>y y:<C-U>call Yank(@0)<CR>
-
-" automatically run yank(1) whenever yanking in Vim
-" (this snippet was contributed by Larry Sanderson)
-function! CopyYank() abort
-  call Yank(join(v:event.regcontents, "\n"))
-endfunction
-
-" autocmd TextYankPost * call CopyYank()
-noremap <leader>y :call CopyYank()
-vnoremap <leader>y :call CopyYank()

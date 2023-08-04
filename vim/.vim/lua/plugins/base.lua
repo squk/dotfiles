@@ -107,12 +107,6 @@ return {
 		end,
 	},
 	{
-		"ojroques/nvim-osc52",
-		config = function()
-			require("config.oscyank")
-		end,
-	},
-	{
 		"squk/java-syntax.vim",
 		lazy = false,
 	},

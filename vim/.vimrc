@@ -72,10 +72,9 @@ set scrolloff=3    " Minumum lines to keep above and below cursor
 "       \   },
 "       \   cache_enabled: 1,
 "       \ }
-set shortmess=A
+set shortmess=A " disable swap
 set shortmess+=O
 set modifiable
-set omnifunc= completeopt=menuone,noinsert,noselect
 
 set updatetime=100
 

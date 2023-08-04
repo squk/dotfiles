@@ -8,10 +8,6 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local feedkey = function(key, mode)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 return {
 	{
 		"tzachar/cmp-tabnine",
@@ -29,6 +25,7 @@ return {
 		dependencies = {
 			"f3fora/cmp-spell",
 			"hrsh7th/cmp-buffer",
+			"amarakon/nvim-cmp-buffer-lines",
 			"hrsh7th/cmp-calc",
 			"onsails/lspkind.nvim",
 			"hrsh7th/cmp-cmdline",
@@ -37,41 +34,37 @@ return {
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-path",
+			"FelipeLema/cmp-async-path",
 			"lukas-reineke/cmp-under-comparator",
 			"ray-x/cmp-treesitter",
 		},
 		config = function()
+			vim.opt.shortmess:append("c")
+			vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
 			local cmp = require("cmp")
 
 			local conditionalSources = cmp.config.sources({
-				{ name = "nvim_lsp", priority = 100 },
-				{ name = "nvim_lsp_signature_help", priority = 6 },
-				{ name = "luasnip", priority = 7 },
+				{ name = "nvim_lsp", priority = 8 },
+				{ name = "treesitter", priority = 7 },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "luasnip" },
 				{ name = "calc" },
 				{ name = "crates" },
 				{ name = "nvim_lua" },
 				{ name = "emoji" },
-				{ name = "path" },
-				{ name = "treesitter" },
-				{
-					name = "spell",
-					option = {
-						keep_all_entries = false,
-						enable_in_context = function()
-							return true
-						end,
-					},
-				},
-				{ name = "buffer", max_item_count = 5, keyword_length = 5 },
+				{ name = "async_path" },
+				{ name = "spell" },
+				{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
+				-- { name = "buffer-lines" },
 			})
 
 			if use_google() then
 				require("cmp_nvim_ciderlsp").setup()
-				table.insert(conditionalSources, { name = "analysislsp" })
-				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 80 })
+				table.insert(conditionalSources, { name = "analysislsp", priority = 5 })
+				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
 			else
-				table.insert(conditionalSources, { name = "cmp_tabnine" })
+				table.insert(conditionalSources, { name = "cmp_tabnine", priority = 9 })
 			end
 
 			local lspkind = require("lspkind")
@@ -81,8 +74,9 @@ return {
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp_document_symbol" },
-					{ name = "buffer", max_item_count = 5 },
+					{ name = "nvim_lsp_document_symbol", priority = 3 },
+					{ name = "treesitter", priority = 2 },
+					{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
 				}),
 			})
 
@@ -90,8 +84,9 @@ return {
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "path", priority = 9 },
-					{ name = "cmdline" },
+					{ name = "async_path", priority = 9 },
+					{ name = "treesitter", priority = 7 },
+					{ name = "cmdline", priority = 8 },
 				}),
 			})
 
@@ -101,7 +96,6 @@ return {
 					["<C-u>"] = cmp.mapping.scroll_docs(4),
 					["<C-e>"] = cmp.mapping.close(),
 					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-					["<C-m>"] = cmp.mapping.confirm({ select = true }),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
@@ -136,11 +130,12 @@ return {
 					end),
 				},
 
+				preselect = cmp.PreselectMode.None,
 				sources = conditionalSources,
 
 				sorting = {
 					comparators = {
-						-- cmp.config.compare.priority,
+						cmp.config.compare.priority,
 						cmp.config.compare.offset,
 						cmp.config.compare.exact,
 						cmp.config.compare.score,
@@ -160,19 +155,8 @@ return {
 
 				formatting = {
 					format = lspkind.cmp_format({
-						mode = "symbol_text",
-						before = function(entry, vim_item)
-							if entry.source.name == "nvim_ciderlsp" then
-								if entry.completion_item.is_multiline then
-									-- multi-line specific formatting here
-									vim_item.menu = "  "
-								else
-									vim_item.menu = ""
-								end
-							end
-							return vim_item
-						end,
-						maxwidth = 50, -- half max width
+						-- mode = "symbol_text",
+						-- maxwidth = 50, -- half max width
 						menu = {
 							nvim_ciderlsp = "",
 							buffer = "",
@@ -181,7 +165,7 @@ return {
 							nvim_lua = "",
 							luasnip = "[LuaSnip]",
 							cmp_tabnine = "[TabNine]",
-							path = "[path]",
+							async_path = "[async_path]",
 							tmux = "[TMUX]",
 						},
 					}),

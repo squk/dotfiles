@@ -33,10 +33,6 @@ return {
 			local lsp_status = require("lsp-status")
 			lsp_status.register_progress()
 
-			-- Don't show the dumb matching stuff
-			vim.opt.shortmess:append("c")
-			vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
 			vim.opt.spell = true
 			vim.opt.spelllang = { "en_us" }
 			vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
@@ -73,10 +69,7 @@ return {
 							"bzl",
 							"typescript",
 						},
-						-- required for proto generated files jump
-						root_dir = function(fname)
-							return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
-						end,
+						root_dir = lspconfig.util.root_pattern("google3/*BUILD"),
 						settings = {},
 					},
 				}
@@ -104,9 +97,7 @@ return {
 							"typescript",
 							"javascript",
 						},
-						root_dir = function(fname)
-							return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
-						end,
+						root_dir = lspconfig.util.root_pattern("google3/*BUILD"),
 						settings = {},
 					},
 				}
@@ -126,7 +117,7 @@ return {
 				},
 				codeDescriptionSupport = true,
 				dataSupport = true,
-				layeredDiagnostics = true,
+				-- layeredDiagnostics = true,
 			}
 
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)

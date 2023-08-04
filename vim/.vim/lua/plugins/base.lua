@@ -1,6 +1,19 @@
 local use_google = require("utils").use_google
 
 return {
+	-- {
+	--     "rcarriga/nvim-notify",
+	--     config = function()
+	--         local colors = require("catppuccin.palettes").get_palette()
+	--         require("notify").setup({
+	--             background_colour = colors.base,
+	--             fps = 10, -- default 30
+	--             stages = "slide", -- default fade_in_slide_out
+	--             timeout = 5000, -- default 5000
+	--         })
+	--         vim.notify = require("notify")
+	--     end,
+	-- },
 	-- Pretty symbols
 	{
 		"nvim-tree/nvim-web-devicons",

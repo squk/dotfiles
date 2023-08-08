@@ -9,12 +9,11 @@ username = Christian Nieves <cnieves@google.com>
 
 [extdiff]
 icdiff = icdiff --recursive --line-numbers
-cmd.meld = /usr/bin/meld
-cmd.pmeld = /usr/bin/meld
 cmd.vimdiff = nvim
-_real_multidiff = hg-multi-diff
-# opts.vimdiff = -d $base $local $output $other +close +close
+opts.vimdiff = -d
+# opts.vimdiff = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
 # opts.vimdiff = -f '+next' '+execute "DirDiff" fnameescape(argv(0)) fnameescape(argv(1))'
+# opts.vimdiff = -c ':call ShowMercurialDiff(argv(0), argv(1))'
 
 [extensions]
 unsupported.tree =
@@ -28,11 +27,10 @@ findings.extra_args = --proxy
 summarize.extra_args = --proxy
 
 [merge-tools]
-# meld.args = --auto-merge --label='incoming' $local --label='merged' $base --label='existing' $other -o $output
-# https://www.mercurial-scm.org/wiki/MergingWithVim#More_Useful_3-Way_Diff
 vimdiff.executable = nvim
-vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
-vimdiff.premerge = keep
+# vimdiff.args = -d $local $other $base
+# vimdiff.premerge = keep
+vimdiff.args = -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
 
 [diff-tools]
 vimdiff.executable = nvim

@@ -167,9 +167,6 @@ return {
 						require("lualine").refresh()
 					end
 				end
-				require("cmp_nvim_ciderlsp").setup({
-					-- multiline_summary_symbol = "…",
-				})
 				capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)
 				capabilities.workspace.codeLens = { refreshSupport = true }
 				capabilities.workspace.diagnostics = { refreshSupport = true }

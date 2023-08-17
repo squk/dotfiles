@@ -3,6 +3,12 @@ local tprint = require("utils").tprint
 local dump = require("utils").dump
 local log = require("utils").log
 
+local function compare_by_ciderlsp_score(entry1, entry2)
+	if entry1.completion_item.score ~= nil and entry2.completion_item.score ~= nil then
+		return entry1.completion_item.score > entry2.completion_item.score
+	end
+end
+
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -60,7 +66,6 @@ return {
 			})
 
 			if use_google() then
-				require("cmp_nvim_ciderlsp").setup()
 				table.insert(conditionalSources, { name = "analysislsp", priority = 5 })
 				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
 			else
@@ -135,6 +140,7 @@ return {
 
 				sorting = {
 					comparators = {
+						compare_by_ciderlsp_score,
 						cmp.config.compare.priority,
 						cmp.config.compare.offset,
 						cmp.config.compare.exact,

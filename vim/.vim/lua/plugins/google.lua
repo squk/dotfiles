@@ -86,7 +86,7 @@ return {
 		"flwyd/vim-imp",
 		dependencies = { "imp-google" },
 		keys = {
-			{ "<leader>ii", ":ImpSuggest <C-r><C-w><cr>" },
+			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
 		},
 	},
 	{
@@ -132,7 +132,7 @@ return {
 		name = "google_comments",
 		-- url = "sso://googler@user/chmnchiang/google-comments",
 		dir = "/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments/",
-		dependencies = { "rcarriga/nvim-notify", "nvim-lua/plenary.nvim" },
+		dependencies = { "rktjmp/time-ago.vim", "rcarriga/nvim-notify", "nvim-lua/plenary.nvim" },
 		config = function()
 			-- Here are all the options and their default values:
 			require("google.comments").setup({

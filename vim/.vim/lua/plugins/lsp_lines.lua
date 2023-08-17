@@ -7,12 +7,12 @@ return {
 			virtual_lines = { only_current_line = true },
 			-- virtual_lines = true,
 
-			update_in_insert = true,
+			update_in_insert = false,
 			virtual_text = false,
 		})
 
 		require("lsp_lines").setup()
-		require("lsp_lines").toggle()
+		-- require("lsp_lines").toggle()
 	end,
 	keys = {
 		{

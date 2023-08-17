@@ -44,27 +44,27 @@ return {
 				html = {
 					require("formatter.defaults").prettier,
 				},
-				xml = {
-					function()
-						return {
-							exe = "tidy",
-							args = {
-								"-quiet",
-								"-xml",
-								"--wrap yes",
-								"--indent yes",
-								"--indent-spaces 2",
-								"--indent-attributes yes",
-								"--sort-attributes alpha",
-								"--wrap-attributes yes",
-								"--vertical-space yes",
-								"--tidy-mark no",
-							},
-							stdin = true,
-							try_node_modules = true,
-						}
-					end,
-				},
+				-- xml = {
+				--     function()
+				--         return {
+				--             exe = "tidy",
+				--             args = {
+				--                 "-quiet",
+				--                 "-xml",
+				--                 "--wrap yes",
+				--                 "--indent yes",
+				--                 "--indent-spaces 2",
+				--                 "--indent-attributes yes",
+				--                 "--sort-attributes alpha",
+				--                 "--wrap-attributes yes",
+				--                 "--vertical-space yes",
+				--                 "--tidy-mark no",
+				--             },
+				--             stdin = true,
+				--             try_node_modules = true,
+				--         }
+				--     end,
+				-- },
 				-- java = {
 				--     function()
 				--         return {

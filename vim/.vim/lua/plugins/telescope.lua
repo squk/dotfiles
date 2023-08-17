@@ -1,11 +1,29 @@
 local use_google = require("utils").use_google
 local TableConcat = require("utils").TableConcat
+local scopes = require("neoscopes")
+
+scopes.add_startup_scope()
+
+-- Helper functions to fetch the current scope and set `search_dirs`
+_G.find_files = function()
+	require("telescope.builtin").find_files({
+		search_dirs = scopes.get_current_dirs(),
+	})
+end
+_G.live_grep = function()
+	require("telescope.builtin").live_grep({
+		search_dirs = scopes.get_current_dirs(),
+	})
+end
+
 local keys = {
+	{ "<leader>ts", [[<cmd>lua require("neoscopes").select()<CR>]], desc = "NeoScopes" },
 	{ "<leader>tb", ":Telescope file_buffers<CR>", desc = "[T]elescope [B]uffers" },
-	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
-	{ "<leader>t*", ":lua require('telescope.builtin').grep_string{}<CR>", desc = "[T]elescope current [W]ord" },
-	{ "<leader>tf", ":lua require('telescope.builtin').live_grep{}<CR>", desc = "[T]elescope by [G]rep" },
+	{ "<leader>tf", ":lua find_files()<CR>", desc = "[T]elescope [F]ind Files" },
+	{ "<leader>tl", ":lua live_grep()<CR>", desc = "[T]elescope [L]ive Grep" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "[T]elescope [G]it Files" },
+	{ "<leader>t*", ":lua require('telescope.builtin').grep_string{}<CR>", desc = "[T]elescope current [W]ord" },
+	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 }
 
 if use_google() then

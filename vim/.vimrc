@@ -141,12 +141,12 @@ let g:loaded_remote_plugins    = 1
 
 
 " Permanent "very magic" mode
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap \>s/ \>smagic/
-nnoremap :g/ :g/\v
-nnoremap :g// :g//
+" nnoremap / /\v
+" vnoremap / /\v
+" cnoremap %s/ %smagic/
+" cnoremap \>s/ \>smagic/
+" nnoremap :g/ :g/\v
+" nnoremap :g// :g//
 
 function! TabMultiDiff()
   let s:tab_multi_diff = 0

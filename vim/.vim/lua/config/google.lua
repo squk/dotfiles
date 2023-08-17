@@ -130,9 +130,6 @@ endfunction
 com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
-
-nmap <leader>rbs ss <leader>rb
-
 nmap <leader>yb :let @+ = join(blaze#GetTargets(), ' ')<cr>
 ]])
 end

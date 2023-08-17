@@ -52,6 +52,8 @@ nmap <leader>e :e %%
 " without yanking it
 vnoremap <leader>p "_dP
 
-nnoremap <leader>rp :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
+
+nnoremap <leader>rp :lua vim.notify("use <leader><leader>")
+nnoremap <leader><leader> :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
 
 nnoremap <leader>s :SessionSave<CR>

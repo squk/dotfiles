@@ -85,7 +85,7 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
 					{ name = "async_path", priority = 9 },
-					{ name = "treesitter", priority = 7 },
+					-- { name = "treesitter", priority = 7 },
 					{ name = "cmdline", priority = 8 },
 				}),
 			})

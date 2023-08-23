@@ -37,3 +37,9 @@
     po = push origin
 [core]
 	autocrlf = false
+
+[merge]
+    tool = "nvim"
+
+[mergetool "nvim"]
+	cmd = nvim -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"

@@ -91,7 +91,7 @@ return {
 				sources = cmp.config.sources({
 					{ name = "async_path", priority = 9 },
 					-- { name = "treesitter", priority = 7 },
-					{ name = "cmdline", priority = 8 },
+					{ name = "cmdline", priority = 8, option = { ignore_cmds = { "edit", "write" } } },
 				}),
 			})
 

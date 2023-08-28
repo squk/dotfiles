@@ -3,7 +3,6 @@ local use_google = require("utils").use_google
 
 if use_google() then
 	map("n", "<leader>tm", ":Telescope citc modified<CR>")
-	map("n", "<leader>tb", ":Telescope file_browser<CR>")
 
 	-- [F]ig [S]tatus
 	map("n", "<leader>fs", [[<cmd>lua require('telescope').extensions.fig.status{}<CR>]])

@@ -70,7 +70,6 @@
   "registers.nvim": { "branch": "main", "commit": "2ab8372bb837f05fae6b43091f10a0b725d113ca" },
   "rust-tools.nvim": { "branch": "master", "commit": "0cc8adab23117783a0292a0c8a2fbed1005dc645" },
   "telekasten.nvim": { "branch": "main", "commit": "584783fdbdd13bb691a435f86ed10a3717fa9e9a" },
-  "telescope-file-browser.nvim": { "branch": "master", "commit": "ad7b637c72549713b9aaed7c4f9c79c62bcbdff0" },
   "telescope.nvim": { "branch": "master", "commit": "2d92125620417fbea82ec30303823e3cd69e90e8" },
   "telescope_citc": { "branch": "main", "commit": "d6421d5bfe058915ece0daec55e488f8ea05f207" },
   "telescope_codesearch": { "branch": "main", "commit": "a26077ad3c68cf897ae1c31da903d6516ebb9c92" },

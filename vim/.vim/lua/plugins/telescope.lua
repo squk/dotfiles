@@ -1,8 +1,5 @@
 local use_google = require("utils").use_google
 local TableConcat = require("utils").TableConcat
-local scopes = require("neoscopes")
-
-scopes.add_startup_scope()
 
 -- Helper functions to fetch the current scope and set `search_dirs`
 _G.find_files = function()
@@ -41,9 +38,7 @@ end
 
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = {
-		"nvim-telescope/telescope-file-browser.nvim",
-	},
+	dependencies = {},
 	config = function()
 		require("telescope").setup({
 			defaults = {
@@ -80,16 +75,11 @@ return {
 			},
 			extensions = {
 				-- this block is optional, and if omitted, defaults will be used
-				file_browser = {
-					-- disables netrw and use telescope-file-browser in its place
-					hijack_netrw = false,
-				},
 				codesearch = {
 					experimental = true, -- enable results from google3/experimental
 				},
 			},
 		})
-		require("telescope").load_extension("file_browser")
 	end,
 	keys = keys,
 }

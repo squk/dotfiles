@@ -4,6 +4,11 @@ return {
 	config = function()
 		require("neo-tree").setup({
 			hijack_netrw_behavior = "open_current",
+			window = {
+				mappings = {
+					["O"] = "expand_all_nodes",
+				},
+			},
 		})
 	end,
 	dependencies = {

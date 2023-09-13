@@ -6,6 +6,8 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		lazy = false,
 	},
+	"ldelossa/litee.nvim",
+	"ldelossa/litee-calltree.nvim",
 	"jghauser/mkdir.nvim",
 	"will133/vim-dirdiff",
 	"renerocksai/calendar-vim",

@@ -112,7 +112,7 @@ function! G4Blame(...)
   " Get the output, split it on newline and keep empty lines, skip the first 2
   " lines because they're headers we don't need, and put it in starting on line
   " 1 of the left pane
-  call setline(1, split(system('g4 blame ' . file), '\n', 1)[2:])
+  call setline(1, split(system('hg blame ' . file), '\n', 1)[2:])
   " Lock scrolling in left pane, turn off word wrap, set the buffer as
   " not-modified, remove any listchars highlighting (common in google code), set
   " it readonly (to make modifications slightly more annoying).

@@ -16,7 +16,6 @@ return {
 		})
 	end,
 	keys = {
-		{ "gr", "<Cmd>Trouble lsp_references<CR>" },
 		{ "<Leader>xx", "<Cmd>Trouble<CR>" },
 		{ "<Leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>" },
 		{ "<Leader>xd", "<Cmd>Trouble document_diagnostics<CR>" },

@@ -7,12 +7,15 @@ return {
 			"nvim-lua/lsp-status.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 			"rcarriga/nvim-notify",
+			"ldelossa/litee.nvim",
+			"ldelossa/litee-calltree.nvim",
 		},
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
 			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
 			{ "L", "<cmd>lua vim.lsp.buf.hover()<CR>" },
 			{ "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>" },
+			{ "gr", "<Cmd>Telescope lsp_references<CR>" },
 			{ "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>" },
 			{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>" },
 			{ "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>" },
@@ -33,19 +36,11 @@ return {
 			local lsp_status = require("lsp-status")
 			lsp_status.register_progress()
 
+			require("litee.lib").setup({})
+			require("litee.calltree").setup({})
+
 			vim.opt.spell = true
 			vim.opt.spelllang = { "en_us" }
-			vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
-				local client = vim.lsp.get_client_by_id(ctx.client_id)
-				local lvl = ({ "ERROR", "WARN", "INFO", "DEBUG" })[result.type]
-				notify({ result.message }, lvl, {
-					title = "LSP | " .. client.name,
-					timeout = 1000,
-					keep = function()
-						return lvl == "ERROR" or lvl == "WARN"
-					end,
-				})
-			end
 
 			if use_google() then
 				configs.ciderlsp = {
@@ -167,6 +162,18 @@ return {
 						require("lualine").refresh()
 					end
 				end
+				cider_lsp_handlers["window/showMessage"] = function(_, result, ctx)
+					local client = vim.lsp.get_client_by_id(ctx.client_id)
+					local lvl = ({ "ERROR", "WARN", "INFO", "DEBUG" })[result.type]
+					notify({ result.message }, lvl, {
+						title = "LSP | " .. client.name,
+						timeout = 1000,
+						keep = function()
+							return lvl == "ERROR" or lvl == "WARN"
+						end,
+					})
+				end
+
 				capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)
 				capabilities.workspace.codeLens = { refreshSupport = true }
 				capabilities.workspace.diagnostics = { refreshSupport = true }

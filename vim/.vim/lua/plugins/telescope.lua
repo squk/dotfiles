@@ -1,5 +1,6 @@
 local use_google = require("utils").use_google
 local TableConcat = require("utils").TableConcat
+local scopes = require("neoscopes")
 
 -- Helper functions to fetch the current scope and set `search_dirs`
 _G.find_files = function()
@@ -15,9 +16,10 @@ end
 
 local keys = {
 	{ "<leader>ts", [[<cmd>lua require("neoscopes").select()<CR>]], desc = "NeoScopes" },
-	{ "<leader>tb", ":Telescope file_buffers<CR>", desc = "[T]elescope [B]uffers" },
 	{ "<leader>tf", ":lua find_files()<CR>", desc = "[T]elescope [F]ind Files" },
 	{ "<leader>tl", ":lua live_grep()<CR>", desc = "[T]elescope [L]ive Grep" },
+
+	{ "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", desc = "[T]elescope [F]uzzy [F]ind" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "[T]elescope [G]it Files" },
 	{ "<leader>t*", ":lua require('telescope.builtin').grep_string{}<CR>", desc = "[T]elescope current [W]ord" },
 	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },

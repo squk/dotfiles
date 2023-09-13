@@ -10,5 +10,6 @@ return {
 			stages = "slide", -- default fade_in_slide_out
 			timeout = 5000, -- default 5000
 		})
+		vim.notify = require("notify")
 	end,
 }

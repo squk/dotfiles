@@ -39,6 +39,8 @@ nnoremap <S-D> <C-D>
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 
+nnoremap <space><space> :w<CR>
+
 " Create window splits easier
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
@@ -105,6 +107,6 @@ function! BreakHabitsWindow(message) abort
     call nvim_win_set_option(win, 'winhl', 'Normal:CustomFloatingWindow')
 endfunction
 
-" let windowHabitsKeys = [",tm"]
-" let windowHabitsMessage = ["USE < ,fw > INSTEAD", "BREAK BAD HABITS"]
+" let windowHabitsKeys = [":w<cr>"]
+" let windowHabitsMessage = ["USE < SPACE SPACE > INSTEAD", "BREAK BAD HABITS"]
 " call s:createHabitsMappings(windowHabitsKeys, windowHabitsMessage)

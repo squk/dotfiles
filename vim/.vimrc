@@ -63,6 +63,7 @@ set scrolloff=3    " Minumum lines to keep above and below cursor
 set shortmess=A " disable swap
 set shortmess+=O
 set modifiable
+set noscrollbind
 
 set updatetime=100
 

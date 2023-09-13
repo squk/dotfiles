@@ -65,6 +65,9 @@ mdiff = ! HG_ROOT=$(hg root) hg _real_multidiff "$@"
 mdiffp4 = ! HG_ROOT=$(hg root) hg _real_multidiff --rev p4base "$@"
 mdiffup = ! HG_ROOT=$(hg root) hg _real_multidiff --rev .^ "$@"
 
+depotpath = !realpath -m $@ | sed s#`hg root`#//depot#
+filelog = !p4 filelog `$HG depotpath $@`
+
 [trainingwheels]
 warn-head-paths=False
 prevent-push-dirty=false

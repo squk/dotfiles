@@ -132,7 +132,12 @@ return {
 		name = "google_comments",
 		-- url = "sso://googler@user/chmnchiang/google-comments",
 		dir = "/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments/",
-		dependencies = { "rktjmp/time-ago.vim", "rcarriga/nvim-notify", "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"rktjmp/time-ago.vim",
+			"rcarriga/nvim-notify",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
 		config = function()
 			-- vim.notify = require("notify")
 			-- Here are all the options and their default values:

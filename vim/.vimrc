@@ -172,7 +172,6 @@ function! s:AddBufferToTab()
   tabfirst
 endfun
 
-
 filetype plugin indent on
 syntax on
 

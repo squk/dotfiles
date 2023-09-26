@@ -20,11 +20,14 @@ windows:
         - other:
           - hgd experiments
 
-  - notes:
+  - critique:
+      layout: main-horizontal
       panes:
         - main:
-          - cd ~/zettelkasten
-          - vim ~/zettelkasten/Todo.md
+          - hgd google-comments
+          - vim
+        - other:
+          - hgd google-comments
 
   - dotfiles:
       layout: main-horizontal

@@ -199,3 +199,4 @@ bdoctor_modules() {
     echo "HOURLY(EXECUTION): $hourly"
 }
 alias bisect=/google/data/ro/teams/tetralight/bin/bisect
+alias copybara='/google/bin/releases/copybara/public/copybara/copybara'

@@ -129,45 +129,33 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 	{
-		name = "google_comments",
-		-- url = "sso://googler@user/chmnchiang/google-comments",
-		dir = "/google/src/cloud/cnieves/google-comments/google3/experimental/users/chmnchiang/neovim/google-comments/",
+		name = "critique_nvim",
+		dir = "/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique-nvim/",
 		dependencies = {
 			"rktjmp/time-ago.vim",
-			"rcarriga/nvim-notify",
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			-- vim.notify = require("notify")
 			-- Here are all the options and their default values:
-			require("google.comments").setup({
-				-- command = {'/google/bin/releases/editor-devtools/get_comments.par', '--full', '--json', "-x=''"},
-				stubby = true,
-				command = {
-					'stubby --output_json call blade:codereview-rpc CodereviewRpcService.GetComments "changelist_number: $(/google/data/ro/teams/fig/bin/vcstool pending-change-number)"',
-				},
-				sign = "COMMENT_ICON",
+			require("critique.comments").setup({
+				-- sign = "COMMENT_ICON",
 				-- Fetch the comments after calling `setup`.
 				auto_fetch = true,
-				display = {
-					-- The width of the comment display window.
-					width = 50,
-					-- When showing file paths, use relative paths or not.
-					relative_path = true,
-				},
+				render_resolved_threads = true,
 			})
 			local map = require("utils").map
 			-- here are some mappings you might want:
-			map("n", "]c", [[<Cmd>GoogleCommentsGotoNextComment<CR>]])
-			map("n", "[c", [[<Cmd>GoogleCommentsGotoPrevComment<CR>]])
+			map("n", "]c", [[<Cmd>CritiqueGotoNextComment<CR>]])
+			map("n", "[c", [[<Cmd>CritiqueGotoPrevComment<CR>]])
 
-			map("n", "<Leader>lc", [[<Cmd>GoogleCommentsToggleLineComments<CR>]])
-			map("n", "<Leader>ac", [[<Cmd>GoogleCommentsToggleAllComments<CR>]])
-			map("n", "<Leader>fc", [[<Cmd>GoogleCommentsFetchComments<CR>]])
-			map("n", "<Leader>tc", [[<Cmd>GoogleCommentsTelescope<CR>]])
+			map("n", "<Leader>lc", [[<Cmd>CritiqueToggleLineComments<CR>]])
+			map("n", "<Leader>ac", [[<Cmd>CritiqueToggleAllComments<CR>]])
+			map("n", "<Leader>fc", [[<Cmd>CritiqueFetchComments<CR>]])
+			map("n", "<Leader>tc", [[<Cmd>CritiqueCommentsTelescope<CR>]])
 
-			vim.fn.sign_define("COMMENT_ICON", { text = "" })
+			-- vim.fn.sign_define("COMMENT_ICON", { text = "" })
 		end,
 	},
 	{

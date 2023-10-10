@@ -31,8 +31,12 @@ return {
 	goog("googlepaths"),
 	goog("google-filetypes"),
 	goog("ft-java"),
+	goog("ft-soy"),
+	goog("ft-gss"),
+	goog("ft-javascript"),
 	goog("ft-kotlin"),
 	goog("ft-proto"),
+	goog("google-logo"),
 	goog("critique"),
 	goog("piper"),
 	goog("gtimporter"),
@@ -137,10 +141,8 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
-			-- vim.notify = require("notify")
 			-- Here are all the options and their default values:
 			require("critique.comments").setup({
-				-- sign = "COMMENT_ICON",
 				-- Fetch the comments after calling `setup`.
 				auto_fetch = true,
 				render_resolved_threads = true,
@@ -154,8 +156,6 @@ return {
 			map("n", "<Leader>ac", [[<Cmd>CritiqueToggleAllComments<CR>]])
 			map("n", "<Leader>fc", [[<Cmd>CritiqueFetchComments<CR>]])
 			map("n", "<Leader>tc", [[<Cmd>CritiqueCommentsTelescope<CR>]])
-
-			-- vim.fn.sign_define("COMMENT_ICON", { text = "" })
 		end,
 	},
 	{

@@ -4,10 +4,10 @@ return {
 		require("neoscopes").setup({
 			scopes = {
 				{
-					name = "apkdiff",
+					name = "earlycheckin",
 					dirs = {
-						"java/com/google/android/gmscore/tools/earlycheckin/apkdiff",
-						"javatests/com/google/android/gmscore/tools/earlycheckin/apkdiff",
+						"java/com/google/android/gmscore/tools/earlycheckin/",
+						"javatests/com/google/android/gmscore/tools/earlycheckin/",
 					},
 				},
 				{ name = "experimental", dirs = { "experimental/users/cnieves" } },

@@ -74,6 +74,7 @@ alias builddoctor=/google/bin/releases/build-doctor/builddoctor
 alias rudi=/google/data/ro/teams/lsc/bin/rudi-cli
 alias rudi-cli=/google/data/ro/teams/lsc/bin/rudi-cli
 alias tmux=tmx2
+alias graphviz=/google/data/ro/projects/graphviz-server/graphviz
 compdef tmx2=tmux
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh

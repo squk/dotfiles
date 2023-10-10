@@ -88,6 +88,7 @@ augroup autoformat_settings
   autocmd FileType proto AutoFormatBuffer protofmt
   autocmd FileType sql AutoFormatBuffer format_sql
   autocmd FileType kotlin AutoFormatBuffer ktfmt
+  autocmd FileType soy AutoFormatBuffer soyfmt
   " autocmd FileType html,css,json AutoFormatBuffer js-beautify
 augroup END
 
@@ -130,6 +131,7 @@ endfunction
 com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
-nmap <leader>yb :let @+ = join(blaze#GetTargets(), ' ')<cr>
+
+nmap <leader>yb :let t = join(blaze#GetTargets(), ' ') \| echo t \| let @+ = t \| CopyOSC52(t) <CR>
 ]])
 end

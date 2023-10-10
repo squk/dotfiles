@@ -7,6 +7,7 @@ return {
 		lazy = false,
 	},
 	"ldelossa/litee.nvim",
+	"cakebaker/scss-syntax.vim",
 	"ldelossa/litee-calltree.nvim",
 	"jghauser/mkdir.nvim",
 	"will133/vim-dirdiff",
@@ -44,6 +45,7 @@ return {
 			{ "<leader>zf", ":lua require('telekasten').find_notes()<CR>", desc = "Find Notes" },
 		},
 	},
+	{ "udalov/kotlin-vim", ft = "kotlin" },
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },
 

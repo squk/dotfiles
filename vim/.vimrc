@@ -73,12 +73,6 @@ source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
 source ~/.vim/prefs/ui.vim
 
-fun! NewInitBex()
-    let &bex = '-' . strftime("(%Y%m%d)-{%H%M}")
-endfun
-
-autocmd BufWritePre * call NewInitBex()
-
 set noshowmode
 set encoding=utf-8
 

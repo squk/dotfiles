@@ -7,8 +7,6 @@ return {
 			"nvim-lua/lsp-status.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 			"rcarriga/nvim-notify",
-			"ldelossa/litee.nvim",
-			"ldelossa/litee-calltree.nvim",
 		},
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
@@ -35,9 +33,6 @@ return {
 			local configs = require("lspconfig.configs")
 			local lsp_status = require("lsp-status")
 			lsp_status.register_progress()
-
-			require("litee.lib").setup({})
-			require("litee.calltree").setup({})
 
 			vim.opt.spell = true
 			vim.opt.spelllang = { "en_us" }

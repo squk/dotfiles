@@ -61,13 +61,13 @@ return {
 				{ name = "emoji" },
 				{ name = "async_path" },
 				{ name = "spell" },
-				{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
+				-- { name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
 				-- { name = "buffer-lines" },
 			})
 
 			if use_google() then
 				table.insert(conditionalSources, { name = "analysislsp", priority = 5 })
-				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
+				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
 			else
 				table.insert(conditionalSources, { name = "cmp_tabnine", priority = 9 })
 			end

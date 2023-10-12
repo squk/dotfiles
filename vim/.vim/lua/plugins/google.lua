@@ -74,7 +74,7 @@ return {
 		dependencies = { "glaive" },
 		config = function()
 			vim.cmd(
-				[[Glaive codefmt ktfmt_executable=`["/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style"]`]]
+				[[Glaive codefmt gofmt_executable=/usr/lib/google-golang/bin/gofmt ktfmt_executable=/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt,--google-style]]
 			)
 		end,
 	},

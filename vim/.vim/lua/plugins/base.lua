@@ -6,6 +6,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		lazy = false,
 	},
+	"godlygeek/tabular",
 	"ldelossa/litee.nvim",
 	"cakebaker/scss-syntax.vim",
 	"ldelossa/litee-calltree.nvim",

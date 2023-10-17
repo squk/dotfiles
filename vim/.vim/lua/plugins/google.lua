@@ -113,10 +113,10 @@ return {
 			"hrsh7th/nvim-cmp",
 		},
 	},
-	{
-		name = "nvim_figtree",
-		url = "sso://googler@user/jackcogdill/nvim-figtree",
-	},
+	-- {
+	--     name = "nvim_figtree",
+	--     url = "sso://googler@user/jackcogdill/nvim-figtree",
+	-- },
 	{
 		name = "telescope_codesearch",
 		url = "sso://googler@user/vintharas/telescope-codesearch.nvim",

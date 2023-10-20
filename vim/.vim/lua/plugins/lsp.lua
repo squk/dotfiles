@@ -1,12 +1,15 @@
+local use_google = require("utils").use_google
+
 return {
 	{
 		"neovim/nvim-lspconfig",
-		-- event = "VimEnter",
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 			"nvim-lua/lsp-status.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 			"rcarriga/nvim-notify",
+			"ray-x/go.nvim",
+            "ray-x/guihua.lua",
 		},
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
@@ -172,6 +175,20 @@ return {
 				capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)
 				capabilities.workspace.codeLens = { refreshSupport = true }
 				capabilities.workspace.diagnostics = { refreshSupport = true }
+
+                require("go").setup({
+                    lsp_cfg = {
+                        capabilities = capabilities,
+                    },
+                })
+                local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    pattern = "*.go",
+                    callback = function()
+                        require("go.format").goimport()
+                    end,
+                    group = format_sync_grp,
+                })
 
 				lspconfig.ciderlsp.setup({
 					capabilities = capabilities,

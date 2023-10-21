@@ -1,22 +1,31 @@
 return {
-	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v2.x",
-	config = function()
-		require("neo-tree").setup({
-			hijack_netrw_behavior = "open_current",
-			window = {
-				mappings = {
-					["O"] = "expand_all_nodes",
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		config = function()
+			require("neo-tree").setup({
+				hijack_netrw_behavior = "open_current",
+				window = {
+					mappings = {
+						["O"] = "expand_all_nodes",
+					},
 				},
-			},
-		})
-	end,
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"MunifTanjim/nui.nvim",
+			})
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+		lazy = false,
+		keys = {
+			{ "<C-n>", ":Neotree filesystem reveal toggle reveal_force_cwd<cr>", desc = "Open NeoTree" },
+		},
 	},
-	lazy = false,
-	keys = {
-		{ "<C-n>", ":Neotree filesystem reveal toggle reveal_force_cwd<cr>", desc = "Open NeoTree" },
+	{
+		"mrbjarksen/neo-tree-diagnostics.nvim",
+		dependencies = { "nvim-neo-tree/neo-tree.nvim" },
+		keys = {
+			{ "<Leader>xd", "<Cmd>Neotree diagnostics reveal bottom<CR>" },
+		},
 	},
 }

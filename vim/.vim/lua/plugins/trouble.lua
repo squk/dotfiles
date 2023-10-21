@@ -16,11 +16,6 @@ return {
 		})
 	end,
 	keys = {
-		{ "<Leader>xx", "<Cmd>Trouble<CR>" },
-		{ "<Leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>" },
-		{ "<Leader>xd", "<Cmd>Trouble document_diagnostics<CR>" },
-		{ "<Leader>xl", "<Cmd>Trouble loclist<CR>" },
-		{ "<Leader>xq", "<Cmd>Trouble quickfix<CR>" },
 		{ "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
 		{ "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>" },
 	},

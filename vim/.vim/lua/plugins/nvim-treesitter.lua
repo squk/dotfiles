@@ -10,6 +10,7 @@ return {
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
 
+            disable = {"lua"},
 			highlight = {
 				-- `false` will disable the whole extension
 				enable = true,

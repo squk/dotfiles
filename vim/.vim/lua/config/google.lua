@@ -72,6 +72,8 @@ function AsyncBlazeTest() abort
     call <SID>AsyncBlaze("blaze test", blaze#GetTargets())
 endfunction
 
+autocmd bufreadpre *.sh setlocal textwidth=80
+
 augroup autoformat_settings
   autocmd FileType borg,gcl,patchpanel AutoFormatBuffer gclfmt
   autocmd FileType bzl AutoFormatBuffer buildifier

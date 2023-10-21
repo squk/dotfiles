@@ -81,14 +81,13 @@ return {
 	{
 		name = "imp-google",
 		dir = "/usr/share/vim/google/imp-google",
-		dependencies = { "vim-imp", "glaive" },
+		dependencies = { "flwyd/vim-imp", "glaive" },
 		config = function()
 			require("config.imp-google")
 		end,
 	},
 	{
 		"flwyd/vim-imp",
-		dependencies = { "imp-google" },
 		keys = {
 			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
 		},
@@ -113,10 +112,10 @@ return {
 			"hrsh7th/nvim-cmp",
 		},
 	},
-	{
-		name = "nvim_figtree",
-		url = "sso://googler@user/jackcogdill/nvim-figtree",
-	},
+	-- {
+	--     name = "nvim_figtree",
+	--     url = "sso://googler@user/jackcogdill/nvim-figtree",
+	-- },
 	{
 		name = "telescope_codesearch",
 		url = "sso://googler@user/vintharas/telescope-codesearch.nvim",

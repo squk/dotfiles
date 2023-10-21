@@ -8,7 +8,7 @@ return {
 		local use_google = require("utils").use_google
 
 		local lsps = {
-			"lua_ls",
+			"lua-language-server",
 			"rust_analyzer",
 		}
 
@@ -21,6 +21,7 @@ return {
 
 		require("mason").setup()
 		require("mason-lspconfig").setup({
+			automatic_installation = true,
 			ensure_installed = lsps,
 		})
 

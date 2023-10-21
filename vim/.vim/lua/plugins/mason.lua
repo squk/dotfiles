@@ -8,14 +8,29 @@ return {
 		local use_google = require("utils").use_google
 
 		local lsps = {
-			"lua-language-server",
+			"lus_la",
+			"html",
 			"rust_analyzer",
+			"marksman",
+			"pyright",
+			"sqlls",
+			"bashls",
+			"dotls",
+			"golangci_lint_ls",
 		}
 
 		if not use_google then
 			TableConcat(lsps, {
+				"tsserver",
 				"gopls",
+				"docker_compose_language_service",
+				"dockerls",
 				"graphql",
+				"kotlin_language_server",
+				"csharp_ls",
+				"asm_lsp",
+				"arduino_language_server",
+				"clangd",
 			})
 		end
 

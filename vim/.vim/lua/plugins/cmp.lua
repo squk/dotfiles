@@ -41,7 +41,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			-- "hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lua",
 			"FelipeLema/cmp-async-path",
 			"lukas-reineke/cmp-under-comparator",
 			"ray-x/cmp-treesitter",
@@ -56,22 +56,20 @@ return {
 				{ name = "nvim_lsp", priority = 8 },
 				{ name = "treesitter", priority = 7 },
 				{ name = "nvim_lsp_signature_help" },
-				-- { name = "luasnip" },
+				{ name = "luasnip" },
 				{ name = "calc" },
 				{ name = "crates" },
-				-- { name = "nvim_lua" },
+				{ name = "nvim_lua" },
 				{ name = "emoji" },
 				{ name = "async_path" },
 				{ name = "spell" },
-				-- { name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
-				-- { name = "buffer-lines" },
 			}
 
 			if use_google() then
 				table.insert(conditionalSources, { name = "analysislsp", priority = 5 })
 				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
 			else
-				table.insert(conditionalSources, { name = "cmp_tabnine", priority = 9 })
+				table.insert(conditionalSources, { name = "codeium", priority = 9 })
 			end
 
 			local lspkind = require("lspkind")
@@ -172,7 +170,7 @@ return {
 							nvim_lsp = "[LSP]",
 							nvim_lua = "",
 							luasnip = "[LuaSnip]",
-							cmp_tabnine = "[TabNine]",
+							codiuem = "[Codiuem]",
 							async_path = "[async_path]",
 							tmux = "[TMUX]",
 						},

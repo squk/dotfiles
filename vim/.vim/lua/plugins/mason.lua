@@ -8,7 +8,7 @@ return {
 		local use_google = require("utils").use_google
 
 		local lsps = {
-			"lus_la",
+			"lua_ls",
 			"html",
 			"rust_analyzer",
 			"marksman",
@@ -51,6 +51,34 @@ return {
 			-- For example, a handler override for the `rust_analyzer`:
 			["rust_analyzer"] = function()
 				require("rust-tools").setup({})
+			end,
+			["lua_ls"] = function()
+				require("lspconfig").lua_ls.setup({
+					settings = {
+						Lua = {
+							runtime = {
+								-- Tell the language server which version of Lua you're using
+								-- (most likely LuaJIT in the case of Neovim)
+								version = "LuaJIT",
+							},
+							diagnostics = {
+								-- Get the language server to recognize the `vim` global
+								globals = {
+									"vim",
+									"require",
+								},
+							},
+							workspace = {
+								-- Make the server aware of Neovim runtime files
+								library = vim.api.nvim_get_runtime_file("", true),
+							},
+							-- Do not send telemetry data containing a randomized but unique identifier
+							telemetry = {
+								enable = false,
+							},
+						},
+					},
+				})
 			end,
 		})
 	end,

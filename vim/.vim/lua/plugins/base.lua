@@ -1,56 +1,19 @@
 local use_google = require("utils").use_google
 
 return {
-	-- Pretty symbols
+	{ "nvim-lua/plenary.nvim", lazy = false },
+	{ "nvim-tree/nvim-web-devicons", lazy = false },
+	{ "squk/java-syntax.vim", lazy = false },
 	{
-		"nvim-tree/nvim-web-devicons",
+		"petertriho/nvim-scrollbar",
+		config = function()
+			require("scrollbar").setup()
+		end,
 		lazy = false,
-	},
-	"godlygeek/tabular",
-	"ldelossa/litee.nvim",
-	"cakebaker/scss-syntax.vim",
-	"ldelossa/litee-calltree.nvim",
-	"jghauser/mkdir.nvim",
-	"will133/vim-dirdiff",
-	"renerocksai/calendar-vim",
-	"google/vim-searchindex",
-	"kosayoda/nvim-lightbulb",
-	{
-		"L3MON4D3/LuaSnip",
-		build = "make install_jsregexp",
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
-		dependencies = { "rafamadriz/friendly-snippets" },
-	},
-	"ntpeters/vim-better-whitespace",
-	"junegunn/fzf.vim",
-	"tversteeg/registers.nvim",
-	"jremmen/vim-ripgrep",
-	"nvim-lua/plenary.nvim",
-	-- Undo tree
-	{
-		"mbbill/undotree",
-		cmd = "UndotreeToggle",
-		config = function()
-			vim.g.undotree_SetFocusWhenToggle = 1
-		end,
-	},
-
-	{
-		"renerocksai/telekasten.nvim",
-		config = function()
-			require("config.telekasten")
-		end,
-		keys = {
-			{ "<leader>zf", ":lua require('telekasten').find_notes()<CR>", desc = "Find Notes" },
-		},
 	},
 	{ "udalov/kotlin-vim", ft = "kotlin" },
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },
-
-	-- Rust
 	{
 		"saecki/crates.nvim",
 		ft = "rust",
@@ -62,7 +25,27 @@ return {
 	},
 	{ "simrat39/rust-tools.nvim", ft = "rust" },
 
+	"RRethy/vim-illuminate",
+	"godlygeek/tabular",
+	"wesQ3/vim-windowswap",
+	"cakebaker/scss-syntax.vim",
+	"vim-scripts/vcscommand.vim",
+	"jghauser/mkdir.nvim",
+	"google/vim-searchindex",
+	"kosayoda/nvim-lightbulb",
+	"ntpeters/vim-better-whitespace",
+	"junegunn/fzf.vim",
+	"tversteeg/registers.nvim",
+	"jremmen/vim-ripgrep",
 	{ "andymass/vim-matchup", event = "VimEnter" },
+	-- Undo tree
+	{
+		"mbbill/undotree",
+		cmd = "UndotreeToggle",
+		config = function()
+			vim.g.undotree_SetFocusWhenToggle = 1
+		end,
+	},
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
@@ -76,19 +59,9 @@ return {
 		},
 	},
 	{
-		"petertriho/nvim-scrollbar",
-		config = function()
-			require("scrollbar").setup()
-		end,
-		lazy = false,
-	},
-	{
 		"rmagatti/auto-session",
 		config = function()
-			require("auto-session").setup({
-				log_level = "error",
-				-- auto_session_suppress_dirs = { "~/", "~/Downloads", "/", os.getenv("HOME")},
-			})
+			require("auto-session").setup({ log_level = "error" })
 		end,
 	},
 	{
@@ -98,24 +71,11 @@ return {
 		end,
 	},
 	{
-		"squk/java-syntax.vim",
-		lazy = false,
-	},
-	{
 		"folke/which-key.nvim",
 		config = function()
-			require("config.whichkey")
+			require("which-key").setup({})
 		end,
 	},
-	{ "junegunn/fzf", build = ":call fzf#install()" },
-	{ "udalov/kotlin-vim", ft = "kotin" },
-	{
-		"wesQ3/vim-windowswap",
-		init = function()
-			vim.g.windowswap_map_keys = 0
-		end,
-	},
-	{ "vim-scripts/vcscommand.vim" },
 	{
 		"mhinz/vim-signify",
 		event = "VimEnter",

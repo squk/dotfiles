@@ -16,14 +16,16 @@ end
 
 return {
 	{
-		"tzachar/cmp-tabnine",
-		build = "./install.sh",
+		"Exafunction/codeium.vim",
 		event = "InsertEnter",
 		cond = not use_google(),
 		dependencies = {
 			"onsails/lspkind.nvim",
 			"hrsh7th/nvim-cmp",
 		},
+		config = function()
+			require("codeium").setup({})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -50,7 +52,7 @@ return {
 
 			local cmp = require("cmp")
 
-			local conditionalSources = cmp.config.sources({
+			local conditionalSources = {
 				{ name = "nvim_lsp", priority = 8 },
 				{ name = "treesitter", priority = 7 },
 				{ name = "nvim_lsp_signature_help" },
@@ -63,7 +65,7 @@ return {
 				{ name = "spell" },
 				-- { name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
 				-- { name = "buffer-lines" },
-			})
+			}
 
 			if use_google() then
 				table.insert(conditionalSources, { name = "analysislsp", priority = 5 })
@@ -136,7 +138,7 @@ return {
 				},
 
 				preselect = cmp.PreselectMode.None,
-				sources = conditionalSources,
+				sources = cmp.config.sources(conditionalSources),
 
 				sorting = {
 					comparators = {

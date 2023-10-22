@@ -82,9 +82,6 @@ return {
 		name = "imp-google",
 		dir = "/usr/share/vim/google/imp-google",
 		dependencies = { "flwyd/vim-imp", "glaive" },
-		config = function()
-			require("config.imp-google")
-		end,
 	},
 	{
 		"flwyd/vim-imp",

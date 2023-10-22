@@ -53,21 +53,19 @@ return {
 			local cmp = require("cmp")
 
 			local conditionalSources = {
-				{ name = "nvim_lsp", priority = 8 },
-				{ name = "treesitter", priority = 7 },
-				{ name = "nvim_lsp_signature_help" },
-				{ name = "luasnip" },
+				{ name = "nvim_lsp", max_item_count = 5, priority = 8 },
+				{ name = "treesitter", max_item_count = 5, priority = 7 },
+				{ name = "luasnip", max_item_count = 5, priority = 6 },
 				{ name = "calc" },
-				{ name = "crates" },
-				{ name = "nvim_lua" },
-				{ name = "emoji" },
 				{ name = "async_path" },
-				{ name = "spell" },
+				{ name = "crates" },
+				{ name = "spell", max_item_count = 5 },
+				{ name = "emoji", max_item_count = 10 },
 			}
 
 			if use_google() then
-				table.insert(conditionalSources, { name = "analysislsp", priority = 5 })
-				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
+				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
+				table.insert(conditionalSources, { name = "analysislsp" })
 			else
 				table.insert(conditionalSources, { name = "codeium", priority = 9 })
 			end
@@ -80,8 +78,8 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp_document_symbol", priority = 3 },
-					{ name = "treesitter", priority = 2 },
-					{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1 },
+					{ name = "treesitter", priority = 2, max_item_count = 10 },
+					{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1, max_item_count = 5 },
 				}),
 			})
 
@@ -139,17 +137,20 @@ return {
 				sources = cmp.config.sources(conditionalSources),
 
 				sorting = {
+					-- priority_weight = 2,
 					comparators = {
-						compare_by_ciderlsp_score,
 						cmp.config.compare.priority,
-						cmp.config.compare.offset,
-						cmp.config.compare.exact,
 						cmp.config.compare.score,
+						compare_by_ciderlsp_score,
+						cmp.config.compare.recently_used,
+						-- cmp.config.compare.locality,
+						-- cmp.config.compare.exact,
 						require("cmp-under-comparator").under,
-						cmp.config.compare.kind,
-						cmp.config.compare.sort_text,
-						cmp.config.compare.length,
-						cmp.config.compare.order,
+						-- cmp.config.compare.kind,
+						-- cmp.config.compare.sort_text,
+						-- cmp.config.compare.length,
+						-- cmp.config.compare.offset,
+						-- cmp.config.compare.order,
 					},
 				},
 
@@ -161,18 +162,15 @@ return {
 
 				formatting = {
 					format = lspkind.cmp_format({
-						-- mode = "symbol_text",
-						-- maxwidth = 50, -- half max width
 						menu = {
-							nvim_ciderlsp = "",
-							buffer = "",
-							crates = "",
-							nvim_lsp = "[LSP]",
+							nvim_ciderlsp = "󰧑 Cider",
+							codiuem = "󰧑  Codeium",
+							buffer = " Buf",
+							crates = "",
+							nvim_lsp = " LSP",
 							nvim_lua = "",
-							luasnip = "[LuaSnip]",
-							codiuem = "[Codiuem]",
-							async_path = "[async_path]",
-							tmux = "[TMUX]",
+							luasnip = " snip",
+							async_path = " path",
 						},
 					}),
 				},

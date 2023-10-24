@@ -11,7 +11,7 @@ module.exports = {
         // or `'canary'` for less polished but more frequent updates
         updateChannel : 'stable',
         // default font size in pixels for all tabs
-        fontSize : 10,
+        fontSize : 12,
         // font family with optional fallbacks
         fontFamily : '"ComicCodeLigatures Nerd Font", monospace',
         // default font weight: 'normal' or 'bold'
@@ -19,9 +19,9 @@ module.exports = {
         // font weight for bold characters: 'normal' or 'bold'
         fontWeightBold : 'bold',
         // line height as a relative unit
-        lineHeight : 1.15,
+        lineHeight : 1.00,
         // letter spacing as a relative unit
-        letterSpacing : 0	,
+        letterSpacing : 0,
         // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or
         // cmyk)
         cursorColor : '#BF40BF',

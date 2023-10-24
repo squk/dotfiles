@@ -37,9 +37,11 @@
     po = push origin
 [core]
 	autocrlf = false
-
+[icdiff]
+	options = --highlight --line-numbers
 [merge]
     tool = "nvim"
-
 [mergetool "nvim"]
 	cmd = nvim -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+[diff]
+	tool = icdiff

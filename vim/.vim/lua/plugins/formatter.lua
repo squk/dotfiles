@@ -3,6 +3,12 @@ return {
 	config = function()
 		-- Utilities for creating configurations
 		local util = require("formatter.util")
+		vim.cmd([[
+		augroup FormatAutogroup
+            autocmd!
+            autocmd BufWritePost * FormatWrite
+        augroup END
+        ]])
 
 		-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 		require("formatter").setup({
@@ -44,27 +50,34 @@ return {
 				html = {
 					require("formatter.defaults").prettier,
 				},
-				-- xml = {
-				--     function()
-				--         return {
-				--             exe = "tidy",
-				--             args = {
-				--                 "-quiet",
-				--                 "-xml",
-				--                 "--wrap yes",
-				--                 "--indent yes",
-				--                 "--indent-spaces 2",
-				--                 "--indent-attributes yes",
-				--                 "--sort-attributes alpha",
-				--                 "--wrap-attributes yes",
-				--                 "--vertical-space yes",
-				--                 "--tidy-mark no",
-				--             },
-				--             stdin = true,
-				--             try_node_modules = true,
-				--         }
-				--     end,
-				-- },
+				xml = {
+					function()
+						return {
+							exe = "tidy",
+							args = {
+								"-xml",
+								"-quiet",
+								"-wrap",
+								"--tidy-mark",
+								"no",
+								"--indent",
+								"yes",
+								"--indent-spaces",
+								"2",
+								"--indent-attributes",
+								"yes",
+								"--sort-attributes",
+								"alpha",
+								"--wrap-attributes",
+								"yes",
+								"--vertical-space",
+								"yes",
+								"-",
+							},
+							stdin = true,
+						}
+					end,
+				},
 				-- java = {
 				--     function()
 				--         return {

@@ -78,16 +78,31 @@ return {
 			)
 		end,
 	},
+	{ "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
+	{ "junegunn/fzf.vim", dependencies = { "junegunn/fzf" } },
 	{
 		name = "imp-google",
 		dir = "/usr/share/vim/google/imp-google",
-		dependencies = { "flwyd/vim-imp", "glaive" },
-	},
-	{
-		"flwyd/vim-imp",
+		dependencies = { "flwyd/vim-imp", "glaive", "junegunn/fzf.vim" },
+		config = function()
+			vim.cmd([[
+            Glaive imp Suggest[default]=buffer,csearch,prompt  Pick[default]=fzf
+            ]])
+
+			-- To search for imports in the file's parent directory before using Code Search across all of google3, install ripgrep and try
+			vim.cmd([[
+            Glaive imp Suggest[gcl]=buffer,ripgrep,csearch,prompt
+            \ Location[gcl]=parent Location[borg]=parent
+            \ Suggest[borg]=buffer,ripgrep,csearch,prompt
+            \ Suggest[aidl]=buffer,ripgrep,csearch,prompt
+            ]])
+		end,
 		keys = {
 			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
 		},
+	},
+	{
+		"flwyd/vim-imp",
 	},
 	{
 		name = "ai.nvim",

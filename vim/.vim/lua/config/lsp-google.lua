@@ -69,6 +69,7 @@ function M.setup(capabilities)
 				vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 			end
 
+			local lsp_status = require("lsp-status")
 			lsp_status.on_attach(client)
 		end
 

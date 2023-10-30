@@ -38,6 +38,7 @@ fi
 export EDITOR='nvim'
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+bindkey '^R' fzf-histor-widget
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^K" kill-line

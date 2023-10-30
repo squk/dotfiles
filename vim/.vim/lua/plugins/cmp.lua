@@ -140,20 +140,19 @@ return {
 				sources = cmp.config.sources(conditionalSources),
 
 				sorting = {
-					-- priority_weight = 2,
+					priority_weight = 2,
 					comparators = {
 						cmp.config.compare.priority,
 						cmp.config.compare.score,
 						compare_by_ciderlsp_score,
-						-- cmp.config.compare.locality,
-						-- cmp.config.compare.exact,
-						require("cmp-under-comparator").under,
 						cmp.config.compare.recently_used,
+						cmp.config.compare.locality,
+						cmp.config.compare.exact,
+						require("cmp-under-comparator").under,
 						cmp.config.compare.kind,
 						cmp.config.compare.sort_text,
-						-- cmp.config.compare.length,
 						-- cmp.config.compare.offset,
-						-- cmp.config.compare.order,
+						cmp.config.compare.order,
 					},
 				},
 

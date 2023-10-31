@@ -4,6 +4,14 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{ "squk/java-syntax.vim", lazy = false },
+	{ "echasnovski/mini.splitjoin", version = "*" },
+	{
+		"andweeb/presence.nvim",
+		cond = not use_google(),
+		config = function()
+			require("presence").setup()
+		end,
+	},
 	{
 		"petertriho/nvim-scrollbar",
 		config = function()

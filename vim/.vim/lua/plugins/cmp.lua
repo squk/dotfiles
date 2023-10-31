@@ -41,6 +41,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"dmitmel/cmp-cmdline-history",
 			"hrsh7th/cmp-nvim-lua",
 			"FelipeLema/cmp-async-path",
 			"lukas-reineke/cmp-under-comparator",
@@ -77,8 +78,9 @@ return {
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp_document_symbol", priority = 3 },
-					{ name = "treesitter", priority = 2, max_item_count = 10 },
+					{ name = "cmdline_history" },
+					{ name = "nvim_lsp_document_symbol" },
+					{ name = "treesitter", max_item_count = 10 },
 					{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1, max_item_count = 5 },
 				}),
 			})
@@ -87,9 +89,10 @@ return {
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "async_path", priority = 9 },
+					{ name = "async_path" },
+					{ name = "cmdline_history" },
 					-- { name = "treesitter", priority = 7 },
-					{ name = "cmdline", priority = 8, option = { ignore_cmds = { "edit", "write" } } },
+					{ name = "cmdline", option = { ignore_cmds = { "edit", "write" } } },
 				}),
 			})
 
@@ -142,12 +145,12 @@ return {
 						cmp.config.compare.priority,
 						cmp.config.compare.score,
 						compare_by_ciderlsp_score,
-						cmp.config.compare.recently_used,
 						-- cmp.config.compare.locality,
 						-- cmp.config.compare.exact,
 						require("cmp-under-comparator").under,
-						-- cmp.config.compare.kind,
-						-- cmp.config.compare.sort_text,
+						cmp.config.compare.recently_used,
+						cmp.config.compare.kind,
+						cmp.config.compare.sort_text,
 						-- cmp.config.compare.length,
 						-- cmp.config.compare.offset,
 						-- cmp.config.compare.order,

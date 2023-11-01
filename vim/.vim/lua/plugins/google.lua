@@ -97,12 +97,14 @@ return {
             \ Suggest[aidl]=buffer,ripgrep,csearch,prompt
             ]])
 		end,
-		keys = {
-			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
-		},
+		lazy = false,
 	},
 	{
 		"flwyd/vim-imp",
+		lazy = false,
+		keys = {
+			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
+		},
 	},
 	{
 		name = "ai.nvim",

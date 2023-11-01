@@ -37,6 +37,7 @@ local keys = {
 
 	{ "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", desc = "[T]elescope [F]uzzy [F]ind" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "[T]elescope [G]it Files" },
+	{ "<leader>tr", ":Telescope resume<CR>", desc = "[T]elescope [R]esume" },
 	{ "<leader>t*", "<cmd>lua require('telescope.builtin').grep_string{}<CR>", desc = "[T]elescope current [W]ord" },
 	{ "<leader>th", "<cmd>lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 }
@@ -56,41 +57,66 @@ end
 
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = {},
+	dependencies = {
+		-- "nvim-telescope/telescope-smart-history.nvim",
+		-- "kkharji/sqlite.lua",
+	},
 	config = function()
 		require("telescope").setup({
-			experimental = true,
-			-- The vertical layout strategy is good to handle long paths like those in
-			-- google3 repos because you have nearly the full screen to display a file path.
-			-- The caveat is that the preview area is smaller.
-			layout_strategy = "vertical",
-			-- Common paths in google3 repos are collapsed following the example of Cider
-			-- It is nice to keep this as a user config rather than part of
-			-- telescope-codesearch because it can be reused by other telescope pickers.
-			path_display = function(opts, path)
-				-- Do common substitutions
-				path = path:gsub("^/google/src/cloud/[^/]+/[^/]+/google3/", "google3/", 1)
-				path = path:gsub("^google3/java/com/google/", "//j/c/g/", 1)
-				path = path:gsub("^google3/javatests/com/google/", "//jt/c/g/", 1)
-				path = path:gsub("^google3/third_party/", "//3p/", 1)
-				path = path:gsub("^google3/", "//", 1)
+			defaults = {
+				-- The vertical layout strategy is good to handle long paths like those in
+				-- google3 repos because you have nearly the full screen to display a file path.
+				-- The caveat is that the preview area is smaller.
+				layout_strategy = "vertical",
+				-- Common paths in google3 repos are collapsed following the example of Cider
+				-- It is nice to keep this as a user config rather than part of
+				-- telescope-codesearch because it can be reused by other telescope pickers.
+				path_display = function(opts, path)
+					-- Do common substitutions
+					path = path:gsub("^/google/src/cloud/[^/]+/[^/]+/google3/", "google3/", 1)
+					path = path:gsub("^google3/java/com/google/", "//j/c/g/", 1)
+					path = path:gsub("^google3/javatests/com/google/", "//jt/c/g/", 1)
+					path = path:gsub("^google3/third_party/", "//3p/", 1)
+					path = path:gsub("^google3/", "//", 1)
 
-				-- Do truncation. This allows us to combine our custom display formatter
-				-- with the built-in truncation.
-				-- `truncate` handler in transform_path memoizes computed truncation length in opts.__length.
-				-- Here we are manually propagating this value between new_opts and opts.
-				-- We can make this cleaner and more complicated using metatables :)
-				local new_opts = {
-					path_display = {
-						truncate = true,
+					-- Do truncation. This allows us to combine our custom display formatter
+					-- with the built-in truncation.
+					-- `truncate` handler in transform_path memoizes computed truncation length in opts.__length.
+					-- Here we are manually propagating this value between new_opts and opts.
+					-- We can make this cleaner and more complicated using metatables :)
+					local new_opts = {
+						path_display = {
+							truncate = true,
+						},
+						__length = opts.__length,
+					}
+					path = require("telescope.utils").transform_path(new_opts, path)
+					opts.__length = new_opts.__length
+					return path
+				end,
+				mappings = {
+					i = {
+						["<S-Down>"] = function()
+							require("telescope.actions").cycle_history_next()
+						end,
+						["<S-Up>"] = function()
+							require("telescope.actions").cycle_history_prev()
+						end,
 					},
-					__length = opts.__length,
-				}
-				path = require("telescope.utils").transform_path(new_opts, path)
-				opts.__length = new_opts.__length
-				return path
-			end,
+				},
+				-- history = {
+				--     path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
+				--     limit = 200,
+				-- },
+			},
+			extensions = {
+				codesearch = {
+					experimental = true, -- enable results from google3/experimental
+				},
+			},
 		})
+
+		-- require("telescope").load_extension("smart_history")
 	end,
 	keys = keys,
 }

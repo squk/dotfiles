@@ -46,8 +46,7 @@ nnoremap <Leader>br  :call BlazeRun()<cr>
 nnoremap <Leader>bb  :call BlazeBuild()<cr>
 nnoremap <Leader>bt  :call BlazeTest()<cr>
 nnoremap <Leader>btd  :call BlazeTestDebug()<cr>
-nnoremap <Leader>bc  :call BuildCleanerTarget()<cr>
-nnoremap <Leader>bcf  :call BuildCleanerFile()<cr>
+nnoremap <Leader>bc  :call BuildCleanerFile()<cr>
 nnoremap <Leader>ud  :call UnusedDeps()<cr>
 
 let g:asyncrun_open = 1

@@ -34,6 +34,8 @@ return {
 	{ "simrat39/rust-tools.nvim", ft = "rust" },
 
 	"RRethy/vim-illuminate",
+	"rafcamlet/nvim-luapad",
+	"flwyd/vim-conjoin",
 	"godlygeek/tabular",
 	"wesQ3/vim-windowswap",
 	"cakebaker/scss-syntax.vim",

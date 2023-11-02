@@ -78,7 +78,7 @@ return {
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "cmdline_history" },
+					-- { name = "cmdline_history" },
 					{ name = "nvim_lsp_document_symbol" },
 					{ name = "treesitter", max_item_count = 10 },
 					{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1, max_item_count = 5 },
@@ -90,7 +90,7 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
 					{ name = "async_path" },
-					{ name = "cmdline_history" },
+					-- { name = "cmdline_history" },
 					-- { name = "treesitter", priority = 7 },
 					{ name = "cmdline", option = { ignore_cmds = { "edit", "write" } } },
 				}),

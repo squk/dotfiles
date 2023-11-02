@@ -152,6 +152,7 @@ return {
 			"rktjmp/time-ago.vim",
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
+			"runiq/neovim-throttle-debounce",
 		},
 		config = function()
 			-- Here are all the options and their default values:

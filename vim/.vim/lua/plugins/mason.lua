@@ -21,6 +21,8 @@ return {
 
 		if not use_google then
 			TableConcat(lsps, {
+				"csharp_ls",
+				"omnisharp_mono",
 				"tsserver",
 				"gopls",
 				"docker_compose_language_service",

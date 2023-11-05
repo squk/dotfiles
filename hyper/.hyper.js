@@ -13,9 +13,9 @@ module.exports = {
         // default font size in pixels for all tabs
         fontSize : 12,
         // font family with optional fallbacks
-        fontFamily : '"ComicCodeLigatures Nerd Font", monospace',
+        fontFamily : '"ComicCodeLigatures Nerd Font Light", monospace',
         // default font weight: 'normal' or 'bold'
-        fontWeight : 'normal',
+        fontWeight : '400',
         // font weight for bold characters: 'normal' or 'bold'
         fontWeightBold : 'bold',
         // line height as a relative unit

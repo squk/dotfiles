@@ -4,6 +4,13 @@ return {
 		branch = "v2.x",
 		config = function()
 			require("neo-tree").setup({
+				sources = {
+					"filesystem",
+					"buffers",
+					"git_status",
+					"diagnostics",
+					-- ...and any additional source
+				},
 				hijack_netrw_behavior = "open_current",
 				window = {
 					mappings = {
@@ -14,17 +21,11 @@ return {
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"mrbjarksen/neo-tree-diagnostics.nvim",
 			"MunifTanjim/nui.nvim",
 		},
-		lazy = false,
 		keys = {
 			{ "<C-n>", ":Neotree filesystem reveal toggle reveal_force_cwd<cr>", desc = "Open NeoTree" },
-		},
-	},
-	{
-		"mrbjarksen/neo-tree-diagnostics.nvim",
-		dependencies = { "nvim-neo-tree/neo-tree.nvim" },
-		keys = {
 			{ "<Leader>xd", "<Cmd>Neotree diagnostics reveal bottom<CR>" },
 		},
 	},

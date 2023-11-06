@@ -30,11 +30,6 @@ nnoremap K :tabnext<CR>
 nnoremap tt  :tabedit<Space>
 nnoremap td  :tabclose<CR>
 
-" Shift-U and D for document navigation(page up, page down)
-nnoremap <S-U> <C-U>
-map <S-D> <nop>
-nnoremap <S-D> <C-D>
-
 " Line swapping. I don't really use this that often
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>

@@ -31,15 +31,15 @@ local function get_visual_selection()
 end
 
 local keys = {
-	{ "<leader>ts", [[<cmd>lua require("neoscopes").select()<CR>]], desc = "NeoScopes" },
-	{ "<leader>ts", "<cmd>lua search_cwd()<CR>", desc = "[T]elescope [S]earch Directory" },
-	{ "<leader>tl", "<cmd>lua live_grep()<CR>", desc = "[T]elescope [L]ive Grep" },
-
-	{ "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", desc = "[T]elescope [F]uzzy [F]ind" },
-	{ "<leader>tg", ":Telescope git_files<CR>", desc = "[T]elescope [G]it Files" },
-	{ "<leader>tr", ":Telescope resume<CR>", desc = "[T]elescope [R]esume" },
-	{ "<leader>t*", "<cmd>lua require('telescope.builtin').grep_string{}<CR>", desc = "[T]elescope current [W]ord" },
+	{ "<leader>ts", "<cmd>lua live_grep()<CR>", desc = "Search in CWD" },
+	{ "<C-P>", "<cmd>lua find_files()<CR>", desc = "Find Files in CWD" },
+	{ "<leader>tf", "<cmd>lua find_files()<CR>", desc = "Find Files in CWD" },
+	{ "<leader>tf.", "<cmd>lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
+	{ "<leader>tg", ":Telescope git_files<CR>", desc = "Git Files" },
+	{ "<leader>tl", ":Telescope resume<CR>", desc = "Last Query" },
+	{ "<leader>tr", ":Telescope oldfiles<CR>", desc = "Recent Files" },
 	{ "<leader>th", "<cmd>lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
+	{ "<leader>tns", [[<cmd>lua require("neoscopes").select()<CR>]], desc = "NeoScopes" },
 }
 
 if use_google() then

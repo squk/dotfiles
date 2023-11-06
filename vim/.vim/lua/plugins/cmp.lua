@@ -98,16 +98,16 @@ return {
 
 			cmp.setup({
 				mapping = {
-					["<C-d>"] = cmp.mapping.scroll_docs(-4),
-					["<C-u>"] = cmp.mapping.scroll_docs(4),
+					["<S-Up>"] = cmp.mapping.scroll_docs(-4),
+					["<S-Down>"] = cmp.mapping.scroll_docs(4),
 					["<C-e>"] = cmp.mapping.close(),
 					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif has_words_before() then
-							cmp.complete()
+						-- elseif has_words_before() then
+						--     cmp.complete()
 						else
 							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end
@@ -118,22 +118,6 @@ return {
 							cmp.select_prev_item()
 						end
 					end, { "i", "s" }),
-
-					["<Up>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						else
-							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-						end
-					end),
-
-					["<Down>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						else
-							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-						end
-					end),
 				},
 
 				preselect = cmp.PreselectMode.None,

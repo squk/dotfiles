@@ -71,7 +71,6 @@ lua require('plugin_init')
 
 source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
-source ~/.vim/prefs/ui.vim
 
 set noshowmode
 set encoding=utf-8

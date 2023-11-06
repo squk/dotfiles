@@ -2,6 +2,7 @@ return {
 	"williamboman/mason-lspconfig.nvim",
 	dependencies = {
 		"williamboman/mason.nvim",
+		"Hoffs/omnisharp-extended-lsp.nvim",
 	},
 	config = function()
 		local TableConcat = require("utils").TableConcat
@@ -53,6 +54,9 @@ return {
 			end,
 			["omnisharp_mono"] = function()
 				require("lspconfig").omnisharp.setup({
+					handlers = {
+						["textDocument/definition"] = require("omnisharp_extended").handler,
+					},
 					-- cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
 
 					-- Enables support for reading code style, naming convention and analyzer

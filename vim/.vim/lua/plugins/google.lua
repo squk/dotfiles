@@ -159,7 +159,9 @@ return {
 			require("critique.comments").setup({
 				-- Fetch the comments after calling `setup`.
 				auto_fetch = true,
-				render_resolved_threads = true,
+				display = {
+					render_resolved_threads = true,
+				},
 			})
 			local map = require("utils").map
 			-- here are some mappings you might want:

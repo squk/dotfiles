@@ -34,7 +34,14 @@ return {
 	{ "simrat39/rust-tools.nvim", ft = "rust" },
 
 	"RRethy/vim-illuminate",
-	"rafcamlet/nvim-luapad",
+	{
+		"rafcamlet/nvim-luapad",
+		config = function()
+			require("luapad").setup({
+				eval_on_change = false,
+			})
+		end,
+	},
 	"flwyd/vim-conjoin",
 	"godlygeek/tabular",
 	"wesQ3/vim-windowswap",

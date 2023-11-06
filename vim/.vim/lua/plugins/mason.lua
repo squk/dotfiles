@@ -19,9 +19,8 @@ return {
 			"golangci_lint_ls",
 		}
 
-		if not use_google then
+		if not use_google() then
 			TableConcat(lsps, {
-				"csharp_ls",
 				"omnisharp_mono",
 				"tsserver",
 				"gopls",
@@ -29,8 +28,6 @@ return {
 				"dockerls",
 				"graphql",
 				"kotlin_language_server",
-				"csharp_ls",
-				"asm_lsp",
 				"arduino_language_server",
 				"clangd",
 			})
@@ -55,7 +52,7 @@ return {
 				require("rust-tools").setup({})
 			end,
 			["omnisharp_mono"] = function()
-				require("lspconfig").omnisharp_mono.setup({
+				require("lspconfig").omnisharp.setup({
 					-- cmd = { "dotnet", "/path/to/omnisharp/OmniSharp.dll" },
 
 					-- Enables support for reading code style, naming convention and analyzer

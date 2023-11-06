@@ -3,6 +3,18 @@ return {
 	event = "VimEnter",
 	name = "lsp_lines.nvim",
 	config = function()
+		local signs = {
+			Error = " ",
+			Warning = " ",
+			Hint = " ",
+			Info = " ",
+			Other = " ",
+		}
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		end
+
 		require("lsp_lines").setup()
 
 		vim.diagnostic.config({ virtual_text = false })

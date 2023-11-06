@@ -3,7 +3,7 @@ local use_google = require("utils").use_google
 return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
-	{ "squk/java-syntax.vim", lazy = false },
+	{ "squk/java-syntax.vim", ft = "java" },
 	{ "echasnovski/mini.splitjoin", version = "*" },
 	{
 		"andweeb/presence.nvim",

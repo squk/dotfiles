@@ -13,6 +13,5 @@ vim.opt.rtp:prepend(lazypath)
 
 package.path = package.path .. ";" .. vim.env.HOME .. "/.vim/lua/?.lua"
 
-require("config.clipboard")
-
 require("lazy").setup("plugins")
+require("config.clipboard")

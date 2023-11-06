@@ -67,8 +67,12 @@ return {
 			}
 
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
-
+			local lspconfig = require("lspconfig")
+			local configs = require("lspconfig.configs")
 			require("config.lsp-google").setup(capabilities)
+
+			-- Godot
+			lspconfig.gdscript.setup({})
 
 			-- Golang
 			require("go").setup({

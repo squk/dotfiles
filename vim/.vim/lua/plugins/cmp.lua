@@ -118,6 +118,22 @@ return {
 							cmp.select_prev_item()
 						end
 					end, { "i", "s" }),
+
+					["<Up>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+						end
+					end),
+
+					["<Down>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+						end
+					end),
 				},
 
 				preselect = cmp.PreselectMode.None,

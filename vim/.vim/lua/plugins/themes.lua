@@ -10,7 +10,8 @@ return {
 			require("ayu").setup({
 				mirage = false, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
 				overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
-				vim.cmd("colorscheme ayu"),
+				-- vim.cmd("colorscheme ayu"),
+				-- vim.cmd("colorscheme ayu-mirage"),
 			})
 		end,
 	},
@@ -41,11 +42,11 @@ return {
 		lazy = not use_google(), -- make sure we load this during startup if it is your main colorscheme
 		cond = use_google(),
 		config = function()
-			vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+			vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 			local colors = require("catppuccin.palettes").get_palette()
 
 			require("catppuccin").setup({
-				flavour = "macchiato",
+				flavour = "mocha",
 				integrations = {
 					cmp = true,
 					-- coc_nvim = false,
@@ -55,7 +56,7 @@ return {
 					gitgutter = true,
 					gitsigns = true,
 					-- hop = false,
-					-- illuminate = false,
+					illuminate = true,
 					-- leap = false,
 					-- lightspeed = false,
 					-- lsp_saga = false,
@@ -77,7 +78,6 @@ return {
 					-- vim_sneak = false,
 					-- vimwiki = false,
 					which_key = true,
-
 					-- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
 					dap = {
 						enabled = false,
@@ -89,12 +89,12 @@ return {
 					},
 					native_lsp = {
 						enabled = true,
-						virtual_text = {
-							errors = { "italic" },
-							hints = { "italic" },
-							warnings = { "italic" },
-							information = { "italic" },
-						},
+						-- virtual_text = {
+						--     errors = { "italic" },
+						--     hints = { "italic" },
+						--     warnings = { "italic" },
+						--     information = { "italic" },
+						-- },
 						underlines = {
 							errors = { "underline" },
 							hints = { "underline" },
@@ -111,7 +111,7 @@ return {
 				},
 			})
 
-			-- vim.api.nvim_command("colorscheme catppuccin")
+			vim.api.nvim_command("colorscheme catppuccin")
 		end,
 	},
 }

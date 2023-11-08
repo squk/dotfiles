@@ -53,16 +53,7 @@ return {
 
 			local cmp = require("cmp")
 
-			local conditionalSources = {
-				{ name = "nvim_lsp", max_item_count = 15, priority = 8 },
-				{ name = "treesitter", max_item_count = 5, priority = 7 },
-				{ name = "luasnip", max_item_count = 5, priority = 6 },
-				{ name = "calc" },
-				{ name = "async_path" },
-				{ name = "crates" },
-				{ name = "spell", max_item_count = 5 },
-				{ name = "emoji", max_item_count = 10 },
-			}
+			local conditionalSources = {}
 
 			if use_google() then
 				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
@@ -97,6 +88,61 @@ return {
 			})
 
 			cmp.setup({
+				preselect = cmp.PreselectMode.None,
+				sources = cmp.config.sources(require("utils").TableConcat({
+					{ name = "async_path" },
+					{ name = "calc" },
+					{ name = "crates" },
+					{ name = "emoji", max_item_count = 10 },
+					{ name = "luasnip", max_item_count = 5, priority = 6 },
+					{ name = "nvim_lsp", priority = 8 },
+					{ name = "spell", max_item_count = 5 },
+					{ name = "treesitter", max_item_count = 5, priority = 7 },
+				}, conditionalSources)),
+
+				formatting = {
+					format = lspkind.cmp_format({
+						menu = {
+							async_path = " path",
+							buffer = " Buf",
+							codiuem = "󰧑 Codeium",
+							crates = " rust",
+							luasnip = " snip",
+							nvim_ciderlsp = "󰧑 Cider",
+							nvim_lsp = " LSP",
+							nvim_lua = " lua",
+							treesitter = " ts",
+						},
+					}),
+				},
+
+				sorting = {
+					priority_weight = 2,
+					comparators = {
+						cmp.config.compare.priority,
+						cmp.config.compare.score,
+						compare_by_ciderlsp_score,
+						cmp.config.compare.recently_used,
+						cmp.config.compare.locality,
+						cmp.config.compare.exact,
+						require("cmp-under-comparator").under,
+						cmp.config.compare.kind,
+						cmp.config.compare.sort_text,
+						-- cmp.config.compare.offset,
+						cmp.config.compare.order,
+					},
+				},
+
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+
+				experimental = {
+					native_menu = false,
+					ghost_text = true,
+				},
 				mapping = {
 					["<S-Up>"] = cmp.mapping.scroll_docs(-4),
 					["<S-Down>"] = cmp.mapping.scroll_docs(4),
@@ -134,51 +180,6 @@ return {
 							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end
 					end),
-				},
-
-				preselect = cmp.PreselectMode.None,
-				sources = cmp.config.sources(conditionalSources),
-
-				sorting = {
-					priority_weight = 2,
-					comparators = {
-						cmp.config.compare.priority,
-						cmp.config.compare.score,
-						compare_by_ciderlsp_score,
-						cmp.config.compare.recently_used,
-						cmp.config.compare.locality,
-						cmp.config.compare.exact,
-						require("cmp-under-comparator").under,
-						cmp.config.compare.kind,
-						cmp.config.compare.sort_text,
-						-- cmp.config.compare.offset,
-						cmp.config.compare.order,
-					},
-				},
-
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-
-				formatting = {
-					format = lspkind.cmp_format({
-						menu = {
-							nvim_ciderlsp = "󰧑 Cider",
-							codiuem = "󰧑  Codeium",
-							buffer = " Buf",
-							crates = "",
-							nvim_lsp = " LSP",
-							nvim_lua = "",
-							luasnip = " snip",
-							async_path = " path",
-						},
-					}),
-				},
-				experimental = {
-					native_menu = false,
-					ghost_text = true,
 				},
 			})
 		end,

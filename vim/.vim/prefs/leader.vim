@@ -25,13 +25,11 @@ vmap <leader>v   c<ESC>"+p<ESC>
 imap <leader>v    <ESC>"+pa
 
 " --------- WINDOW/PANE MAPPINGS ---------
-map <leader>wr <C-W>r
 map <leader>H :wincmd H<cr>
 map <leader>K :wincmd K<cr>
 map <leader>L :wincmd L<cr>
 map <leader>J :wincmd J<cr>
 map <leader>T :wincmd T<cr>
-map <leader>x :wincmd x<cr>
 
 " resize vertical split to 1/3 or 2/3 size
 nnoremap <silent> <Leader>s+ :exe "vertical resize " . (winwidth(0) * 5/4)<CR>
@@ -44,16 +42,9 @@ nnoremap <silent> <Leader>x- :exe "resize " . (winheight(0) * 2/3)<CR>
 " --------- FORMATTING MAPPINGS ---------
 " indent file
 map <leader>= gg=G ``
-
 nmap <leader>yf :let @+ = expand("%")<cr>
-nmap <leader>e :e %%
-
 " replace currently selected text with default register
 " without yanking it
 vnoremap <leader>p "_dP
-
-
-nnoremap <leader>rp :lua vim.notify("use <leader><leader>")
 nnoremap <leader><leader> :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
-
 nnoremap <leader>s :SessionSave<CR>

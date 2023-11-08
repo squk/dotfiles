@@ -23,6 +23,10 @@ return {
 		dependencies = { "rafamadriz/friendly-snippets" },
 	},
 	{
+		"hinell/lsp-timeout.nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = deps,
 		keys = {

@@ -100,13 +100,6 @@ return {
 		lazy = false,
 	},
 	{
-		"flwyd/vim-imp",
-		lazy = false,
-		keys = {
-			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
-		},
-	},
-	{
 		name = "ai.nvim",
 		url = "sso://googler@user/vvvv/ai.nvim",
 	},

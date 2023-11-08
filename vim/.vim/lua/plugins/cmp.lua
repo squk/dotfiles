@@ -54,7 +54,7 @@ return {
 			local cmp = require("cmp")
 
 			local conditionalSources = {
-				{ name = "nvim_lsp", max_item_count = 5, priority = 8 },
+				{ name = "nvim_lsp", max_item_count = 15, priority = 8 },
 				{ name = "treesitter", max_item_count = 5, priority = 7 },
 				{ name = "luasnip", max_item_count = 5, priority = 6 },
 				{ name = "calc" },

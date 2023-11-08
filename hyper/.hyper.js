@@ -6,7 +6,7 @@ module.exports = {
     config : {
         modifierKeys: { altIsMeta: true },
 
-    	catppuccinTheme: "macchiato",
+        catppuccinTheme: "macchiato",
         // choose either `'stable'` for receiving highly polished,
         // or `'canary'` for less polished but more frequent updates
         updateChannel : 'stable',
@@ -156,6 +156,7 @@ module.exports = {
         "hyper-font-smoothing",
         "hyper-font-ligatures",
         "hypurr"
+        // "hyper-aura-theme"
     ],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here

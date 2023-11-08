@@ -5,6 +5,8 @@ local log = require("utils").log
 
 local function compare_by_ciderlsp_score(entry1, entry2)
 	if entry1.completion_item.score ~= nil and entry2.completion_item.score ~= nil then
+		print("LSP score " .. entry1.completion_item.score)
+		print("LSP score " .. entry2.completion_item.score)
 		return entry1.completion_item.score > entry2.completion_item.score
 	end
 end
@@ -81,8 +83,6 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
 					{ name = "async_path" },
-					-- { name = "cmdline_history" },
-					-- { name = "treesitter", priority = 7 },
 					{ name = "cmdline", option = { ignore_cmds = { "edit", "write" } } },
 				}),
 			})
@@ -95,9 +95,9 @@ return {
 					{ name = "crates" },
 					{ name = "emoji", max_item_count = 10 },
 					{ name = "luasnip", max_item_count = 5, priority = 6 },
-					{ name = "nvim_lsp", priority = 8 },
+					{ name = "nvim_lsp", priority = 5 },
 					{ name = "spell", max_item_count = 5 },
-					{ name = "treesitter", max_item_count = 5, priority = 7 },
+					{ name = "treesitter", max_item_count = 5, priority = 2 },
 				}, conditionalSources)),
 
 				formatting = {
@@ -105,11 +105,12 @@ return {
 						menu = {
 							async_path = " path",
 							buffer = " Buf",
-							codiuem = "󰧑 Codeium",
+							cmdline = " cmd",
+							codiuem = "󰚩 Codeium",
 							crates = " rust",
 							luasnip = " snip",
-							nvim_ciderlsp = "󰧑 Cider",
-							nvim_lsp = " LSP",
+							nvim_ciderlsp = "󰚩 Cider",
+							nvim_lsp = " LSP",
 							nvim_lua = " lua",
 							treesitter = " ts",
 						},

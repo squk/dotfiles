@@ -5,11 +5,12 @@ else
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
+# run zplug install after changing!!!!
 zplug "lib/completion", from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh
-
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "desyncr/auto-ls"
 zplug "zsh-users/zsh-autosuggestions"
 zplug romkatv/powerlevel10k, as:theme, depth:1
 
@@ -50,6 +51,8 @@ bindkey '\e.' insert-last-word
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 
 # Put standard ANSI color codes in shell parameters for easy use.
 # Note that some terminals do not support all combinations.

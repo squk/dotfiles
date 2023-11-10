@@ -71,10 +71,7 @@ return {
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					-- { name = "cmdline_history" },
-					{ name = "nvim_lsp_document_symbol" },
-					{ name = "treesitter", max_item_count = 10 },
-					{ name = "buffer", option = { keyword_pattern = [[\k\+]] }, priority = 1, max_item_count = 5 },
+					{ name = "treesitter" },
 				}),
 			})
 
@@ -93,11 +90,11 @@ return {
 					{ name = "async_path" },
 					{ name = "calc" },
 					{ name = "crates" },
-					{ name = "emoji", max_item_count = 10 },
-					{ name = "luasnip", max_item_count = 5, priority = 6 },
-					{ name = "nvim_lsp", priority = 5 },
-					{ name = "spell", max_item_count = 5 },
-					{ name = "treesitter", max_item_count = 5, priority = 2 },
+					{ name = "emoji" },
+					{ name = "luasnip", priority = 8 },
+					{ name = "nvim_lsp", priority = 7 },
+					{ name = "spell" },
+					{ name = "treesitter", priority = 6 },
 				}, conditionalSources)),
 
 				formatting = {
@@ -110,6 +107,7 @@ return {
 							crates = " rust",
 							luasnip = " snip",
 							nvim_ciderlsp = "󰚩 Cider",
+							analysislsp = "? analysislsp",
 							nvim_lsp = " LSP",
 							nvim_lua = " lua",
 							treesitter = " ts",
@@ -117,22 +115,22 @@ return {
 					}),
 				},
 
-				sorting = {
-					priority_weight = 2,
-					comparators = {
-						cmp.config.compare.priority,
-						cmp.config.compare.score,
-						compare_by_ciderlsp_score,
-						cmp.config.compare.recently_used,
-						cmp.config.compare.locality,
-						cmp.config.compare.exact,
-						require("cmp-under-comparator").under,
-						cmp.config.compare.kind,
-						cmp.config.compare.sort_text,
-						-- cmp.config.compare.offset,
-						cmp.config.compare.order,
-					},
-				},
+				-- sorting = {
+				--     priority_weight = 2,
+				--     comparators = {
+				--         cmp.config.compare.priority,
+				--         cmp.config.compare.score,
+				--         compare_by_ciderlsp_score,
+				--         cmp.config.compare.recently_used,
+				--         cmp.config.compare.locality,
+				--         cmp.config.compare.exact,
+				--         require("cmp-under-comparator").under,
+				--         cmp.config.compare.kind,
+				--         cmp.config.compare.sort_text,
+				--         -- cmp.config.compare.offset,
+				--         cmp.config.compare.order,
+				--     },
+				-- },
 
 				snippet = {
 					expand = function(args)

@@ -80,7 +80,7 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
 					{ name = "async_path" },
-					{ name = "cmdline", option = { ignore_cmds = { "edit", "write" } } },
+					{ name = "cmdline", option = { ignore_cmds = { "edit", "write", "tabedit" } } },
 				}),
 			})
 

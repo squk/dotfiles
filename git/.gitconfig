@@ -21,9 +21,10 @@
     cam = commit -a -m
     m = commit --amend --verbose
 
-    d = diff
-    ds = diff --stat
-    dc = diff --cached
+    dt = icdiff
+    ; d = diff
+    ; ds = diff --stat
+    dc = icdiff --cached
 
     s = status -s
     st = status -s

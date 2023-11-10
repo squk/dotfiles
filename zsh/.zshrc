@@ -36,7 +36,7 @@ else
     zle clear-screen -w
 fi
 }
-export EDITOR='nvim'
+
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 bindkey '^R' fzf-history-widget
@@ -104,6 +104,13 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 autoload -Uz add-zsh-hook
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR='nvim'
+export TERM=xterm-256color
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LANG_ALL="en_US.UTF-8"
 
 source ~/.bash_profile
 

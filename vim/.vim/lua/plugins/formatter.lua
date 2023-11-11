@@ -50,6 +50,12 @@ return {
 				html = {
 					require("formatter.defaults").prettier,
 				},
+				cs = {
+					-- require("formatter.filetypes.cs").astyle,
+					-- require("formatter.filetypes.cs").uncrustify,
+					require("formatter.filetypes.cs").clangformat,
+					-- require("formatter.filetypes.cs").dotnetformat,
+				},
 				xml = {
 					function()
 						return {
@@ -95,11 +101,5 @@ return {
 				},
 			},
 		})
-		vim.cmd([[
-            augroup FormatAutogroup
-              autocmd!
-              autocmd BufWritePost * FormatWrite
-            augroup END
-		]])
 	end,
 }

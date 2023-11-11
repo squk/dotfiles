@@ -103,7 +103,7 @@ return {
 							async_path = " path",
 							buffer = " Buf",
 							cmdline = " cmd",
-							codiuem = "󰚩 Codeium",
+							codeium = "󰚩 Codeium",
 							crates = " rust",
 							luasnip = " snip",
 							nvim_ciderlsp = "󰚩 Cider",
@@ -114,23 +114,6 @@ return {
 						},
 					}),
 				},
-
-				-- sorting = {
-				--     priority_weight = 2,
-				--     comparators = {
-				--         cmp.config.compare.priority,
-				--         cmp.config.compare.score,
-				--         compare_by_ciderlsp_score,
-				--         cmp.config.compare.recently_used,
-				--         cmp.config.compare.locality,
-				--         cmp.config.compare.exact,
-				--         require("cmp-under-comparator").under,
-				--         cmp.config.compare.kind,
-				--         cmp.config.compare.sort_text,
-				--         -- cmp.config.compare.offset,
-				--         cmp.config.compare.order,
-				--     },
-				-- },
 
 				snippet = {
 					expand = function(args)

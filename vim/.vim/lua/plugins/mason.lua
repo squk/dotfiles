@@ -53,7 +53,7 @@ return {
 				require("rust-tools").setup({})
 			end,
 			["omnisharp_mono"] = function()
-				require("lspconfig").omnisharp.setup({
+				require("lspconfig").omnisharp_mono.setup({
 					handlers = {
 						["textDocument/definition"] = require("omnisharp_extended").handler,
 					},

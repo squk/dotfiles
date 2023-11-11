@@ -4,7 +4,6 @@
     "Lua.workspace.library": [
         "/usr/local/google/home/cnieves/.config/nvim",
         "/usr/local/google/home/cnieves/.vim/plugged/vcscommand.vim",
-        "/usr/local/google/home/cnieves/.vim/plugged/google-comments",
         "/usr/local/google/home/cnieves/.vim/plugged/cmp-nvim-ciderlsp",
         "/usr/local/google/home/cnieves/.vim/plugged/nvim-lsp-installer",
         "/usr/local/google/home/cnieves/.vim/plugged/fzf",

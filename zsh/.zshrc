@@ -42,15 +42,20 @@ bindkey '^Z' fancy-ctrl-z
 bindkey '^R' fzf-history-widget
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-bindkey "^K" kill-line
+bindkey '\eK' kill-line
 bindkey "^L" clear-screen
 bindkey "^U" kill-whole-line
 bindkey "^W" backward-kill-word
 bindkey "^Y" yank
-bindkey '\e.' insert-last-word
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
+bindkey '^X^e' edit-command-line
+bindkey '\e.' insert-last-word
+bindkey '\ef' forward-word
+bindkey '\eb' backward-word
+bindkey '\ed' forward-kill-word
+bindkey '^[^?' backward-kill-word
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 

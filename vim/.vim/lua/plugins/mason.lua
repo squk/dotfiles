@@ -13,7 +13,6 @@ return {
 			"html",
 			"rust_analyzer",
 			"marksman",
-			"pyright",
 			"sqlls",
 			"bashls",
 			"dotls",
@@ -22,6 +21,7 @@ return {
 
 		if not use_google() then
 			TableConcat(lsps, {
+				"pyright",
 				"omnisharp_mono",
 				"tsserver",
 				"gopls",

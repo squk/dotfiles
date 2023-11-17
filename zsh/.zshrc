@@ -1,19 +1,38 @@
 # set -xv
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+setopt SHARE_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+
 if [ -f ${HOME}/.zplug/init.zsh ]; then
     source ${HOME}/.zplug/init.zsh
 else
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
-# run zplug install after changing!!!!
+# RUN ZPLUG INSTALL AFTER CHANGING!!!!
 zplug "lib/completion", from:oh-my-zsh
-zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/git",   from:oh-my-zsh;
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-zplug "desyncr/auto-ls"
 zplug "zsh-users/zsh-autosuggestions"
-zplug romkatv/powerlevel10k, as:theme, depth:1
+zplug "zsh-users/zsh-history-substring-search"
+zplug "modules/prompt", from:prezto
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
 zplug load
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -56,9 +75,12 @@ bindkey '\ef' forward-word
 bindkey '\eb' backward-word
 bindkey '\ed' kill-word
 bindkey '^[^?' backward-kill-word
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
-
+# bindkey "^[[A" up-history
+# bindkey "^[[B" down-history
+# bindkey "^[[A" history-beginning-search-backward
+# bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 # Put standard ANSI color codes in shell parameters for easy use.
 # Note that some terminals do not support all combinations.
 

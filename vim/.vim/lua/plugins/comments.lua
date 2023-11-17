@@ -3,8 +3,9 @@ return {
 	lazy = false,
 	config = function()
 		local ft = require("Comment.ft")
-		ft.gd = "#%s"
-		ft.gdscript = "#%s"
+		ft.gd = "# %s"
+		ft.gdscript = "# %s"
+		ft.gsl = "// %s"
 
 		require("Comment").setup({
 			---Add a space b/w comment and the line

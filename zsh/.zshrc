@@ -54,7 +54,7 @@ bindkey '^X^e' edit-command-line
 bindkey '\e.' insert-last-word
 bindkey '\ef' forward-word
 bindkey '\eb' backward-word
-bindkey '\ed' forward-kill-word
+bindkey '\ed' kill-word
 bindkey '^[^?' backward-kill-word
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward

@@ -25,6 +25,15 @@ return {
 	{
 		"hinell/lsp-timeout.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			vim.g.lspTimeoutConfig = {
+				filetypes = {
+					ignore = { -- filetypes to ignore; empty by default
+						"gdscript",
+					}, -- for these filetypes
+				},
+			}
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -77,6 +86,8 @@ return {
 
 			-- Godot
 			lspconfig.gdscript.setup({})
+			vim.cmd([[autocmd FileType gdscript setlocal commentstring=#\ %s]])
+			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
 
 			-- Golang
 			require("go").setup({

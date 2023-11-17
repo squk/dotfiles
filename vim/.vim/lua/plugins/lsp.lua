@@ -25,6 +25,7 @@ return {
 	{
 		"hinell/lsp-timeout.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
+		cond = not use_google(),
 		config = function()
 			vim.g.lspTimeoutConfig = {
 				filetypes = {

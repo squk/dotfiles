@@ -103,7 +103,8 @@ prompt_workspace() {
         print -n "\e]2;${match[1]}\a" >/dev/tty
 
         GPROMPT=$(print -r -- "$match[1]")
-        p10k segment -b 44 -f white -t $GPROMPT
+        # #fff is different than white i guess
+        p10k segment -b 63 -f '#fff' -t $GPROMPT
     fi
 }
 

@@ -54,6 +54,7 @@ return {
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 			local cmp = require("cmp")
+			local compare = cmp.config.compare
 
 			local conditionalSources = {}
 
@@ -94,8 +95,21 @@ return {
 					{ name = "luasnip", priority = 8 },
 					{ name = "nvim_lsp", priority = 7 },
 					{ name = "spell" },
-					{ name = "treesitter", priority = 6 },
+					{ name = "treesitter" },
+					{ name = "buffer" },
 				}, conditionalSources)),
+
+				sorting = {
+					comparators = {
+						compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+						compare.offset,
+						--compare.order,
+						--compare.sort_text,
+						-- compare.exact,
+						-- compare.kind,
+						-- compare.length,
+					},
+				},
 
 				formatting = {
 					format = lspkind.cmp_format({

@@ -5,3 +5,4 @@ tooling/!
 createApkDescriptor
 setInstance
 collsion_body
+shake_decay

@@ -34,7 +34,6 @@ return {
 	},
 	{ "simrat39/rust-tools.nvim", ft = "rust" },
 
-	"RRethy/vim-illuminate",
 	{
 		"rafcamlet/nvim-luapad",
 		config = function()
@@ -53,6 +52,7 @@ return {
 	"kosayoda/nvim-lightbulb",
 	"ntpeters/vim-better-whitespace",
 	"junegunn/fzf.vim",
+	"AndrewRadev/tagalong.vim",
 	"tversteeg/registers.nvim",
 	"jremmen/vim-ripgrep",
 	{ "andymass/vim-matchup", event = "VimEnter" },

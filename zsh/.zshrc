@@ -15,7 +15,15 @@ fi
 
 # RUN ZPLUG INSTALL AFTER CHANGING!!!!
 zplug "lib/completion", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh;
+zplug "plugins/adb",   from:oh-my-zsh;
+zplug "plugins/bazel",   from:oh-my-zsh;
+zplug "plugins/docker-compose",   from:oh-my-zsh;
+zplug "plugins/docker",   from:oh-my-zsh;
+zplug "plugins/rsync",   from:oh-my-zsh;
+zplug "plugins/safepaste",   from:oh-my-zsh;
+
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "zsh-users/zsh-autosuggestions"

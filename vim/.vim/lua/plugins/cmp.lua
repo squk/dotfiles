@@ -88,29 +88,31 @@ return {
 			cmp.setup({
 				preselect = cmp.PreselectMode.None,
 				sources = cmp.config.sources(require("utils").TableConcat({
+					{ name = "luasnip", priority = 8 },
+					{ name = "nvim_lsp", priority = 7 },
 					{ name = "async_path" },
+					{ name = "treesitter" },
+					{ name = "buffer" },
 					{ name = "calc" },
 					{ name = "crates" },
 					{ name = "emoji" },
-					{ name = "luasnip", priority = 8 },
-					{ name = "nvim_lsp", priority = 7 },
-					{ name = "spell" },
-					{ name = "treesitter" },
-					{ name = "buffer" },
 				}, conditionalSources)),
 
 				sorting = {
 					comparators = {
+						-- compare.score_offset, -- not good at all
+						compare.locality,
+						compare.recently_used,
 						compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
 						compare.offset,
-						--compare.order,
-						--compare.sort_text,
+						compare.order,
+						-- compare.scopes, -- what?
+						-- compare.sort_text,
 						-- compare.exact,
 						-- compare.kind,
-						-- compare.length,
+						-- compare.length, -- useless
 					},
 				},
-
 				formatting = {
 					format = lspkind.cmp_format({
 						menu = {
@@ -148,8 +150,8 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						-- elseif has_words_before() then
-						--     cmp.complete()
+							-- elseif has_words_before() then
+							--     cmp.complete()
 						else
 							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end

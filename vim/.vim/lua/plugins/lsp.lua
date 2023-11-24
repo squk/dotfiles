@@ -14,6 +14,7 @@ if not use_google() then
 end
 
 return {
+	"j-hui/fidget.nvim",
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",

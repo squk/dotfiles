@@ -1,4 +1,5 @@
 return {
+	"PrestonKnopp/tree-sitter-gdscript",
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		config = function()

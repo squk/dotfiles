@@ -9,12 +9,7 @@ local deps = {
 	"ray-x/guihua.lua",
 }
 
-if not use_google() then
-	table.insert(deps, "Exafunction/codeium.nvim")
-end
-
 return {
-	"j-hui/fidget.nvim",
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",

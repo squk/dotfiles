@@ -55,6 +55,7 @@ return {
 	"AndrewRadev/tagalong.vim",
 	"tversteeg/registers.nvim",
 	"jremmen/vim-ripgrep",
+	"viniciusgerevini/clyde.vim",
 	{ "andymass/vim-matchup", event = "VimEnter" },
 	-- Undo tree
 	{

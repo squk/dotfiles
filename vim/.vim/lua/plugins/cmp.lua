@@ -1,7 +1,4 @@
 local use_google = require("utils").use_google
-local tprint = require("utils").tprint
-local dump = require("utils").dump
-local log = require("utils").log
 
 local function compare_by_ciderlsp_score(entry1, entry2)
 	if entry1.completion_item.score ~= nil and entry2.completion_item.score ~= nil then
@@ -18,20 +15,8 @@ end
 
 return {
 	{
-		"Exafunction/codeium.vim",
-		event = "InsertEnter",
-		cond = not use_google(),
-		dependencies = {
-			"onsails/lspkind.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-		config = function()
-			require("codeium").setup({})
-		end,
-	},
-	{
 		"hrsh7th/nvim-cmp",
-		event = "VimEnter",
+		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"f3fora/cmp-spell",
 			"hrsh7th/cmp-buffer",
@@ -39,6 +24,7 @@ return {
 			"hrsh7th/cmp-calc",
 			"onsails/lspkind.nvim",
 			"hrsh7th/cmp-cmdline",
+			"Exafunction/codeium.nvim",
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
@@ -149,14 +135,20 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.select_next_item()
-							-- elseif has_words_before() then
-							--     cmp.complete()
+							if #cmp.get_entries() == 1 then
+								cmp.confirm({ select = true })
+							else
+								cmp.select_next_item()
+							end
+						elseif has_words_before() then
+							cmp.complete()
+							if #cmp.get_entries() == 1 then
+								cmp.confirm({ select = true })
+							end
 						else
-							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+							fallback()
 						end
 					end, { "i", "s" }),
-
 					["<S-Tab>"] = cmp.mapping(function()
 						if cmp.visible() then
 							cmp.select_prev_item()

@@ -56,6 +56,16 @@ return {
 					require("formatter.filetypes.cs").clangformat,
 					-- require("formatter.filetypes.cs").dotnetformat,
 				},
+				gdscript = {
+					function()
+						return {
+							exe = "gdformat",
+							args = {
+								"-l 100",
+							},
+						}
+					end,
+				},
 				xml = {
 					function()
 						return {

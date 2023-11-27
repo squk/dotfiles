@@ -60,8 +60,15 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", getCitc, isCiderLspAttached },
-				lualine_c = { getLightbulb, "filename" },
+				lualine_c = {
+					getLightbulb,
+					{
+						"filename",
+						path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+					},
+				},
 				lualine_x = {
+					"",
 					"aerial",
 					{
 						"diagnostics",

@@ -73,7 +73,8 @@ return {
 				},
 				codeDescriptionSupport = true,
 				dataSupport = true,
-				-- layeredDiagnostics = true,
+				layeredDiagnostics = true,
+				documentSymbol = true,
 			}
 
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)

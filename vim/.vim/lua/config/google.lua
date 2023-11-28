@@ -133,6 +133,6 @@ com! -nargs=? -complete=file Blame :call G4Blame(<f-args>)
 
 nnoremap <leader>cc :CritiqueUnresolvedComments<space><cr>
 
-nmap <leader>yb :let t = join(blaze#GetTargets(), ' ') \| echo t \| let @+ = t \| CopyOSC52(t) <CR>
+nmap <leader>yb :let t = join(blaze#GetTargets(), ' ') \| echo t \| let @+ = t <CR>
 ]])
 end

@@ -87,9 +87,9 @@ return {
 				sorting = {
 					comparators = {
 						-- compare.score_offset, -- not good at all
+						compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
 						compare.locality,
 						compare.recently_used,
-						compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
 						compare.offset,
 						compare.order,
 						-- compare.scopes, -- what?

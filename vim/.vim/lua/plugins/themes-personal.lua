@@ -7,7 +7,7 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		-- cond = not use_google(),
 		config = function()
-			-- vim.cmd("colorscheme kanagawa")
+			vim.cmd("colorscheme kanagawa-wave")
 		end,
 	},
 	{
@@ -16,7 +16,7 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		cond = not use_google(),
 		config = function()
-			vim.cmd("colorscheme oxocarbon")
+			-- vim.cmd("colorscheme oxocarbon")
 		end,
 	},
 	{

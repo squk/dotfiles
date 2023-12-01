@@ -5,6 +5,7 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
+	{ "squk/gdrama-syntax.vim", dir = vim.fn.expand("$HOME/dev/gdrama-syntax.vim") },
 	{ "echasnovski/mini.splitjoin", version = "*" },
 	{
 		"andweeb/presence.nvim",

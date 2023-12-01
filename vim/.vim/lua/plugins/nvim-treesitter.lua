@@ -53,9 +53,9 @@ return {
 						--TODO write a custom Java treesitter parser for comments
 						--@link
 						--
-						-- if lang == "java" then
-						--     return true
-						-- end
+						if lang == "gdrama" then
+							return true
+						end
 
 						local max_filesize = 100 * 1024 -- 100 KB
 						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))

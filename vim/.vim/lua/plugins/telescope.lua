@@ -32,6 +32,7 @@ end
 
 local keys = {
 	{ "<leader>ts", "<cmd>lua live_grep()<CR>", desc = "Search in CWD" },
+	{ "<leader>tk", "<cmd>Telescope Keymaps<CR>", desc = "Search Keymaps" },
 	{ "<C-P>", "<cmd>lua find_files()<CR>", desc = "Find Files in CWD" },
 	{ "<leader>tf", "<cmd>lua find_files()<CR>", desc = "Find Files in CWD" },
 	{ "<leader>tf.", "<cmd>lua vim.error('use <leader>e')<CR>", desc = "Find Files in Buffer Directory" },

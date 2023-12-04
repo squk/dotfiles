@@ -25,6 +25,7 @@ return {
 				"omnisharp_mono",
 				"tsserver",
 				"gopls",
+				"markdown_lint",
 				"docker_compose_language_service",
 				"dockerls",
 				"graphql",

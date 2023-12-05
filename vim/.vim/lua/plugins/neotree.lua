@@ -21,12 +21,10 @@ return {
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"mrbjarksen/neo-tree-diagnostics.nvim",
 			"MunifTanjim/nui.nvim",
 		},
 		keys = {
 			{ "<C-n>", ":Neotree filesystem reveal toggle reveal_force_cwd<cr>", desc = "Open NeoTree" },
-			{ "<Leader>xd", "<Cmd>Neotree diagnostics reveal bottom<CR>" },
 		},
 	},
 }

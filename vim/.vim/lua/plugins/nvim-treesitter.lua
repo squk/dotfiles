@@ -72,6 +72,5 @@ return {
 				},
 			})
 		end,
-		lazy = false,
 	},
 }

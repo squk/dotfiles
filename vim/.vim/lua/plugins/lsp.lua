@@ -83,7 +83,16 @@ return {
 			require("config.lsp-google").setup(capabilities)
 
 			-- Godot
-			lspconfig.gdscript.setup({})
+			local godot_handlers = {
+				["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+					underline = true,
+				}),
+			}
+			lspconfig.gdscript.setup({
+				flags = {
+					debounce_text_changes = 2000, -- Wait 5 seconds before sending didChange
+				},
+			})
 			vim.cmd([[autocmd FileType gdscript setlocal commentstring=#\ %s]])
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
 

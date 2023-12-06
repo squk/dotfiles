@@ -26,7 +26,7 @@ function M.setup(capabilities)
 					"bzl",
 					"typescript",
 				},
-				root_dir = lspconfig.util.root_pattern("google3/*BUILD"),
+				root_dir = lspconfig.util.root_pattern("BUILD"),
 				settings = {},
 			},
 		}
@@ -54,7 +54,7 @@ function M.setup(capabilities)
 					"typescript",
 					"javascript",
 				},
-				root_dir = lspconfig.util.root_pattern("google3/*BUILD"),
+				root_dir = lspconfig.util.root_pattern("BUILD"),
 				settings = {},
 			},
 		}

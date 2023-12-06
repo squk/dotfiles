@@ -91,14 +91,6 @@ return {
 		end,
 	},
 	{
-		"mhinz/vim-signify",
-		event = "VimEnter",
-		keys = {
-			{ "]d", "<plug>(signify-next-hunk)" },
-			{ "[d", "<plug>(signify-prev-hunk)" },
-		},
-	},
-	{
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && npm install",
 		init = function()

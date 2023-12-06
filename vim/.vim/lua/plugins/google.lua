@@ -13,6 +13,10 @@ if not use_google() then
 	return {}
 end
 return {
+	{ url = "sso://user/fentanes/nvgoog" },
+	-- Prevent long sessions from losing cwd
+	-- Load google paths like //google/* with `gf`
+	{ import = "nvgoog.google.misc" },
 	{
 		name = "maktaba",
 		dir = "/usr/share/vim/google/maktaba",

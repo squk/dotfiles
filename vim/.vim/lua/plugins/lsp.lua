@@ -61,23 +61,8 @@ return {
 
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-			capabilities["codeLens"] = { dynamicRegistration = false }
-			capabilities.textDocument.publishDiagnostics = {
-				relatedInformation = true,
-				versionSupport = false,
-				tagSupport = {
-					valueSet = {
-						1,
-						2,
-					},
-				},
-				codeDescriptionSupport = true,
-				dataSupport = true,
-				layeredDiagnostics = true,
-				documentSymbol = true,
-			}
-
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
+
 			local lspconfig = require("lspconfig")
 			local configs = require("lspconfig.configs")
 			require("config.lsp-google").setup(capabilities)

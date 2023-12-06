@@ -17,15 +17,22 @@ return {
 
 		require("lsp_lines").setup()
 
-		vim.diagnostic.config({ virtual_text = false })
-		vim.diagnostic.config({ virtual_lines = { highlight_whole_line = false, only_current_line = false } })
+		vim.schedule(function()
+			vim.diagnostic.config({
+				virtual_text = true,
+				virtual_lines = { highlight_whole_line = false, only_current_line = true },
+			})
+		end)
 	end,
 	keys = {
 		{
 			"<leader>l",
 			function()
 				local new_value = not vim.diagnostic.config().virtual_lines.only_current_line
-				vim.diagnostic.config({ virtual_lines = { only_current_line = new_value } })
+				vim.diagnostic.config({
+					virtual_text = not new_value,
+					virtual_lines = { only_current_line = new_value },
+				})
 				return new_value
 			end,
 			desc = "Toggle LSP Lines",

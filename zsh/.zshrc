@@ -6,6 +6,7 @@ setopt SHARE_HISTORY
 setopt HIST_REDUCE_BLANKS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
+setopt interactivecomments # recognize comment char
 
 if [ -f ${HOME}/.zplug/init.zsh ]; then
     source ${HOME}/.zplug/init.zsh

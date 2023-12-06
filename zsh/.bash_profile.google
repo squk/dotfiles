@@ -202,5 +202,6 @@ bdoctor_modules() {
 }
 alias bisect=/google/data/ro/teams/tetralight/bin/bisect
 alias copybara='/google/bin/releases/copybara/public/copybara/copybara'
+source /etc/bash_completion.d/g4d
 
 complete -D -C /google/data/ro/users/sk/skaushik/www/public-tools/flagpick -o bashdefault -o default

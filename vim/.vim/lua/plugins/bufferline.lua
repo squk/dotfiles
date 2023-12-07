@@ -1,15 +1,15 @@
 return {
-	-- {
-	--     "tiagovla/scope.nvim",
-	--     config = function()
-	--         -- vim.opt.sessionoptions = { -- required
-	--         --     "buffers",
-	--         --     "tabpages",
-	--         --     "globals",
-	--         -- }
-	--         require("scope").setup({})
-	--     end,
-	-- },
+	{
+		"tiagovla/scope.nvim",
+		config = function()
+			-- vim.opt.sessionoptions = { -- required
+			--     "buffers",
+			--     "tabpages",
+			--     "globals",
+			-- }
+			require("scope").setup({})
+		end,
+	},
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",

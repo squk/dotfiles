@@ -69,7 +69,6 @@ return {
 				},
 				lualine_x = {
 					"",
-					"aerial",
 					{
 						"diagnostics",
 						sources = { "nvim_lsp" },

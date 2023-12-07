@@ -25,6 +25,11 @@ _G.signify_dtup = function()
 	vim.cmd([[:SignifyRefresh]])
 end
 
+_G.signify_normal = function()
+	setup_mercurial("hg diff --color=never config aliases.diff= --nodates -U0 -- %f")
+	vim.cmd([[:SignifyRefresh]])
+end
+
 _G.signify_dtp4 = function()
 	setup_mercurial('hg diff -r "p4base" %f')
 	vim.cmd([[:SignifyRefresh]])
@@ -42,6 +47,7 @@ return {
 		{ "]d", "<plug>(signify-next-hunk)" },
 		{ "[d", "<plug>(signify-prev-hunk)" },
 		{ "<leader>sd", ":SignifyDiff<CR>" },
+		{ "<leader>sn", ":lua signify_normal()<CR>" },
 		{ "<leader>sup", ":lua signify_dtup()<CR>" },
 		{ "<leader>sex", ":lua signify_dtex()<CR>" },
 		{ "<leader>sp4", ":lua signify_dtp4()<CR>" },

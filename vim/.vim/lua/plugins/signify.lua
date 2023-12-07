@@ -1,6 +1,6 @@
 local use_google = require("utils").use_google
 
-local function setup_mercurial(hg_cmd)
+local function setup_mercurial(hg_args)
 	local git_cmd = "git diff --no-color --no-ext-diff -U0 -- %f"
 	local rcs_cmd = "rcsdiff -U0 %f 2>%n"
 	local svn_cmd = "svn diff --diff-cmd %d -x -U0 -- %f"
@@ -8,35 +8,39 @@ local function setup_mercurial(hg_cmd)
 		[[
 let g:signify_vcs_cmds = {
       \ 'git':      '%s',
-      \ 'hg':       '%s',
       \ 'rcs':      '%s',
       \ 'svn':      '%s',
+      \ 'hg':       'hg diff %s',
+      \ }
+let g:signify_vcs_cmds_diffmode = {
+      \ 'hg':       'hg cat %s',
       \ }
   ]],
 		git_cmd,
-		hg_cmd,
 		rcs_cmd,
-		svn_cmd
+		svn_cmd,
+		hg_args,
+		hg_args
 	))
 end
 
 _G.signify_dtup = function()
-	setup_mercurial('hg diff -r ".^" %f')
+	setup_mercurial('-r ".^" %f')
 	vim.cmd([[:SignifyRefresh]])
 end
 
 _G.signify_normal = function()
-	setup_mercurial("hg diff --color=never config aliases.diff= --nodates -U0 -- %f")
+	setup_mercurial("--color=never config aliases.diff= --nodates -U0 -- %f")
 	vim.cmd([[:SignifyRefresh]])
 end
 
 _G.signify_dtp4 = function()
-	setup_mercurial('hg diff -r "p4base" %f')
+	setup_mercurial('-r "p4base" %f')
 	vim.cmd([[:SignifyRefresh]])
 end
 
 _G.signify_dtex = function()
-	setup_mercurial('hg diff -r "exported(.)" %f')
+	setup_mercurial('-r "exported(.)" %f')
 	vim.cmd([[:SignifyRefresh]])
 end
 

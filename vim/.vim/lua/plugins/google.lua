@@ -1,54 +1,93 @@
 local use_google = require("utils").use_google
-
-local function goog(plugin, config)
-	return {
-		name = plugin,
-		dir = "/usr/share/vim/google/" .. plugin,
-		dependencies = { "maktaba" },
-		config = config,
-	}
-end
+local glug = require("glug").glug
+local glugOpts = require("glug").glugOpts
+local veryLazy = require("glug").veryLazy
 
 if not use_google() then
 	return {}
 end
+
 return {
 	{ url = "sso://user/fentanes/nvgoog" },
 	-- Prevent long sessions from losing cwd
 	-- Load google paths like //google/* with `gf`
 	{ import = "nvgoog.google.misc" },
-	{
-		name = "maktaba",
-		dir = "/usr/share/vim/google/maktaba",
-		init = function()
+	-- maktaba is required by all google plugins
+	glug("maktaba", {
+		lazy = true,
+		dependencies = {},
+		config = function()
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
 		end,
-	},
-	goog("core"),
-	goog("glaive"),
-	goog("alert"),
-	goog("csearch"),
-	goog("codefmt-google"),
-	goog("languages"),
-	goog("googlestyle"),
-	goog("googlespell"),
-	goog("googlepaths"),
-	-- goog("google-filetypes"),
-	-- goog("ft-java"),
-	goog("ft-soy"),
-	goog("ft-gss"),
-	-- goog("ft-javascript"),
-	-- goog("ft-kotlin"),
-	goog("ft-proto"),
-	goog("google-logo"),
-	goog("critique"),
-	goog("piper"),
-	goog("gtimporter"),
-	goog("blaze"),
-	goog("buganizer"),
-	goog("g4"),
-	goog("outline-window"),
-	goog("fzf-query"),
+	}),
+	glug("core"),
+	glug("glaive"),
+	glug("alert"),
+	glug("csearch"),
+	glug("languages"),
+	glug("googlestyle"),
+	glug("googlespell"),
+	-- Enable logmsgs ASAP to avoid maktaba's log message queue filling up
+	glug("logmsgs", {
+		event = "VeryLazy",
+	}),
+	glug("googler", {
+		event = "VeryLazy",
+	}),
+	-- Add support for google filetypes
+	glug("google-filetypes", {
+		event = "BufReadPre",
+	}),
+	-- Set up syntax, indent, and core settings for various filetypes
+	veryLazy(glug("ft-cel")),
+	veryLazy(glug("ft-clif")),
+	veryLazy(glug("ft-cpp")),
+	veryLazy(glug("ft-gin")),
+	veryLazy(glug("ft-go")),
+	veryLazy(glug("ft-java")),
+	veryLazy(glug("ft-javascript")),
+	veryLazy(glug("ft-kotlin")),
+	veryLazy(glug("ft-proto")),
+	veryLazy(glug("ft-python")),
+	veryLazy(glug("ft-soy")),
+	-- Configures nvim to respect Google's coding style
+	veryLazy(glug("googlestyle")),
+	-- Autogens boilerplate when creating new files
+	glug("autogen", {
+		event = "BufNewFile",
+	}),
+	-- Adds G4 support to the vcscommand plugin
+	glug("vcscommand-g4", {
+		optional = true,
+		lazy = true,
+	}),
+	glug("googlepaths"),
+	glug("ft-soy"),
+	glug("ft-gss"),
+	glug("ft-proto"),
+	glug("g4"),
+	glug("outline-window"),
+	glug("fzf-query"),
+	-- Open current file in chrome
+	glug("corpweb", {
+		dependencies = {
+			glug("launchbrowser"),
+		},
+		cmd = {
+			-- Launches {query} under codesearch in a web browser
+			"CorpWebCs",
+			-- Launches the current file under codesearch in a web browser
+			"CorpWebCsFile",
+			-- Launches the current file doc view (i.e., Cantata, G3Docs, or godoc)
+			"CorpWebDocFindFile",
+			-- Launches the current CL in Critique
+			"CorpWebCritiqueCl",
+			-- Launches the current CL in Cider
+			"CorpWebCider",
+			-- Launches {query} under cs.chromium.org in a web browser
+			"CorpWebChromeCs",
+		},
+	}),
 	{
 		name = "relatedfiles",
 		dir = "/usr/share/vim/google/relatedfiles",
@@ -72,37 +111,156 @@ return {
 			},
 		},
 	},
-	{
-		name = "codefmt",
-		dir = "/usr/share/vim/google/codefmt",
-		dependencies = { "glaive" },
-		config = function()
-			vim.cmd(
-				[[Glaive codefmt gofmt_executable=/usr/lib/google-golang/bin/gofmt ktfmt_executable=/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt,--google-style]]
-			)
-		end,
-	},
 	{ "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{ "junegunn/fzf.vim", dependencies = { "junegunn/fzf" } },
-	{
-		name = "imp-google",
-		dir = "/usr/share/vim/google/imp-google",
-		dependencies = { "flwyd/vim-imp", "glaive", "junegunn/fzf.vim" },
-		config = function()
-			vim.cmd([[
-            Glaive imp Suggest[default]=buffer,csearch,prompt  Pick[default]=fzf
-            ]])
-
-			-- To search for imports in the file's parent directory before using Code Search across all of google3, install ripgrep and try
-			vim.cmd([[
-            Glaive imp Suggest[gcl]=buffer,ripgrep,csearch,prompt
-            \ Location[gcl]=parent Location[borg]=parent
-            \ Suggest[borg]=buffer,ripgrep,csearch,prompt
-            \ Suggest[aidl]=buffer,ripgrep,csearch,prompt
-            ]])
+	-- Format google code
+	glug("codefmt-google", {
+		dependencies = { glug("codefmt") },
+		cmd = { "FormatLines", "FormatCode", "AutoFormatBuffer" },
+		event = "BufWritePre",
+		-- TODO: remove prettier when http://cl/549024543 is submitted and deployed
+		--    - remove prettier from the plugin options
+		--    - set js/ts to use prettier instead of clang-format
+		--      autocmd FileType javascript,typescript,javascriptreact,typescriptreact,css,scss,html,json AutoFormatBuffer prettier
+		opts = {
+			clang_format_executable = "/usr/bin/clang-format",
+			clang_format_style = "function('codefmtgoogle#GetClangFormatStyle')",
+			gofmt_executable = "/usr/lib/google-golang/bin/gofmt",
+			prettier_executable = "/google/data/ro/teams/prettier/prettier",
+			ktfmt_executable = { "/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style" },
+			auto_format = {
+				["borg"] = "gclfmt",
+				["gcl"] = "gclfmt",
+				["patchpanel"] = "gclfmt",
+				["bzl"] = "buildifier",
+				["c"] = "clang-format",
+				["cpp"] = "clang-format",
+				["javascript"] = "clang-format",
+				["typescript"] = "clang-format",
+				["dart"] = "dartfmt",
+				["go"] = "gofmt",
+				["java"] = "google-java-format",
+				["jslayout"] = "jslfmt",
+				["markdown"] = "mdformat",
+				["ncl"] = "nclfmt",
+				["python,piccolo"] = "pyformat",
+				["soy"] = "soyfmt",
+				["textpb"] = "text-proto-format",
+				["proto"] = "protofmt",
+				["sql"] = "format_sql",
+			},
+		},
+		-- Setting up autocmds in init allows deferring loading the plugin until
+		-- the `BufWritePre` event. One caveat is we must call `codefmt#FormatBuffer()`
+		-- manually the first time since the plugin relies on the `BufWritePre` command to call it,
+		-- but by the time it's first loaded it has already happened.
+		-- TODO: check if that is fixed when the following issue is fixed
+		-- https://github.com/folke/lazy.nvim/issues/858
+		-- if so, remove the call to `FormatBuffer`
+		init = function(plugin)
+			local group = vim.api.nvim_create_augroup("autoformat_settings", {})
+			local function autocmd(filetypes, formatter)
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = filetypes,
+					group = group,
+					callback = function(event)
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							buffer = event.buf,
+							group = group,
+							once = true,
+							command = "call codefmt#FormatBuffer() | AutoFormatBuffer " .. formatter,
+						})
+					end,
+				})
+			end
+			-- Build opts from possible parent specs since lazy.nvim doesn't provide it in `init`
+			local plugin_opts = {}
+			local curr_plugin = plugin
+			while curr_plugin do
+				if type(curr_plugin.opts) == "table" then
+					plugin_opts = require("lazy.core.util").merge(curr_plugin.opts, plugin_opts)
+				elseif type(curr_plugin.opts) == "function" then
+					plugin_opts = curr_plugin.opts(plugin, plugin_opts)
+				end
+				curr_plugin = curr_plugin._ and curr_plugin._.super or nil
+			end
+			for filetypes, formatter in pairs(plugin_opts.auto_format or {}) do
+				autocmd(filetypes, formatter)
+			end
 		end,
-		lazy = false,
-	},
+	}),
+
+	-- Run blaze commands
+	glug("blaze", {
+		opts = {
+			execution_mode = "async",
+		},
+		dependencies = {
+			glug("blazedeps"),
+		},
+		cmd = {
+			"Blaze",
+			"BlazeGoToSponge",
+			"BlazeViewCommandLog",
+			"BlazeLoadErrors",
+			"BlazeDebugCurrentFileTest",
+			"BlazeDebugCurrentTestMethod",
+			"BlazeDebugAddBreakpoint",
+			"BlazeDebugClearBreakpoint",
+			"BlazeDebugFinish",
+			"BlazeDepsUpdate",
+		},
+		keys = function()
+			local function runCmd(cmd)
+				return function()
+					vim.g._calling_blaze_cmd = 1
+					vim.cmd(cmd)
+					-- Clear the "blaze: SUCCESS" that blaze.vim will print
+					if vim.g._call_blaze_query then
+						print("")
+					end
+					vim.g._calling_blaze_cmd = 0
+				end
+			end
+			return {
+				{ "<leader>b", desc = "Blaze" },
+				{ "<leader>be", runCmd("call blaze#LoadErrors()"), desc = "Blaze load errors" },
+				{ "<leader>bl", runCmd("call blaze#ViewCommandLog()"), desc = "Blaze view build log" },
+				{ "<leader>bs", runCmd("BlazeGoToSponge"), desc = "Blaze go to sponge" },
+				{ "<leader>bc", runCmd("Blaze"), desc = "Blaze build on targets" },
+				{ "<leader>bb", runCmd("Blaze build"), desc = "Blaze build" },
+				{ "<leader>bt", runCmd("Blaze test"), desc = "Blaze test" },
+				{ "<leader>bf", runCmd("call blaze#TestCurrentFile()"), desc = "Blaze test current file" },
+				{ "<leader>bm", runCmd("call blaze#TestCurrentMethod()"), desc = "Blaze test current method" },
+				{ "<leader>bd", desc = "Blaze debug" },
+				{ "<leader>bdf", runCmd("BlazeDebugCurrentFileTest"), desc = "Blaze debug current file" },
+				{ "<leader>bdm", runCmd("BlazeDebugCurrentTestMethod"), desc = "Blaze debug current method" },
+				{ "<leader>bda", runCmd("BlazeDebugAddBreakpoint"), desc = "Blaze debug add breakpoint" },
+				{ "<leader>bdc", runCmd("BlazeDebugClearBreakpoint"), desc = "Blaze debug clear breakpoint" },
+				{ "<leader>bdf", runCmd("BlazeDebugFinish"), desc = "Blaze debug finish" },
+				{ "<leader>bu", runCmd("BlazeDepsUpdate"), desc = "Blaze update dependencies" },
+			}
+		end,
+	}),
+	-- Imports
+	glug("imp-google", {
+		dependencies = {
+			glugOpts("vim-imp", {
+				"flwyd/vim-imp",
+				opts = {
+					["Suggest[default]"] = { "buffer", "csearch", "ripgrep", "prompt" },
+					["Report[default]"] = "popupnotify",
+					["Location[default]"] = "packageroot",
+					-- ["Location[gcl]"] = "parent",
+					-- ["Pick[default]"] = "fzf",
+				},
+			}),
+		},
+		cmd = { "ImpSuggest", "ImpFirst" },
+		keys = {
+			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
+		},
+	}),
 	{
 		name = "ai.nvim",
 		url = "sso://googler@user/vvvv/ai.nvim",

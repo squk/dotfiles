@@ -59,10 +59,7 @@ end
 
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = {
-		-- "nvim-telescope/telescope-smart-history.nvim",
-		-- "kkharji/sqlite.lua",
-	},
+	dependencies = {},
 	config = function()
 		require("telescope").setup({
 			defaults = {
@@ -106,10 +103,6 @@ return {
 						end,
 					},
 				},
-				-- history = {
-				--     path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
-				--     limit = 200,
-				-- },
 			},
 			extensions = {
 				codesearch = {
@@ -117,8 +110,6 @@ return {
 				},
 			},
 		})
-
-		-- require("telescope").load_extension("smart_history")
 	end,
 	keys = keys,
 }

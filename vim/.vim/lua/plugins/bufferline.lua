@@ -27,7 +27,7 @@ return {
 					},
 					indicator = {
 						-- icon = "▎", -- this should be omitted if indicator style is not 'icon'
-						style = "underline", -- | 'underline' | 'none',
+						style = "icon", -- | 'underline' | 'none',
 					},
 					offsets = {
 						{

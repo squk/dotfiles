@@ -13,13 +13,13 @@ return {
 	-- Load google paths like //google/* with `gf`
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
-	glug("maktaba", {
-		lazy = true,
-		dependencies = {},
-		config = function()
+	{
+		name = "maktaba",
+		dir = "/usr/share/vim/google/maktaba",
+		init = function()
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
 		end,
-	}),
+	},
 	glug("core"),
 	glug("glaive"),
 	glug("alert"),
@@ -192,9 +192,6 @@ return {
 
 	-- Run blaze commands
 	glug("blaze", {
-		-- opts = {
-		-- 	execution_mode = "async",
-		-- },
 		dependencies = {
 			glug("blazedeps"),
 		},
@@ -227,11 +224,6 @@ return {
 			end
 			return {
 				{ "<leader>b", desc = "Blaze" },
-				-- { "<leader>be", runCmd("call blaze#LoadErrors()"), desc = "Blaze load errors" },
-				-- { "<leader>bl", runCmd("call blaze#ViewCommandLog()"), desc = "Blaze view build log" },
-				-- { "<leader>bs", runCmd("BlazeGoToSponge"), desc = "Blaze go to sponge" },
-				-- { "<leader>bc", runCmd("Blaze"), desc = "Blaze build on targets" },
-				-- { "<leader>bb", runCmd("Blaze build"), desc = "Blaze build" },
 				{ "<leader>bt", ":call BlazeTest()<CR>", desc = "Blaze Test" },
 				{ "<leader>bb", ":call BlazeBuild()<CR>", desc = "Blaze Build" },
 				{ "<leader>br", ":call BlazeRun()<CR>", desc = "Blaze Run" },

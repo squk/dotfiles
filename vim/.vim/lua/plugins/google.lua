@@ -192,9 +192,9 @@ return {
 
 	-- Run blaze commands
 	glug("blaze", {
-		opts = {
-			execution_mode = "async",
-		},
+		-- opts = {
+		-- 	execution_mode = "async",
+		-- },
 		dependencies = {
 			glug("blazedeps"),
 		},
@@ -210,6 +210,9 @@ return {
 			"BlazeDebugFinish",
 			"BlazeDepsUpdate",
 		},
+		config = function()
+			require("config.blaze")
+		end,
 		keys = function()
 			local function runCmd(cmd)
 				return function()
@@ -224,12 +227,19 @@ return {
 			end
 			return {
 				{ "<leader>b", desc = "Blaze" },
-				{ "<leader>be", runCmd("call blaze#LoadErrors()"), desc = "Blaze load errors" },
-				{ "<leader>bl", runCmd("call blaze#ViewCommandLog()"), desc = "Blaze view build log" },
-				{ "<leader>bs", runCmd("BlazeGoToSponge"), desc = "Blaze go to sponge" },
-				{ "<leader>bc", runCmd("Blaze"), desc = "Blaze build on targets" },
-				{ "<leader>bb", runCmd("Blaze build"), desc = "Blaze build" },
-				{ "<leader>bt", runCmd("Blaze test"), desc = "Blaze test" },
+				-- { "<leader>be", runCmd("call blaze#LoadErrors()"), desc = "Blaze load errors" },
+				-- { "<leader>bl", runCmd("call blaze#ViewCommandLog()"), desc = "Blaze view build log" },
+				-- { "<leader>bs", runCmd("BlazeGoToSponge"), desc = "Blaze go to sponge" },
+				-- { "<leader>bc", runCmd("Blaze"), desc = "Blaze build on targets" },
+				-- { "<leader>bb", runCmd("Blaze build"), desc = "Blaze build" },
+				{ "<leader>bt", ":call BlazeTest()<CR>", desc = "Blaze Test" },
+				{ "<leader>bb", ":call BlazeBuild()<CR>", desc = "Blaze Build" },
+				{ "<leader>br", ":call BlazeRun()<CR>", desc = "Blaze Run" },
+				{
+					"<leader>yb",
+					":let t = join(blaze#GetTargets(), ' ') | echo t | let @+ = t <CR>",
+					desc = "Yank Blaze Target",
+				},
 				{ "<leader>bf", runCmd("call blaze#TestCurrentFile()"), desc = "Blaze test current file" },
 				{ "<leader>bm", runCmd("call blaze#TestCurrentMethod()"), desc = "Blaze test current method" },
 				{ "<leader>bd", desc = "Blaze debug" },

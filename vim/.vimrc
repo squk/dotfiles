@@ -27,7 +27,7 @@ set ttyfast
 set relativenumber
 set copyindent
 set preserveindent
-set lazyredraw " Enable if running slow...
+" set lazyredraw " Enable if running slow...
 set autoindent
 
 set wrap
@@ -65,7 +65,6 @@ lua require('plugin_init')
 source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
 
-set noshowmode
 set encoding=utf-8
 
 set t_Co=256
@@ -103,9 +102,6 @@ function! GenerateUnicode(first, last)
   endwhile
 endfunction
 
-set colorcolumn=80
-set mouse=
-
 " makes sure that when opening, files are normal, i.e. not folded.
 set nofoldenable
 
@@ -125,41 +121,7 @@ let g:loaded_netrwPlugin       = 1
 let g:loaded_tutor_mode_plugin = 1
 let g:loaded_remote_plugins    = 1
 
-
-function! TabMultiDiff()
-  let s:tab_multi_diff = 0
-  argdo call s:AddBufferToTab()
-  tabclose
-endfun
-
-" Helper function used by TabMultiDiff(). Adds current buffer to new tab
-" or last tab as appropriate, and sets new window's "diff" option.
-function! s:AddBufferToTab()
-  let buf = bufnr("%")
-  if s:tab_multi_diff
-    tablast
-    vsplit
-    wincmd w
-  else
-    tab split
-    tabmove
-  endif
-  let s:tab_multi_diff = ! s:tab_multi_diff
-  exe 'b ' . buf
-  diffthis
-  tabfirst
-endfun
+set mouse=nv
 
 filetype plugin indent on
 syntax on
-
-" noremap <Up> <Nop>
-" noremap <Down> <Nop>
-" noremap <Left> <Nop>
-" noremap <Right> <Nop>
-" inoremap <Up> <Nop>
-" inoremap <Down> <Nop>
-" inoremap <Left> <Nop>
-" inoremap <Right> <Nop>
-
-lua require("config.google")

@@ -79,42 +79,6 @@ return {
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
-			-- tabline = {
-			--     lualine_a = {
-			--         {
-			--             "tabs",
-			--             mode = 1,
-			--             use_mode_colors = true,
-			--             max_length = (vim.o.columns / 5) * 4,
-			--             fmt = function(name, context)
-			--                 -- Show + if buffer is modified in tab
-			--                 local buflist = vim.fn.tabpagebuflist(context.tabnr)
-			--                 local winnr = vim.fn.tabpagewinnr(context.tabnr)
-			--                 local bufnr = buflist[winnr]
-			--                 local mod = vim.fn.getbufvar(bufnr, "&mod")
-			--
-			--                 return name .. (mod == 1 and " +" or "")
-			--             end,
-			--         },
-			--     },
-			--     lualine_b = { "branch" },
-			--     -- lualine_c = { "filename" },
-			--     lualine_c = {
-			--         {
-			--             "diagnostics",
-			--             sources = { "nvim_workspace_diagnostic" },
-			--             symbols = { error = " ", warn = " ", info = " ", hint = " " },
-			--         },
-			--     },
-			--     -- lualine_y = { getLGTMs }
-			--     lualine_z = {
-			--         {
-			--             "filename",
-			--             file_status = false, -- displays file status (readonly status, modified status)
-			--             path = 2, -- 0 = just filename, 1 = relative path, 2 = absolute path
-			--         },
-			--     },
-			-- },
 		})
 	end,
 }

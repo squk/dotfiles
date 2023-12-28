@@ -48,6 +48,7 @@ return {
 			if use_google() then
 				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
 				table.insert(conditionalSources, { name = "analysislsp" })
+				table.insert(conditionalSources, { name = "buganizer", option = { notifications_enabled = true } })
 			else
 				table.insert(conditionalSources, { name = "codeium", priority = 8 })
 			end
@@ -124,6 +125,7 @@ return {
 							nerdfont = "󰊪 nerdfont",
 							nvim_ciderlsp = "󰚩 Cider",
 							analysislsp = "󰟌 analysislsp",
+							nvim_lsp_signature_help = "󰊕",
 							nvim_lsp = " LSP",
 							nvim_lua = " lua",
 							treesitter = "󰙅 ts",

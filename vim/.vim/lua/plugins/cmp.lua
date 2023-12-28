@@ -46,10 +46,10 @@ return {
 			local conditionalSources = {}
 
 			if use_google() then
-				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 9 })
+				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
 				table.insert(conditionalSources, { name = "analysislsp" })
 			else
-				table.insert(conditionalSources, { name = "codeium", priority = 9 })
+				table.insert(conditionalSources, { name = "codeium", priority = 8 })
 			end
 
 			local lspkind = require("lspkind")
@@ -74,20 +74,27 @@ return {
 
 			cmp.setup({
 				preselect = cmp.PreselectMode.None,
-				sources = cmp.config.sources(require("utils").TableConcat({
-					{ name = "luasnip", priority = 8 },
-					{ name = "nvim_lsp", priority = 7 },
-					{ name = "async_path" },
-					{ name = "crates" },
-					{ name = "calc" },
-				}, { -- symbols/icons group
-					{ name = "nerdfont" },
-					{ name = "emoji" },
-				}, { -- fallback A
-					{ name = "treesitter" },
-				}, { -- fallback B
-					{ name = "buffer" },
-				}, conditionalSources)),
+				sources = cmp.config.sources(
+					require("utils").TableConcat(conditionalSources, {
+						{ name = "nvim_lsp_signature_help", priority = 9 },
+						-- Conditional sources injected here.
+						{ name = "luasnip", priority = 7 },
+						{ name = "nvim_lsp", priority = 6 },
+						{ name = "async_path" },
+						{ name = "crates" },
+						{ name = "calc" },
+					}),
+					{ -- symbols/icons group
+						{ name = "nerdfont" },
+						{ name = "emoji" },
+					},
+					{ -- fallback A
+						{ name = "treesitter" },
+					},
+					{ -- fallback B
+						{ name = "buffer" },
+					}
+				),
 
 				sorting = {
 					comparators = {

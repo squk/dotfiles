@@ -78,12 +78,15 @@ return {
 					{ name = "luasnip", priority = 8 },
 					{ name = "nvim_lsp", priority = 7 },
 					{ name = "async_path" },
-					{ name = "nerdfont" },
-					{ name = "treesitter" },
-					{ name = "buffer" },
-					{ name = "calc" },
 					{ name = "crates" },
+					{ name = "calc" },
+				}, { -- symbols/icons group
+					{ name = "nerdfont" },
 					{ name = "emoji" },
+				}, { -- fallback A
+					{ name = "treesitter" },
+				}, { -- fallback B
+					{ name = "buffer" },
 				}, conditionalSources)),
 
 				sorting = {
@@ -97,7 +100,7 @@ return {
 						-- compare.scopes, -- what?
 						-- compare.sort_text,
 						-- compare.exact,
-						-- compare.kind,
+						compare.kind,
 						-- compare.length, -- useless
 					},
 				},

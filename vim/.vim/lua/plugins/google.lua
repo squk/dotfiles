@@ -254,7 +254,7 @@ return {
 					["Report[default]"] = "popupnotify",
 					["Location[default]"] = "packageroot",
 					-- ["Location[gcl]"] = "parent",
-					-- ["Pick[default]"] = "fzf",
+					["Pick[default]"] = "fzf",
 				},
 			}),
 		},

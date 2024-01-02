@@ -25,7 +25,7 @@ return {
 	glug("alert"),
 	glug("csearch"),
 	glug("languages"),
-	glug("googlestyle"),
+	-- glug("googlestyle"),
 	glug("googlespell"),
 	-- Enable logmsgs ASAP to avoid maktaba's log message queue filling up
 	glug("logmsgs", {

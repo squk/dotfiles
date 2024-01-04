@@ -69,9 +69,9 @@ return {
 
 			-- Godot
 			lspconfig.gdscript.setup({
-				flags = {
-					debounce_text_changes = 2000, -- Wait 5 seconds before sending didChange
-				},
+				-- flags = {
+				-- 	debounce_text_changes = 2000, -- Wait 5 seconds before sending didChange
+				-- },
 			})
 			vim.cmd([[autocmd FileType gdscript setlocal commentstring=#\ %s]])
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])

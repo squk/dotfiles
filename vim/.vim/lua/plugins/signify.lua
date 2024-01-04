@@ -43,7 +43,6 @@ _G.signify_dtex = function()
 	setup_mercurial('-r "exported(.)" %f')
 	vim.cmd([[:SignifyRefresh]])
 end
-
 return {
 	"mhinz/vim-signify",
 	event = "VimEnter",
@@ -58,17 +57,18 @@ return {
 	},
 	config = function()
 		vim.g.signify_vcs_list = { "hg", "git" }
-		-- vim.g.signify_sign_change = "*"
-		-- vim.g.signify_sign_delete = "-"
-		-- vim.g.signify_line_highlight = 0
-		vim.g.signify_sign_add = "┃"
-		vim.g.signify_sign_delete = "┃"
-		vim.g.signify_sign_change = "┃"
-		vim.api.nvim_set_hl(0, "SignifySignAdd", { ctermfg = "green", fg = "#79b7a5" })
-		vim.api.nvim_set_hl(0, "SignifySignChange", { ctermfg = "yellow", fg = "#ffffcc" })
-		vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { ctermfg = "red", fg = "#ff7b72" })
-		vim.api.nvim_set_hl(0, "SignifySignDelete", { ctermfg = "red", fg = "#ff7b72" })
-		vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { ctermfg = "red", fg = "#ff7b72" })
+		local one_eighth = "▏"
+		local one_quarter = "▎"
+		local three_eighths = "▍"
+		vim.g.signify_sign_add = one_quarter
+		vim.g.signify_sign_delete = one_quarter
+		vim.g.signify_sign_change = one_quarter
+		local red = "#f8a6a0"
+		vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cc99f" })
+		vim.api.nvim_set_hl(0, "SignifySignChange", { fg = "#84cee3" })
+		vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { fg = red })
+		vim.api.nvim_set_hl(0, "SignifySignDelete", { fg = red })
+		vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { fg = red })
 		-- vim.cmd("highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE")
 	end,
 }

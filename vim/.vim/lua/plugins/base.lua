@@ -8,6 +8,13 @@ return {
 	{ "squk/gdrama-syntax.vim", dir = vim.fn.expand("$HOME/dev/gdrama-syntax.vim") },
 	{ "echasnovski/mini.splitjoin", version = "*" },
 	{
+		"NvChad/nvim-colorizer.lua",
+		ft = "lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+	{
 		"andweeb/presence.nvim",
 		cond = not use_google(),
 		config = function()

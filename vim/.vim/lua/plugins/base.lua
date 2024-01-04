@@ -14,22 +14,6 @@ return {
 			require("presence").setup({ show_time = false })
 		end,
 	},
-	{
-		"petertriho/nvim-scrollbar",
-		config = function()
-			require("scrollbar").setup()
-		end,
-		lazy = false,
-	},
-	{
-		"kevinhwang91/nvim-hlslens",
-		config = function()
-			-- require('hlslens').setup() is not required
-			require("scrollbar.handlers.search").setup({
-				-- hlslens config overrides
-			})
-		end,
-	},
 	{ "udalov/kotlin-vim", ft = "kotlin" },
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },

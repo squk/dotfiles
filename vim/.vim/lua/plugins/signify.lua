@@ -59,6 +59,16 @@ return {
 	config = function()
 		vim.g.signify_vcs_list = { "hg", "git" }
 		-- vim.g.signify_sign_change = "*"
-		vim.g.signify_sign_delete = "-"
+		-- vim.g.signify_sign_delete = "-"
+		-- vim.g.signify_line_highlight = 0
+		vim.g.signify_sign_add = "┃"
+		vim.g.signify_sign_delete = "┃"
+		vim.g.signify_sign_change = "┃"
+		vim.api.nvim_set_hl(0, "SignifySignAdd", { ctermfg = "green", fg = "#79b7a5" })
+		vim.api.nvim_set_hl(0, "SignifySignChange", { ctermfg = "yellow", fg = "#ffffcc" })
+		vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { ctermfg = "red", fg = "#ff7b72" })
+		vim.api.nvim_set_hl(0, "SignifySignDelete", { ctermfg = "red", fg = "#ff7b72" })
+		vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { ctermfg = "red", fg = "#ff7b72" })
+		-- vim.cmd("highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE")
 	end,
 }

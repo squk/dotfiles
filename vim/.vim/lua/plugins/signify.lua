@@ -64,7 +64,7 @@ return {
 		vim.g.signify_sign_delete = one_quarter
 		vim.g.signify_sign_change = one_quarter
 		local red = "#f8a6a0"
-		vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cc99f" })
+		vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cc9b8" })
 		vim.api.nvim_set_hl(0, "SignifySignChange", { fg = "#84cee3" })
 		vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { fg = red })
 		vim.api.nvim_set_hl(0, "SignifySignDelete", { fg = red })

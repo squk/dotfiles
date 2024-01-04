@@ -7,8 +7,9 @@ return {
 		require("notify").setup({
 			-- background_colour = colors.base,
 			fps = 20, -- default 30
-			stages = "slide", -- default fade_in_slide_out
+			-- stages = "slide", -- default fade_in_slide_out
 			timeout = 5000, -- default 5000
+			render = "wrapped-compact",
 		})
 		vim.notify = require("notify")
 	end,

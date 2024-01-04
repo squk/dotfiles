@@ -19,6 +19,7 @@ M.convertLuaToVim = function(value)
 	end
 	error("unsupported type for value: " .. type(value))
 end
+
 -- Allow glugin options to be set by `spec.opts`
 -- This makes configuring options locally easier
 M.glugOpts = function(name, spec)
@@ -38,6 +39,7 @@ M.glugOpts = function(name, spec)
 	end
 	return spec
 end
+
 M.glug = function(name, spec)
 	return M.glugOpts(
 		name,
@@ -54,8 +56,10 @@ end
 -- come before `VeryLazy`, such as `FileType` and `BufRead`.
 -- The `VeryLazy` command is fired after the UI is first loaded, using
 -- this helps improve app start when nvim is opened with a file.
+
 -- Events to check autocmds for. We target events that could fire before vim fully loads.
 local events = { "BufEnter", "BufRead", "BufReadPost", "BufReadPre", "BufWinEnter", "FileType" }
+
 -- A unique key to help identify autocmds.
 local getAutocmdKey = function(autocmd)
 	return table.concat({
@@ -66,6 +70,7 @@ local getAutocmdKey = function(autocmd)
 		autocmd.buffer or "",
 	}, "-")
 end
+
 -- Take note of which autocmds exist before any plugins are loaded.
 local existingAutocmds = {}
 vim.api.nvim_create_autocmd("User", {
@@ -80,14 +85,17 @@ vim.api.nvim_create_autocmd("User", {
 		end
 	end,
 })
+
 M.veryLazy = function(spec)
 	local originalConfig = spec.config
+
 	return vim.tbl_extend("force", spec, {
 		event = "VeryLazy",
 		config = function(plugin, opts)
 			if type(originalConfig) == "function" then
 				originalConfig(plugin, opts)
 			end
+
 			-- Execute any missed autocmd events that fired before the plugin was loaded,
 			-- and only for autocmds that were set by this plugin.
 			for _, autocmd in pairs(vim.api.nvim_get_autocmds({ event = events })) do
@@ -104,6 +112,7 @@ M.veryLazy = function(spec)
 					vim.api.nvim_exec_autocmds(autocmd.event, { group = autocmd.group, buffer = autocmd.buffer })
 				end
 			end
+
 			-- Source any ftplugin files for opened buffers.
 			for _, bufnr in pairs(vim.api.nvim_list_bufs()) do
 				vim.api.nvim_buf_call(bufnr, function()
@@ -116,4 +125,5 @@ M.veryLazy = function(spec)
 		end,
 	})
 end
+
 return M

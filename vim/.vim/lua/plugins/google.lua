@@ -1,11 +1,14 @@
 local use_google = require("utils").use_google
-local glug = require("glug").glug
-local glugOpts = require("glug").glugOpts
-local veryLazy = require("glug").veryLazy
 
 if not use_google() then
 	return {}
 end
+
+vim.opt.rtp:append("/google/src/head/depot/google3/experimental/users/fentanes/nvgoog")
+
+local glug = require("nvgoog.google.util.glug").glug
+local glugOpts = require("nvgoog.google.util.glug").glugOpts
+local veryLazy = require("nvgoog.util").veryLazy
 
 return {
 	{ url = "sso://user/fentanes/nvgoog" },
@@ -13,13 +16,14 @@ return {
 	-- Load google paths like //google/* with `gf`
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
-	{
-		name = "maktaba",
-		dir = "/usr/share/vim/google/maktaba",
-		init = function()
+	-- maktaba is required by all google plugins
+	glug("maktaba", {
+		lazy = true,
+		dependencies = {},
+		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
 		end,
-	},
+	}),
 	glug("core"),
 	glug("glaive"),
 	glug("alert"),
@@ -57,10 +61,6 @@ return {
 		event = "BufNewFile",
 	}),
 	-- Adds G4 support to the vcscommand plugin
-	glug("vcscommand-g4", {
-		optional = true,
-		lazy = true,
-	}),
 	glug("googlepaths"),
 	glug("ft-soy"),
 	glug("ft-gss"),

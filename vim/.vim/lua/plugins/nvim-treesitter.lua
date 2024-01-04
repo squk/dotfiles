@@ -57,7 +57,7 @@ return {
 							return true
 						end
 
-						local max_filesize = 100 * 1024 -- 200 KB
+						local max_filesize = 200 * 1024 -- 200 KB
 						local fname = vim.api.nvim_buf_get_name(buf)
 						local ok, stats = pcall(vim.loop.fs_stat, fname)
 						if ok and stats and stats.size > max_filesize then

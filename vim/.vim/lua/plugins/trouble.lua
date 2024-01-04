@@ -17,7 +17,8 @@ return {
 	end,
 	keys = {
 		{ "<leader>xt", "<cmd>:Telescope diagnostics<CR>" },
-		{ "<leader>xd", "<cmd>:Trouble workspace<CR>" },
+		{ "<leader>xw", "<cmd>:Trouble workspace_diagnostics<CR>" },
+		{ "<leader>xd", "<cmd>:Trouble document_diagnostics<CR>" },
 		{ "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
 		{ "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>" },
 	},

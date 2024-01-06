@@ -2,10 +2,15 @@ local use_google = require("utils").use_google
 local TableConcat = require("utils").TableConcat
 local scopes = require("neoscopes")
 
--- Helper functions to fetch the current scope and set `search_dirs`
 _G.find_files = function()
 	require("telescope.builtin").find_files({
 		search_dirs = scopes.get_current_dirs(),
+	})
+end
+-- Helper functions to fetch the current scope and set `search_dirs`
+_G.find_dotfiles = function()
+	require("telescope.builtin").find_files({
+		search_dirs = { vim.fn.expand("$HOME/dotfiles") },
 	})
 end
 
@@ -35,7 +40,9 @@ local keys = {
 	{ "<leader>tk", "<cmd>Telescope Keymaps<CR>", desc = "Search Keymaps" },
 	{ "<C-P>", "<cmd>lua find_files()<CR>", desc = "Find Files in CWD" },
 	{ "<leader>tf", "<cmd>lua find_files()<CR>", desc = "Find Files in CWD" },
+	{ "<leader>td", "<cmd>lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
 	{ "<leader>tn", ":Telescope notify<CR>", desc = "Notifications" },
+	{ "<leader>tk", ":Telescope keymaps<CR>", desc = "Keymaps" },
 	{ "<leader>tf.", "<cmd>lua vim.error('use <leader>e')<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>e", "<cmd>lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "Git Files" },
@@ -48,7 +55,6 @@ local keys = {
 if use_google() then
 	TableConcat(keys, {
 		{ "<C-P>", [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]], "n" },
-		{ "<C-Space>", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]] },
 		{ "<leader>cs", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]] },
 		{ "<leader>cs", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]], mode = "v" },
 		{

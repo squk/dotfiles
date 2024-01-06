@@ -7,7 +7,11 @@ return {
 	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
 	{ "squk/gdrama-syntax.vim", dir = vim.fn.expand("$HOME/dev/gdrama-syntax.vim") },
-	{ "echasnovski/mini.splitjoin", version = "*" },
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
 	{
 		"NvChad/nvim-colorizer.lua",
 		ft = "lua",

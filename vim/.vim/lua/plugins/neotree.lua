@@ -17,6 +17,20 @@ return {
 						["O"] = "expand_all_nodes",
 					},
 				},
+				event_handlers = {
+					{
+						event = "neo_tree_buffer_enter",
+						handler = function(arg)
+							vim.opt.mouse = "a"
+						end,
+					},
+					{
+						event = "neo_tree_buffer_leave",
+						handler = function(arg)
+							vim.opt.mouse = ""
+						end,
+					},
+				},
 			})
 		end,
 		dependencies = {

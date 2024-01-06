@@ -1,6 +1,18 @@
 return {
 	{
 		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>fmt",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true })
+				end,
+				mode = "",
+				desc = "Format buffer",
+			},
+		},
 		opts = {
 			formatters_by_ft = {
 				-- Conform will run multiple formatters sequentially
@@ -26,9 +38,8 @@ return {
 				lsp_fallback = true,
 			},
 			formatters = {
-				my_formatter = {
-					command = "gdformat",
-					args = { "-l 100" },
+				gdformat = {
+					prepend_args = { "-l", "100" },
 				},
 			},
 		},

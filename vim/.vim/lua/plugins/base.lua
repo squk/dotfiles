@@ -59,7 +59,12 @@ return {
 	"jghauser/mkdir.nvim",
 	"google/vim-searchindex",
 	"kosayoda/nvim-lightbulb",
-	"ntpeters/vim-better-whitespace",
+	{
+		"ntpeters/vim-better-whitespace",
+		config = function()
+			vim.g.better_whitespace_filetypes_blacklist = { "dashboard" }
+		end,
+	},
 	"junegunn/fzf.vim",
 	"AndrewRadev/tagalong.vim",
 	"tversteeg/registers.nvim",

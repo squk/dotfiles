@@ -5,7 +5,7 @@ return {
 			width = 0.4,
 		},
 		plugins = {
-			tmux = { enabled = true },
+			tmux = { enabled = false },
 		},
 	},
 	keys = { { "<C-z>", ":ZenMode<CR>" } },

@@ -6,8 +6,10 @@ end
 
 vim.opt.rtp:append("/google/src/head/depot/google3/experimental/users/fentanes/nvgoog")
 
-local glug = require("nvgoog.google.util.glug").glug
-local glugOpts = require("nvgoog.google.util.glug").glugOpts
+-- local glug = require("nvgoog.google.util.glug").glug
+-- local glugOpts = require("nvgoog.google.util.glug").glugOpts
+local glug = require("glug").glug
+local glugOpts = require("glug").glugOpts
 local veryLazy = require("nvgoog.util").veryLazy
 
 return {
@@ -16,9 +18,8 @@ return {
 	-- Load google paths like //google/* with `gf`
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
-	-- maktaba is required by all google plugins
 	glug("maktaba", {
-		lazy = true,
+		lazy = false,
 		dependencies = {},
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
@@ -88,14 +89,7 @@ return {
 			"CorpWebChromeCs",
 		},
 	}),
-	{
-		name = "relatedfiles",
-		dir = "/usr/share/vim/google/relatedfiles",
-		dependencies = { "glaive" },
-		config = function()
-			vim.cmd([[Glaive relatedfiles]])
-		end,
-
+	glug("relatedfiles", {
 		keys = {
 			{
 				"<leader>rb",
@@ -110,46 +104,50 @@ return {
 				":exec relatedfiles#selector#JumpToCodeFile()<CR>",
 			},
 		},
-	},
+	}),
 	{ "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{ "junegunn/fzf.vim", dependencies = { "junegunn/fzf" } },
 	-- Format google code
 	glug("codefmt-google", {
-		dependencies = { glug("codefmt") },
+		dependencies = {
+			glug("codefmt", {
+				-- TODO: remove prettier when http://cl/549024543 is submitted and deployed
+				--    - remove prettier from the plugin options
+				--    - set js/ts to use prettier instead of clang-format
+				--      autocmd FileType javascript,typescript,javascriptreact,typescriptreact,css,scss,html,json AutoFormatBuffer prettier
+				opts = {
+					clang_format_executable = "/usr/bin/clang-format",
+					clang_format_style = "function('codefmtgoogle#GetClangFormatStyle')",
+					gofmt_executable = "/usr/lib/google-golang/bin/gofmt",
+					prettier_executable = "/google/data/ro/teams/prettier/prettier",
+					ktfmt_executable = { "/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt", "--google-style" },
+					auto_format = {
+						["borg"] = "gclfmt",
+						["gcl"] = "gclfmt",
+						["patchpanel"] = "gclfmt",
+						["bzl"] = "buildifier",
+						["c"] = "clang-format",
+						["cpp"] = "clang-format",
+						["javascript"] = "clang-format",
+						["typescript"] = "clang-format",
+						["dart"] = "dartfmt",
+						["go"] = "gofmt",
+						["java"] = "google-java-format",
+						["kotlin"] = "ktfmt",
+						["jslayout"] = "jslfmt",
+						["markdown"] = "mdformat",
+						["ncl"] = "nclfmt",
+						["python,piccolo"] = "pyformat",
+						["soy"] = "soyfmt",
+						["textpb"] = "text-proto-format",
+						["proto"] = "protofmt",
+						["sql"] = "format_sql",
+					},
+				},
+			}),
+		},
 		cmd = { "FormatLines", "FormatCode", "AutoFormatBuffer" },
 		event = "BufWritePre",
-		-- TODO: remove prettier when http://cl/549024543 is submitted and deployed
-		--    - remove prettier from the plugin options
-		--    - set js/ts to use prettier instead of clang-format
-		--      autocmd FileType javascript,typescript,javascriptreact,typescriptreact,css,scss,html,json AutoFormatBuffer prettier
-		opts = {
-			clang_format_executable = "/usr/bin/clang-format",
-			clang_format_style = "function('codefmtgoogle#GetClangFormatStyle')",
-			gofmt_executable = "/usr/lib/google-golang/bin/gofmt",
-			prettier_executable = "/google/data/ro/teams/prettier/prettier",
-			ktfmt_executable = { "/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar", "--google-style" },
-			auto_format = {
-				["borg"] = "gclfmt",
-				["gcl"] = "gclfmt",
-				["patchpanel"] = "gclfmt",
-				["bzl"] = "buildifier",
-				["c"] = "clang-format",
-				["cpp"] = "clang-format",
-				["javascript"] = "clang-format",
-				["typescript"] = "clang-format",
-				["dart"] = "dartfmt",
-				["go"] = "gofmt",
-				["java"] = "google-java-format",
-				["jslayout"] = "jslfmt",
-				["markdown"] = "mdformat",
-				["ncl"] = "nclfmt",
-				["python,piccolo"] = "pyformat",
-				["soy"] = "soyfmt",
-				["textpb"] = "text-proto-format",
-				["proto"] = "protofmt",
-				["sql"] = "format_sql",
-			},
-		},
 		-- Setting up autocmds in init allows deferring loading the plugin until
 		-- the `BufWritePre` event. One caveat is we must call `codefmt#FormatBuffer()`
 		-- manually the first time since the plugin relies on the `BufWritePre` command to call it,

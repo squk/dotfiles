@@ -30,6 +30,11 @@ return {
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },
 	{
+		"mrcjkb/rustaceanvim",
+		version = "^3", -- Recommended
+		ft = { "rust" },
+	},
+	{
 		"saecki/crates.nvim",
 		ft = "rust",
 		version = "v0.3.0",
@@ -37,11 +42,6 @@ return {
 		config = function()
 			require("crates").setup()
 		end,
-	},
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^3", -- Recommended
-		ft = { "rust" },
 	},
 	{
 		"rafcamlet/nvim-luapad",

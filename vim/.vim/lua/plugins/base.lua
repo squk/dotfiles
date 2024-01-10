@@ -38,8 +38,11 @@ return {
 			require("crates").setup()
 		end,
 	},
-	{ "simrat39/rust-tools.nvim", ft = "rust" },
-
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^3", -- Recommended
+		ft = { "rust" },
+	},
 	{
 		"rafcamlet/nvim-luapad",
 		config = function()

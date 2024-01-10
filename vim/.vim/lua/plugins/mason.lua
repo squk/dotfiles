@@ -11,7 +11,6 @@ return {
 		local lsps = {
 			-- "lua_ls",
 			"html",
-			"rust_analyzer",
 			"marksman",
 			"sqlls",
 			"bashls",
@@ -47,11 +46,6 @@ return {
 			-- a dedicated handler.
 			function(server_name) -- default handler (optional)
 				require("lspconfig")[server_name].setup({})
-			end,
-			-- Next, you can provide a dedicated handler for specific servers.
-			-- For example, a handler override for the `rust_analyzer`:
-			["rust_analyzer"] = function()
-				require("rust-tools").setup({})
 			end,
 			["omnisharp_mono"] = function()
 				require("lspconfig").omnisharp_mono.setup({

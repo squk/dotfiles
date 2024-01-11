@@ -19,7 +19,7 @@ return {
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
 	glug("maktaba", {
-		lazy = false,
+		lazy = true,
 		dependencies = {},
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")

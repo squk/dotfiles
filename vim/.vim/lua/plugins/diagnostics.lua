@@ -34,6 +34,9 @@ return {
 				local new_value = not vim.diagnostic.config().virtual_lines.only_current_line
 				vim.diagnostic.config({
 					virtual_text = not new_value,
+					virtual_improved = {
+						current_line = new_value and "hide" or "show",
+					},
 					virtual_lines = { only_current_line = new_value },
 				})
 				return new_value

@@ -1,5 +1,5 @@
 return {
-	url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+	"Maan2003/lsp_lines.nvim",
 	event = "VimEnter",
 	name = "lsp_lines.nvim",
 	config = function()
@@ -19,7 +19,10 @@ return {
 
 		vim.schedule(function()
 			vim.diagnostic.config({
-				virtual_text = true,
+				virtual_text = false,
+				virtual_improved = {
+					current_line = "hide",
+				},
 				virtual_lines = { highlight_whole_line = false, only_current_line = true },
 			})
 		end)

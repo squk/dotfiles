@@ -4,7 +4,6 @@ return {
 	-- "sindrets/diffview.nvim",
 	{ "johmsalas/text-case.nvim" },
 	{ "nvim-lua/plenary.nvim", lazy = false },
-	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
 	{ "squk/gdrama-syntax.vim", dir = vim.fn.expand("$HOME/dev/gdrama-syntax.vim") },
 	{
@@ -82,12 +81,6 @@ return {
 		"rmagatti/auto-session",
 		config = function()
 			require("auto-session").setup({ log_level = "error" })
-		end,
-	},
-	{
-		"ipod825/libp.nvim",
-		config = function()
-			require("libp").setup()
 		end,
 	},
 	{

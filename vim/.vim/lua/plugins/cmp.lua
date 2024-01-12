@@ -68,6 +68,7 @@ return {
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
+					{ name = "nvim_lsp_signature_help", priority = 9 },
 					{ name = "async_path" },
 					{ name = "cmdline", option = { ignore_cmds = { "edit", "write", "tabedit" } } },
 				}),

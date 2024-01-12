@@ -25,7 +25,19 @@ return {
 						end,
 					},
 					{
+						event = "neo_tree_window_after_open",
+						handler = function(args)
+							vim.opt.mouse = "a"
+						end,
+					},
+					{
 						event = "neo_tree_buffer_leave",
+						handler = function(arg)
+							vim.opt.mouse = ""
+						end,
+					},
+					{
+						event = "neo_tree_window_after_close",
 						handler = function(arg)
 							vim.opt.mouse = ""
 						end,

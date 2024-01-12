@@ -37,6 +37,7 @@ return {
 			})
 		end,
 	},
+	"kdheepak/lazygit.nvim",
 	"flwyd/vim-conjoin",
 	"godlygeek/tabular",
 	"wesQ3/vim-windowswap",
@@ -74,7 +75,7 @@ return {
 		},
 		cmd = { "AerialToggle", "AerialOn" },
 		keys = {
-			{ "<leader>so", ":AerialToggle<CR>", desc = "[S]ymbols [O]utline" },
+			{ "<leader>so", ":AerialToggle<CR>", desc = "[S]symbols [O]utline" },
 		},
 	},
 	{

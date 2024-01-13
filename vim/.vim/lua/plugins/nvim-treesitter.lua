@@ -32,7 +32,7 @@ return {
 				auto_install = true,
 
 				-- List of parsers to ignore installing (or "all")
-				ignore_install = { "smali" },
+				-- ignore_install = { "smali" },
 				highlight = {
 					enable = true,
 

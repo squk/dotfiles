@@ -2,6 +2,13 @@ local use_google = require("utils").use_google
 
 return {
 	{
+		"sainnhe/sonokai",
+		config = function()
+			vim.g.sonokai_diagnostic_virtual_text = "highlighted"
+			vim.cmd("colorscheme sonokai")
+		end,
+	},
+	{
 		"rebelot/kanagawa.nvim",
 		lazy = use_google(), -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins

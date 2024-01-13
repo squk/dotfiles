@@ -9,7 +9,7 @@ return {
 		local use_google = require("utils").use_google
 
 		local lsps = {
-			-- "lua_ls",
+			"lua_ls",
 			"html",
 			"marksman",
 			"sqlls",

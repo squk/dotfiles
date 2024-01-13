@@ -23,7 +23,6 @@ return {
 				"pyright",
 				"omnisharp_mono",
 				"tsserver",
-				"gopls",
 				"docker_compose_language_service",
 				"dockerls",
 				"graphql",

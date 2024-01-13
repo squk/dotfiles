@@ -5,6 +5,8 @@ return {
 		"sainnhe/sonokai",
 		config = function()
 			vim.g.sonokai_diagnostic_virtual_text = "highlighted"
+			vim.g.sonokai_style = "andromeda"
+			vim.g.sonokai_dim_inactive_windows = 1
 			vim.cmd("colorscheme sonokai")
 		end,
 	},
@@ -14,7 +16,7 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		-- cond = not use_google(),
 		config = function()
-			vim.cmd("colorscheme kanagawa-wave")
+			-- vim.cmd("colorscheme kanagawa-wave")
 		end,
 	},
 	{

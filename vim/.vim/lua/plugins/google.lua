@@ -19,7 +19,7 @@ return {
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
 	glug("maktaba", {
-		lazy = true,
+		lazy = false,
 		dependencies = {},
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
@@ -109,42 +109,42 @@ return {
 	{ "junegunn/fzf.vim", dependencies = { "junegunn/fzf" } },
 	-- Format google code
 	glug("codefmt-google", {
+		lazy = false,
 		dependencies = {
 			glug("codefmt", {
-				-- TODO: remove prettier when http://cl/549024543 is submitted and deployed
-				--    - remove prettier from the plugin options
-				--    - set js/ts to use prettier instead of clang-format
-				--      autocmd FileType javascript,typescript,javascriptreact,typescriptreact,css,scss,html,json AutoFormatBuffer prettier
+				lazy = false,
 				opts = {
 					clang_format_executable = "/usr/bin/clang-format",
 					clang_format_style = "function('codefmtgoogle#GetClangFormatStyle')",
 					gofmt_executable = "/usr/lib/google-golang/bin/gofmt",
 					prettier_executable = "/google/data/ro/teams/prettier/prettier",
 					ktfmt_executable = { "/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt", "--google-style" },
-					auto_format = {
-						["borg"] = "gclfmt",
-						["gcl"] = "gclfmt",
-						["patchpanel"] = "gclfmt",
-						["bzl"] = "buildifier",
-						["c"] = "clang-format",
-						["cpp"] = "clang-format",
-						["javascript"] = "clang-format",
-						["typescript"] = "clang-format",
-						["dart"] = "dartfmt",
-						["go"] = "gofmt",
-						["java"] = "google-java-format",
-						["kotlin"] = "ktfmt",
-						["jslayout"] = "jslfmt",
-						["markdown"] = "mdformat",
-						["ncl"] = "nclfmt",
-						["python,piccolo"] = "pyformat",
-						["soy"] = "soyfmt",
-						["textpb"] = "text-proto-format",
-						["proto"] = "protofmt",
-						["sql"] = "format_sql",
-					},
 				},
 			}),
+		},
+		opts = {
+			auto_format = {
+				["borg"] = "gclfmt",
+				["gcl"] = "gclfmt",
+				["patchpanel"] = "gclfmt",
+				["bzl"] = "buildifier",
+				["c"] = "clang-format",
+				["cpp"] = "clang-format",
+				["javascript"] = "clang-format",
+				["typescript"] = "clang-format",
+				["dart"] = "dartfmt",
+				["go"] = "gofmt",
+				["java"] = "google-java-format",
+				["kotlin"] = "ktfmt",
+				["jslayout"] = "jslfmt",
+				["markdown"] = "mdformat",
+				["ncl"] = "nclfmt",
+				["python,piccolo"] = "pyformat",
+				["soy"] = "soyfmt",
+				["textpb"] = "text-proto-format",
+				["proto"] = "protofmt",
+				["sql"] = "format_sql",
+			},
 		},
 		cmd = { "FormatLines", "FormatCode", "AutoFormatBuffer" },
 		event = "BufWritePre",

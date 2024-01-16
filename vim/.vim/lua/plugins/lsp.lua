@@ -4,7 +4,6 @@ local deps = {
 	"hrsh7th/nvim-cmp",
 	"nvim-lua/lsp-status.nvim",
 	"VonHeikemen/lsp-zero.nvim",
-	"rcarriga/nvim-notify",
 	"ray-x/go.nvim",
 	"ray-x/guihua.lua",
 }

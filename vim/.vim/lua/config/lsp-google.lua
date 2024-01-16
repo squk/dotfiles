@@ -85,23 +85,21 @@ function M.setup(capabilities)
 			}),
 		}
 
-		local notify = require("notify")
 		cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
 			-- is_cider_lsp_attached has been setup via on_init, but hasn't received
 			-- sync response yet.
 			local first_fire = vim.b["is_cider_lsp_attached"] == "no"
 			vim.b["is_cider_lsp_attached"] = "yes"
 			if first_fire then
-				notify("CiderLSP attached", "info", { timeout = 500 })
+				vim.notify("CiderLSP attached", "info")
 				require("lualine").refresh()
 			end
 		end
 		cider_lsp_handlers["window/showMessage"] = function(_, result, ctx)
 			local client = vim.lsp.get_client_by_id(ctx.client_id)
 			local lvl = ({ "ERROR", "WARN", "INFO", "DEBUG" })[result.type]
-			notify({ result.message }, lvl, {
+			vim.notify({ result.message }, lvl, {
 				title = "LSP | " .. client.name,
-				timeout = 1000,
 				keep = function()
 					return lvl == "ERROR" or lvl == "WARN"
 				end,

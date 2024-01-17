@@ -19,7 +19,7 @@ return {
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
 	glug("maktaba", {
-		lazy = false,
+		lazy = true,
 		dependencies = {},
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
@@ -109,10 +109,8 @@ return {
 	{ "junegunn/fzf.vim", dependencies = { "junegunn/fzf" } },
 	-- Format google code
 	glug("codefmt-google", {
-		lazy = false,
 		dependencies = {
 			glug("codefmt", {
-				lazy = false,
 				opts = {
 					clang_format_executable = "/usr/bin/clang-format",
 					clang_format_style = "function('codefmtgoogle#GetClangFormatStyle')",
@@ -301,8 +299,8 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 	{
-		name = "critique_nvim",
-		dir = "/google/src/cloud/cnieves/google-comments/google3/experimental/users/cnieves/neovim/critique-nvim/",
+		name = "critique-nvim",
+		dir = "~/critique-nvim/",
 		dependencies = {
 			"rktjmp/time-ago.vim",
 			"nvim-lua/plenary.nvim",
@@ -313,17 +311,16 @@ return {
 			-- Here are all the options and their default values:
 			require("critique.comments").setup({
 				-- Fetch the comments after calling `setup`.
-				auto_fetch = true,
-				display = {
-					render_resolved_threads = true,
-				},
+				auto_fetch = true, -- default = true
+				-- Allow checking for comments on BufEnter events. This is throttled to once every 10 seconds.
+				frequent_fetch = true, -- default = false
 			})
 			local map = require("utils").map
 			-- here are some mappings you might want:
 			map("n", "]c", [[<Cmd>CritiqueGotoNextComment<CR>]])
 			map("n", "[c", [[<Cmd>CritiqueGotoPrevComment<CR>]])
-
-			map("n", "<Leader>lc", [[<Cmd>CritiqueToggleLineComments<CR>]])
+			map("n", "<Leader>lc", [[<Cmd>CritiqueToggleLineComment<CR>]])
+			map("n", "<Leader>uc", [[<Cmd>CritiqueToggleUnresolvedComments<CR>]])
 			map("n", "<Leader>ac", [[<Cmd>CritiqueToggleAllComments<CR>]])
 			map("n", "<Leader>fc", [[<Cmd>CritiqueFetchComments<CR>]])
 			map("n", "<Leader>tc", [[<Cmd>CritiqueCommentsTelescope<CR>]])

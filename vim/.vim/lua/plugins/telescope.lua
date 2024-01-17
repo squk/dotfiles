@@ -66,6 +66,12 @@ end
 
 return {
 	{
+		"aznhe21/actions-preview.nvim",
+		keys = {
+			{ "?", "<cmd>lua require('actions-preview').code_actions()<cr>" },
+		},
+	},
+	{
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()

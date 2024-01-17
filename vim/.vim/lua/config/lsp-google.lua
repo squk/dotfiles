@@ -27,10 +27,7 @@ function M.setup(capabilities)
 					"bzl",
 					"typescript",
 				},
-				-- root_dir = lspconfig.util.root_pattern("BUILD"),
-				root_dir = function(fname)
-					return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
-				end,
+				root_dir = lspconfig.util.root_pattern("BUILD"),
 				settings = {},
 			},
 		}

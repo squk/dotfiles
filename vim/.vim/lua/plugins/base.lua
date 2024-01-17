@@ -1,26 +1,18 @@
 local use_google = require("utils").use_google
 
 return {
-	-- "sindrets/diffview.nvim",
-	{ "johmsalas/text-case.nvim" },
+	"kdheepak/lazygit.nvim",
+	"flwyd/vim-conjoin",
+	"vim-scripts/vcscommand.vim",
+	"jghauser/mkdir.nvim",
+	"AndrewRadev/tagalong.vim",
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
+	{ "udalov/kotlin-vim", ft = "kotlin" },
+	{ "ray-x/go.nvim", ft = "go" },
+	{ "ray-x/guihua.lua", ft = "go" },
+	{ "andymass/vim-matchup", event = "VimEnter" },
 	{ "squk/gdrama-syntax.vim", dir = vim.fn.expand("$HOME/dev/gdrama-syntax.vim") },
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
-	},
-	{
-		"mawkler/modicator.nvim",
-		init = function()
-			-- These are required for Modicator to work
-			vim.o.cursorline = true
-			vim.o.number = true
-			vim.o.termguicolors = true
-		end,
-		opts = {},
-	},
 	{
 		"NvChad/nvim-colorizer.lua",
 		ft = "lua",
@@ -29,15 +21,16 @@ return {
 		end,
 	},
 	{
+
 		"andweeb/presence.nvim",
 		cond = not use_google(),
 		config = function()
-			require("presence").setup({ show_time = false })
+			require("presence").setup({
+				main_image = "file",
+				show_time = false,
+			})
 		end,
 	},
-	{ "udalov/kotlin-vim", ft = "kotlin" },
-	{ "ray-x/go.nvim", ft = "go" },
-	{ "ray-x/guihua.lua", ft = "go" },
 	{
 		"rafcamlet/nvim-luapad",
 		config = function()
@@ -46,28 +39,24 @@ return {
 			})
 		end,
 	},
-	"kdheepak/lazygit.nvim",
-	"flwyd/vim-conjoin",
-	"godlygeek/tabular",
-	"wesQ3/vim-windowswap",
-	"cakebaker/scss-syntax.vim",
-	"vim-scripts/vcscommand.vim",
-	"jghauser/mkdir.nvim",
-	"google/vim-searchindex",
-	"kosayoda/nvim-lightbulb",
+	{
+		"kosayoda/nvim-lightbulb",
+		opts = {
+			autocmd = { enabled = true },
+			virtual_text = {
+				enabled = true,
+				text = " 󱐋",
+				hl = "DiagnosticWarn",
+			},
+			sign = { enabled = false },
+		},
+	},
 	{
 		"ntpeters/vim-better-whitespace",
 		config = function()
 			vim.g.better_whitespace_filetypes_blacklist = { "dashboard" }
 		end,
 	},
-	"junegunn/fzf.vim",
-	"AndrewRadev/tagalong.vim",
-	"tversteeg/registers.nvim",
-	"jremmen/vim-ripgrep",
-	"viniciusgerevini/clyde.vim",
-	{ "andymass/vim-matchup", event = "VimEnter" },
-	-- Undo tree
 	{
 		"mbbill/undotree",
 		cmd = "UndotreeToggle",
@@ -78,19 +67,14 @@ return {
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
-		-- Optional dependencies
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
 		cmd = { "AerialToggle", "AerialOn" },
-		keys = {
-			{ "<leader>so", ":AerialToggle<CR>", desc = "[S]symbols [O]utline" },
-		},
+		keys = { { "<leader>so", ":AerialToggle<CR>", desc = "[S]symbols [O]utline" } },
 	},
 	{
-		"rmagatti/auto-session",
+		"olimorris/persisted.nvim",
 		config = function()
-			require("auto-session").setup({ log_level = "error" })
+			require("persisted").setup({})
+			require("telescope").load_extension("persisted")
 		end,
 	},
 	{
@@ -100,43 +84,5 @@ return {
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
-	},
-	{
-		"glacambre/firenvim",
-
-		-- Lazy load firenvim
-		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-		config = function()
-			vim.g.firenvim_config = {
-				localSettings = {
-					[ [[.*]] ] = {
-						cmdline = "firenvim",
-						priority = 0,
-						selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
-						takeover = "always",
-					},
-					[ [[.*notion\.so.*]] ] = {
-						priority = 9,
-						takeover = "never",
-					},
-					[ [[.*docs\.google\.com.*]] ] = {
-						priority = 9,
-						takeover = "never",
-					},
-					[ [[google\.com.*]] ] = {
-						priority = 9,
-						takeover = "never",
-					},
-					[ [[twitch\.tv.*]] ] = {
-						priority = 9,
-						takeover = "never",
-					},
-				},
-			}
-		end,
-		lazy = not vim.g.started_by_firenvim,
-		build = function()
-			vim.fn["firenvim#install"](0)
-		end,
 	},
 }

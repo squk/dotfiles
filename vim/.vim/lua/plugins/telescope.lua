@@ -65,58 +65,86 @@ if use_google() then
 end
 
 return {
-	"nvim-telescope/telescope.nvim",
-	dependencies = {},
-	config = function()
-		require("telescope").setup({
-			defaults = {
-				-- The vertical layout strategy is good to handle long paths like those in
-				-- google3 repos because you have nearly the full screen to display a file path.
-				-- The caveat is that the preview area is smaller.
-				layout_strategy = "vertical",
-				-- Common paths in google3 repos are collapsed following the example of Cider
-				-- It is nice to keep this as a user config rather than part of
-				-- telescope-codesearch because it can be reused by other telescope pickers.
-				path_display = function(opts, path)
-					-- Do common substitutions
-					path = path:gsub("^/google/src/cloud/[^/]+/[^/]+/google3/", "google3/", 1)
-					path = path:gsub("^google3/java/com/google/", "//j/c/g/", 1)
-					path = path:gsub("^google3/javatests/com/google/", "//jt/c/g/", 1)
-					path = path:gsub("^google3/third_party/", "//3p/", 1)
-					path = path:gsub("^google3/", "//", 1)
+	{
+		"johmsalas/text-case.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("textcase").setup({})
+			require("telescope").load_extension("textcase")
+		end,
+		keys = {
+			{ "<leader>t", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+		},
+	},
+	{
+		"piersolenski/telescope-import.nvim",
+		dependencies = "nvim-telescope/telescope.nvim",
+		config = function()
+			require("telescope").load_extension("import")
+		end,
+		keys = {
+			{ "<leader>i", ":Telescope import<CR>" },
+		},
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {},
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					-- The vertical layout strategy is good to handle long paths like those in
+					-- google3 repos because you have nearly the full screen to display a file path.
+					-- The caveat is that the preview area is smaller.
+					layout_strategy = "vertical",
+					-- Common paths in google3 repos are collapsed following the example of Cider
+					-- It is nice to keep this as a user config rather than part of
+					-- telescope-codesearch because it can be reused by other telescope pickers.
+					path_display = function(opts, path)
+						-- Do common substitutions
+						path = path:gsub("^/google/src/cloud/[^/]+/[^/]+/google3/", "google3/", 1)
+						path = path:gsub("^google3/java/com/google/", "//j/c/g/", 1)
+						path = path:gsub("^google3/javatests/com/google/", "//jt/c/g/", 1)
+						path = path:gsub("^google3/third_party/", "//3p/", 1)
+						path = path:gsub("^google3/", "//", 1)
 
-					-- Do truncation. This allows us to combine our custom display formatter
-					-- with the built-in truncation.
-					-- `truncate` handler in transform_path memoizes computed truncation length in opts.__length.
-					-- Here we are manually propagating this value between new_opts and opts.
-					-- We can make this cleaner and more complicated using metatables :)
-					local new_opts = {
-						path_display = {
-							truncate = true,
+						-- Do truncation. This allows us to combine our custom display formatter
+						-- with the built-in truncation.
+						-- `truncate` handler in transform_path memoizes computed truncation length in opts.__length.
+						-- Here we are manually propagating this value between new_opts and opts.
+						-- We can make this cleaner and more complicated using metatables :)
+						local new_opts = {
+							path_display = {
+								truncate = true,
+							},
+							__length = opts.__length,
+						}
+						path = require("telescope.utils").transform_path(new_opts, path)
+						opts.__length = new_opts.__length
+						return path
+					end,
+					mappings = {
+						i = {
+							["<S-Down>"] = function()
+								require("telescope.actions").cycle_history_next()
+							end,
+							["<S-Up>"] = function()
+								require("telescope.actions").cycle_history_prev()
+							end,
 						},
-						__length = opts.__length,
-					}
-					path = require("telescope.utils").transform_path(new_opts, path)
-					opts.__length = new_opts.__length
-					return path
-				end,
-				mappings = {
-					i = {
-						["<S-Down>"] = function()
-							require("telescope.actions").cycle_history_next()
-						end,
-						["<S-Up>"] = function()
-							require("telescope.actions").cycle_history_prev()
-						end,
 					},
 				},
-			},
-			extensions = {
-				codesearch = {
-					experimental = true, -- enable results from google3/experimental
+				extensions = {
+					codesearch = {
+						experimental = true, -- enable results from google3/experimental
+					},
+					persisted = {},
+					import = {
+						-- Add imports to the top of the file keeping the cursor in place
+						insert_at_top = true,
+					},
 				},
-			},
-		})
-	end,
-	keys = keys,
+			})
+		end,
+		keys = keys,
+	},
 }

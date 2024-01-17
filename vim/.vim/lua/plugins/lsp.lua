@@ -26,6 +26,7 @@ return {
 				filetypes = {
 					ignore = { -- filetypes to ignore; empty by default
 						"gdscript",
+						"rust",
 					}, -- for these filetypes
 				},
 			}

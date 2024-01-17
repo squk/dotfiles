@@ -11,6 +11,12 @@ return {
 				shortcut = {
 					{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
 					{
+						desc = "󰦛  cwd session",
+						group = "Number",
+						action = "SessionLoad",
+						key = ".",
+					},
+					{
 						icon = " ",
 						icon_hl = "@variable",
 						desc = "Files",
@@ -19,16 +25,16 @@ return {
 						key = "f",
 					},
 					{
-						desc = " Apps",
-						group = "DiagnosticHint",
-						action = "Telescope app",
-						key = "a",
-					},
-					{
-						desc = " dotfiles",
+						desc = " dotfiles",
 						group = "Number",
 						action = "lua find_dotfiles()",
 						key = "d",
+					},
+					{
+						desc = " sessions",
+						group = "Number",
+						action = "Telescope persisted",
+						key = "s",
 					},
 				},
 			},

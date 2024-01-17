@@ -1,5 +1,10 @@
 return {
 	{
+		"vxpm/ferris.nvim",
+		ft = "rust",
+	},
+
+	{
 		"mrcjkb/rustaceanvim",
 		version = "^3", -- Recommended
 		ft = { "rust" },

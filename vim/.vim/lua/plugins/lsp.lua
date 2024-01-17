@@ -37,7 +37,7 @@ return {
 		dependencies = deps,
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
-			{ "?", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
+			-- { "?", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
 			{ "L", "<cmd>lua vim.lsp.buf.hover()<CR>" },
 			{ "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>" },
 			{ "gr", "<Cmd>Telescope lsp_references<CR>" },

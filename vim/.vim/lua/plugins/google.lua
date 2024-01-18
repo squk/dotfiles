@@ -30,15 +30,10 @@ return {
 	glug("alert"),
 	glug("csearch"),
 	glug("languages"),
-	-- glug("googlestyle"),
 	glug("googlespell"),
 	-- Enable logmsgs ASAP to avoid maktaba's log message queue filling up
-	glug("logmsgs", {
-		event = "VeryLazy",
-	}),
-	glug("googler", {
-		event = "VeryLazy",
-	}),
+	veryLazy(glug("logmsgs")),
+	veryLazy(glug("googler")),
 	-- Add support for google filetypes
 	glug("google-filetypes", {
 		event = "BufReadPre",

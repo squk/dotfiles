@@ -19,7 +19,7 @@ return {
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
 	glug("maktaba", {
-		lazy = true,
+		lazy = false,
 		dependencies = {},
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
@@ -30,6 +30,7 @@ return {
 	glug("alert"),
 	glug("csearch"),
 	glug("languages"),
+	-- glug("googlestyle"),
 	glug("googlespell"),
 	-- Enable logmsgs ASAP to avoid maktaba's log message queue filling up
 	veryLazy(glug("logmsgs")),
@@ -220,7 +221,7 @@ return {
 				{ "<leader>br", ":call BlazeRun()<CR>", desc = "Blaze Run" },
 				{
 					"<leader>yb",
-					":let t = join(blaze#GetTargets(), ' ') | echo t | let @+ = t <CR>",
+					":let t = join(blaze#GetTargets(), ' ') | echo t | let @+ = t | let @\" = t<CR>",
 					desc = "Yank Blaze Target",
 				},
 				{ "<leader>bf", runCmd("call blaze#TestCurrentFile()"), desc = "Blaze test current file" },

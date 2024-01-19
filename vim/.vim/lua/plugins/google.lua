@@ -203,36 +203,36 @@ return {
 			require("config.blaze")
 		end,
 		keys = function()
-			local function runCmd(cmd)
+			local function runCommandWithTarget(cmd)
 				return function()
-					vim.g._calling_blaze_cmd = 1
+					local targets = vim.fn["blaze#GetTargets"]()
+					local bloooooo = "VimuxRunCommand('" .. cmd .. " " .. targets:gsub(":.+", "") .. "')"
+					print(vim.inspect(bloooooo))
 					vim.cmd(cmd)
-					-- Clear the "blaze: SUCCESS" that blaze.vim will print
-					if vim.g._call_blaze_query then
-						print("")
-					end
-					vim.g._calling_blaze_cmd = 0
 				end
 			end
 			return {
 				{ "<leader>b", desc = "Blaze" },
-				{ "<leader>bt", ":call BlazeTest()<CR>", desc = "Blaze Test" },
-				{ "<leader>bb", ":call BlazeBuild()<CR>", desc = "Blaze Build" },
-				{ "<leader>br", ":call BlazeRun()<CR>", desc = "Blaze Run" },
+				{ "<leader>bb", runCommandWithTarget("blaze build"), desc = "Blaze Build" },
+				{ "<leader>br", runCommandWithTarget("blaze run"), desc = "Blaze Run" },
+				{ "<leader>bt", runCommandWithTarget("blaze test"), desc = "Blaze Test" },
+				{ "<leader>bc", runCommandWithTarget("build_cleaner"), desc = "Blaze Run" },
 				{
 					"<leader>yb",
 					":let t = join(blaze#GetTargets(), ' ') | echo t | let @+ = t | let @\" = t<CR>",
 					desc = "Yank Blaze Target",
 				},
-				{ "<leader>bf", runCmd("call blaze#TestCurrentFile()"), desc = "Blaze test current file" },
-				{ "<leader>bm", runCmd("call blaze#TestCurrentMethod()"), desc = "Blaze test current method" },
-				{ "<leader>bd", desc = "Blaze debug" },
-				{ "<leader>bdf", runCmd("BlazeDebugCurrentFileTest"), desc = "Blaze debug current file" },
-				{ "<leader>bdm", runCmd("BlazeDebugCurrentTestMethod"), desc = "Blaze debug current method" },
-				{ "<leader>bda", runCmd("BlazeDebugAddBreakpoint"), desc = "Blaze debug add breakpoint" },
-				{ "<leader>bdc", runCmd("BlazeDebugClearBreakpoint"), desc = "Blaze debug clear breakpoint" },
-				{ "<leader>bdf", runCmd("BlazeDebugFinish"), desc = "Blaze debug finish" },
-				{ "<leader>bu", runCmd("BlazeDepsUpdate"), desc = "Blaze update dependencies" },
+				{
+					"<leader>bq",
+					function()
+						local targets = vim.fn["blaze#GetTargets"]()
+						for _, t in ipairs(targets) do
+							print(vim.inspect(t))
+							vim.cmd("VimuxRunCommand('blaze query " .. t:gsub(":.+", "") .. ":\\*" .. "')")
+						end
+					end,
+					desc = "Blaze query the current package",
+				},
 			}
 		end,
 	}),

@@ -42,7 +42,7 @@ nnoremap <silent> <Leader>x- :exe "resize " . (winheight(0) * 2/3)<CR>
 " --------- FORMATTING MAPPINGS ---------
 " indent file
 map <leader>= gg=G ``
-nmap <leader>yf :let @+ = expand("%") | let @" = expand("%")<cr>
+nmap <leader>yf :let @+ = expand("%") \| let @" = expand("%")<cr>
 " replace currently selected text with default register
 " without yanking it
 vnoremap <leader>p "_dP

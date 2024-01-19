@@ -205,10 +205,10 @@ return {
 		keys = function()
 			local function runCommandWithTarget(cmd)
 				return function()
-					local targets = vim.fn["blaze#GetTargets"]()
-					local bloooooo = "VimuxRunCommand('" .. cmd .. " " .. targets:gsub(":.+", "") .. "')"
-					print(vim.inspect(bloooooo))
-					vim.cmd(cmd)
+					local targets = table.concat(vim.fn["blaze#GetTargets"](), " ")
+					local command = "VimuxRunCommand('" .. cmd .. " " .. targets .. "')"
+					print(vim.inspect(command))
+					vim.cmd(command)
 				end
 			end
 			return {

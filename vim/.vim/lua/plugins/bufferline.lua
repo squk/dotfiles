@@ -1,16 +1,5 @@
 return {
 	{
-		"tiagovla/scope.nvim",
-		config = function()
-			-- vim.opt.sessionoptions = { -- required
-			--     "buffers",
-			--     "tabpages",
-			--     "globals",
-			-- }
-			require("scope").setup({})
-		end,
-	},
-	{
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
@@ -19,7 +8,7 @@ return {
 			require("bufferline").setup({
 				options = {
 					-- separator_style = "slope",
-					separator_style = "slant",
+					-- separator_style = "slant",
 					hover = {
 						enabled = true,
 						delay = 200,

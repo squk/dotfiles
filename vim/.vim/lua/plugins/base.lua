@@ -3,39 +3,24 @@ local use_google = require("utils").use_google
 return {
 	"kdheepak/lazygit.nvim",
 	"flwyd/vim-conjoin",
+	"rafcamlet/nvim-luapad",
 	"vim-scripts/vcscommand.vim",
-	"jghauser/mkdir.nvim",
 	"AndrewRadev/tagalong.vim",
+	{ "squk/gdrama-syntax.vim", ft = "gdrama" },
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
 	{ "udalov/kotlin-vim", event = "VeryLazy", ft = "kotlin" },
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },
 	{ "andymass/vim-matchup", event = "VimEnter" },
-	{ "squk/gdrama-syntax.vim", dir = vim.fn.expand("$HOME/dev/gdrama-syntax.vim") },
+	{ "jghauser/mkdir.nvim", event = "BufWritePre" },
 	{
-		"NvChad/nvim-colorizer.lua",
-		ft = "lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
-	{
-
-		"andweeb/presence.nvim",
+		"andweeb/presence.nvim", -- session management
 		cond = not use_google(),
 		config = function()
 			require("presence").setup({
 				main_image = "file",
 				show_time = false,
-			})
-		end,
-	},
-	{
-		"rafcamlet/nvim-luapad",
-		config = function()
-			require("luapad").setup({
-				-- eval_on_change = false,
 			})
 		end,
 	},
@@ -72,5 +57,26 @@ return {
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
+	},
+	{
+		"andrewferrier/debugprint.nvim",
+		opts = {},
+		-- Dependency only needed for NeoVim 0.8
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		-- Remove the following line to use development versions,
+		-- not just the formal releases
+		version = "*",
+		keys = {
+			{ "<leader>dp", ":lua require('debugprint').debugprint()<cr>", desc = "Debug print" },
+			{ "<leader>dP", ":lua require('debugprint').debugprint({above = true})<cr>", desc = "Debug print" },
+			{ "<leader>dq", ":lua require('debugprint').debugprint({variable = true})<cr>", desc = "Debug print" },
+			{
+				"<leader>dQ",
+				":lua require('debugprint').debugprint({variable = true, above = true})<cr>",
+				desc = "Debug print",
+			},
+		},
 	},
 }

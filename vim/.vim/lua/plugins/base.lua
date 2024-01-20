@@ -8,7 +8,7 @@ return {
 	"AndrewRadev/tagalong.vim",
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
-	{ "udalov/kotlin-vim", ft = "kotlin" },
+	{ "udalov/kotlin-vim", event = "VeryLazy", ft = "kotlin" },
 	{ "ray-x/go.nvim", ft = "go" },
 	{ "ray-x/guihua.lua", ft = "go" },
 	{ "andymass/vim-matchup", event = "VimEnter" },
@@ -38,18 +38,6 @@ return {
 				-- eval_on_change = false,
 			})
 		end,
-	},
-	{
-		"kosayoda/nvim-lightbulb",
-		opts = {
-			autocmd = { enabled = true },
-			virtual_text = {
-				enabled = true,
-				text = " 󱐋",
-				hl = "DiagnosticWarn",
-			},
-			sign = { enabled = false },
-		},
 	},
 	{
 		"ntpeters/vim-better-whitespace",

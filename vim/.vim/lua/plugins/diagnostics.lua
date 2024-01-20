@@ -1,12 +1,5 @@
 return {
 	{
-		"luozhiya/lsp-virtual-improved.nvim",
-		event = { "LspAttach" },
-		config = function()
-			require("lsp-virtual-improved").setup()
-		end,
-	},
-	{
 		"folke/trouble.nvim",
 		event = { "LspAttach" },
 		config = function()
@@ -40,22 +33,6 @@ return {
 				local hl = "DiagnosticSign" .. type
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
-
-			-- local colors = {
-			-- 	Error = { primary = "#f28b82", secondary = "#ab0101", invert = true },
-			-- 	Warning = { primary = "#f2b066", secondary = "#ab7a00", invert = false },
-			-- 	Hint = { primary = "#b4f9f8", secondary = "#008080", invert = true },
-			-- 	Info = { primary = "#abf2b0", secondary = "#008080", invert = true },
-			-- 	Other = { primary = "#abf2b0", secondary = "#008080", invert = true },
-			-- }
-			-- for type, colorpair in pairs(colors) do
-			-- 	local hl = "DiagnosticVirtualText" .. type
-			-- 	if not colorpair.invert then
-			-- 		vim.api.nvim_set_hl(0, hl, { fg = colorpair.primary, bg = colorpair.secondary })
-			-- 	else
-			-- 		vim.api.nvim_set_hl(0, hl, { fg = colorpair.secondary, bg = colorpair.primary })
-			-- 	end
-			-- end
 
 			require("lsp_lines").setup()
 

@@ -10,6 +10,25 @@ local deps = {
 
 return {
 	{
+		"luozhiya/lsp-virtual-improved.nvim",
+		event = { "LspAttach" },
+		config = function()
+			require("lsp-virtual-improved").setup()
+		end,
+	},
+	{
+		"kosayoda/nvim-lightbulb",
+		opts = {
+			autocmd = { enabled = true },
+			virtual_text = {
+				enabled = true,
+				text = " 󱐋",
+				hl = "DiagnosticWarn",
+			},
+			sign = { enabled = false },
+		},
+	},
+	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",
 		config = function()

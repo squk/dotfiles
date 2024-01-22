@@ -306,10 +306,12 @@ return {
 		config = function()
 			-- Here are all the options and their default values:
 			require("critique.comments").setup({
+				debug = 0, -- default = 0
 				-- Fetch the comments after calling `setup`.
 				auto_fetch = true, -- default = true
 				-- Allow checking for comments on BufEnter events. This is throttled to once every 10 seconds.
 				frequent_fetch = true, -- default = false
+				verbose_notifications = true,
 			})
 			local map = require("utils").map
 			-- here are some mappings you might want:

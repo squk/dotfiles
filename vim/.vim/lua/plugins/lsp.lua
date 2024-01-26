@@ -1,13 +1,5 @@
 local use_google = require("utils").use_google
 
-local deps = {
-	"hrsh7th/nvim-cmp",
-	"nvim-lua/lsp-status.nvim",
-	"VonHeikemen/lsp-zero.nvim",
-	"ray-x/go.nvim",
-	"ray-x/guihua.lua",
-}
-
 return {
 	{
 		"luozhiya/lsp-virtual-improved.nvim",
@@ -18,6 +10,7 @@ return {
 	},
 	{
 		"kosayoda/nvim-lightbulb",
+		event = { "LspAttach" },
 		opts = {
 			autocmd = { enabled = true },
 			virtual_text = {
@@ -38,6 +31,7 @@ return {
 	},
 	{
 		"hinell/lsp-timeout.nvim",
+		event = { "LspAttach" },
 		dependencies = { "neovim/nvim-lspconfig" },
 		cond = not use_google(),
 		config = function()
@@ -53,7 +47,13 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = deps,
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			"nvim-lua/lsp-status.nvim",
+			"VonHeikemen/lsp-zero.nvim",
+			"ray-x/go.nvim",
+			"ray-x/guihua.lua",
+		},
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
 			-- { "?", "<cmd>lua vim.lsp.buf.code_action()<CR>" },

@@ -36,9 +36,9 @@ return {
 	veryLazy(glug("logmsgs")),
 	veryLazy(glug("googler")),
 	-- Add support for google filetypes
-	glug("google-filetypes", {
+	veryLazy(glug("google-filetypes", {
 		event = "BufReadPre",
-	}),
+	})),
 	-- Set up syntax, indent, and core settings for various filetypes
 	veryLazy(glug("ft-cel")),
 	veryLazy(glug("ft-clif")),
@@ -237,7 +237,7 @@ return {
 		end,
 	}),
 	-- Imports
-	glug("imp-google", {
+	veryLazy(glug("imp-google", {
 		dependencies = {
 			glugOpts("vim-imp", {
 				"flwyd/vim-imp",
@@ -254,7 +254,7 @@ return {
 		keys = {
 			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
 		},
-	}),
+	})),
 	{
 		name = "ai.nvim",
 		url = "sso://googler@user/vvvv/ai.nvim",

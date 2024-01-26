@@ -1,3 +1,6 @@
+-- disable underline
+vim.diagnostic.handlers.underline.show = function() end
+
 return {
 	{
 		"folke/trouble.nvim",

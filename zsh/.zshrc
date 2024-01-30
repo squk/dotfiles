@@ -30,7 +30,8 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
-zplug "modules/prompt", from:prezto
+zplug "modules/command-not-found", from:prezto
+zplug "modules/completion", from:prezto
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 # zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 
@@ -100,9 +101,6 @@ typeset -Ag color colour
 
 prompt_google3() {
     if [[ $PWD =~ '/google/src/cloud/[^/]+/(.+)/google3(.*)' ]]; then
-        # Use CitC client names as window titles in screen/tmux
-        print -n "\e]2;${match[1]}\a" >/dev/tty
-
         GPROMPT=$(print -r -- "//${match[2]#/}")
     else
         GPROMPT=$(print -r -- "$PWD")
@@ -112,9 +110,6 @@ prompt_google3() {
 
 prompt_workspace() {
     if [[ $PWD =~ '/google/src/cloud/[^/]+/(.+)/google3(.*)' ]]; then
-        # Use CitC client names as window titles in screen/tmux
-        print -n "\e]2;${match[1]}\a" >/dev/tty
-
         GPROMPT=$(print -r -- "$match[1]")
         # #fff is different than white i guess
         p10k segment -b 63 -f '#fff' -t $GPROMPT

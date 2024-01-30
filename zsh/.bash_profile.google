@@ -21,17 +21,6 @@ function gcert() {
   source /google/bin/releases/knock/knock.sh
 }
 
-function tmux_title() {
-  if [[ $PWD =~ /google/src/cloud/[^/]+/([^/]+)/.* ]]; then
-    tmx2 rename-window "${match[1]}"
-  else
-    tmx2 rename-window "$(basename "`pwd`")"
-  fi
-}
-if [[ ! -z "$TMUX" ]]; then
-  precmd_functions+=(tmux_title)
-fi
-
 
 FORTUNES=/google/data/ro/users/di/diamondm/engfortunes/fortune.sh
 if [ -f "$FORTUNES" ]; then

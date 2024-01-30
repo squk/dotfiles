@@ -100,6 +100,9 @@ typeset -Ag color colour
 
 prompt_google3() {
     if [[ $PWD =~ '/google/src/cloud/[^/]+/(.+)/google3(.*)' ]]; then
+        # Use CitC client names as window titles in screen/tmux
+        print -n "\e]2;${match[1]}\a" >/dev/tty
+
         GPROMPT=$(print -r -- "//${match[2]#/}")
     else
         GPROMPT=$(print -r -- "$PWD")

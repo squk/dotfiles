@@ -20,9 +20,30 @@ return {
 			{ "<leader>dt", ":Telescope dap configurations<CR>" },
 		},
 		config = function()
+			local use_google = require("utils").use_google
 			require("telescope").load_extension("dap")
 			local dap = require("dap")
+
+			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError" })
+			vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticSignError" })
+			vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticSignError" })
+
 			dap.adapters.java = {}
+			dap.adapters.cpp = {}
+			if use_google then
+				dap.adapters.lldb = {
+					type = "executable",
+					-- sudo apt install google-lldb-vscode
+					command = "/usr/share/code/resources/app/extensions/google-lldb-vscode/bin/lldb-dap",
+					name = "lldb",
+					sourceMap = {
+						{ "/proc/self/cwd", "${workspaceFolder}" },
+					},
+					cwd = "${workspaceFolder}",
+					debuggerRoot = "${workspaceFolder}",
+					sourcePath = "${workspaceFolder}",
+				}
+			end
 
 			dap.adapters.godot = {
 				type = "server",
@@ -30,12 +51,41 @@ return {
 				port = 6006,
 			}
 
+			dap.configurations.cpp = {
+				{
+					-- If you get an "Operation not permitted" error using this, try disabling YAMA:
+					--  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+					name = "Attach to process",
+					type = "lldb",
+					request = "attach",
+					pid = require("dap.utils").pick_process,
+					args = {},
+				},
+				{
+					name = "Wait for process name",
+					type = "lldb",
+					request = "attach",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					waitFor = true,
+				},
+				{
+					type = "lldb",
+					request = "attach",
+					mode = "remote",
+					name = "Attach Remote",
+					attachCommands = { "gdb-remote 5555" },
+					-- hostName = "127.0.0.1",
+					-- port = 5555,
+				},
+			}
 			dap.configurations.java = {
 				{
 					type = "java",
 					request = "attach",
 					mode = "remote",
-					name = "Java - Attach Remote",
+					name = "Attach Remote",
 					cwd = "${workspaceFolder}",
 					hostName = "127.0.0.1",
 					port = 5005,
@@ -43,14 +93,14 @@ return {
 			}
 			dap.configurations.gdscript = {
 				{
-					name = "Godot - Launch Project",
+					name = "Launch Project",
 					type = "godot",
 					request = "launch",
 					project = "${workspaceFolder}",
 					additional_options = "",
 				},
 				{
-					name = "Godot - Launch Current File",
+					name = "Launch Current File",
 					type = "godot",
 					request = "launch",
 					scene = "current",

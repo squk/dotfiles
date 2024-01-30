@@ -30,11 +30,11 @@ return {
 	glug("alert"),
 	glug("csearch"),
 	glug("languages"),
-	-- glug("googlestyle"),
 	glug("googlespell"),
 	-- Enable logmsgs ASAP to avoid maktaba's log message queue filling up
 	veryLazy(glug("logmsgs")),
 	veryLazy(glug("googler")),
+	glug("google-logo"),
 	-- Add support for google filetypes
 	veryLazy(glug("google-filetypes", {
 		event = "BufReadPre",
@@ -53,6 +53,7 @@ return {
 	veryLazy(glug("ft-soy")),
 	-- Configures nvim to respect Google's coding style
 	veryLazy(glug("googlestyle")),
+	veryLazy(glug("add_usings")),
 	-- Autogens boilerplate when creating new files
 	glug("autogen", {
 		event = "BufNewFile",

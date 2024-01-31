@@ -1,3 +1,4 @@
+# vi: ft=sh
 # ---------------
 # Google Specific
 # ---------------
@@ -195,3 +196,6 @@ source /etc/bash_completion.d/g4d
 gcertstatus --quiet || gcert && source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
 
 complete -D -C /google/data/ro/users/sk/skaushik/www/public-tools/flagpick -o bashdefault -o default
+
+# Setup go/hi #!>>HI<<!#
+source /etc/bash.bashrc.d/shell_history_forwarder.sh #!>>HI<<!#

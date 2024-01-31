@@ -151,5 +151,3 @@ export LANG_ALL="en_US.UTF-8"
 source ~/.bash_profile
 
 export PATH="$HOME/.local/bin:$PATH"
-# Setup go/hi #!>>HI<<!#
-source /etc/bash.bashrc.d/shell_history_forwarder.sh #!>>HI<<!#

@@ -19,11 +19,17 @@ return {
 	{ import = "nvgoog.google.misc" },
 	-- maktaba is required by all google plugins
 	glug("maktaba", {
-		lazy = false,
+		lazy = true,
 		dependencies = {},
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
 		end,
+	}),
+	glug("logmsgs", {
+		event = "VeryLazy",
+	}),
+	glug("googler", {
+		event = "VeryLazy",
 	}),
 	glug("core"),
 	glug("glaive"),
@@ -32,27 +38,27 @@ return {
 	glug("languages"),
 	glug("googlespell"),
 	-- Enable logmsgs ASAP to avoid maktaba's log message queue filling up
-	veryLazy(glug("logmsgs")),
-	veryLazy(glug("googler")),
 	glug("google-logo"),
 	-- Add support for google filetypes
-	veryLazy(glug("google-filetypes", {
-		event = "BufReadPre",
-	})),
+	glug("google-filetypes", { event = { "BufReadPre", "BufNewFile" }, dependencies = {} }),
+
+	-- Other filetype detection
+	veryLazy(glug("ft-cel", { event = "BufRead,BufNewFile *.cel,*jvp" })),
+	veryLazy(glug("ft-clif", { event = "BufRead,BufNewFile *.clif" })),
+	veryLazy(glug("ft-gin", { event = "BufRead,BufNewFile *.gin" })),
+	veryLazy(glug("ft-gss", { event = "BufRead,BufNewFile *.gss" })),
+	veryLazy(glug("ft-proto", { event = "BufRead,BufNewFile *.proto,*.protodevel,*.rosy,*.textproto" })),
+	veryLazy(glug("ft-soy", { event = "BufRead,BufNewFile *.soy" })),
 	-- Set up syntax, indent, and core settings for various filetypes
-	veryLazy(glug("ft-cel")),
-	veryLazy(glug("ft-clif")),
-	veryLazy(glug("ft-cpp")),
-	veryLazy(glug("ft-gin")),
-	veryLazy(glug("ft-go")),
-	veryLazy(glug("ft-java")),
-	veryLazy(glug("ft-javascript")),
-	veryLazy(glug("ft-kotlin")),
-	veryLazy(glug("ft-proto")),
-	veryLazy(glug("ft-python")),
-	veryLazy(glug("ft-soy")),
+	veryLazy(glug("ft-cpp", { event = "BufRead,BufNewFile *.[ch],*.cc,*.cpp" })),
+	veryLazy(glug("ft-go", { event = "BufRead,BufNewFile *.go" })),
+	veryLazy(glug("ft-java", { event = "BufRead,BufNewFile *.java" })),
+	veryLazy(glug("ft-javascript", { event = "BufRead,BufNewFile *.js,*.jsx" })),
+	veryLazy(glug("ft-kotlin", { event = "BufRead,BufNewFile *.kt,*.kts" })),
+	veryLazy(glug("ft-python", { event = "BufRead,BufNewFile *.py" })),
 	-- Configures nvim to respect Google's coding style
-	veryLazy(glug("googlestyle")),
+	veryLazy(glug("googlestyle", { event = { "BufRead", "BufNewFile" } })),
+
 	veryLazy(glug("add_usings")),
 	-- Autogens boilerplate when creating new files
 	glug("autogen", {
@@ -142,7 +148,8 @@ return {
 			},
 		},
 		cmd = { "FormatLines", "FormatCode", "AutoFormatBuffer" },
-		event = "BufWritePre",
+		event = "VimEnter",
+
 		-- Setting up autocmds in init allows deferring loading the plugin until
 		-- the `BufWritePre` event. One caveat is we must call `codefmt#FormatBuffer()`
 		-- manually the first time since the plugin relies on the `BufWritePre` command to call it,
@@ -167,20 +174,24 @@ return {
 				})
 			end
 			-- Build opts from possible parent specs since lazy.nvim doesn't provide it in `init`
-			local plugin_opts = {}
-			local curr_plugin = plugin
-			while curr_plugin do
-				if type(curr_plugin.opts) == "table" then
-					plugin_opts = require("lazy.core.util").merge(curr_plugin.opts, plugin_opts)
-				elseif type(curr_plugin.opts) == "function" then
-					plugin_opts = curr_plugin.opts(plugin, plugin_opts)
-				end
-				curr_plugin = curr_plugin._ and curr_plugin._.super or nil
-			end
+			local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
 			for filetypes, formatter in pairs(plugin_opts.auto_format or {}) do
 				autocmd(filetypes, formatter)
 			end
 		end,
+	}),
+
+	glug("critique", {
+		dependencies = {
+			veryLazy(glug("googler")),
+		},
+		-- optional = true,
+		cmd = {
+			"CritiqueComments",
+			"CritiqueUnresolvedComments",
+			"CritiqueNextComment",
+			"CritiquePreviousComment",
+		},
 	}),
 
 	-- Run blaze commands

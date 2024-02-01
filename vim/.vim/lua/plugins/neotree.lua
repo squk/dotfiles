@@ -11,7 +11,10 @@ return {
 		config = function()
 			require("neo-tree").setup({
 				filesystem = {
-					bind_to_cwd = true,
+					filtered_items = {
+						hide_dotfiles = false,
+					},
+					bind_to_cwd = false,
 				},
 				sources = {
 					"filesystem",

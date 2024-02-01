@@ -10,6 +10,9 @@ return {
 		-- },
 		config = function()
 			require("neo-tree").setup({
+				filesystem = {
+					bind_to_cwd = true,
+				},
 				sources = {
 					"filesystem",
 					"buffers",

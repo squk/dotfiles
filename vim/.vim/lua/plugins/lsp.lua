@@ -61,7 +61,7 @@ return {
 			{ "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>" },
 			{ "gr", "<Cmd>Telescope lsp_references<CR>" },
 			{ "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>" },
-			{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>" },
+			{ "gd", "<cmd>Telescope lsp_definitions<CR>" },
 			{ "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>" },
 			{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
 			{ "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>" },

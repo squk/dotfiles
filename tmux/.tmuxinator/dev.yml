@@ -6,34 +6,22 @@ windows:
       layout: main-horizontal
       panes:
         - main:
-          - hgd gmscore
-          - vim
         - other:
-          - hgd gmscore
 
   - experiments:
       layout: main-horizontal
       panes:
         - main:
-          - hgd experiments
-          - vim
         - other:
-          - hgd experiments
 
   - critique:
       layout: main-horizontal
       panes:
         - main:
-          - hgd google-comments
-          - vim
         - other:
-          - hgd google-comments
 
   - dotfiles:
       layout: main-horizontal
       panes:
         - main:
-          - cd ~/dotfiles
-          - vim
         - other:
-          - cd ~/dotfiles

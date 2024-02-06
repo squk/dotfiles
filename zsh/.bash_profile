@@ -1,3 +1,4 @@
+# vi: ft=sh
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/scripts
 

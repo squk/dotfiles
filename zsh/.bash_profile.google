@@ -63,10 +63,10 @@ alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshor
 alias builddoctor=/google/bin/releases/build-doctor/builddoctor
 alias rudi=/google/data/ro/teams/lsc/bin/rudi-cli
 alias rudi-cli=/google/data/ro/teams/lsc/bin/rudi-cli
-alias tmux=tmx2
 alias graphviz=/google/data/ro/projects/graphviz-server/graphviz
 alias xrefs=/google/bin/releases/grok/tools/xrefs
-compdef tmx2=tmux
+# alias tmux=tmx2
+# compdef tmx2=tmux
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
 export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin

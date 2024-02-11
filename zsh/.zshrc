@@ -24,6 +24,7 @@ zplug "plugins/docker-compose",   from:oh-my-zsh;
 zplug "plugins/docker",   from:oh-my-zsh;
 zplug "plugins/rsync",   from:oh-my-zsh;
 zplug "plugins/safepaste",   from:oh-my-zsh;
+zplug "mattberther/zsh-pyenv"
 
 zplug "Tarrasch/zsh-autoenv" # Expects .autoenv.zsh or .autoenv_leave.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2

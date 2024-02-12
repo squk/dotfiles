@@ -56,8 +56,9 @@ return {
 	veryLazy(glug("ft-javascript", { event = "BufRead,BufNewFile *.js,*.jsx" })),
 	veryLazy(glug("ft-kotlin", { event = "BufRead,BufNewFile *.kt,*.kts" })),
 	veryLazy(glug("ft-python", { event = "BufRead,BufNewFile *.py" })),
+
 	-- Configures nvim to respect Google's coding style
-	veryLazy(glug("googlestyle", { event = { "BufRead", "BufNewFile" } })),
+	-- glug("googlestyle", { event = { "BufRead", "BufNewFile" } }),
 
 	veryLazy(glug("add_usings")),
 	-- Autogens boilerplate when creating new files
@@ -94,18 +95,10 @@ return {
 	}),
 	glug("relatedfiles", {
 		keys = {
-			{
-				"<leader>rb",
-				":exec relatedfiles#selector#JumpToBuild()<CR>",
-			},
-			{
-				"<leader>rt",
-				":exec relatedfiles#selector#JumpToTestFile()<CR>",
-			},
-			{
-				"<leader>rc",
-				":exec relatedfiles#selector#JumpToCodeFile()<CR>",
-			},
+			{ "<leader>rb", ":exec relatedfiles#selector#JumpToBuild()<CR>" },
+			{ "<leader>rt", ":exec relatedfiles#selector#JumpToTestFile()<CR>" },
+			{ "<leader>rh", ":exec relatedfiles#selector#JumpToHeader()<CR>" },
+			{ "<leader>rc", ":exec relatedfiles#selector#JumpToCodeFile()<CR>" },
 		},
 	}),
 	{ "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
@@ -179,19 +172,6 @@ return {
 				autocmd(filetypes, formatter)
 			end
 		end,
-	}),
-
-	glug("critique", {
-		dependencies = {
-			veryLazy(glug("googler")),
-		},
-		-- optional = true,
-		cmd = {
-			"CritiqueComments",
-			"CritiqueUnresolvedComments",
-			"CritiqueNextComment",
-			"CritiquePreviousComment",
-		},
 	}),
 
 	-- Run blaze commands
@@ -315,6 +295,16 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"runiq/neovim-throttle-debounce",
 		},
+		-- here are some mappings you might want:
+		keys = {
+			{ "]c", ":CritiqueGotoNextComment<CR>" },
+			{ "[c", ":CritiqueGotoPrevComment<CR>" },
+			{ "<Leader>lc", ":CritiqueToggleLineComment<CR>" },
+			{ "<Leader>uc", ":CritiqueToggleUnresolvedComments<CR>" },
+			{ "<Leader>ac", ":CritiqueToggleAllComments<CR>" },
+			{ "<Leader>fc", ":CritiqueFetchComments<CR>" },
+			{ "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
+		},
 		config = function()
 			-- Here are all the options and their default values:
 			require("critique.comments").setup({
@@ -325,15 +315,6 @@ return {
 				frequent_fetch = true, -- default = false
 				verbose_notifications = true,
 			})
-			local map = require("utils").map
-			-- here are some mappings you might want:
-			map("n", "]c", [[<Cmd>CritiqueGotoNextComment<CR>]])
-			map("n", "[c", [[<Cmd>CritiqueGotoPrevComment<CR>]])
-			map("n", "<Leader>lc", [[<Cmd>CritiqueToggleLineComment<CR>]])
-			map("n", "<Leader>uc", [[<Cmd>CritiqueToggleUnresolvedComments<CR>]])
-			map("n", "<Leader>ac", [[<Cmd>CritiqueToggleAllComments<CR>]])
-			map("n", "<Leader>fc", [[<Cmd>CritiqueFetchComments<CR>]])
-			map("n", "<Leader>tc", [[<Cmd>CritiqueCommentsTelescope<CR>]])
 		end,
 	},
 	{

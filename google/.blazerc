@@ -26,14 +26,13 @@
 # --order_output=no: By default, blaze query orders the outputs. This can be expensive,
 #     so this flag disables the ordering step.
 build --nostamp
-# build --workspace_status_command=/bin/true
-# build --experimental_spawn_scheduler
+build --workspace_status_command=/bin/true
 build --trim_test_configuration
 build --show_progress_rate_limit=1
-# query --order_output=no
 
 # --test_output / --test_summary obviously don’t do anything for performance,
 # keep them if you like what they do.
+test --test_output=all --test_summary=detailed --build_tests_only
 # test --test_output=errors --test_summary=detailed --build_tests_only
 
 # In C++, failing tests will print a lot of noisy thread output. Use
@@ -43,9 +42,8 @@ build --show_progress_rate_limit=1
 # test --test_arg=--undefok=suppress_failure_output --test_arg=--suppress_failure_output
 
 import %workspace%/java/com/google/android/gmscore/blaze/blazerc
-build --config=gmscore_tap
-test --config=gmscore_test
-test --test_output=all
+# build --config=gmscore_arm64
+# test --config=gmscore_test
 #
 # https://g3doc.corp.google.com/devtools/blaze/g3doc/faq.md?cl=head#BlazeOom
 startup --host_jvm_args=-Xmx18G --host_jvm_args=-Xms18G

@@ -2,6 +2,17 @@ local use_google = require("utils").use_google
 
 return {
 	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {
+			floating_window = true,
+			hint_prefix = "󰡱 ",
+		},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+	},
+	{
 		"luozhiya/lsp-virtual-improved.nvim",
 		event = { "LspAttach" },
 		config = function()
@@ -66,8 +77,8 @@ return {
 			{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
 			{ "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
 			{ "gR", "<cmd>lua vim.lsp.buf.references()<CR>" },
-			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
 			{ "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
+			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
 			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", mode = "i" },
 			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "v" },
 		},

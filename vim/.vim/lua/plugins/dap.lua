@@ -75,11 +75,13 @@ return {
 					request = "attach",
 					mode = "remote",
 					name = "Attach Remote",
-					attachCommands = { "gdb-remote 5555" },
+					attachCommands = { "gdb-remote localhost:5555" },
 					-- hostName = "127.0.0.1",
 					-- port = 5555,
 				},
 			}
+			dap.configurations.c = dap.configurations.cpp
+
 			dap.configurations.java = {
 				{
 					type = "java",
@@ -91,6 +93,7 @@ return {
 					port = 5005,
 				},
 			}
+
 			dap.configurations.gdscript = {
 				{
 					name = "Launch Project",

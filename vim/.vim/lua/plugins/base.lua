@@ -15,7 +15,29 @@ return {
 	{ "andymass/vim-matchup", event = "VimEnter" },
 	{ "jghauser/mkdir.nvim", event = "BufWritePre" },
 	{
-		"andweeb/presence.nvim", -- session management
+		"johmsalas/text-case.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("textcase").setup({})
+			require("telescope").load_extension("textcase")
+		end,
+		cmd = {
+			"Subs",
+		},
+		keys = {
+			{ "<leader>t", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+		},
+	},
+	{
+		"NvChad/nvim-colorizer.lua",
+		ft = "lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+	{
+
+		"andweeb/presence.nvim",
 		cond = not use_google(),
 		config = function()
 			require("presence").setup({
@@ -36,6 +58,7 @@ return {
 		config = function()
 			vim.g.undotree_SetFocusWhenToggle = 1
 		end,
+		keys = { { "<leader>ut", ":UndotreeToggle<CR>" } },
 	},
 	{
 		"stevearc/aerial.nvim",

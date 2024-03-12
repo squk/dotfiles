@@ -30,7 +30,7 @@ return {
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
+			-- "hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
 			"lukas-reineke/cmp-under-comparator",
 			"onsails/lspkind.nvim",
@@ -68,7 +68,7 @@ return {
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp_signature_help", priority = 9 },
+					-- { name = "nvim_lsp_signature_help", priority = 9 },
 					{ name = "async_path" },
 					{ name = "cmdline", option = { ignore_cmds = { "edit", "write", "tabedit" } } },
 				}),
@@ -78,7 +78,7 @@ return {
 				preselect = cmp.PreselectMode.None,
 				sources = cmp.config.sources(
 					require("utils").TableConcat(conditionalSources, {
-						{ name = "nvim_lsp_signature_help", priority = 9 },
+						-- { name = "nvim_lsp_signature_help", priority = 9 },
 						-- Conditional sources injected here.
 						{ name = "luasnip", priority = 7 },
 						{ name = "nvim_lsp", priority = 6 },
@@ -126,7 +126,7 @@ return {
 							nerdfont = "󰊪 nerdfont",
 							nvim_ciderlsp = "󰚩 Cider",
 							analysislsp = "󰟌 analysislsp",
-							nvim_lsp_signature_help = "󰊕",
+							-- nvim_lsp_signature_help = "󰊕",
 							nvim_lsp = " LSP",
 							nvim_lua = " lua",
 							treesitter = "󰙅 ts",

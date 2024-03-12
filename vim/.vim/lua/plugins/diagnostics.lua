@@ -43,9 +43,7 @@ return {
 				vim.diagnostic.config({
 					severity_sort = true,
 					virtual_text = false,
-					virtual_improved = {
-						current_line = "hide",
-					},
+					virtual_improved = { current_line = "hide" },
 					virtual_lines = { highlight_whole_line = false, only_current_line = true },
 				})
 			end)
@@ -54,16 +52,13 @@ return {
 			{
 				"<leader>l",
 				function()
-					local new_value = not vim.diagnostic.config().virtual_lines.only_current_line
-					vim.diagnostic.config({
-						virtual_improved = {
-							current_line = new_value and "default" or "hide",
-						},
-						virtual_lines = { only_current_line = new_value },
-					})
-					return new_value
+					if vim.diagnostic.config().virtual_improved then
+						vim.diagnostic.config({ virtual_improved = false })
+					else
+						vim.diagnostic.config({ virtual_improved = { current_line = "hide" } })
+					end
 				end,
-				desc = "Toggle LSP Lines",
+				desc = "Toggle Virtual Text",
 			},
 		},
 	},

@@ -23,11 +23,9 @@ let &t_AF="\e[38;5;%dm"
 
 set laststatus=2
 set cmdheight=1
-set ttyfast
 set relativenumber
 set copyindent
 set preserveindent
-" set lazyredraw " Enable if running slow...
 set autoindent
 
 set wrap
@@ -57,6 +55,7 @@ set shortmess=A " disable swap
 set shortmess+=O
 set modifiable
 set noscrollbind
+set expandtab
 
 set updatetime=100
 
@@ -117,8 +116,8 @@ let g:loaded_zipPlugin         = 1
 let g:loaded_2html_plugin      = 1
 let g:loaded_shada_plugin      = 1
 let g:loaded_spellfile_plugin  = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_tutor_mode_plugin = 1
+let g:loaded_netrwPlugin       = 0
+let g:loaded_tutor_mode_plugin = 0
 let g:loaded_remote_plugins    = 1
 
 set mouse=

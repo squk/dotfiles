@@ -11,7 +11,7 @@ function M.setup(capabilities)
 					"/google/bin/releases/cider/ciderlsp/ciderlsp",
 					"--tooltag=nvim-lsp",
 					"--forward_sync_responses",
-					"--debug_relay",
+					-- "--debug_relay",
 				},
 				offset_encoding = "utf-8",
 				filetypes = {

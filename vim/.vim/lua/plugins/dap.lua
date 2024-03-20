@@ -4,6 +4,12 @@ return {
 		config = function() end,
 	},
 	{
+		"theHamsta/nvim-dap-virtual-text",
+		config = function()
+			require("nvim-dap-virtual-text").setup()
+		end,
+	},
+	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
@@ -28,8 +34,12 @@ return {
 			vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticSignError" })
 			vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticSignError" })
 
-			dap.adapters.java = {}
-			dap.adapters.cpp = {}
+			dap.adapters.cppdbg = {
+				id = "cppdbg",
+				type = "executable",
+				command = vim.fn.exepath("OpenDebugAD7"),
+			}
+
 			if use_google then
 				dap.adapters.lldb = {
 					type = "executable",
@@ -49,6 +59,21 @@ return {
 				type = "server",
 				host = "127.0.0.1",
 				port = 6006,
+			}
+
+			dap.configurations.cppdbg = {
+				{
+					name = "Attach to gdbserver :5555",
+					type = "cppdbg",
+					request = "launch",
+					MIMode = "gdb",
+					miDebuggerServerAddress = "localhost:5555",
+					miDebuggerPath = vim.fn.exepath("gdb"),
+					cwd = "${workspaceFolder}",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+				},
 			}
 
 			dap.configurations.cpp = {
@@ -76,11 +101,9 @@ return {
 					mode = "remote",
 					name = "Attach Remote",
 					attachCommands = { "gdb-remote localhost:5555" },
-					-- hostName = "127.0.0.1",
-					-- port = 5555,
 				},
 			}
-			dap.configurations.c = dap.configurations.cpp
+			-- dap.configurations.c = dap.configurations.cpp
 
 			dap.configurations.java = {
 				{
@@ -150,15 +173,17 @@ return {
 			})
 
 			local dapui = require("dapui")
-			vim.cmd("set mouse=n")
 			dapui.setup()
 			dap.listeners.after.event_initialized["dapui_config"] = function()
+				vim.cmd("set mouse=a")
 				dapui.open()
 			end
 			dap.listeners.before.event_terminated["dapui_config"] = function()
+				vim.cmd("set mouse=")
 				dapui.close()
 			end
 			dap.listeners.before.event_exited["dapui_config"] = function()
+				vim.cmd("set mouse=")
 				dapui.close()
 			end
 		end,

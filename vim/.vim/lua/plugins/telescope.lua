@@ -9,8 +9,8 @@ _G.find_files = function()
 end
 -- Helper functions to fetch the current scope and set `search_dirs`
 _G.find_dotfiles = function()
-	require("telescope.builtin").find_files({
-		search_dirs = { vim.fn.expand("$HOME/dotfiles") },
+	require("telescope.builtin").git_files({
+		cwd = vim.fn.expand("$HOME/dotfiles"),
 	})
 end
 
@@ -39,6 +39,9 @@ local keys = {
 	{ "<C-P>", ":lua find_files()<CR>", desc = "Find Files in CWD" },
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>tc", ":Telescope textcase<CR>", desc = "Text case" },
+	{ "<leader>t.", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
+	{ "<leader>tdc", ":Telescope dap commands" },
+	{ "<leader>tdc", ":Telescope dap configurations" },
 	{ "<leader>td", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
 	{ "<leader>tf", ":lua find_files()<CR>", desc = "Find Files in CWD" },
 	{ "<leader>tf.", ":lua vim.error('use <leader>e')<CR>", desc = "Find Files in Buffer Directory" },
@@ -104,7 +107,10 @@ return {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = {},
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+		},
 		config = function()
 			require("telescope").setup({
 				defaults = {

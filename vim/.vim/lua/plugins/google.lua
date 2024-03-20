@@ -289,6 +289,7 @@ return {
 	{
 		name = "critique-nvim",
 		dir = "~/critique-nvim/",
+		lazy = false,
 		dependencies = {
 			"rktjmp/time-ago.vim",
 			"nvim-lua/plenary.nvim",

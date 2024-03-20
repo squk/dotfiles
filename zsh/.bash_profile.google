@@ -192,6 +192,7 @@ bdoctor_modules() {
 }
 alias bisect=/google/data/ro/teams/tetralight/bin/bisect
 alias copybara='/google/bin/releases/copybara/public/copybara/copybara'
+alias allow_ptrace='/google/bin/releases/cider/dbg/allow_ptrace'
 source /etc/bash_completion.d/g4d
 gcertstatus --quiet || gcert && source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
 

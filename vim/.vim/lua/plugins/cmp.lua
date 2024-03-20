@@ -101,13 +101,11 @@ return {
 				sorting = {
 					comparators = {
 						-- compare.score_offset, -- not good at all
+						compare.priority,
 						compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-						compare.locality,
 						compare.recently_used,
 						compare.offset,
 						compare.order,
-						-- compare.scopes, -- what?
-						-- compare.sort_text,
 						-- compare.exact,
 						compare.kind,
 						-- compare.length, -- useless
@@ -126,7 +124,7 @@ return {
 							nerdfont = "󰊪 nerdfont",
 							nvim_ciderlsp = "󰚩 Cider",
 							analysislsp = "󰟌 analysislsp",
-							-- nvim_lsp_signature_help = "󰊕",
+							nvim_lsp_signature_help = "󰊕",
 							nvim_lsp = " LSP",
 							nvim_lua = " lua",
 							treesitter = "󰙅 ts",

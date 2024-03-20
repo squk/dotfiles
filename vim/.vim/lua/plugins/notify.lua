@@ -2,7 +2,7 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		event = "VimEnter",
-		cond = false,
+		cond = true,
 		lazy = true,
 		config = function()
 			-- local colors = require("catppuccin.palettes").get_palette()
@@ -19,7 +19,7 @@ return {
 	{
 		"j-hui/fidget.nvim",
 		event = "VimEnter",
-		cond = true,
+		cond = false,
 		opts = {
 			progress = {
 				display = {

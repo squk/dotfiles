@@ -82,17 +82,12 @@ function M.setup(capabilities)
 		end
 
 		local cider_lsp_handlers = {
-			["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-				underline = true,
-			}),
 			["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 				focusable = false,
 			}),
 		}
 
 		cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
-			-- is_cider_lsp_attached has been setup via on_init, but hasn't received
-			-- sync response yet.
 			local first_fire = vim.b["is_cider_lsp_attached"] == "no"
 			vim.b["is_cider_lsp_attached"] = "yes"
 			if first_fire then
@@ -100,23 +95,9 @@ function M.setup(capabilities)
 				require("lualine").refresh()
 			end
 		end
-		cider_lsp_handlers["window/showMessage"] = function(_, result, ctx)
-			local client = vim.lsp.get_client_by_id(ctx.client_id)
-			local lvl = ({ "ERROR", "WARN", "INFO", "DEBUG" })[result.type]
-			vim.notify({ result.message }, lvl, {
-				title = "LSP | " .. client.name,
-				keep = function()
-					return lvl == "ERROR" or lvl == "WARN"
-				end,
-			})
-		end
-
-		capabilities = require("cmp_nvim_ciderlsp").update_capabilities(capabilities)
-		capabilities.workspace.codeLens = { refreshSupport = true }
-		capabilities.workspace.diagnostics = { refreshSupport = true }
 
 		lspconfig.ciderlsp.setup({
-			capabilities = capabilities,
+			capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 			on_attach = cider_on_attach,
 			handlers = cider_lsp_handlers,
 		})

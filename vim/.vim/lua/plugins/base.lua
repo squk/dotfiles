@@ -7,6 +7,7 @@ return {
 	"rafcamlet/nvim-luapad",
 	"vim-scripts/vcscommand.vim",
 	"AndrewRadev/tagalong.vim",
+	"AndrewRadev/yankwin.vim",
 	{ "squk/gdrama-syntax.vim", ft = "gdrama" },
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
@@ -15,6 +16,14 @@ return {
 	{ "ray-x/guihua.lua", ft = "go" },
 	{ "andymass/vim-matchup", event = "VimEnter" },
 	{ "jghauser/mkdir.nvim", event = "BufWritePre" },
+	-- Session management
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {
+			-- add any custom options here
+		},
+	},
 	{
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },

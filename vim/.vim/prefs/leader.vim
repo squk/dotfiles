@@ -47,4 +47,3 @@ nmap <leader>yf :let @+ = expand("%") \| let @" = expand("%")<cr>
 " without yanking it
 vnoremap <leader>p "_dP
 nnoremap <leader><leader> :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
-nnoremap <leader>s :SessionSave<CR>

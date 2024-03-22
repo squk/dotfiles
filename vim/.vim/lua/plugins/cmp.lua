@@ -90,10 +90,8 @@ return {
 						{ name = "nerdfont" },
 						{ name = "emoji" },
 					},
-					{ -- fallback A
+					{ -- fallback
 						{ name = "treesitter" },
-					},
-					{ -- fallback B
 						{ name = "buffer" },
 					}
 				),

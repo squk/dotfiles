@@ -1,6 +1,7 @@
 local use_google = require("utils").use_google
 
 return {
+	"RRethy/vim-illuminate",
 	"kdheepak/lazygit.nvim",
 	"flwyd/vim-conjoin",
 	"rafcamlet/nvim-luapad",

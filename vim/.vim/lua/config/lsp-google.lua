@@ -51,7 +51,7 @@ function M.setup(capabilities)
 					"go",
 					"python",
 					"bzl",
-					"markdown",
+					-- "markdown",
 					"typescript",
 					"javascript",
 				},

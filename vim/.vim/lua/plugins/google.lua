@@ -253,7 +253,8 @@ return {
 	},
 	{
 		name = "cmp-nvim-ciderlsp",
-		url = "sso://googler@user/piloto/cmp-nvim-ciderlsp",
+		url = "sso://googler@user/sakal/cmp-nvim-ciderlsp",
+		-- url = "sso://googler@user/piloto/cmp-nvim-ciderlsp",
 		event = "VimEnter",
 		dependencies = {
 			"hrsh7th/nvim-cmp",

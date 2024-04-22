@@ -119,11 +119,19 @@ prompt_workspace() {
     fi
 }
 
+# Return current citc snapshot, for inclusion in prompt.
+prompt_citc_snapshot() {
+    if [[ $PWD =~ '/google/src/cloud/[^/]+/(.+)/google3(.*)' ]]; then
+          snapshot=$(citctools info | grep 'Snapshot version' | cut -d ':' -f 2 | xargs)
+            p10k segment -b '#71c791' -t "CitC $snapshot"
+  fi
+}
+
 POWERLEVEL9K_CUSTOM_FIG='get_fig_prompt'
 POWERLEVEL9K_CUSTOM_FIG_BACKGROUND="237"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status workspace google3 dir_writable vcs custom_fig)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(host command_execution_time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(host citc_snapshot command_execution_time)
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {

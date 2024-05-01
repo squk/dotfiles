@@ -43,8 +43,15 @@ return {
 				vim.diagnostic.config({
 					severity_sort = true,
 					virtual_text = false,
-					virtual_improved = { current_line = "hide" },
-					virtual_lines = { highlight_whole_line = false, only_current_line = true },
+					virtual_improved = {
+						severity = { min = vim.diagnostic.severity.WARN },
+						current_line = "hide",
+					},
+					virtual_lines = {
+						severity = { min = vim.diagnostic.severity.HINT },
+						highlight_whole_line = false,
+						only_current_line = true,
+					},
 				})
 			end)
 		end,
@@ -55,7 +62,12 @@ return {
 					if vim.diagnostic.config().virtual_improved then
 						vim.diagnostic.config({ virtual_improved = false })
 					else
-						vim.diagnostic.config({ virtual_improved = { current_line = "hide" } })
+						vim.diagnostic.config({
+							virtual_improved = {
+								severity = { min = vim.diagnostic.severity.HINT },
+								current_line = "hide",
+							},
+						})
 					end
 				end,
 				desc = "Toggle Virtual Text",

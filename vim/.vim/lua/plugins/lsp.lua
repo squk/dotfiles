@@ -107,11 +107,13 @@ return {
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
 
 			-- Golang
-			require("go").setup({
-				lsp_cfg = {
-					capabilities = capabilities,
-				},
-			})
+			if not use_google then
+				require("go").setup({
+					lsp_cfg = {
+						capabilities = capabilities,
+					},
+				})
+			end
 			local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*.go",

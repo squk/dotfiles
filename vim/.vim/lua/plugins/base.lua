@@ -12,8 +12,12 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
 	{ "udalov/kotlin-vim", event = "VeryLazy", ft = "kotlin" },
-	{ "ray-x/go.nvim", ft = "go" },
-	{ "ray-x/guihua.lua", ft = "go" },
+	{
+		"ray-x/go.nvim",
+		ft = "go",
+		cond = not use_google(),
+		dependencies = { "ray-x/guihua.lua" },
+	},
 	{ "andymass/vim-matchup", event = "VimEnter" },
 	{ "jghauser/mkdir.nvim", event = "BufWritePre" },
 	-- Session management

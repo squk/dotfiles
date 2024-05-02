@@ -13,7 +13,6 @@ function M.setup(capabilities)
 					"--forward_sync_responses",
 					-- "--debug_relay",
 				},
-				offset_encoding = "utf-8",
 				filetypes = {
 					"c",
 					"cpp",
@@ -39,7 +38,6 @@ function M.setup(capabilities)
 					"--lint_on_save=false",
 					"--max_qps=10",
 				},
-				offset_encoding = "utf-8",
 				filetypes = {
 					"c",
 					"cpp",
@@ -97,7 +95,7 @@ function M.setup(capabilities)
 		end
 
 		lspconfig.ciderlsp.setup({
-			capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+			gapabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 			on_attach = cider_on_attach,
 			handlers = cider_lsp_handlers,
 		})

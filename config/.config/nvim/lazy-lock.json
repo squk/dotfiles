@@ -48,6 +48,7 @@
   "leap.nvim": { "branch": "main", "commit": "626be4c4ec040aeaf6466c9aae17ee0ab09f1a5b" },
   "libp.nvim": { "branch": "main", "commit": "636b1748e92f66022c1763f32b2ded6b8606eda5" },
   "lsp-status.nvim": { "branch": "master", "commit": "54f48eb5017632d81d0fd40112065f1d062d0629" },
+  "lsp-timeout.nvim": { "branch": "main", "commit": "6325906730330105a9adc41d0ceb8499b3072e2b" },
   "lsp-virtual-improved.nvim": { "branch": "master", "commit": "db9cd544b7febdf4c48374e351b3903143b4477d" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "e00dcf8a6019a88139626c1668dccdc295abd324" },
   "lsp_lines.nvim": { "branch": "main", "commit": "dbfd8e96ec2696e1ceedcd23fd70e842256e3dea" },

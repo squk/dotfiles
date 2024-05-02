@@ -44,7 +44,7 @@ return {
 		"hinell/lsp-timeout.nvim",
 		event = { "LspAttach" },
 		dependencies = { "neovim/nvim-lspconfig" },
-		cond = not use_google(),
+		-- cond = not use_google(),
 		config = function()
 			vim.g.lspTimeoutConfig = {
 				filetypes = {
@@ -57,13 +57,17 @@ return {
 		end,
 	},
 	{
+		"ray-x/go.nvim",
+		ft = "go",
+		-- cond = not use_google(),
+		dependencies = { "ray-x/guihua.lua" },
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 			"nvim-lua/lsp-status.nvim",
 			"VonHeikemen/lsp-zero.nvim",
-			"ray-x/go.nvim",
-			"ray-x/guihua.lua",
 		},
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
@@ -92,6 +96,7 @@ return {
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
+			capabilities.offsetEncoding = { "utf-16" }
 
 			local lspconfig = require("lspconfig")
 			local configs = require("lspconfig.configs")
@@ -107,21 +112,25 @@ return {
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
 
 			-- Golang
-			if not use_google then
-				require("go").setup({
-					lsp_cfg = {
-						capabilities = capabilities,
-					},
-				})
-				local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					pattern = "*.go",
-					callback = function()
-						require("go.format").goimport()
-					end,
-					group = format_sync_grp,
-				})
-			end
+			-- if not use_google then
+			require("go").setup({
+				capabilities = capabilities,
+				-- root_dir = function(fname)
+				-- 	return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
+				-- end,
+				-- lsp_cfg = {},
+			})
+
+			-- Run gofmt + goimports on save
+			local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.go",
+				callback = function()
+					require("go.format").goimports()
+				end,
+				group = format_sync_grp,
+			})
+			-- end
 		end,
 	},
 }

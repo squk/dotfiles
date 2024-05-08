@@ -1,4 +1,5 @@
 # alias go=colorgo
+alias cd=pushd
 alias vim='nvim'
 alias vimdiff='nvim -d'
 # alias cat='bat'

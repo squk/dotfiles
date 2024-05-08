@@ -31,34 +31,34 @@ function M.setup(capabilities)
 			},
 		}
 
-		configs.analysislsp = {
-			default_config = {
-				cmd = {
-					"/google/bin/users/lerm/glint-ale/analysis_lsp/server",
-					"--lint_on_save=false",
-					"--max_qps=10",
-				},
-				filetypes = {
-					"c",
-					"cpp",
-					"java",
-					"kotlin",
-					"objc",
-					"proto",
-					"textproto",
-					"go",
-					"python",
-					"bzl",
-					-- "markdown",
-					"typescript",
-					"javascript",
-				},
-				root_dir = function(fname)
-					return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
-				end,
-				settings = {},
-			},
-		}
+		-- configs.analysislsp = {
+		-- 	default_config = {
+		-- 		cmd = {
+		-- 			"/google/bin/users/lerm/glint-ale/analysis_lsp/server",
+		-- 			"--lint_on_save=false",
+		-- 			"--max_qps=10",
+		-- 		},
+		-- 		filetypes = {
+		-- 			"c",
+		-- 			"cpp",
+		-- 			"java",
+		-- 			"kotlin",
+		-- 			"objc",
+		-- 			"proto",
+		-- 			"textproto",
+		-- 			"go",
+		-- 			"python",
+		-- 			"bzl",
+		-- 			-- "markdown",
+		-- 			"typescript",
+		-- 			"javascript",
+		-- 		},
+		-- 		root_dir = function(fname)
+		-- 			return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
+		-- 		end,
+		-- 		settings = {},
+		-- 	},
+		-- }
 
 		local my_on_attach = function(client, bufnr)
 			require("lualine").refresh()
@@ -99,9 +99,9 @@ function M.setup(capabilities)
 			on_attach = cider_on_attach,
 			handlers = cider_lsp_handlers,
 		})
-		lspconfig.analysislsp.setup({
-			capabilities = capabilities,
-		})
+		-- lspconfig.analysislsp.setup({
+		-- 	capabilities = capabilities,
+		-- })
 	end
 end
 

@@ -2,8 +2,6 @@
 # ---------------
 # Google Specific
 # ---------------
-# For running crow against a remote X server
-# xhost +
 export PATH=$PATH:/google/src/head/depot/google3/experimental/users/cnieves/util
 export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
 export XAUTHORITY=~/.Xauthority
@@ -11,8 +9,12 @@ export GOROOT=/usr/lib/google-golang
 export PATH=$GOROOT/bin:$PATH
 export JAVA_HOME=$(readlink -ne /usr/local/buildtools/java/jdk)
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
-source /google/bin/releases/knock/knock.sh
+source ~/g3path.zsh
+source ~/fzf-at-google.zsh
+source /etc/bash_completion.d/hgd
 
+gcertstatus --quiet || gcert && source /google/bin/releases/knock/knock.sh
+# gcertstatus --quiet || gcert && source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
 function gcert() {
   if [[ -n $TMUX ]]; then
     eval $(tmux show-environment -s)
@@ -36,10 +38,6 @@ export FZF_CS_PREVIEW_COMMAND="python third_party/py/pygments/google/google_pygm
 # Preview highlight: foreground: RG(248, 248, 248) = #F8F8F8, background: RGB(81, 85, 89) = #515559.
 export FZF_CS_PREVIEW_HIGHLIGHT="\x1b[38;2;248;248;248m\x1b[48;2;81;85;89m"
 
-source ~/g3path.zsh
-source /etc/bash_completion.d/hgd
-
-source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
 alias aapt2=/google/src/head/depot/google3/third_party/java/android/android_sdk_linux/platform-tools/aapt2
 alias acid=/google/bin/releases/mobile-devx-platform/acid/acid
 alias apido='/google/data/ro/teams/oneplatform/apido'
@@ -55,23 +53,18 @@ alias replace_string=/google/src/head/depot/google3/devtools/scripts/replace_str
 alias safergcp=/google/bin/releases/safer-gcp/tools/safergcp
 alias add_deps_to_usages='/google/src/head/depot/google3/apps/framework/tools/add_deps_to_usages.sh'
 alias plxutil='/google/data/ro/teams/plx/plxutil'
-export HGSHORT_CMDS="cat head tail mv cp rm chmod g4 diff merge patch meld trim less more"
+export HGSHORT_CMDS="cat head tail mv cp rm chmod g4 diff merge patch meld trim less more nvim"
 export HGSHORT_DIR='/google/src/head/depot/google3/experimental/fig_contrib/hgshort' # default
 alias vim="source $HGSHORT_DIR/tobashargs.sh nvim"
-source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd-local.sh 2>/dev/null # just to get HGSHORT_DIR in env
 alias hgd='source /google/src/head/depot/google3/experimental/fig_contrib/hgshort/hgd-local.sh'
 alias builddoctor=/google/bin/releases/build-doctor/builddoctor
 alias rudi=/google/data/ro/teams/lsc/bin/rudi-cli
 alias rudi-cli=/google/data/ro/teams/lsc/bin/rudi-cli
 alias graphviz=/google/data/ro/projects/graphviz-server/graphviz
 alias xrefs=/google/bin/releases/grok/tools/xrefs
-# alias tmux=tmx2
-# compdef tmx2=tmux
 
 export ACID_STARTUP_SCRIPT_PATH=~/acid_startup.sh
 export PATH=$PATH:/usr/local/google/home/cnieves/.local/binexport PATH=$PATH:/usr/local/google/home/cnieves/.local/bin
-
-source ~/fzf-at-google.zsh
 
 # Temporary definition for knock, which will override itself with the
 # real implementation.
@@ -114,11 +107,6 @@ cdp() {
 
 icdm() {
     adb shell am start -n com.google.android.gms.isolated/com.google.android.gms.chimera.debug.ChimeraDebugActivity
-}
-
-hgr() {
-  source /google/src/head/depot/google3/experimental/users/cnieves/util/hgr.sh || return
-  hgr "$@"
 }
 
 jt() {
@@ -193,10 +181,3 @@ bdoctor_modules() {
 alias bisect=/google/data/ro/teams/tetralight/bin/bisect
 alias copybara='/google/bin/releases/copybara/public/copybara/copybara'
 alias allow_ptrace='/google/bin/releases/cider/dbg/allow_ptrace'
-source /etc/bash_completion.d/g4d
-gcertstatus --quiet || gcert && source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
-
-complete -D -C /google/data/ro/users/sk/skaushik/www/public-tools/flagpick -o bashdefault -o default
-
-# Setup go/hi #!>>HI<<!#
-source /etc/bash.bashrc.d/shell_history_forwarder.sh #!>>HI<<!#

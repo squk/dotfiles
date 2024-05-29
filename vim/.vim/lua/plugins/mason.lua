@@ -16,6 +16,7 @@ return {
 			"bashls",
 			"dotls",
 			"golangci_lint_ls",
+			"gopls",
 		}
 
 		if not use_google() then

@@ -70,8 +70,18 @@ return {
 			require("go").setup({
 				capabilities = capabilities,
 			})
+			-- Run gofmt + goimports on save
+
+			local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.go",
+				callback = function()
+					require("go.format").goimports()
+				end,
+				group = format_sync_grp,
+			})
 		end,
-		event = { "VeryLazy" },
+		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
@@ -123,16 +133,6 @@ return {
 			})
 			vim.cmd([[autocmd FileType gdscript setlocal commentstring=#\ %s]])
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
-
-			-- Run gofmt + goimports on save
-			local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*.go",
-				callback = function()
-					require("go.format").goimports()
-				end,
-				group = format_sync_grp,
-			})
 		end,
 	},
 }

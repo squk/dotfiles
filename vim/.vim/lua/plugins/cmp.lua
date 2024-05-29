@@ -41,6 +41,8 @@ return {
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+
 			local compare = cmp.config.compare
 
 			local conditionalSources = {}
@@ -55,6 +57,30 @@ return {
 
 			local lspkind = require("lspkind")
 			lspkind.init()
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					local max_filesize = 100 * 1024 -- 100 KB
+					local fname = vim.api.nvim_buf_get_name(args.buf)
+					local ok, stats = pcall(vim.loop.fs_stat, fname)
+					if ok and stats and stats.size > max_filesize then
+						vim.schedule(function()
+							vim.notify(
+								string.format(
+									"Disabling nvim-cmp for buffer. File %s exceeds maximum configured size.",
+									fname
+								)
+							)
+						end)
+						require("cmp").setup.buffer({
+							enabled = false,
+						})
+					end
+				end,
+			})
+
+			cmp.setup.filetype("txt", {
+				enabled = false,
+			})
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ "/", "?" }, {
@@ -76,6 +102,14 @@ return {
 
 			cmp.setup({
 				preselect = cmp.PreselectMode.None,
+				performance = {
+					-- debounce = 60,
+					-- throttle = 30,
+					fetching_timeout = 300,
+					-- confirm_resolve_timeout = 80,
+					-- async_budget = 1,
+					-- max_view_entries = 200,
+				},
 				sources = cmp.config.sources(
 					require("utils").TableConcat(conditionalSources, {
 						-- { name = "nvim_lsp_signature_help", priority = 9 },
@@ -136,35 +170,40 @@ return {
 					end,
 				},
 
-				experimental = {
-					native_menu = false,
-					ghost_text = true,
-				},
 				mapping = {
 					["<S-Up>"] = cmp.mapping.scroll_docs(-4),
 					["<S-Down>"] = cmp.mapping.scroll_docs(4),
 					["<C-e>"] = cmp.mapping.close(),
 					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping(function(fallback)
+					["<CR>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							if #cmp.get_entries() == 1 then
-								cmp.confirm({ select = true })
+							if luasnip.expandable() then
+								luasnip.expand()
 							else
-								cmp.select_next_item()
-							end
-						elseif has_words_before() then
-							cmp.complete()
-							if #cmp.get_entries() == 1 then
-								cmp.confirm({ select = true })
+								cmp.confirm({
+									select = true,
+								})
 							end
 						else
 							fallback()
 						end
+					end),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.locally_jumpable(1) then
+							luasnip.jump(1)
+						else
+							fallback()
+						end
 					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function()
+					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
+						elseif luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
 						end
 					end, { "i", "s" }),
 

@@ -33,7 +33,7 @@ return {
 			"Subs",
 		},
 		keys = {
-			{ "<leader>t", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+			{ "<leader>tc", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
 		},
 	},
 	{
@@ -73,21 +73,6 @@ return {
 		opts = {},
 		cmd = { "AerialToggle", "AerialOn" },
 		keys = { { "<leader>so", ":AerialToggle<CR>", desc = "[S]symbols [O]utline" } },
-	},
-	{
-		"olimorris/persisted.nvim",
-		config = function()
-			require("persisted").setup({})
-			require("telescope").load_extension("persisted")
-		end,
-	},
-	{
-		"iamcco/markdown-preview.nvim",
-		build = "cd app && npm install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
 	},
 	{
 		"andrewferrier/debugprint.nvim",

@@ -7,6 +7,7 @@ function M.setup(capabilities)
 		local configs = require("lspconfig.configs")
 		configs.ciderlsp = {
 			default_config = {
+				offset_encoding = "utf-16",
 				cmd = {
 					"/google/bin/releases/cider/ciderlsp/ciderlsp",
 					"--tooltag=nvim-lsp",
@@ -26,7 +27,7 @@ function M.setup(capabilities)
 					"bzl",
 					"typescript",
 				},
-				root_dir = lspconfig.util.root_pattern("BUILD"),
+				root_dir = lspconfig.util.root_pattern("google3/*BUILD"),
 				settings = {},
 			},
 		}

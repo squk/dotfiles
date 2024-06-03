@@ -1,7 +1,28 @@
 local use_google = require("utils").use_google
+local buf_too_large = require("utils").buf_too_large
 
 return {
-	"RRethy/vim-illuminate",
+	{
+		"RRethy/vim-illuminate",
+		config = function()
+			local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
+			vim.api.nvim_create_autocmd({ "BufReadPre" }, {
+				callback = function()
+					if buf_too_large() then
+						vim.b.large_buf = true
+						vim.cmd("syntax off")
+						vim.cmd("IlluminatePauseBuf") -- disable vim-illuminate
+						vim.opt_local.foldmethod = "manual"
+						vim.opt_local.spell = false
+					else
+						vim.b.large_buf = false
+					end
+				end,
+				group = aug,
+				pattern = "*",
+			})
+		end,
+	},
 	"kdheepak/lazygit.nvim",
 	"flwyd/vim-conjoin",
 	"rafcamlet/nvim-luapad",
@@ -20,6 +41,9 @@ return {
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
 		opts = {
 			-- add any custom options here
+		},
+		keys = {
+			{ "<leader>s", [[<cmd>lua require("persistence").load()<cr>]] },
 		},
 	},
 	{

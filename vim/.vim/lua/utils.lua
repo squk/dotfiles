@@ -2,6 +2,17 @@ local M = {
 	use_google_cache = nil,
 }
 
+function M.exec(command, args)
+	local Job = require("plenary.job")
+	local job = Job:new({
+		command = command,
+		args = args,
+	})
+	job:sync()
+	job:wait()
+	return job:result()
+end
+
 function M.map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
 	if opts then
@@ -9,6 +20,19 @@ function M.map(mode, lhs, rhs, opts)
 	end
 	-- vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 	vim.keymap.set(mode, lhs, rhs, options)
+end
+
+function M.file_too_large(filename)
+	local max_filesize = 100 * 1024 -- 100 KB
+	local ok, stats = pcall(vim.loop.fs_stat, filename)
+	if ok and stats and stats.size > max_filesize then
+		return true
+	end
+	return false
+end
+
+function M.buf_too_large()
+	return M.file_too_large(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
 end
 
 function M.use_google()

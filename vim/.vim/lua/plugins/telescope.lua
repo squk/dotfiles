@@ -1,4 +1,5 @@
 local use_google = require("utils").use_google
+local exec = require("utils").exec
 local TableConcat = require("utils").TableConcat
 local scopes = require("neoscopes")
 
@@ -20,10 +21,15 @@ _G.search_cwd = function()
 	builtin.find_files({ cwd = utils.buffer_dir() })
 end
 
-_G.live_grep = function()
+_G.live_grep = function(search_dirs)
 	require("telescope.builtin").live_grep({
-		search_dirs = scopes.get_current_dirs(),
+		search_dirs = search_dirs,
+		-- search_dirs = ,
 	})
+end
+
+local function exe(cmd)
+	return vim.split(vim.fn.system(cmd), "\n")
 end
 
 local function get_visual_selection()
@@ -35,16 +41,21 @@ local function get_visual_selection()
 	return vim.fn.getreg("v")
 end
 
+function fig_modified()
+	return exe("hg pstatus -ma -n --no-status --template=")
+end
+function fig_all_modified()
+	return exe("hg status -ma -n --rev p4base --no-status --template=")
+end
+
 local keys = {
-	{ "<C-P>", ":lua find_files()<CR>", desc = "Find Files in CWD" },
+	{ "<C-P>", ":lua find_files(scopes.get_current_dirs())<CR>", desc = "Find Files in CWD" },
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>tc", ":Telescope textcase<CR>", desc = "Text case" },
 	{ "<leader>t.", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
 	{ "<leader>tdc", ":Telescope dap commands" },
 	{ "<leader>tdc", ":Telescope dap configurations" },
 	{ "<leader>td", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
-	{ "<leader>tf", ":lua find_files()<CR>", desc = "Find Files in CWD" },
-	{ "<leader>tf.", ":lua vim.error('use <leader>e')<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "Git Files" },
 	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 	{ "<leader>tk", ":Telescope keymaps<CR>", desc = "Keymaps" },
@@ -52,11 +63,15 @@ local keys = {
 	{ "<leader>tn", ":Telescope notify<CR>", desc = "Notifications" },
 	{ "<leader>to", ":Telescope oldfiles<CR>", desc = "Recent(oldfiles) Files" },
 	{ "<leader>tr", ":Telescope resume<CR>", desc = "Telescope Resume" },
-	{ "<leader>ts", ":lua live_grep()<CR>", desc = "Search in CWD" },
+	{ "<leader>ts", ":lua live_grep(scopes.get_current_dirs())<CR>", desc = "Search in CWD" },
 }
 
 if use_google() then
 	TableConcat(keys, {
+		{ "<leader>tm", ":lua find_files(fig_modified())" },
+		{ "<leader>tM", ":lua find_files(fig_all_modified())" },
+		{ "<leader>tF", ":lua live_grep(fig_all_modified())<CR>", desc = "Search in *all* modified Fig files." },
+		{ "<leader>tf", ":lua live_grep(fig_modified())<CR>", desc = "Search in modified Fig files." },
 		{ "<C-P>", [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]], "n" },
 		{ "<leader>cs", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]] },
 		{ "<leader>cs", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]], mode = "v" },

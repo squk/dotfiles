@@ -48,11 +48,11 @@ return {
 						if lang == "gdrama" then
 							return true
 						end
+						local file_too_large = require("utils").file_too_large
 
-						local max_filesize = 100 * 1024 -- 100 KB
 						local fname = vim.api.nvim_buf_get_name(buf)
-						local ok, stats = pcall(vim.loop.fs_stat, fname)
-						if ok and stats and stats.size > max_filesize then
+
+						if file_too_large(fname) then
 							vim.schedule(function()
 								vim.notify(
 									string.format(
@@ -63,6 +63,7 @@ return {
 							end)
 							return true
 						end
+						return false
 					end,
 
 					-- Setting this to true will run `:h syntax` and tree-sitter at the same time.

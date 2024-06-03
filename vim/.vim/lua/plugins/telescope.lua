@@ -3,9 +3,9 @@ local exec = require("utils").exec
 local TableConcat = require("utils").TableConcat
 local scopes = require("neoscopes")
 
-_G.find_files = function()
+_G.find_files = function(search_dirs)
 	require("telescope.builtin").find_files({
-		search_dirs = scopes.get_current_dirs(),
+		search_dirs = search_dirs,
 	})
 end
 -- Helper functions to fetch the current scope and set `search_dirs`
@@ -68,8 +68,8 @@ local keys = {
 
 if use_google() then
 	TableConcat(keys, {
-		{ "<leader>tm", ":lua find_files(fig_modified())" },
-		{ "<leader>tM", ":lua find_files(fig_all_modified())" },
+		{ "<leader>tm", ":lua find_files(fig_modified())<CR>" },
+		{ "<leader>tM", ":lua find_files(fig_all_modified())<CR>" },
 		{ "<leader>tF", ":lua live_grep(fig_all_modified())<CR>", desc = "Search in *all* modified Fig files." },
 		{ "<leader>tf", ":lua live_grep(fig_modified())<CR>", desc = "Search in modified Fig files." },
 		{ "<C-P>", [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]], "n" },

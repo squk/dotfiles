@@ -42,7 +42,7 @@ test --test_output=all --test_summary=detailed --build_tests_only
 # test --test_arg=--undefok=suppress_failure_output --test_arg=--suppress_failure_output
 
 import %workspace%/java/com/google/android/gmscore/blaze/blazerc
-# build --config=gmscore_arm64
+build --config=gmscore_tap
 test --config=gmscore_test
 #
 # https://g3doc.corp.google.com/devtools/blaze/g3doc/faq.md?cl=head#BlazeOom

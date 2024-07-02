@@ -51,7 +51,9 @@ end
 local keys = {
 	{ "<C-P>", ":lua find_files(scopes.get_current_dirs())<CR>", desc = "Find Files in CWD" },
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
+	{ "<leader>.", ":lua live_grep(%%)<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>tc", ":Telescope textcase<CR>", desc = "Text case" },
+	{ "<leader>tC", ":CritiqueCommentsTelescope<CR>", desc = "Text case" },
 	{ "<leader>t.", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
 	{ "<leader>tdc", ":Telescope dap commands" },
 	{ "<leader>tdc", ":Telescope dap configurations" },

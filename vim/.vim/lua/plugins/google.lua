@@ -248,6 +248,11 @@ return {
 		},
 	})),
 	{
+		url = "sso://user/fentanes/googlepaths.nvim",
+		event = { "VeryLazy", "BufReadCmd //*" },
+		opts = {},
+	},
+	{
 		name = "ai.nvim",
 		url = "sso://googler@user/vvvv/ai.nvim",
 	},

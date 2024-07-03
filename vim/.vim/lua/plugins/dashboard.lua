@@ -13,7 +13,9 @@ return {
 					{
 						desc = "󰦛  cwd session",
 						group = "Number",
-						action = "SessionLoad",
+						action = function()
+							require("persistence").load()
+						end,
 						key = ".",
 					},
 					{

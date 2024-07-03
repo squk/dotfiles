@@ -3,6 +3,16 @@ local buf_too_large = require("utils").buf_too_large
 
 return {
 	{
+		"Bekaboo/dropbar.nvim",
+		-- optional, but required for fuzzy finder support
+		dependencies = {
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
+		-- config = function()
+		-- 	vim.ui.select = require("dropbar.utils.menu").select
+		-- end,
+	},
+	{
 		"RRethy/vim-illuminate",
 		config = function()
 			local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })

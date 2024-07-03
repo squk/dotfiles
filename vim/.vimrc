@@ -120,7 +120,5 @@ let g:loaded_netrwPlugin       = 0
 let g:loaded_tutor_mode_plugin = 0
 let g:loaded_remote_plugins    = 1
 
-set mouse=
-
 filetype plugin indent on
 syntax on

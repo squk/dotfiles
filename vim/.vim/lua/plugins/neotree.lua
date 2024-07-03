@@ -1,12 +1,9 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		-- cmd = {
-		-- 	"NeoTreeFocusToggle",
-		-- 	"NeoTreeFloatToggle",
-		-- 	"NeoTreeRevealToggle",
-		-- 	"NeoTreeShowToggle",
-		-- },
+		cmd = {
+			"Neotree",
+		},
 		config = function()
 			require("neo-tree").setup({
 				filesystem = {
@@ -20,6 +17,7 @@ return {
 					"buffers",
 					"git_status",
 					"diagnostics",
+					"docment_symbols",
 					-- ...and any additional source
 				},
 				source_selector = {
@@ -68,9 +66,9 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		keys = {
-			-- { "<C-n>", ":Neotree filesystem reveal toggle dir=%:p:h<cr>", desc = "Open NeoTree" },
-			{ "<C-N>", ":Neotree reveal_force_cwd<CR>", desc = "Open NeoTree CWD" },
-			{ "<C-n>", ":Neotree float reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
+			{ "<C-n>", ":Neotree float buffers<CR>" },
+			{ "<C-n>.", ":Neotree float reveal toggle dir=%:p:h<cr>" },
+			-- { "<C-n>.", ":Neotree float reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
 		},
 	},
 }

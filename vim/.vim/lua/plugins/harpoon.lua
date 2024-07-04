@@ -60,7 +60,7 @@ return {
 				:find()
 		end
 
-		vim.keymap.set("n", "<leader>th", function()
+		vim.keymap.set("n", "<leader>h", function()
 			toggle_telescope(harpoon:list())
 		end, { desc = "Open harpoon window" })
 	end,

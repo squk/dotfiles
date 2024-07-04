@@ -66,8 +66,8 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		keys = {
-			{ "<C-n>", ":Neotree float buffers<CR>" },
-			{ "<C-n>.", ":Neotree float reveal toggle dir=%:p:h<cr>" },
+			{ "<C-n>", ":Neotree float reveal toggle dir=%:p:h<cr>" },
+			{ "<C-n>b", ":Neotree float buffers<CR>" },
 			-- { "<C-n>.", ":Neotree float reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
 		},
 	},

@@ -7,8 +7,6 @@ return {
 			vim.opt.termguicolors = true
 			require("bufferline").setup({
 				options = {
-					-- separator_style = "slope",
-					-- separator_style = "slant",
 					hover = {
 						enabled = true,
 						delay = 200,
@@ -37,13 +35,6 @@ return {
 					truncate_name = false,
 					show_close_icon = false,
 					show_buffer_close_icons = false,
-					-- custom_areas = {
-					-- 	right = function()
-					-- 		local result = {}
-					-- 		table.insert(result, { text = " " .. vim.api.nvim_buf_get_name(0), fg = "#edf" })
-					-- 		return result
-					-- 	end,
-					-- },
 				},
 			})
 		end,

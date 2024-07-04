@@ -49,23 +49,20 @@ function fig_all_modified()
 end
 
 local keys = {
-	{ "<C-P>", ":lua find_files(scopes.get_current_dirs())<CR>", desc = "Find Files in CWD" },
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
-	{ "<leader>.", ':lua live_grep({vim.fn.expand("%%")})<CR>', desc = "Find Files in Buffer Directory" },
+	{ "<leader>ts.", ":lua live_grep({vim.fn.getcwd()})<CR>", desc = "Search in CWD" },
+	{ "<leader>ts", ':lua live_grep({vim.fn.expand("%%")})<CR>', desc = "Find Files in Buffer Directory" },
 	{ "<leader>tc", ":Telescope textcase<CR>", desc = "Text case" },
-	{ "<leader>tC", ":CritiqueCommentsTelescope<CR>", desc = "Text case" },
-	{ "<leader>t.", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
-	{ "<leader>tdc", ":Telescope dap commands" },
-	{ "<leader>tdc", ":Telescope dap configurations" },
-	{ "<leader>td", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
+	{ "<leader>tC", ":CritiqueCommentsTelescope<CR>", desc = "Critique comments" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "Git Files" },
 	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 	{ "<leader>tk", ":Telescope keymaps<CR>", desc = "Keymaps" },
-	{ "<leader>tk", ":Telescope Keymaps<CR>", desc = "Search Keymaps" },
-	{ "<leader>tn", ":Telescope notify<CR>", desc = "Notifications" },
 	{ "<leader>to", ":Telescope oldfiles<CR>", desc = "Recent(oldfiles) Files" },
+	{ "<leader>tn", ":Telescope notify<CR>", desc = "Notifications" },
 	{ "<leader>tr", ":Telescope resume<CR>", desc = "Telescope Resume" },
-	{ "<leader>ts", ":lua live_grep(scopes.get_current_dirs())<CR>", desc = "Search in CWD" },
+	--
+	-- { "<leader>tdc", ":Telescope dap commands" },
+	-- { "<leader>tdc", ":Telescope dap configurations" },
 }
 
 if use_google() then

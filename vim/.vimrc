@@ -49,13 +49,17 @@ set splitright     " Puts new vsplit windows to the right of the current
 set splitbelow     " Puts new split windows to the bottom of the current
 
 set scrolljump=5   " Line to scroll when cursor leaves screen
-set scrolloff=3    " Minumum lines to keep above and below cursor
+set scrolloff=3    " Minimum lines to keep above and below cursor
 
-set shortmess=A " disable swap
+set shortmess=A " disable swapg
 set shortmess+=O
 set modifiable
 set noscrollbind
 set expandtab
+
+" map <LeftMouse> ""
+map <LeftDrag> ""
+map <LeftRelease> ""
 
 set updatetime=100
 

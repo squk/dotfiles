@@ -51,6 +51,7 @@ end
 local keys = {
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>ts.", ":lua live_grep({vim.fn.getcwd()})<CR>", desc = "Search in CWD" },
+	{ "<leader>t.", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
 	{ "<leader>ts", ':lua live_grep({vim.fn.expand("%%")})<CR>', desc = "Find Files in Buffer Directory" },
 	{ "<leader>tc", ":Telescope textcase<CR>", desc = "Text case" },
 	{ "<leader>tC", ":CritiqueCommentsTelescope<CR>", desc = "Critique comments" },

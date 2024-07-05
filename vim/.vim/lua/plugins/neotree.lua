@@ -1,11 +1,17 @@
+local use_google = require("utils").use_google
+
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+		deps = {
+			"~/fig-tree",
+		},
 		cmd = {
 			"Neotree",
 		},
 		config = function()
 			require("neo-tree").setup({
+				hijack_netrw_behavior = "open_default",
 				filesystem = {
 					filtered_items = {
 						hide_dotfiles = false,
@@ -17,7 +23,7 @@ return {
 					"buffers",
 					"git_status",
 					"diagnostics",
-					"docment_symbols",
+					"fig",
 					-- ...and any additional source
 				},
 				source_selector = {
@@ -66,9 +72,15 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		keys = {
-			{ "<C-n>", ":Neotree float reveal toggle dir=%:p:h<cr>" },
+			(function()
+				if use_google() then
+					return { "<C-n>", ":Neotree toggle fig<CR>", desc = "Open NeoTree CWD float" }
+				end
+				-- return { "<C-n>.", ":Neotree toggle reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" }
+				return { "<C-n>", ":Neotree toggle git_status<CR>", desc = "Open NeoTree CWD float" }
+			end)(),
 			{ "<C-n>b", ":Neotree float buffers<CR>" },
-			-- { "<C-n>.", ":Neotree float reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
+			{ "<C-n>.", ":Neotree float reveal toggle dir=%:p:h<cr>" },
 		},
 	},
 }

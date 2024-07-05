@@ -2,6 +2,16 @@ local use_google = require("utils").use_google
 
 return {
 	{
+		"bluz71/vim-moonfly-colors",
+		name = "moonfly",
+		cond = not use_google(),
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd("colorscheme moonfly")
+		end,
+	},
+	{
 		"sainnhe/sonokai",
 		-- cond = false,
 		config = function()
@@ -34,7 +44,7 @@ return {
 		"EdenEast/nightfox.nvim",
 		lazy = use_google(), -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
-		cond = not use_google(),
+		cond = false,
 		config = function()
 			-- vim.cmd("colorscheme nightfox")
 			-- vim.cmd("colorscheme carbonfox")

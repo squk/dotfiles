@@ -49,22 +49,22 @@ return {
 	{
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		init = function()
-			vim.api.nvim_create_autocmd("VimEnter", {
-				group = vim.api.nvim_create_augroup("restore_session", { clear = true }),
-				callback = function()
-					if vim.fn.getcwd() ~= vim.env.HOME then
-						require("persistence").load()
-					end
-				end,
-				nested = true,
-			})
-		end,
 		opts = {},
 		keys = {
 			{ "<leader>ss", [[<cmd>lua require("persistence").save()<cr>]] },
 			{ "<leader>sl", [[<cmd>lua require("persistence").load()<cr>]] },
 		},
+	},
+	{
+		"rmagatti/auto-session",
+		dependencies = {
+			"nvim-telescope/telescope.nvim", -- Only needed if you want to use session lens
+		},
+		config = function()
+			require("auto-session").setup({
+				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+			})
+		end,
 	},
 	{
 		"johmsalas/text-case.nvim",

@@ -64,7 +64,7 @@ return {
 					else
 						vim.diagnostic.config({
 							virtual_improved = {
-								severity = { min = vim.diagnostic.severity.HINT },
+								severity = { min = vim.diagnostic.severity.WARN },
 								current_line = "hide",
 							},
 						})

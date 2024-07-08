@@ -32,35 +32,6 @@ function M.setup(capabilities)
 			},
 		}
 
-		-- configs.analysislsp = {
-		-- 	default_config = {
-		-- 		cmd = {
-		-- 			"/google/bin/users/lerm/glint-ale/analysis_lsp/server",
-		-- 			"--lint_on_save=false",
-		-- 			"--max_qps=10",
-		-- 		},
-		-- 		filetypes = {
-		-- 			"c",
-		-- 			"cpp",
-		-- 			"java",
-		-- 			"kotlin",
-		-- 			"objc",
-		-- 			"proto",
-		-- 			"textproto",
-		-- 			"go",
-		-- 			"python",
-		-- 			"bzl",
-		-- 			-- "markdown",
-		-- 			"typescript",
-		-- 			"javascript",
-		-- 		},
-		-- 		root_dir = function(fname)
-		-- 			return string.match(fname, "(/google/src/cloud/[%w_-]+/[%w_-]+/google3/).+$")
-		-- 		end,
-		-- 		settings = {},
-		-- 	},
-		-- }
-
 		local my_on_attach = function(client, bufnr)
 			require("lualine").refresh()
 			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -96,13 +67,10 @@ function M.setup(capabilities)
 		end
 
 		lspconfig.ciderlsp.setup({
-			gapabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+			capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 			on_attach = cider_on_attach,
 			handlers = cider_lsp_handlers,
 		})
-		-- lspconfig.analysislsp.setup({
-		-- 	capabilities = capabilities,
-		-- })
 	end
 end
 

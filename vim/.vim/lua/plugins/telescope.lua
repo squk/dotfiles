@@ -24,7 +24,6 @@ end
 _G.live_grep = function(search_dirs)
 	require("telescope.builtin").live_grep({
 		search_dirs = search_dirs,
-		-- search_dirs = ,
 	})
 end
 
@@ -51,10 +50,11 @@ end
 local keys = {
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>ts.", ":lua live_grep({vim.fn.getcwd()})<CR>", desc = "Search in CWD" },
+	{ "<leader>ts", ':lua live_grep({vim.fn.expand("%%")})<CR>', desc = "Search in Buffer Directory" },
 	{ "<leader>t.", ":lua find_dotfiles()<CR>", desc = "Find Dotfiles" },
-	{ "<leader>ts", ':lua live_grep({vim.fn.expand("%%")})<CR>', desc = "Find Files in Buffer Directory" },
 	{ "<leader>tc", ":Telescope textcase<CR>", desc = "Text case" },
-	{ "<leader>tC", ":CritiqueCommentsTelescope<CR>", desc = "Critique comments" },
+	{ "<leader>tC", ":CritiqueUnresolvedCommentsTelescope<CR>", desc = "Critique unresolved comments" },
+	{ "<leader>tca", ":CritiqueCommentsTelescope<CR>", desc = "Critique all comments" },
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "Git Files" },
 	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 	{ "<leader>tk", ":Telescope keymaps<CR>", desc = "Keymaps" },
@@ -160,7 +160,13 @@ return {
 						return path
 					end,
 					mappings = {
+						n = {
+							["<C-c>"] = require("telescope.actions").close,
+							["<Esc>"] = require("telescope.actions").close,
+						},
 						i = {
+							["<C-c>"] = require("telescope.actions").close,
+							["<Esc>"] = require("telescope.actions").close,
 							["<S-Down>"] = function()
 								require("telescope.actions").cycle_history_next()
 							end,

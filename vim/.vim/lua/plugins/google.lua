@@ -310,14 +310,16 @@ return {
 			{ "<Leader>uc", ":CritiqueToggleUnresolvedComments<CR>" },
 			{ "<Leader>ac", ":CritiqueToggleAllComments<CR>" },
 			{ "<Leader>fc", ":CritiqueFetchComments<CR>" },
-			{ "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
+			-- { "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
+			-- { "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
 		},
 		config = function()
 			-- Here are all the options and their default values:
 			require("critique.comments").setup({
-				debug = 0, -- default = 0
+				debug = 1, -- default = 0
 				-- Fetch the comments after calling `setup`.
 				auto_fetch = true, -- default = true
+				auto_render = true, -- default = true
 				-- Allow checking for comments on BufEnter events. This is throttled to once every 10 seconds.
 				frequent_fetch = true, -- default = false
 				verbose_notifications = true,

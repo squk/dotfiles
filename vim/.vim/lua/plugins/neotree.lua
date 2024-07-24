@@ -41,14 +41,14 @@ return {
 		keys = {
 			(function()
 				if use_google() then
-					return { "<C-n>", ":Neotree toggle left cmdtree<CR>", desc = "Open NeoTree CWD float" }
+					return { "<C-n>m", ":Neotree float cmdtree<CR>", desc = "Open NeoTree CWD float" }
 				end
 				-- return { "<C-n>.", ":Neotree toggle reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" }
-				return { "<C-n>", ":Neotree toggle left git_status<CR>", desc = "Open NeoTree CWD float" }
+				return { "<C-n>m", ":Neotree float git_status<CR>", desc = "Open NeoTree CWD float" }
 			end)(),
 			{ "<C-n>b", ":Neotree float buffers<CR>" },
-			{ "<C-n>.", ":Neotree reveal toggle dir=%:p:h<cr>" },
-			{ "<C-n>c", ":Neotree toggle reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
+			{ "<C-n>", ":Neotree float dir=%:p:h<cr>" },
+			{ "<C-n>.", ":Neotree reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
 		},
 	},
 }

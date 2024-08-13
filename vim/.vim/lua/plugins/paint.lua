@@ -31,10 +31,10 @@ return {
 				-- },
 				--
 				-- WASM
-				{ pattern = "(W)ASM", hl = "LightRed", filter = {} },
-				{ pattern = "W(A)SM", hl = "LightBlue", filter = {} },
-				{ pattern = "WA(S)M", hl = "LightGreen", filter = {} },
-				{ pattern = "WAS(M)", hl = "LightYellow", filter = {} },
+				-- { pattern = "(W)ASM", hl = "LightRed", filter = {} },
+				-- { pattern = "W(A)SM", hl = "LightBlue", filter = {} },
+				-- { pattern = "WA(S)M", hl = "LightGreen", filter = {} },
+				-- { pattern = "WAS(M)", hl = "LightYellow", filter = {} },
 
 				-- Google
 				-- { pattern = "Google", hl = "LightBlue", filter = {} },
@@ -46,7 +46,7 @@ return {
 				-- { pattern = "Googl(e)", hl = "LightRed", filter = {} },
 
 				-- cnieves
-				{ pattern = "cnieves", hl = "LightPurple", filter = {} },
+				-- { pattern = "cnieves", hl = "LightPurple", filter = {} },
 				{ pattern = "Christian Nieves", hl = "LightPurple", filter = {} },
 			},
 		})

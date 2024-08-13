@@ -316,7 +316,7 @@ return {
 		config = function()
 			-- Here are all the options and their default values:
 			require("critique.comments").setup({
-				debug = 1, -- default = 0
+				-- debug = 1, -- default = 0
 				-- Fetch the comments after calling `setup`.
 				auto_fetch = true, -- default = true
 				auto_render = true, -- default = true

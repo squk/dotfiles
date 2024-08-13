@@ -2,23 +2,35 @@ local use_google = require("utils").use_google
 local buf_too_large = require("utils").buf_too_large
 
 return {
-	-- {
-	-- 	"m4xshen/hardtime.nvim",
-	-- 	dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-	-- 	opts = {},
-	-- },
 	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
-  -- stylua: ignore
-  keys = {
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-  },
+		"shellRaining/hlchunk.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			line_num = { enable = true },
+			chunk = {
+				enable = true,
+				priority = 15,
+				style = {
+					{ fg = "#403d4c" },
+					{ fg = "#c21f30" },
+				},
+				chars = {
+					horizontal_line = "─",
+					-- vertical_line = "│",
+					vertical_line = "┊",
+					left_top = "╭",
+					left_bottom = "╰",
+					right_arrow = ">",
+				},
+				use_treesitter = true,
+				textobject = "",
+				max_file_size = 1024 * 1024,
+				error_sign = true,
+				-- animation related
+				duration = 0,
+				delay = 0,
+			},
+		},
 	},
 	{
 		"Bekaboo/dropbar.nvim",

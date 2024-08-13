@@ -61,7 +61,7 @@ function M.setup(capabilities)
 			local first_fire = vim.b["is_cider_lsp_attached"] == "no"
 			vim.b["is_cider_lsp_attached"] = "yes"
 			if first_fire then
-				vim.notify("CiderLSP attached", "info")
+				vim.notify("CiderLSP attached")
 				require("lualine").refresh()
 			end
 		end

@@ -3,6 +3,23 @@ local buf_too_large = require("utils").buf_too_large
 
 return {
 	{
+		"MagicDuck/grug-far.nvim",
+		config = function()
+			require("grug-far").setup({
+				-- search and replace engines configuration
+				engines = {
+					-- see https://github.com/BurntSushi/ripgrep
+					ripgrep = {
+						-- ripgrep executable to use, can be a different path if you need to configure
+						path = "rg",
+						extraArgs = "--.",
+					},
+				},
+			})
+		end,
+	},
+
+	{
 		"shellRaining/hlchunk.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {

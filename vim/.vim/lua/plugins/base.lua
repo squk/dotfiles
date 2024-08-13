@@ -11,8 +11,7 @@ return {
 				enable = true,
 				priority = 15,
 				style = {
-					{ fg = "#403d4c" },
-					{ fg = "#c21f30" },
+					{ fg = "#393d4c" },
 				},
 				chars = {
 					horizontal_line = "─",

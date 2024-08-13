@@ -1,7 +1,8 @@
 return {
 	"folke/paint.nvim",
 	config = function()
-		vim.api.nvim_set_hl(0, "LightPurple", { fg = "#7f67c5" })
+		vim.api.nvim_set_hl(0, "NievesLightPurple", { fg = "#7f67c5" })
+		vim.api.nvim_set_hl(0, "NievesViolet", { fg = "#4000f0", bold = true })
 
 		require("paint").setup({
 			highlights = {
@@ -47,7 +48,9 @@ return {
 
 				-- cnieves
 				-- { pattern = "cnieves", hl = "LightPurple", filter = {} },
-				{ pattern = "Christian Nieves", hl = "LightPurple", filter = {} },
+				-- { pattern = "Christian Nieves", hl = "LightPurple", filter = {} },
+				{ pattern = "Christian Nieves", hl = "NievesViolet", filter = {} },
+				{ pattern = "Christian Nieves", hl = "NievesLightPurple", filter = {} },
 			},
 		})
 	end,

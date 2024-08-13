@@ -16,34 +16,32 @@ return {
 	-- 		vim.notify = require("notify")
 	-- 	end,
 	-- },
-	{
-		"j-hui/fidget.nvim",
-		event = "VimEnter",
-		cond = false,
-		opts = {
-			progress = {
-				display = {
-					done_ttl = 5,
-					done_icon = "󰞑 ",
-				},
-			},
-			notification = {
-				override_vim_notify = true,
-			},
-		},
-	},
+	-- {
+	-- 	"j-hui/fidget.nvim",
+	-- 	event = "VimEnter",
+	-- 	-- cond = false,
+	-- 	opts = {
+	-- 		progress = {
+	-- 			display = {
+	-- 				done_ttl = 5,
+	-- 				done_icon = "󰞑 ",
+	-- 			},
+	-- 		},
+	-- 		notification = {
+	-- 			override_vim_notify = true,
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"echasnovski/mini.notify",
 		version = false,
 		dependencies = {
 			"rcarriga/nvim-notify",
-			"j-hui/fidget.nvim",
+			-- "j-hui/fidget.nvim",
 		},
 		config = function()
-			vim.notify = function(msg, level, opts)
-				require("fidget").notify(msg, level, opts)
-				require("mini.notify").make_notify()(msg, level, opts)
-			end
+			vim.api.nvim_create_user_command("Notifications", require("mini.notify").show_history, {})
+			vim.notify = require("mini.notify").make_notify()
 		end,
 	},
 }

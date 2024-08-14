@@ -70,11 +70,11 @@ if use_google() then
 	TableConcat(keys, {
 		{ "<leader>tm", ":lua find_files(fig_modified())<CR>" },
 		{ "<leader>tM", ":lua find_files(fig_all_modified())<CR>" },
-		{ "<leader>tF", ":lua live_grep(fig_all_modified())<CR>", desc = "Search in *all* modified Fig files." },
 		{ "<leader>tf", ":lua live_grep(fig_modified())<CR>", desc = "Search in modified Fig files." },
-		{ "<C-P>", [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]], "n" },
-		{ "<leader>cs", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]] },
-		{ "<leader>cs", [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]], mode = "v" },
+		{ "<leader>tF", ":lua live_grep(fig_all_modified())<CR>", desc = "Search in *all* modified Fig files." },
+		{ "<C-P>", require("telescope").extensions.codesearch.find_files },
+		{ "<leader>cs", require("telescope").extensions.codesearch.find_query },
+		{ "<leader>cs", require("telescope").extensions.codesearch.find_query, mode = "v" },
 		{
 			"<leader>CS",
 			[[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
@@ -166,7 +166,6 @@ return {
 						},
 						i = {
 							["<C-c>"] = require("telescope.actions").close,
-							["<Esc>"] = require("telescope.actions").close,
 							["<S-Down>"] = function()
 								require("telescope.actions").cycle_history_next()
 							end,

@@ -12,8 +12,6 @@ map <Esc>[D <Left>
 " remove mapping to be used in nerdtree
 inoremap <Nul> <C-n>
 
-cnoremap %% <C-R>=fnameescape(expand("%:p:h")."/")<CR>
-
 " move vertically by visual line
 " nnoremap j gj
 " nnoremap k gk

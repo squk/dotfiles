@@ -7,14 +7,11 @@ return {
 	end,
 	config = function()
 		require("which-key").setup({})
-		-- local wk = require("which-key")
-		--
-		-- wk.register({ [";"] = { ":" } }, { mode = "v" })
-		-- wk.register({ [";"] = { ":" } }, { mode = "n" })
-		--
-		-- wk.register({
-		--     ["%%"] = { '<C-R>=fnameescape(expand("%:p:h")."/")<CR>', "Current File Directory" },
-		-- }, { mode = "c" })
+		local wk = require("which-key")
+		wk.register({
+			["%%"] = { '<C-R>=fnameescape(expand("%:p:h")."/")<CR>', "Current File Directory" },
+			["%."] = { "<C-R>%", "Current File" },
+		}, { mode = "c" })
 		--
 		-- wk.register({
 		--     ["jk"] = { "<esc>" },

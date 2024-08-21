@@ -14,3 +14,4 @@ package.path = package.path .. ";" .. vim.env.HOME .. "/.vim/lua/?.lua"
 
 require("lazy").setup("plugins")
 require("config.clipboard")
+require("config.zip")

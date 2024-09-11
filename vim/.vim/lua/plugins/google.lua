@@ -94,6 +94,7 @@ return {
 		},
 	}),
 	glug("relatedfiles", {
+  -- stylua: ignore
 		keys = {
 			{ "<leader>rb", ":exec relatedfiles#selector#JumpToBuild()<CR>" },
 			{ "<leader>rt", ":exec relatedfiles#selector#JumpToTestFile()<CR>" },

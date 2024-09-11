@@ -124,5 +124,7 @@ let g:loaded_netrwPlugin       = 0
 let g:loaded_tutor_mode_plugin = 0
 let g:loaded_remote_plugins    = 1
 
+au BufRead,BufNewFile,BufReadPost *.cc.inc set filetype=cpp
+
 filetype plugin indent on
 syntax on

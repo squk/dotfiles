@@ -64,6 +64,7 @@ return {
 			toggle_telescope(harpoon:list())
 		end, { desc = "Open harpoon window" })
 	end,
+	-- stylua: ignore
 	-- keys = {
 	-- 	-- Mark current file
 	-- 	{ "<leader>m", ":lua require('harpoon').mark_file()<CR>" },

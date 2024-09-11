@@ -16,6 +16,7 @@ return {
 			"rcarriga/nvim-dap-ui",
 			"nvim-telescope/telescope-dap.nvim",
 		},
+  -- stylua: ignore
 		keys = {
 			{ "<leader>do", ":lua require'dapui'.open()<CR>" },
 			-- { "<F5>", ":lua require'dap'.continue()<CR>" },

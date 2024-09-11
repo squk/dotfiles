@@ -53,6 +53,7 @@ end
 return {
 	"mhinz/vim-signify",
 	event = "VimEnter",
+  -- stylua: ignore
 	keys = {
 		{ "]d", "<plug>(signify-next-hunk)" },
 		{ "[d", "<plug>(signify-prev-hunk)" },

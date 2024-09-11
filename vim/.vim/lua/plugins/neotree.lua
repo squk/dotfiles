@@ -38,6 +38,7 @@ return {
 				},
 			})
 		end,
+  -- stylua: ignore
 		keys = {
 			(function()
 				if use_google() then

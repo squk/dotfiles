@@ -97,6 +97,7 @@ return {
 			"nvim-lua/lsp-status.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 		},
+  -- stylua: ignore
 		keys = {
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
 			-- { "?", "<cmd>lua vim.lsp.buf.code_action()<CR>" },

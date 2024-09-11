@@ -43,7 +43,7 @@ test --test_output=all --test_summary=detailed --build_tests_only
 
 import %workspace%/java/com/google/android/gmscore/blaze/blazerc
 build --config=gmscore_tap
-test --config=gmscore_test
-#
+test --config=gmscore_test_debug
+
 # https://g3doc.corp.google.com/devtools/blaze/g3doc/faq.md?cl=head#BlazeOom
 startup --host_jvm_args=-Xmx18G --host_jvm_args=-Xms18G

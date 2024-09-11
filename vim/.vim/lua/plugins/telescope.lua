@@ -47,6 +47,7 @@ function fig_all_modified()
 	return exe("hg status -ma -n --rev p4base --no-status --template= | sort")
 end
 
+  -- stylua: ignore
 local keys = {
 	{ "<leader>e", ":lua search_cwd()<CR>", desc = "Find Files in Buffer Directory" },
 	{ "<leader>ts.", ":lua live_grep({vim.fn.getcwd()})<CR>", desc = "Search in CWD" },
@@ -67,6 +68,7 @@ local keys = {
 }
 
 if use_google() then
+  -- stylua: ignore
 	TableConcat(keys, {
 		{ "<leader>tm", ":lua find_files(fig_modified())<CR>" },
 		{ "<leader>tM", ":lua find_files(fig_all_modified())<CR>" },
@@ -75,10 +77,7 @@ if use_google() then
 		{ "<C-P>", require("telescope").extensions.codesearch.find_files },
 		{ "<leader>cs", require("telescope").extensions.codesearch.find_query },
 		{ "<leader>cs", require("telescope").extensions.codesearch.find_query, mode = "v" },
-		{
-			"<leader>CS",
-			[[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
-		},
+		{ "<leader>CS", [[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]], },
 	})
 end
 

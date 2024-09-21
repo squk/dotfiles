@@ -39,21 +39,21 @@ return {
 
 			require("lsp_lines").setup()
 
-			vim.schedule(function()
-				vim.diagnostic.config({
-					severity_sort = true,
-					virtual_text = false,
-					virtual_improved = {
-						severity = { min = vim.diagnostic.severity.WARN },
-						current_line = "hide",
-					},
-					virtual_lines = {
-						severity = { min = vim.diagnostic.severity.HINT },
-						highlight_whole_line = false,
-						only_current_line = true,
-					},
-				})
-			end)
+			-- vim.schedule(function()
+			vim.diagnostic.config({
+				severity_sort = true,
+				virtual_text = false,
+				virtual_improved = {
+					severity = { min = vim.diagnostic.severity.WARN },
+					current_line = "hide",
+				},
+				virtual_lines = {
+					severity = { min = vim.diagnostic.severity.HINT },
+					highlight_whole_line = false,
+					only_current_line = true,
+				},
+			})
+			-- end)
 		end,
 		keys = {
 			{

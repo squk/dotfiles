@@ -1,24 +1,21 @@
 return {
 	{
-		"vxpm/ferris.nvim",
-		ft = "rust",
-		config = function()
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.offsetEncoding = { "utf-16" }
-			require("lspconfig").rust_analyzer.setup({
-				-- offset_encoding = "utf-8",
-				-- capabilities,
-				settings = { ["rust-analyzer"] = {} },
-			})
-		end,
+		"mrcjkb/rustaceanvim",
+		version = "^5", -- Recommended
+		lazy = false, -- This plugin is already lazy
 	},
 	{
 		"saecki/crates.nvim",
 		ft = "rust",
-		version = "v0.3.0",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			require("crates").setup()
+			require("crates").setup({
+				completion = {
+					cmp = {
+						enabled = true,
+					},
+				},
+			})
 		end,
 	},
 }

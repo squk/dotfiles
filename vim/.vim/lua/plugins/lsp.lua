@@ -99,6 +99,8 @@ return {
 		},
   -- stylua: ignore
 		keys = {
+			{ "<leader>F", "<cmd>lua vim.lsp.buf.format()<CR>" },
+
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
 			-- { "?", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
 			{ "L", "<cmd>lua vim.lsp.buf.hover()<CR>" },

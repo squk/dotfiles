@@ -342,4 +342,80 @@ return {
 			require("hg").setup()
 		end,
 	},
+	{
+		{
+			"sakal/neoblaze.nvim",
+			url = "sso://user/sakal/neoblaze.nvim",
+			lazy = false, -- Can be disabled if you only use keybinds.
+			keys = {
+				{
+					"<leader>B",
+					desc = "Blaze",
+				},
+				{
+					"<leader>Bb",
+					function()
+						require("neoblaze").build()
+					end,
+					desc = "Build",
+				},
+				{
+					"<leader>Bt",
+					function()
+						require("neoblaze").test()
+					end,
+					desc = "Test",
+				},
+				{
+					"<leader>Br",
+					function()
+						require("neoblaze").run()
+					end,
+					desc = "Run",
+				},
+				{
+					"<leader>Bs",
+					function()
+						require("neoblaze").update_goldens()
+					end,
+					desc = "Update goldens",
+				},
+				{
+					"<leader>BB",
+					function()
+						require("neoblaze").build({ blaze_exe = "iblaze" })
+					end,
+					desc = "Build (iblaze)",
+				},
+				{
+					"<leader>BT",
+					function()
+						require("neoblaze").test({ blaze_exe = "iblaze" })
+					end,
+					desc = "Test (iblaze)",
+				},
+				{
+					"<leader>BR",
+					function()
+						require("neoblaze").run({ blaze_exe = "iblaze" })
+					end,
+					desc = "Run (iblaze)",
+				},
+				{
+					"<leader>Be",
+					function()
+						require("neoblaze").retry()
+					end,
+					desc = "Retry",
+				},
+				{
+					"<leader>By",
+					function()
+						require("neoblaze").yank()
+					end,
+					desc = "Yank target to system clipboard",
+				},
+			},
+		},
+	},
 }

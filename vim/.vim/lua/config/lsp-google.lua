@@ -27,7 +27,7 @@ function M.setup(capabilities)
 					"bzl",
 					"typescript",
 				},
-				root_dir = lspconfig.util.root_pattern("google3/*BUILD"),
+				root_dir = require("lspconfig").util.root_pattern(".citc"),
 				settings = {},
 			},
 		}

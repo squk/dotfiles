@@ -42,7 +42,7 @@ return {
 		lazy = not use_google(), -- make sure we load this during startup if it is your main colorscheme
 		cond = use_google(),
 		config = function()
-			vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+			vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 			local colors = require("catppuccin.palettes").get_palette()
 
 			require("catppuccin").setup({

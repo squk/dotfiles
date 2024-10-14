@@ -17,12 +17,6 @@ local plugins = {
 	-- this entry tells lazy.nvim to load the list of of *.lua files from plugins/
 	{ import = "plugins" },
 }
-if use_google() then
-	table.insert(plugins, {
-		url = "sso://user/fentanes/nvgoog",
-		import = "nvgoog.default",
-	})
-end
 require("lazy").setup(plugins)
 require("config.clipboard")
 require("config.zip")

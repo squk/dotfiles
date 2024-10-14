@@ -2,31 +2,6 @@ local use_google = require("utils").use_google
 
 return {
 	{
-		"Shatur/neovim-ayu",
-		priority = 1000, -- make sure to load this before all the other start plugins
-		lazy = not use_google(), -- make sure we load this during startup if it is your main colorscheme
-		cond = use_google(),
-		config = function()
-			require("ayu").setup({
-				mirage = false, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
-				overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
-				-- vim.cmd("colorscheme ayu"),
-				-- vim.cmd("colorscheme ayu-mirage"),
-			})
-		end,
-	},
-	{
-		"ramojus/mellifluous.nvim",
-		priority = 1000, -- make sure to load this before all the other start plugins
-		lazy = not use_google(), -- make sure we load this during startup if it is your main colorscheme
-		cond = use_google(),
-		config = function()
-			require("mellifluous").setup({ --[[...]]
-			}) -- optional, see configuration section.
-			-- vim.cmd("colorscheme mellifluous")
-		end,
-	},
-	{
 		"ful1e5/onedark.nvim",
 		priority = 1000, -- make sure to load this before all the other start plugins
 		lazy = not use_google(), -- make sure we load this during startup if it is your main colorscheme

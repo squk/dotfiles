@@ -6,16 +6,16 @@ end
 
 vim.opt.rtp:append("/google/src/head/depot/google3/experimental/users/fentanes/nvgoog/")
 
--- local glug = require("nvgoog.google.util.glug").glug
--- local glugOpts = require("nvgoog.google.util.glug").glugOpts
 local glug = require("glug").glug
 local glugOpts = require("glug").glugOpts
+local superlazy = require("nvgoog.util.superlazy")
 
 return {
-	{ url = "sso://user/fentanes/nvgoog" },
+	-- { url = "sso://user/fentanes/nvgoog" },
 	-- Prevent long sessions from losing cwd
 	-- Load google paths like //google/* with `gf`
-	{ import = "nvgoog.google.misc" },
+	-- { import = "nvgoog.google.misc" },
+	{ import = "nvgoog.google.format" },
 	-- maktaba is required by all google plugins
 	glug("maktaba", {
 		lazy = true,
@@ -23,9 +23,6 @@ return {
 		config = function() -- init?
 			vim.cmd("source /usr/share/vim/google/glug/bootstrap.vim")
 		end,
-	}),
-	glug("logmsgs", {
-		event = "VeryLazy",
 	}),
 	glug("googler", {
 		event = "VeryLazy",
@@ -41,9 +38,6 @@ return {
 	-- Add support for google filetypes
 	glug("google-filetypes", { event = { "BufReadPre", "BufNewFile" }, dependencies = {} }),
 
-	-- Configures nvim to respect Google's coding style
-	-- glug("googlestyle", { event = { "BufRead", "BufNewFile" } }),
-
 	glug("add_usings"),
 	-- Autogens boilerplate when creating new files
 	glug("autogen", {
@@ -51,6 +45,17 @@ return {
 	}),
 	-- Adds G4 support to the vcscommand plugin
 	glug("googlepaths"),
+	-- Set up syntax, indent, and core settings for various filetypes
+	superlazy(glug("ft-cpp", { event = "BufRead,BufNewFile *.[ch],*.cc,*.cpp" })),
+	superlazy(glug("ft-go", { event = "BufRead,BufNewFile *.go" })),
+	superlazy(glug("ft-java", { event = "BufRead,BufNewFile *.java" })),
+	superlazy(glug("ft-javascript", { event = "BufRead,BufNewFile *.js,*.jsx" })),
+	superlazy(glug("ft-kotlin", { event = "BufRead,BufNewFile *.kt,*.kts" })),
+	superlazy(glug("ft-python", { event = "BufRead,BufNewFile *.py" })),
+
+	-- Configures nvim to respect Google's coding style
+	superlazy(glug("googlestyle", { event = { "BufRead", "BufNewFile" } })),
+
 	glug("ft-soy"),
 	glug("ft-gss"),
 	glug("ft-proto"),
@@ -325,81 +330,5 @@ return {
 			require("config.fig")
 			require("hg").setup()
 		end,
-	},
-	{
-		{
-			"sakal/neoblaze.nvim",
-			url = "sso://user/sakal/neoblaze.nvim",
-			lazy = false, -- Can be disabled if you only use keybinds.
-			keys = {
-				{
-					"<leader>B",
-					desc = "Blaze",
-				},
-				{
-					"<leader>Bb",
-					function()
-						require("neoblaze").build()
-					end,
-					desc = "Build",
-				},
-				{
-					"<leader>Bt",
-					function()
-						require("neoblaze").test()
-					end,
-					desc = "Test",
-				},
-				{
-					"<leader>Br",
-					function()
-						require("neoblaze").run()
-					end,
-					desc = "Run",
-				},
-				{
-					"<leader>Bs",
-					function()
-						require("neoblaze").update_goldens()
-					end,
-					desc = "Update goldens",
-				},
-				{
-					"<leader>BB",
-					function()
-						require("neoblaze").build({ blaze_exe = "iblaze" })
-					end,
-					desc = "Build (iblaze)",
-				},
-				{
-					"<leader>BT",
-					function()
-						require("neoblaze").test({ blaze_exe = "iblaze" })
-					end,
-					desc = "Test (iblaze)",
-				},
-				{
-					"<leader>BR",
-					function()
-						require("neoblaze").run({ blaze_exe = "iblaze" })
-					end,
-					desc = "Run (iblaze)",
-				},
-				{
-					"<leader>Be",
-					function()
-						require("neoblaze").retry()
-					end,
-					desc = "Retry",
-				},
-				{
-					"<leader>By",
-					function()
-						require("neoblaze").yank()
-					end,
-					desc = "Yank target to system clipboard",
-				},
-			},
-		},
 	},
 }

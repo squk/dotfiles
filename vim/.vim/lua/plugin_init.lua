@@ -1,3 +1,4 @@
+local use_google = require("utils").use_google
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -12,6 +13,16 @@ vim.opt.rtp:prepend(lazypath)
 
 package.path = package.path .. ";" .. vim.env.HOME .. "/.vim/lua/?.lua"
 
-require("lazy").setup("plugins")
+local plugins = {
+	-- this entry tells lazy.nvim to load the list of of *.lua files from plugins/
+	{ import = "plugins" },
+}
+if use_google() then
+	table.insert(plugins, {
+		url = "sso://user/fentanes/nvgoog",
+		import = "nvgoog.default",
+	})
+end
+require("lazy").setup(plugins)
 require("config.clipboard")
 require("config.zip")

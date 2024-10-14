@@ -59,7 +59,6 @@ local keys = {
 	{ "<leader>tg", ":Telescope git_files<CR>", desc = "Git Files" },
 	{ "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 	{ "<leader>tk", ":Telescope keymaps<CR>", desc = "Keymaps" },
-	{ "<leader>to", ":Telescope oldfiles<CR>", desc = "Recent(oldfiles) Files" },
 	{ "<leader>tn", ":Telescope notify<CR>", desc = "Notifications" },
 	{ "<leader>tr", ":Telescope resume<CR>", desc = "Telescope Resume" },
 	--
@@ -106,6 +105,15 @@ return {
 		},
 	},
 	{
+		"smartpde/telescope-recent-files",
+		config = function()
+			require("telescope").load_extension("recent_files")
+		end,
+		keys = {
+			{ "<leader>to", [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]] },
+		},
+	},
+	{
 		"piersolenski/telescope-import.nvim",
 		dependencies = "nvim-telescope/telescope.nvim",
 		config = function()
@@ -123,6 +131,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"mfussenegger/nvim-dap",
+			"smartpde/telescope-recent-files",
 			"rcarriga/nvim-dap-ui",
 		},
 		config = function()
@@ -177,6 +186,30 @@ return {
 				extensions = {
 					codesearch = {
 						experimental = true, -- enable results from google3/experimental
+					},
+					recent_files = {
+						-- This function rewrites all file paths to the current workspace.
+						-- For example, if w2 is the current workspace, then
+						-- /google/.../w1/google3/my_file.cc becomes /google/.../w2/google3/my_file.cc,
+						transform_file_path = function(path)
+							local neocitc = require("neocitc")
+							local path_func = neocitc.path_in_current_workspace_or_head
+								or neocitc.path_in_current_workspace
+							return path_func(path)
+						end,
+						-- This is a useful option to speed up Telescope by avoiding the check
+						-- for file existence.
+						stat_files = false,
+						-- Ignore common patterns that can show up from other google plugins
+						ignore_patterns = {
+							"/%.git/COMMIT_EDITING$",
+							"/%.git/COMMIT_EDITMSG$",
+							"/%.git/MERGE_MSG$",
+							"^/tmp/%.pipertmp-",
+							"/Related_Files$",
+							"^term:",
+							";#toggleterm#",
+						},
 					},
 					persisted = {},
 					import = {

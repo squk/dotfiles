@@ -11,15 +11,19 @@ return {
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		---@type Flash.Config
-		opts = {},
-  -- stylua: ignore
-  keys = {
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-  },
+		opts = {
+			jump = {
+				nohlsearch = true,
+			},
+		},
+    -- stylua: ignore
+    keys = {
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    },
 	},
 	{
 		"MagicDuck/grug-far.nvim",
@@ -115,11 +119,11 @@ return {
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
 		opts = {},
-  -- stylua: ignore
-		keys = {
-			{ "<leader>ss", [[<cmd>lua require("persistence").save()<cr>]] },
-			{ "<leader>sl", [[<cmd>lua require("persistence").load()<cr>]] },
-		},
+    -- stylua: ignore
+    keys = {
+      { "<leader>ss", [[<cmd>lua require("persistence").save()<cr>]] },
+      { "<leader>sl", [[<cmd>lua require("persistence").load()<cr>]] },
+    },
 	},
 	{
 		"rmagatti/auto-session",
@@ -143,10 +147,10 @@ return {
 		cmd = {
 			"Subs",
 		},
-  -- stylua: ignore
-		keys = {
-			{ "<leader>tc", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
-		},
+    -- stylua: ignore
+    keys = {
+      { "<leader>tc", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+    },
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
@@ -178,15 +182,15 @@ return {
 		config = function()
 			vim.g.undotree_SetFocusWhenToggle = 1
 		end,
-  -- stylua: ignore
-		keys = { { "<leader>ut", ":UndotreeToggle<CR>" } },
+    -- stylua: ignore
+    keys = { { "<leader>ut", ":UndotreeToggle<CR>" } },
 	},
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
 		cmd = { "AerialToggle", "AerialOn" },
-  -- stylua: ignore
-		keys = { { "<leader>so", ":AerialToggle<CR>", desc = "[S]symbols [O]utline" } },
+    -- stylua: ignore
+    keys = { { "<leader>so", ":AerialToggle<CR>", desc = "[S]symbols [O]utline" } },
 	},
 	{
 		"andrewferrier/debugprint.nvim",
@@ -198,12 +202,12 @@ return {
 		-- Remove the following line to use development versions,
 		-- not just the formal releases
 		version = "*",
-  -- stylua: ignore
-		keys = {
-			{ "<leader>dp", ":lua require('debugprint').debugprint()<cr>", desc = "Debug print" },
-			{ "<leader>dP", ":lua require('debugprint').debugprint({above = true})<cr>", desc = "Debug print" },
-			{ "<leader>dq", ":lua require('debugprint').debugprint({variable = true})<cr>", desc = "Debug print" },
-			{ "<leader>dQ", ":lua require('debugprint').debugprint({variable = true, above = true})<cr>", desc = "Debug print", },
-		},
+    -- stylua: ignore
+    keys = {
+      { "<leader>dp", ":lua require('debugprint').debugprint()<cr>",                                desc = "Debug print" },
+      { "<leader>dP", ":lua require('debugprint').debugprint({above = true})<cr>",                  desc = "Debug print" },
+      { "<leader>dq", ":lua require('debugprint').debugprint({variable = true})<cr>",               desc = "Debug print" },
+      { "<leader>dQ", ":lua require('debugprint').debugprint({variable = true, above = true})<cr>", desc = "Debug print", },
+    },
 	},
 }

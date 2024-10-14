@@ -4,13 +4,12 @@ if not use_google() then
 	return {}
 end
 
-vim.opt.rtp:append("/google/src/head/depot/google3/experimental/users/fentanes/nvgoog")
+vim.opt.rtp:append("/google/src/head/depot/google3/experimental/users/fentanes/nvgoog/")
 
 -- local glug = require("nvgoog.google.util.glug").glug
 -- local glugOpts = require("nvgoog.google.util.glug").glugOpts
 local glug = require("glug").glug
 local glugOpts = require("glug").glugOpts
-local veryLazy = require("nvgoog.util").veryLazy
 
 return {
 	{ url = "sso://user/fentanes/nvgoog" },
@@ -42,25 +41,10 @@ return {
 	-- Add support for google filetypes
 	glug("google-filetypes", { event = { "BufReadPre", "BufNewFile" }, dependencies = {} }),
 
-	-- Other filetype detection
-	veryLazy(glug("ft-cel", { event = "BufRead,BufNewFile *.cel,*jvp" })),
-	veryLazy(glug("ft-clif", { event = "BufRead,BufNewFile *.clif" })),
-	veryLazy(glug("ft-gin", { event = "BufRead,BufNewFile *.gin" })),
-	veryLazy(glug("ft-gss", { event = "BufRead,BufNewFile *.gss" })),
-	veryLazy(glug("ft-proto", { event = "BufRead,BufNewFile *.proto,*.protodevel,*.rosy,*.textproto" })),
-	veryLazy(glug("ft-soy", { event = "BufRead,BufNewFile *.soy" })),
-	-- Set up syntax, indent, and core settings for various filetypes
-	veryLazy(glug("ft-cpp", { event = "BufRead,BufNewFile *.[ch],*.cc,*.cpp" })),
-	veryLazy(glug("ft-go", { event = "BufRead,BufNewFile *.go" })),
-	veryLazy(glug("ft-java", { event = "BufRead,BufNewFile *.java" })),
-	veryLazy(glug("ft-javascript", { event = "BufRead,BufNewFile *.js,*.jsx" })),
-	veryLazy(glug("ft-kotlin", { event = "BufRead,BufNewFile *.kt,*.kts" })),
-	veryLazy(glug("ft-python", { event = "BufRead,BufNewFile *.py" })),
-
 	-- Configures nvim to respect Google's coding style
 	-- glug("googlestyle", { event = { "BufRead", "BufNewFile" } }),
 
-	veryLazy(glug("add_usings")),
+	glug("add_usings"),
 	-- Autogens boilerplate when creating new files
 	glug("autogen", {
 		event = "BufNewFile",
@@ -230,7 +214,7 @@ return {
 		end,
 	}),
 	-- Imports
-	veryLazy(glug("imp-google", {
+	glug("imp-google", {
 		dependencies = {
 			glugOpts("vim-imp", {
 				"flwyd/vim-imp",
@@ -247,7 +231,7 @@ return {
 		keys = {
 			{ "<leader>i", ":ImpSuggest <C-r><C-w><cr>" },
 		},
-	})),
+	}),
 	{
 		url = "sso://user/fentanes/googlepaths.nvim",
 		event = { "VeryLazy", "BufReadCmd //*" },
@@ -259,8 +243,7 @@ return {
 	},
 	{
 		name = "cmp-nvim-ciderlsp",
-		url = "sso://googler@user/sakal/cmp-nvim-ciderlsp",
-		-- url = "sso://googler@user/piloto/cmp-nvim-ciderlsp",
+		url = "sso://googler@user/piloto/cmp-nvim-ciderlsp",
 		event = "VimEnter",
 		dependencies = {
 			"hrsh7th/nvim-cmp",
@@ -296,6 +279,7 @@ return {
 	{
 		name = "critique-nvim",
 		dir = "~/critique-nvim/",
+		cond = false,
 		lazy = false,
 		dependencies = {
 			"rktjmp/time-ago.vim",

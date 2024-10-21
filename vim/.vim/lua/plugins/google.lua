@@ -47,7 +47,8 @@ return {
 	glug("googlepaths"),
 	-- Set up syntax, indent, and core settings for various filetypes
 	superlazy(glug("ft-cpp", { event = "BufRead,BufNewFile *.[ch],*.cc,*.cpp" })),
-	superlazy(glug("ft-go", { event = "BufRead,BufNewFile *.go" })),
+	-- superlazy(glug("ft-go", { event = "BufRead,BufNewFile *.go" })),
+	superlazy(glug("ft-gcl", { event = "BufRead,BufNewFile *.gcl" })),
 	superlazy(glug("ft-java", { event = "BufRead,BufNewFile *.java" })),
 	superlazy(glug("ft-javascript", { event = "BufRead,BufNewFile *.js,*.jsx" })),
 	superlazy(glug("ft-kotlin", { event = "BufRead,BufNewFile *.kt,*.kts" })),

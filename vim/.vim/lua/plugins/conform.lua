@@ -1,3 +1,9 @@
+local use_google = require("utils").use_google
+
+if use_google() then
+	return {}
+end
+
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
 		-- FormatDisable! will disable formatting just for this buffer
@@ -20,16 +26,10 @@ return {
 	{
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
-		cmd = { "ConformInfo" },
+		cmd = { "ConformInfo", "Format", "FormatDisable", "FormatEnable" },
 		keys = {
-			{
-				"<leader>fmt",
-				function()
-					require("conform").format({ async = true, lsp_fallback = true })
-				end,
-				mode = "",
-				desc = "Format buffer",
-			},
+      -- stylua: ignore
+      { "<leader>fmt", function() require("conform").format({ async = true, lsp_fallback = true }) end, mode = "", desc = "Format buffer", },
 		},
 		opts = {
 			formatters_by_ft = {
@@ -55,7 +55,7 @@ return {
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
-				return { timeout_ms = 500, lsp_fallback = true }
+				return { timeout_ms = 500, lsp_format = "fallback" }
 			end,
 			formatters = {
 				gdformat = {

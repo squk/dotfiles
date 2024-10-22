@@ -170,20 +170,17 @@ return {
           end,
           mappings = {
             n = {
-              ["<C-c>"] = require("telescope.actions").close,
-              ["<Esc>"] = require("telescope.actions").close,
+              ["<C-c>"] = "close",
+              ["<Esc>"] = "close"
             },
             i = {
-              ["<cr>"] = function(bufnr)
-                require("telescope.actions.set").edit(bufnr, "tab drop")
-              end,
-              ["<C-c>"] = require("telescope.actions").close,
-              ["<S-Down>"] = function()
-                require("telescope.actions").cycle_history_next()
-              end,
-              ["<S-Up>"] = function()
-                require("telescope.actions").cycle_history_prev()
-              end,
+              -- ["<cr>"] = function(bufnr)
+              --   require("telescope.actions.set").edit(bufnr, "tab drop")
+              -- end,
+              ["<C-c>"] = "close",
+              ["<Esc>"] = "close",
+              ["<S-Down>"] = "cycle_history_next",
+              ["<S-Up>"] = "cycle_history_prev",
             },
           },
         },

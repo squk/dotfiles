@@ -36,7 +36,6 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "modules/command-not-found", from:prezto
 zplug "modules/completion", from:prezto
 zplug "romkatv/powerlevel10k", as:theme, depth:1
-# zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -93,8 +92,8 @@ bindkey '^[^?' backward-kill-word
 # bindkey "^[[B" down-history
 # bindkey "^[[A" history-beginning-search-backward
 # bindkey "^[[B" history-beginning-search-forward
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 # Put standard ANSI color codes in shell parameters for easy use.
 # Note that some terminals do not support all combinations.
 

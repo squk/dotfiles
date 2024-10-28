@@ -102,11 +102,8 @@ return {
 			{ "<leader>F", "<cmd>lua vim.lsp.buf.format()<CR>" },
 
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
-			-- { "?", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
 			{ "L", "<cmd>lua vim.lsp.buf.hover()<CR>" },
-			{ "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>" },
 			{ "gr", "<Cmd>Telescope lsp_references<CR>" },
-			{ "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>" },
 			{ "gd", "<cmd>Telescope lsp_definitions<CR>" },
 			{ "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>" },
 			{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
@@ -115,7 +112,6 @@ return {
 			{ "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
 			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
 			{ "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", mode = "i" },
-			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", mode = "v" },
 		},
 		config = function()
 			local lsp_status = require("lsp-status")

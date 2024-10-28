@@ -3,10 +3,8 @@ local buf_too_large = require("utils").buf_too_large
 
 return {
 	"sindrets/diffview.nvim",
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+	{ "mizlan/iswap.nvim", event = "VeryLazy" },
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",

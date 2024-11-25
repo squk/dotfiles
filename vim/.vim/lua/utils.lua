@@ -23,16 +23,12 @@ function M.map(mode, lhs, rhs, opts)
 end
 
 function M.file_too_large(filename)
-	local max_filesize = 100 * 1024 -- 100 KB
+	local max_filesize = 2000 * 1024 -- 2MB
 	local ok, stats = pcall(vim.loop.fs_stat, filename)
 	if ok and stats and stats.size > max_filesize then
 		return true
 	end
 	return false
-end
-
-function M.buf_too_large()
-	return M.file_too_large(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
 end
 
 function M.use_google()

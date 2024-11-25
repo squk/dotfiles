@@ -4,7 +4,6 @@
 # ---------------
 export PATH=$PATH:/google/src/head/depot/google3/experimental/users/cnieves/util
 export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
-export XAUTHORITY=~/.Xauthority
 export GOROOT=/usr/lib/google-golang
 export PATH=$GOROOT/bin:$PATH
 export JAVA_HOME=$(readlink -ne /usr/local/buildtools/java/jdk)
@@ -23,7 +22,6 @@ function gcert() {
   command gcert "$@"
   source /google/bin/releases/knock/knock.sh
 }
-
 
 FORTUNES=/google/data/ro/users/di/diamondm/engfortunes/fortune.sh
 if [ -f "$FORTUNES" ]; then
@@ -52,6 +50,8 @@ alias jadep=/google/data/ro/teams/jade/jadep
 alias replace_string=/google/src/head/depot/google3/devtools/scripts/replace_string
 alias safergcp=/google/bin/releases/safer-gcp/tools/safergcp
 alias add_deps_to_usages='/google/src/head/depot/google3/apps/framework/tools/add_deps_to_usages.sh'
+alias bloaty=/google/bin/releases/protobuf-team/bloaty/bloaty
+alias bloaty-google3-diff=/google/bin/releases/protobuf-team/bloaty/bloaty-google3-diff
 alias plxutil='/google/data/ro/teams/plx/plxutil'
 export HGSHORT_CMDS="cat head tail mv cp rm chmod g4 diff merge patch meld trim less more nvim"
 export HGSHORT_DIR='/google/src/head/depot/google3/experimental/fig_contrib/hgshort' # default

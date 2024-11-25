@@ -1,9 +1,8 @@
 local use_google = require("utils").use_google
-local buf_too_large = require("utils").buf_too_large
 
 return {
 	"sindrets/diffview.nvim",
-	{ "mizlan/iswap.nvim", event = "VeryLazy" },
+	--{ "mizlan/iswap.nvim", event = "VeryLazy" },
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
 	{
 		"folke/flash.nvim",
@@ -79,27 +78,7 @@ return {
 			vim.ui.select = require("dropbar.utils.menu").select
 		end,
 	},
-	{
-		"RRethy/vim-illuminate",
-		config = function()
-			local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
-			vim.api.nvim_create_autocmd({ "BufReadPre" }, {
-				callback = function()
-					if buf_too_large() then
-						vim.b.large_buf = true
-						vim.cmd("syntax off")
-						vim.cmd("IlluminatePauseBuf") -- disable vim-illuminate
-						vim.opt_local.foldmethod = "manual"
-						vim.opt_local.spell = false
-					else
-						vim.b.large_buf = false
-					end
-				end,
-				group = aug,
-				pattern = "*",
-			})
-		end,
-	},
+  "RRethy/vim-illuminate",
 	"kdheepak/lazygit.nvim",
 	"flwyd/vim-conjoin",
 	"rafcamlet/nvim-luapad",

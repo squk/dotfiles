@@ -1,6 +1,8 @@
 # set -xv
 HISTSIZE=10000000
 SAVEHIST=10000000
+CASE_SENSITIVE="true" # speeds up tab autocomplete
+zstyle ':completion:*:hosts' hosts
 
 alias cd pushd
 
@@ -34,7 +36,6 @@ zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "modules/command-not-found", from:prezto
-zplug "modules/completion", from:prezto
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 
 # Install plugins if there are plugins that have not been installed

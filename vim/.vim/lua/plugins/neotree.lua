@@ -47,9 +47,10 @@ return {
 				-- return { "<C-n>.", ":Neotree toggle reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" }
 				return { "<C-n>m", ":Neotree float git_status<CR>", desc = "Open NeoTree CWD float" }
 			end)(),
-			{ "<C-n>b", ":Neotree float buffers<CR>" },
-			{ "<C-n>", ":Neotree float dir=%:p:h<cr>" },
-			{ "<C-n>.", ":Neotree reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
+			-- { "<C-n>b", ":Neotree float buffers<CR>" },
+			-- { "<C-n>", ":Neotree float dir=%:p:h<cr>" },
+			{ "<C-n>", ":Neotree toggle dir=%:p:h<cr>" },
+			-- { "<C-n>.", ":Neotree reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
 		},
 	},
 }

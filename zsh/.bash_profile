@@ -18,7 +18,7 @@ export DEVKITPRO=/opt/devkitpro
 export DEVKITARM=${DEVKITPRO}/devkitARM
 export DEVKITPPC=${DEVKITPRO}/devkitPPC
 
-source ~/.aliases.sh
+source ~/abbreviations.zsh
 
 if [[ -f "$HOME/use_google" ]]; then
     source $HOME/.bash_profile.google

@@ -1,3 +1,4 @@
+export ABBR_QUIET=1
 alias grep='grep --colour'
 abbr vim='nvim'
 abbr vimdiff='nvim -d'
@@ -21,3 +22,4 @@ swap_files () {
 }
 
 function zipdiff() { diff -W200 -y <(unzip -vql "$1" | sort -k8) <(unzip -vql "$2" | sort -k8); }
+export ABBR_QUIET=0

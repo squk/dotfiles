@@ -1,0 +1,5 @@
+abbr "bb"="blaze build"
+abbr "bq"="blaze query"
+abbr "br"="blaze run"
+abbr "ds_clean"="find ./ -name \".DS_Store\" -depth -exec rm {} \;"
+abbr "mux"="tmuxinator"

@@ -1,3 +1,4 @@
+export ABBR_QUIET=1
 # vi: ft=sh
 # ---------------
 # Google Specific

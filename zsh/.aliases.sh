@@ -1,18 +1,12 @@
 export ABBR_QUIET=1
 alias grep='grep --colour'
-abbr vim='nvim'
-abbr vimdiff='nvim -d'
 # abbr cat='bat'
 alias ls='exa'
-abbr mux='tmuxinator'
 alias tmux='tmux -2'
 
 alias cp='cp -iv'                    # Preferred 'cp' implementation
 alias mv='mv -iv'                    # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'              # Preferred 'mkdir' implementation
-
-# recursively  delete .DS_Store files
-abbr ds_clean='find ./ -name ".DS_Store" -depth -exec rm {} \;'
 
 swap_files () {
   tmp_name=$(TMPDIR=$(dirname -- "$1") mktemp) &&

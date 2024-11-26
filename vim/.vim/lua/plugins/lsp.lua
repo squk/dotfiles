@@ -21,6 +21,7 @@ return {
 	},
 	{
 		"kosayoda/nvim-lightbulb",
+    commit = "1cae7b7153ae98dcf1b11173a443ac1b6d8e3d49",
 		event = { "LspAttach" },
 		opts = {
 			autocmd = { enabled = true },

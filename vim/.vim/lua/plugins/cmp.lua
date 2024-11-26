@@ -56,26 +56,6 @@ return {
 
 			local lspkind = require("lspkind")
 			lspkind.init()
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function(args)
-					local max_filesize = 100 * 1024 -- 100 KB
-					local fname = vim.api.nvim_buf_get_name(args.buf)
-					local ok, stats = pcall(vim.loop.fs_stat, fname)
-					if ok and stats and stats.size > max_filesize then
-						vim.schedule(function()
-							vim.notify(
-								string.format(
-									"Disabling nvim-cmp for buffer. File %s exceeds maximum configured size.",
-									fname
-								)
-							)
-						end)
-						require("cmp").setup.buffer({
-							enabled = false,
-						})
-					end
-				end,
-			})
 
 			cmp.setup.filetype("txt", {
 				enabled = false,

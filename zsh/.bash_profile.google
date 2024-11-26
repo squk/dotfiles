@@ -76,38 +76,11 @@ knock() {
     echo "ERROR: Cannot invoke knock before gcert has been run" >&2
   fi
 }
-
-sl() {
-  blaze build --config gmscore_arm64 //java/com/google/android/gmscore/$1:$2
-
-  # some targets end in ".apk", this prevents adding the suffix to targets that
-  # already have it
-  if [[ "$2" == *".apk"* ]]; then
-      adb install -d -r blaze-bin/java/com/google/android/gmscore/$1/$2
-  else
-      adb install -d -r blaze-bin/java/com/google/android/gmscore/$1/$2.apk
-  fi
-}
-
-sl_gms() {
-    sl integ GmsCore_prodnext_xxhdpi_debug
-}
-
 build_gms() {
   blaze build --config gmscore_arm64 //java/com/google/android/gmscore/integ:GmsCore_prodnext_xxhdpi_debug
 }
 
-cdm() {
-    adb shell am start -n com.google.android.gms/.chimera.debug.ChimeraDebugActivity
-}
-
-cdp() {
-    adb shell am start -n com.google.android.gms/.chimera.multipackage.debug.MultiPackageDebugActivity
-}
-
-icdm() {
-    adb shell am start -n com.google.android.gms.isolated/com.google.android.gms.chimera.debug.ChimeraDebugActivity
-}
+abbr cdm = "adb shell am start -n com.google.android.gms/.chimera.debug.ChimeraDebugActivity"
 
 jt() {
     if [[ $PWD =~ '(.*)/javatests(.*)' ]]; then
@@ -126,10 +99,6 @@ cl_search() {
     rg --ignore-case $1 $(hg pstatus -ma -n  --template= -- 2>/dev/null)
 }
 
-todos() {
-    cl_search "TODO"
-}
-
 cl_replace() {
     hg status -n --change . --template= | xargs -i sh -c "sed -i '$1' {}"
 }
@@ -137,11 +106,6 @@ cl_replace() {
 restart_gms() {
     adb shell am force-stop com.google.android.gms
     adb shell am broadcast -a com.google.android.gms.INITIALIZE
-}
-
-objfs_cp() {
-    tmp=$(mktemp) && \
-    fileutil cp -f $1 $tmp && unzip $tmp $2 && unlink $tmp
 }
 
 from_cloud(){
@@ -183,3 +147,7 @@ alias copybara='/google/bin/releases/copybara/public/copybara/copybara'
 alias allow_ptrace='/google/bin/releases/cider/dbg/allow_ptrace'
 alias bluze=/google/bin/releases/blueprint-bluze/public/bluze
 source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
+
+abbr bq="blaze query"
+abbr br="blaze run"
+abbr bb="blaze build"

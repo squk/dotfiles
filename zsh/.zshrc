@@ -29,6 +29,8 @@ zplug "plugins/docker",   from:oh-my-zsh;
 zplug "plugins/rsync",   from:oh-my-zsh;
 zplug "plugins/safepaste",   from:oh-my-zsh;
 zplug "mattberther/zsh-pyenv"
+zplug "olets/zsh-abbr"
+zplug "olets/zsh-autosuggestions-abbreviations-strategy"
 
 zplug "Tarrasch/zsh-autoenv" # Expects .autoenv.zsh or .autoenv_leave.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -48,6 +50,8 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+ZSH_AUTOSUGGEST_STRATEGY=( abbreviations $ZSH_AUTOSUGGEST_STRATEGY )
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

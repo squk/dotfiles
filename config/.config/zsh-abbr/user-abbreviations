@@ -1,3 +1,4 @@
+abbr "allpaths"="blaze query \"allpaths(%, %)\" --output graph | /google/data/ro/projects/graphviz-server/graphviz"
 abbr "bb"="blaze build"
 abbr "bq"="blaze query"
 abbr "br"="blaze run"

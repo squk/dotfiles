@@ -3,7 +3,7 @@ local use_google = require("utils").use_google
 return {
 	"sindrets/diffview.nvim",
 	--{ "mizlan/iswap.nvim", event = "VeryLazy" },
-	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
@@ -78,7 +78,7 @@ return {
 			vim.ui.select = require("dropbar.utils.menu").select
 		end,
 	},
-  "RRethy/vim-illuminate",
+	"RRethy/vim-illuminate",
 	"kdheepak/lazygit.nvim",
 	"flwyd/vim-conjoin",
 	"rafcamlet/nvim-luapad",
@@ -91,17 +91,6 @@ return {
 	{ "udalov/kotlin-vim", event = "VeryLazy", ft = "kotlin" },
 	{ "andymass/vim-matchup", event = "VimEnter" },
 	{ "jghauser/mkdir.nvim", event = "BufWritePre" },
-	-- Session management
-	{
-		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		opts = {},
-    -- stylua: ignore
-    keys = {
-      { "<leader>ss", [[<cmd>lua require("persistence").save()<cr>]] },
-      { "<leader>sl", [[<cmd>lua require("persistence").load()<cr>]] },
-    },
-	},
 	{
 		"rmagatti/auto-session",
 		dependencies = {
@@ -110,6 +99,8 @@ return {
 		config = function()
 			require("auto-session").setup({
 				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+				args_allow_single_directory = false,
+				bypass_save_filetypes = { "netrw" },
 			})
 		end,
 	},

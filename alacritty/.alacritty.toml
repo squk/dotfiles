@@ -6,68 +6,42 @@ normal = { family = "ComicCodeLigatures Nerd Font Light" }
 option_as_alt = "OnlyLeft"
 decorations = "None"
 
-[colors.primary]
-background = "#24273a"
-foreground = "#cad3f5"
-dim_foreground = "#8087a2"
-bright_foreground = "#cad3f5"
+# moonfly theme for Alacritty
+#
+# Upstream: github.com/bluz71/vim-moonfly-colors
 
-[colors.cursor]
-text = "#24273a"
-cursor = "#f4dbd6"
-
-[colors.vi_mode_cursor]
-text = "#24273a"
-cursor = "#b7bdf8"
-
-[colors.search.matches]
-foreground = "#24273a"
-background = "#a5adcb"
-
-[colors.search.focused_match]
-foreground = "#24273a"
-background = "#a6da95"
-
-[colors.footer_bar]
-foreground = "#24273a"
-background = "#a5adcb"
-
-[colors.hints.start]
-foreground = "#24273a"
-background = "#eed49f"
-
-[colors.hints.end]
-foreground = "#24273a"
-background = "#a5adcb"
-
-[colors.selection]
-text = "#24273a"
-background = "#f4dbd6"
-
-[colors.normal]
-black = "#494d64"
-red = "#ed8796"
-green = "#a6da95"
-yellow = "#eed49f"
-blue = "#8aadf4"
-magenta = "#f5bde6"
-cyan = "#8bd5ca"
-white = "#b8c0e0"
+[colors]
+draw_bold_text_with_bright_colors = true
 
 [colors.bright]
-black = "#5b6078"
-red = "#ed8796"
-green = "#a6da95"
-yellow = "#eed49f"
-blue = "#8aadf4"
-magenta = "#f5bde6"
-cyan = "#8bd5ca"
-white = "#a5adcb"
+black = "#949494"
+blue = "#74b2ff"
+cyan = "#85dc85"
+green = "#36c692"
+magenta = "#ae81ff"
+red = "#ff5189"
+white = "#e4e4e4"
+yellow = "#c6c684"
 
-[[colors.indexed_colors]]
-index = 16
-color = "#f5a97f"
+[colors.cursor]
+cursor = "#8e8e8e"
+text = "#080808"
 
-[[colors.indexed_colors]]
-index = 17
-color = "#f4dbd6"
+[colors.normal]
+black = "#323437"
+blue = "#80a0ff"
+cyan = "#79dac8"
+green = "#8cc85f"
+magenta = "#cf87e8"
+red = "#ff5454"
+white = "#c6c6c6"
+yellow = "#e3c78a"
+
+[colors.primary]
+background = "#080808"
+bright_foreground = "#eeeeee"
+foreground = "#bdbdbd"
+
+[colors.selection]
+background = "#b2ceee"
+text = "#080808"

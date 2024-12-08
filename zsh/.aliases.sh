@@ -4,6 +4,8 @@ alias grep='grep --colour'
 alias ls='exa'
 alias tmux='tmux -2'
 
+alias ..="cd .."
+alias vim="nvim"
 alias cp='cp -iv'                    # Preferred 'cp' implementation
 alias mv='mv -iv'                    # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'              # Preferred 'mkdir' implementation

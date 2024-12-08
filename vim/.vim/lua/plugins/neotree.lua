@@ -1,16 +1,16 @@
 local use_google = require("utils").use_google
 
 return {
-	{
-		"cmdtree",
-		dir = "~/cmdtree",
-	},
+	-- {
+	-- 	"cmdtree",
+	-- 	dir = "~/cmdtree",
+	-- },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
-			"~/cmdtree",
+--			"~/cmdtree",
 		},
 		cmd = {
 			"Neotree",
@@ -28,7 +28,7 @@ return {
 					"filesystem",
 					"buffers",
 					"git_status",
-					"cmdtree",
+					--"cmdtree",
 					-- ...and any additional source
 				},
 				window = {

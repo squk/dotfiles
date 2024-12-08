@@ -1,3 +1,5 @@
+vim.cmd("source " .. vim.fn.expand("$HOME") .. "/.vimrc")
+
 local use_google = require("utils").use_google
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -20,3 +22,5 @@ local plugins = {
 require("lazy").setup(plugins)
 require("config.clipboard")
 require("config.zip")
+
+vim.opt.undodir = vim.fn.expand("$HOME") .. "/.undo/"

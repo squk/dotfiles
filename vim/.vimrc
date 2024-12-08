@@ -63,8 +63,6 @@ map <LeftRelease> ""
 
 set updatetime=100
 
-lua require('plugin_init')
-
 source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
 

@@ -2,5 +2,7 @@ abbr "allpaths"="blaze query \"allpaths(%, %)\" --output graph | /google/data/ro
 abbr "bb"="blaze build"
 abbr "bq"="blaze query"
 abbr "br"="blaze run"
+abbr "bt"="blaze test"
 abbr "ds_clean"="find ./ -name \".DS_Store\" -depth -exec rm {} \;"
 abbr "mux"="tmuxinator"
+abbr "replace_string"="replace_string --disable_p4 \"%\" \"%\""

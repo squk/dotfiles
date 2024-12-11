@@ -1,7 +1,6 @@
 " jk is escape  -.-
 inoremap jk <esc>
 inoremap <space><space> <esc>:w<cr>
-test
 
 " make tmux and vim play nicely together
 map <Esc>[A <Up>

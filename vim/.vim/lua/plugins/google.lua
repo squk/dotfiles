@@ -287,7 +287,6 @@ return {
 	{
 		name = "critique-nvim",
 		dir = "~/critique-nvim/",
-		cond = false,
 		lazy = false,
 		dependencies = {
 			"rktjmp/time-ago.vim",
@@ -300,11 +299,10 @@ return {
 			{ "]c", ":CritiqueGotoNextComment<CR>" },
 			{ "[c", ":CritiqueGotoPrevComment<CR>" },
 			{ "<Leader>lc", ":CritiqueToggleLineComment<CR>" },
-			{ "<Leader>uc", ":CritiqueToggleUnresolvedComments<CR>" },
 			{ "<Leader>ac", ":CritiqueToggleAllComments<CR>" },
+			{ "<Leader>uc", ":CritiqueToggleUnresolvedComments<CR>" },
 			{ "<Leader>fc", ":CritiqueFetchComments<CR>" },
-			-- { "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
-			-- { "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
+			{ "<Leader>tc", ":CritiqueCommentsTelescope<CR>" },
 		},
 		config = function()
 			-- Here are all the options and their default values:

@@ -89,7 +89,7 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "squk/java-syntax.vim", ft = "java" },
 	{ "udalov/kotlin-vim", event = "VeryLazy", ft = "kotlin" },
-	{ "andymass/vim-matchup", event = "VimEnter" },
+	-- { "andymass/vim-matchup", event = "VimEnter" },
 	{ "jghauser/mkdir.nvim", event = "BufWritePre" },
 	{
 		"rmagatti/auto-session",

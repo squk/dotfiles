@@ -41,6 +41,8 @@ return {
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+
 			local compare = cmp.config.compare
 
 			local conditionalSources = {}

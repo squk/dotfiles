@@ -22,15 +22,6 @@ function M.map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
-function M.file_too_large(filename)
-  local max_filesize = 2000 * 1024 -- 2MB
-  local ok, stats = pcall(vim.loop.fs_stat, filename)
-  if ok and stats and stats.size > max_filesize then
-    return true
-  end
-  return false
-end
-
 function M.use_google()
   if M.use_google_cache == nil then
     M.use_google_cache = M.file_exists(os.getenv("HOME") .. "/use_google")

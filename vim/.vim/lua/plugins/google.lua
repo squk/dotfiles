@@ -328,7 +328,6 @@ return {
 		url = "sso://googler@user/smwang/hg.nvim",
 		dependencies = { "ipod825/libp.nvim" },
 		config = function()
-			require("config.fig")
 			require("hg").setup()
 		end,
 	},

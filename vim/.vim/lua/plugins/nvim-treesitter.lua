@@ -48,21 +48,6 @@ return {
 						if lang == "gdrama" then
 							return true
 						end
-						local file_too_large = require("utils").file_too_large
-
-						local fname = vim.api.nvim_buf_get_name(buf)
-
-						if file_too_large(fname) then
-							vim.schedule(function()
-								vim.notify(
-									string.format(
-										"Disabling treesitter for buffer. File %s exceeds maximum configured size.",
-										fname
-									)
-								)
-							end)
-							return true
-						end
 						return false
 					end,
 

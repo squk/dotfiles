@@ -5,13 +5,15 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     local filename = vim.fn.expand('%:t')
     local ext = filename:match('.*%.(.-)%.tmpl$')
 
-	-- Add more extension to syntax mappings here if you need to.
+    -- Add more extension to syntax mappings here if you need to.
     local ext_filetypes = {
       go = 'go',
       html = 'html',
       md = 'markdown',
       yaml = 'yaml',
       yml = 'yaml',
+      -- cc = 'cpp',
+      -- h = 'cpp',
     }
 
     if ext and ext_filetypes[ext] then

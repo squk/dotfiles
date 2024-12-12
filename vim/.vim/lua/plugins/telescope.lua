@@ -4,9 +4,7 @@ local TableConcat = require("utils").TableConcat
 local scopes = require("neoscopes")
 
 _G.find_files = function(search_dirs)
-  require("telescope.builtin").find_files({
-    search_dirs = search_dirs,
-  })
+  require("telescope.builtin").find_files({ search_dirs = search_dirs, })
 end
 -- Helper functions to fetch the current scope and set `search_dirs`
 _G.find_dotfiles = function()
@@ -25,22 +23,11 @@ _G.live_grep = function(search_dirs)
 end
 
 _G.live_grep_cword = function(search_dirs)
-  require("telescope.builtin").live_grep({
-    search_dirs = search_dirs,
-  })
+  require("telescope.builtin").live_grep({ search_dirs = search_dirs, })
 end
 
 local function exe(cmd)
   return vim.split(vim.fn.system(cmd), "\n")
-end
-
-local function get_visual_selection()
-  -- Yank current visual selection into the 'v' register
-  --
-  -- Note that this makes no effort to preserve this register
-  vim.cmd('noau normal! "vy"')
-
-  return vim.fn.getreg("v")
 end
 
 function fig_modified()
@@ -69,23 +56,25 @@ local keys = {
   { "<leader>tC",  ":CritiqueUnresolvedCommentsTelescope<CR>",          desc = "Critique unresolved comments" },
   { "<leader>tca", ":CritiqueCommentsTelescope<CR>",                    desc = "Critique all comments" },
   { "<leader>tg",  ":Telescope git_files<CR>",                          desc = "Git Files" },
-  { "<leader>th",  ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
   { "<leader>tk",  ":Telescope keymaps<CR>",                            desc = "Keymaps" },
   { "<leader>tn",  ":Telescope notify<CR>",                             desc = "Notifications" },
   { "<leader>tr",  ":Telescope resume<CR>",                             desc = "Telescope Resume" },
+  { "<leader>th",  ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 }
 
 if use_google() then
+  local find_files = require("telescope.builtin").find_files
+  local cs_query = require("telescope").extensions.codesearch.find_query
   -- stylua: ignore
   TableConcat(keys, {
-    { "<leader>tm", ":lua find_files(fig_modified())<CR>" },
-    { "<leader>tM", ":lua find_files(fig_all_modified())<CR>" },
-    { "<leader>tf", ":lua live_grep(fig_modified())<CR>",                                                                  desc = "Search in modified Fig files." },
-    { "<leader>tF", ":lua live_grep(fig_all_modified())<CR>",                                                              desc = "Search in *all* modified Fig files." },
-    { "<C-P>",      require("telescope").extensions.codesearch.find_files },
-    { "<leader>cs", require("telescope").extensions.codesearch.find_query },
-    { "<leader>cs", require("telescope").extensions.codesearch.find_query,                                                 mode = "v" },
-    { "<leader>CS", [[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]], },
+    { "<leader>tm", function() find_files({ search_dirs = fig_modified() }) end,     desc = "list modified Fig files." },
+    { "<leader>tM", function() find_files({ search_dirs = fig_all_modified() }) end, desc = "List *all* modified Fig files" },
+    { "<leader>tf", function() find_files({ search_dirs = fig_modified() }) end,     desc = "Grep modified Fig files." },
+    { "<leader>tF", function() find_files({ search_dirs = fig_modified() }) end,     desc = "Grep *all* modified Fig files." },
+    { "<C-P>",      require("telescope").extensions.codesearch.find_files,           desc = "Code search files" },
+    { "<leader>cs", require("telescope").extensions.codesearch.find_query,           desc = "Code search query" },
+    { "<leader>cs", cs_query,                                                        desc = "Code search query",             mode = "v" },
+    { "<leader>CS", function() cs_query({ default_text_expand = '<cword>' }) end,    desc = "Code search query <cword>" },
   })
 end
 
@@ -119,7 +108,7 @@ return {
       require("telescope").load_extension("recent_files")
     end,
     keys = {
-      { "<leader>to", [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]] },
+      { "<leader>to", require('telescope').extensions.recent_files.pick },
     },
   },
   {

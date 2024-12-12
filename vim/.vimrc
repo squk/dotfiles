@@ -2,11 +2,6 @@ set nocompatible              " be iMproved, required
 
 let mapleader="," " BEST LEADER OF ALL TIME (BLOT)
 filetype off                  " required
-set runtimepath+=,~/.vim
-set runtimepath+=,~/.vim/after
-set runtimepath+=,~/.vim/lua/
-set runtimepath+=,~/.config/nvim/after/
-let &runtimepath = &runtimepath
 
 set directory=/tmp
 set undofile
@@ -57,12 +52,6 @@ set modifiable
 set noscrollbind
 set expandtab
 
-" map <LeftMouse> ""
-map <LeftDrag> ""
-map <LeftRelease> ""
-
-set updatetime=100
-
 source ~/.vim/prefs/mappings.vim
 source ~/.vim/prefs/leader.vim
 
@@ -86,23 +75,6 @@ let g:lsp_log_file = expand('~/vim-lsp.log')
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
 set hidden
 
-function! GenerateUnicode(first, last)
-  let i = a:first
-  while i <= a:last
-    if (i%256 == 0)
-      $put ='----------------------------------------------------'
-      $put ='     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F '
-      $put ='----------------------------------------------------'
-    endif
-    let c = printf('%04X ', i)
-    for j in range(16)
-      let c = c . nr2char(i) . ' '
-      let i += 1
-    endfor
-    $put =c
-  endwhile
-endfunction
-
 " makes sure that when opening, files are normal, i.e. not folded.
 set nofoldenable
 
@@ -121,8 +93,6 @@ let g:loaded_spellfile_plugin  = 1
 let g:loaded_netrwPlugin       = 0
 let g:loaded_tutor_mode_plugin = 0
 let g:loaded_remote_plugins    = 1
-
-au BufRead,BufNewFile,BufReadPost *.cc.inc set filetype=cpp
 
 filetype plugin indent on
 syntax on

@@ -108,7 +108,7 @@ return {
       require("telescope").load_extension("recent_files")
     end,
     keys = {
-      { "<leader>to", require('telescope').extensions.recent_files.pick },
+      { "<leader>to", [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]] },
     },
   },
   {

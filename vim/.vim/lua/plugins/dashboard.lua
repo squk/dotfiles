@@ -42,6 +42,6 @@ return {
 			},
 		})
 	end,
-	keys = { { "<C-Space>", ":Dashboard<CR>" } },
+	-- keys = { { "<C-Space>", ":Dashboard<CR>" } },
 	dependencies = { { "nvim-tree/nvim-web-devicons" } },
 }

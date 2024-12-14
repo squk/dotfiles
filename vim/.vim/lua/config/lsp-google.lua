@@ -67,7 +67,7 @@ function M.setup(capabilities)
 		end
 
 		lspconfig.ciderlsp.setup({
-			capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+			capabilities = capabilities,
 			on_attach = cider_on_attach,
 			handlers = cider_lsp_handlers,
 		})

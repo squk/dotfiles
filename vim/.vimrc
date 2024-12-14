@@ -8,13 +8,7 @@ set undofile
 set nobackup
 set formatoptions+=j
 set nowritebackup
-au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
-
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
 
 set laststatus=2
 set cmdheight=1
@@ -43,8 +37,11 @@ set hlsearch     " highlight matches
 set splitright     " Puts new vsplit windows to the right of the current
 set splitbelow     " Puts new split windows to the bottom of the current
 
+" When set to a negative number from -1 to -100 this is used as the
+" percentage of the window height.  Thus -50 scrolls half the window
+" height.
 set scrolljump=5   " Line to scroll when cursor leaves screen
-set scrolloff=3    " Minimum lines to keep above and below cursor
+" set scrolloff=3    " Minimum lines to keep above and below cursor
 
 set shortmess=A " disable swapg
 set shortmess+=O
@@ -52,19 +49,10 @@ set modifiable
 set noscrollbind
 set expandtab
 
-source ~/.vim/prefs/mappings.vim
-source ~/.vim/prefs/leader.vim
-
 set encoding=utf-8
-
 set t_Co=256
-
 let base16colorspace=256
 set colorcolumn=100
-
-if (has("termguicolors"))
- set termguicolors
-endif
 set background=dark
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -96,3 +84,8 @@ let g:loaded_remote_plugins    = 1
 
 filetype plugin indent on
 syntax on
+
+source ~/.vim/prefs/mappings.vim
+source ~/.vim/prefs/leader.vim
+source ~/.vim/prefs/mappings.vim
+source ~/.vim/prefs/leader.vim

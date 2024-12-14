@@ -23,7 +23,6 @@ return {
 			TableConcat(lsps, {
 				"pyright",
 				"omnisharp_mono",
-				"tsserver",
 				"docker_compose_language_service",
 				"dockerls",
 				"graphql",

@@ -1,4 +1,5 @@
 local use_google = require("utils").use_google
+local flags = require("utils").flags
 
 return {
 	{
@@ -21,7 +22,7 @@ return {
 	},
 	{
 		"kosayoda/nvim-lightbulb",
-    commit = "1cae7b7153ae98dcf1b11173a443ac1b6d8e3d49",
+		commit = "1cae7b7153ae98dcf1b11173a443ac1b6d8e3d49",
 		event = { "LspAttach" },
 		opts = {
 			autocmd = { enabled = true },
@@ -66,8 +67,9 @@ return {
 		},
 		-- cond = not use_google(),
 		config = function()
-			local capabilities =
-				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+			local capabilities = flags.blink
+					and require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+				or require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 			capabilities.offsetEncoding = { "utf-16" }
 			require("go").setup({
 				lsp_cfg = { capabilities = capabilities },
@@ -87,7 +89,6 @@ return {
 				group = format_sync_grp,
 			})
 		end,
-		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
@@ -118,11 +119,9 @@ return {
 			local lsp_status = require("lsp-status")
 			lsp_status.register_progress()
 
-			vim.opt.spell = true
-			vim.opt.spelllang = { "en_us" }
-
-			local capabilities =
-				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+			local capabilities = flags.blink
+					and require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+				or require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 			capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 			capabilities.offsetEncoding = { "utf-16" }
 

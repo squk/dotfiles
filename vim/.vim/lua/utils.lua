@@ -1,7 +1,7 @@
 local M = {
 	use_google_cache = nil,
 	flags = {
-		blink = false,
+		blink = true,
 	},
 }
 

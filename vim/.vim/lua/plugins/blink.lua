@@ -36,8 +36,8 @@ return {
 				["<C-e>"] = { "hide", "fallback" },
 				["<CR>"] = { "accept", "fallback" },
 
-				["<Tab>"] = { "snippet_forward", "fallback" },
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
+				["<Tab>"] = { "select_next", "snippet_forward", "accept", "fallback" },
+				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 
 				["<Up>"] = { "select_prev", "fallback" },
 				["<Down>"] = { "select_next", "fallback" },
@@ -46,18 +46,18 @@ return {
 				["<S-Down>"] = { "scroll_documentation_down", "fallback" },
 			},
 			sources = {
-				providers = function()
+				default = function(ctx)
 					local providerToEnable = {
 						"lsp",
 						"path",
 						"crates",
 						"snippets",
-						"buffer",
 						"ripgrep",
 						"emoji",
 						"nerdfont",
+						"buffer",
 					}
-					print("sources")
+					print(vim.inspect(providerToEnable))
 					if use_google() then
 						table.insert(providerToEnable, "nvim_ciderlsp")
 						table.insert(providerToEnable, "buganizer")

@@ -23,6 +23,6 @@ source ~/.aliases.sh
 if [[ -f "$HOME/use_google" ]]; then
     source $HOME/.bash_profile.google
 fi
-. "$HOME/.cargo/env"
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+. "$HOME/.cargo/env"

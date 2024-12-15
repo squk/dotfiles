@@ -35,6 +35,7 @@
     po = push origin
 [core]
 	autocrlf = false
+	excludesfile = /Users/christian/.gitignore_global
 [icdiff]
 	options = --highlight --line-numbers
 [merge]

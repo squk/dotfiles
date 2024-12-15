@@ -20,7 +20,7 @@ return {
 		},
 	},
 	{
-		"Maan2003/lsp_lines.nvim",
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		event = { "LspAttach" },
 		name = "lsp_lines.nvim",
 		config = function()

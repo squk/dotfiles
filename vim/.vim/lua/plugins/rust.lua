@@ -6,18 +6,9 @@ return {
 	},
 	{
 		"saecki/crates.nvim",
-		-- event = { "BufRead Cargo.toml" },
-		-- ft = "rust",
-		-- dependencies = { "nvim-lua/plenary.nvim" },
+		event = { "BufRead Cargo.toml" },
 		config = function()
-			require("crates").setup({
-
-				completion = {
-					cmp = {
-						enabled = true,
-					},
-				},
-			})
+			require("crates").setup()
 		end,
 	},
 }

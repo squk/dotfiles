@@ -103,11 +103,6 @@ return {
 				trigger = {
 					show_on_x_blocked_trigger_characters = { "'", '"', "(", "{" },
 				},
-				menu = {
-					draw = {
-						-- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-					},
-				},
 			},
 		},
 

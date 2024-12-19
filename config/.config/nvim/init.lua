@@ -13,7 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.rtp:prepend(vim.env.HOME .. "/.vim")
 vim.opt.rtp:prepend(vim.env.HOME .. "/.vim/lua")
-vim.opt.rtp:prepend(vim.env.HOME .. "/.vim/lua")
 
 package.path = package.path .. ";" .. vim.env.HOME .. "/.vim/lua/?.lua"
 

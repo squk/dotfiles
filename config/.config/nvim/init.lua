@@ -22,7 +22,7 @@ require("config.zip")
 
 require("lazy").setup({
   -- this entry tells lazy.nvim to load the list of of *.lua files from plugins/
-  { import = "plugins" },
+   import = "plugins" ,
   -- Dev configuration
   dev = {
     -- Directory where you store your local plugin projects

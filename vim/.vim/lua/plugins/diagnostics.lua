@@ -11,12 +11,15 @@ return {
 				use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 			})
 		end,
+    -- stylua: ignore
 		keys = {
-			{ "<leader>xt", "<cmd>:Telescope diagnostics<CR>" },
+			{ "<leader>xt", ":Telescope diagnostics<CR>" },
 			{ "gr", ":Telescope lsp_references<CR>" },
-			{ "<leader>xd", ":Trouble<CR>" },
-			{ "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
-			{ "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>" },
+			{ "<leader>xd", ":Trouble diagnostics toggle <CR>" },
+			{ "<leader>xbd", ":Trouble diagnostics toggle filter.buf=0<CR>" },
+			{ "<leader>xe", ":Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<CR>" },
+			{ "[g", ":lua vim.diagnostic.goto_prev()<CR>" },
+			{ "]g", ":lua vim.diagnostic.goto_next()<CR>" },
 		},
 	},
 	{

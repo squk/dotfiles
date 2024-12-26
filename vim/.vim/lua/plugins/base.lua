@@ -25,6 +25,7 @@ return {
 	{
 		"MagicDuck/grug-far.nvim",
 		config = function()
+			vim.g.maplocalleader = ","
 			require("grug-far").setup({
 				-- search and replace engines configuration
 				engines = {
@@ -32,7 +33,7 @@ return {
 					ripgrep = {
 						-- ripgrep executable to use, can be a different path if you need to configure
 						path = "rg",
-						extraArgs = "--.",
+						-- extraArgs = "-.",
 					},
 				},
 			})

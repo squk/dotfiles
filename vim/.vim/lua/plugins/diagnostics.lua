@@ -1,6 +1,19 @@
 -- disable underline
 vim.diagnostic.handlers.underline.show = function() end
 
+local signs = {
+	Error = " ",
+	Warning = " ",
+	Warn = " ",
+	Hint = "",
+	Info = " ",
+	Other = "",
+}
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 return {
 	{
 		"folke/trouble.nvim",
@@ -22,24 +35,35 @@ return {
 			{ "]g", ":lua vim.diagnostic.goto_next()<CR>" },
 		},
 	},
+	-- {
+	-- 	"rachartier/tiny-inline-diagnostic.nvim",
+	-- 	event = "LspAttach",
+	-- 	priority = 1000, -- needs to be loaded in first
+	-- 	config = function()
+	-- 		vim.diagnostic.config({ virtual_text = false })
+	--
+	-- 		require("tiny-inline-diagnostic").setup({
+	-- 			preset = "classic", -- Can be: "modern", "classic", "minimal", "powerline", ghost", "simple", "nonerdfont", "amongus"
+	--
+	-- 			-- Show the source of the diagnostic.
+	-- 			show_source = false,
+	--
+	-- 			-- Use your defined signs in the diagnostic config table.
+	-- 			use_icons_from_diagnostic = true,
+	--
+	-- 			-- Enable diagnostic message on all lines.
+	-- 			multilines = true,
+	--
+	-- 			-- Show all diagnostics on the cursor line.
+	-- 			show_all_diags_on_cursorline = false,
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		event = { "LspAttach" },
 		name = "lsp_lines.nvim",
 		config = function()
-			local signs = {
-				Error = " ",
-				Warning = " ",
-				Warn = " ",
-				Hint = "",
-				Info = " ",
-				Other = "",
-			}
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-			end
-
 			require("lsp_lines").setup()
 
 			-- vim.schedule(function()

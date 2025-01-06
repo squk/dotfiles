@@ -152,3 +152,9 @@ source /google/bin/releases/gmscore-tools/cli/prod/setup_prod_gms.sh
 abbr bq="blaze query"
 abbr br="blaze run"
 abbr bb="blaze build"
+
+function phenodb() {
+  adb shell sqlite3 /data/data/com.google.android.gms/databases/phenotype.db "'$*'"
+}
+
+export PHENOTYPE_PACKAGE_NAME="com.google.YOUR.PHENOTYPE.PACKAGE.NAME"

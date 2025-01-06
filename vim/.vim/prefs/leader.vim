@@ -15,7 +15,7 @@ map <leader>` ysiw`
 vmap <leader>` c`<C-R>"`<ESC>
 
 " --------- SEARCH MAPPINGS ---------
-" unhilight search
+" unhighlight search
 nnoremap <leader><space> :nohlsearch<CR>
 
 " --------- CLIPBOARD MAPPINGS ---------
@@ -46,4 +46,5 @@ nmap <leader>yf :let @+ = expand("%") \| let @" = expand("%")<cr>
 " replace currently selected text with default register
 " without yanking it
 vnoremap <leader>p "_dP
-nnoremap <leader><leader> :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
+nnoremap <leader><leader> :VimuxZoomRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>
+nnoremap <leader>. :VimuxOpenRunner<cr> :VimuxRunCommand '!!'<cr> :call VimuxSendKeys("Enter")<cr>

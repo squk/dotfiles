@@ -101,7 +101,7 @@ return {
     },
     keys = {
       { "<leader>F",  ":lua vim.lsp.buf.format()<CR>" },
-      { "<leader>rn", ":>lua vim.lsp.buf.rename()<CR>" },
+      { "<leader>rn", ":lua vim.lsp.buf.rename()<CR>" },
       { "L",          ":lua vim.lsp.buf.hover()<CR>" },
       { "gr",         ":Telescope lsp_references<CR>" },
       { "gd",         ":lua vim.lsp.buf.definition()<CR>" },

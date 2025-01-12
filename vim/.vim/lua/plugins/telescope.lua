@@ -38,7 +38,7 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<leader>e",  ":lua search_cwd()<CR>",                                                                           desc = "Find Files in Buffer Directory" },
+  -- { "<leader>e",  ":lua search_cwd()<CR>",                                                                           desc = "Find Files in Buffer Directory" },
   { "<leader>ts", require('telescope.builtin').live_grep },
   { "<leader>TS", function() require('telescope.builtin').live_grep { default_text = vim.fn.expand("<cword>") } end, },
   {

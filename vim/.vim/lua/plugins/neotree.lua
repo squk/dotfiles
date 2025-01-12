@@ -10,7 +10,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
---			"~/cmdtree",
+			--			"~/cmdtree",
 		},
 		cmd = {
 			"Neotree",
@@ -47,10 +47,8 @@ return {
 				-- return { "<C-n>.", ":Neotree toggle reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" }
 				return { "<C-n>m", ":Neotree float git_status<CR>", desc = "Open NeoTree CWD float" }
 			end)(),
-			-- { "<C-n>b", ":Neotree float buffers<CR>" },
-			{ "<C-n>f", ":Neotree float dir=%:p:h<cr>" },
-			{ "<C-n>", ":Neotree toggle dir=%:p:h<cr>" },
-			-- { "<C-n>.", ":Neotree reveal_force_cwd<CR>", desc = "Open NeoTree CWD float" },
+			{ "<C-n>", ":Neotree toggle left dir=%:p:h<cr>" },
+			{ "<leader>e", ":Neotree float dir=%:p:h<cr>" },
 		},
 	},
 }

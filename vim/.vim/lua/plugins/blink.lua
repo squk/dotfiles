@@ -8,11 +8,12 @@ return {
 		version = "*",
 		-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
 		lazy = true,
+		cond = flags.blink,
 		-- make sure to set opts so that lazy.nvim calls blink.compat's setup
 		opts = {
-			impersonate_nvim_cmp = use_google(), -- only cider needs this
+			impersonate_nvim_cmp = true,
+			debug = true,
 		},
-		cond = not use_google(),
 	},
 	{
 		"saghen/blink.cmp",
@@ -20,10 +21,12 @@ return {
 		cond = flags.blink,
 		dependencies = {
 			"Exafunction/codeium.nvim",
-			"mikavilpas/blink-ripgrep.nvim",
 			"chrisgrieser/cmp-nerdfont",
-			"hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-nvim-lsp",
+			"mikavilpas/blink-ripgrep.nvim",
+			"moyiz/blink-emoji.nvim",
 			"rafamadriz/friendly-snippets", -- optional: provides snippets for the snippet source
+			"saghen/blink.compat",
 		},
 		version = "v0.*", -- use a release tag to download pre-built binaries
 		-- build = 'cargo build --release',
@@ -31,7 +34,9 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+      -- stylua: ignore
 			keymap = {
+			  preset = "none",
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<C-e>"] = { "hide", "fallback" },
 				["<CR>"] = { "accept", "fallback" },
@@ -64,7 +69,9 @@ return {
 					end
 					return providerToEnable
 				end,
+				-- default = { "lsp" },
 				providers = {
+					lsp = { name = "LSP", module = "blink.cmp.sources.lsp", score_offset = 90 },
 					-- dont show LuaLS require statements when lazydev has items
 					lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
 					ripgrep = {
@@ -80,24 +87,38 @@ return {
 							additional_rg_options = {},
 						},
 					},
-					nvim_ciderlsp = {
-						name = "nvim_ciderlsp",
-						module = "blink.compat.source",
+					-- https://github.com/moyiz/blink-emoji.nvim
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15, -- the higher the number, the higher the priority
+						opts = { insert = true }, -- Insert emoji (default) or complete its name
 					},
-					buganizer = {
-						name = "nvim_buganizer",
+					buffer = {
+						name = "Buffer",
+						enabled = true,
+						max_items = 3,
+						module = "blink.cmp.sources.buffer",
+						min_keyword_length = 4,
+						score_offset = 15, -- the higher the number, the higher the priority
+					},
+					-- compat sources
+					nerdfont = {
+						name = "nerdfont",
 						module = "blink.compat.source",
 					},
 					codeium = {
 						name = "codeium",
 						module = "blink.compat.source",
+						score_offset = 100,
 					},
-					emoji = {
-						name = "emoji",
+					nvim_ciderlsp = {
+						name = "nvim_ciderlsp",
 						module = "blink.compat.source",
+						score_offset = 100,
 					},
-					nerdfont = {
-						name = "nerdfont",
+					buganizer = {
+						name = "nvim_buganizer",
 						module = "blink.compat.source",
 					},
 				},
@@ -105,6 +126,20 @@ return {
 			-- experimental signature help support
 			signature = { enabled = true },
 			completion = {
+				list = {
+				      -- stylua: ignore
+				      selection = {
+				        preselect = function(ctx) return ctx.mode ~= 'cmdline' end,
+				        auto_insert = function(ctx) return ctx.mode ~= 'cmdline' end,
+				      },
+				},
+				documentation = {
+					auto_show = true,
+				},
+				-- Displays a preview of the selected item on the current line
+				ghost_text = {
+					enabled = true,
+				},
 				menu = {
 					draw = {
 						components = {
@@ -121,16 +156,6 @@ return {
 								end,
 							},
 						},
-					},
-				},
-				list = {
-					selection = {
-						preselect = function(ctx)
-							return ctx.mode ~= "cmdline"
-						end,
-						auto_insert = function(ctx)
-							return ctx.mode ~= "cmdline"
-						end,
 					},
 				},
 				trigger = {

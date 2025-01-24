@@ -60,7 +60,7 @@ return {
 	-- 	end,
 	-- },
 	{
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		"ErichDonGubler/lsp_lines.nvim",
 		event = { "LspAttach" },
 		name = "lsp_lines.nvim",
 		config = function()

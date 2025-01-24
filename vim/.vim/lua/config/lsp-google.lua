@@ -7,7 +7,7 @@ function M.setup(capabilities)
 		local configs = require("lspconfig.configs")
 		configs.ciderlsp = {
 			default_config = {
-				offset_encoding = "utf-16",
+				-- offset_encoding = "utf-16",
 				cmd = {
 					"/google/bin/releases/cider/ciderlsp/ciderlsp",
 					"--tooltag=nvim-lsp",
@@ -51,11 +51,10 @@ function M.setup(capabilities)
 			vim.b["is_cider_lsp_attached"] = "no"
 		end
 
-		local cider_lsp_handlers = {
-			["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				focusable = false,
-			}),
-		}
+		local cider_lsp_handlers = {}
+		-- cider_lsp_handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		-- 	focusable = false,
+		-- })
 
 		cider_lsp_handlers["$/syncResponse"] = function(_, result, ctx)
 			local first_fire = vim.b["is_cider_lsp_attached"] == "no"

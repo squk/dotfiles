@@ -1,4 +1,4 @@
-local use_google = require("utils").use_googlecmp
+local use_google = require("utils").use_google
 local flags = require("utils").flags
 
 return {

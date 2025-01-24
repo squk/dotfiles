@@ -1,6 +1,6 @@
 local M = {
 	use_google_cache = nil,
-	flags = { blink = true },
+	flags = { blink = false },
 }
 
 function M.exec(command, args)

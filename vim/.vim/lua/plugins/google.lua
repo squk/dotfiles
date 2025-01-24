@@ -244,17 +244,11 @@ return {
     name = "cmp-nvim-ciderlsp",
     url = "sso://googler@user/piloto/cmp-nvim-ciderlsp",
     event = "VimEnter",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-    },
   },
   {
     name = "ciderlsp-nvim",
     url = "sso://googler@user/kdark/ciderlsp-nvim",
     event = "VimEnter",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-    },
   },
   -- {
   --     name = "nvim_figtree",

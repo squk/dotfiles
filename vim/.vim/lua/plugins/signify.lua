@@ -65,19 +65,18 @@ return {
 	},
 	config = function()
 		vim.g.signify_vcs_list = { "hg", "git" }
-		local one_eighth = "▏"
-		local one_quarter = "▎"
-		local three_eighths = "▍"
 		vim.g.signify_disable_by_default = 0
-		vim.g.signify_sign_add = one_quarter
-		vim.g.signify_sign_delete = one_quarter
-		vim.g.signify_sign_change = one_quarter
-		local red = "#f8a6a0"
-		vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cc9b8" })
-		vim.api.nvim_set_hl(0, "SignifySignChange", { fg = "#84cee3" })
+		-- vim.g.signify_number_highlight = 1
+		local s = "▕"
+		vim.g.signify_sign_add = s
+		vim.g.signify_sign_delete = s
+		vim.g.signify_sign_change = s
+		vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cd9b8" })
+		vim.api.nvim_set_hl(0, "SignifySignChange", { fg = "#849ee3" })
+
+		local red = "#f896a0"
 		vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { fg = red })
 		vim.api.nvim_set_hl(0, "SignifySignDelete", { fg = red })
 		vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { fg = red })
-		-- vim.cmd("highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE")
 	end,
 }

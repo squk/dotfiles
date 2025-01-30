@@ -48,7 +48,7 @@ return {
 				return { "<C-n>m", ":Neotree float git_status<CR>", desc = "Open NeoTree CWD float" }
 			end)(),
 			{ "<C-n>", ":Neotree toggle left dir=%:p:h<cr>" },
-			{ "<leader>e", ":Neotree float dir=%:p:h<cr>" },
+			{ "<leader>e", ":Neotree float dir=%:p:h<cr>/" },
 		},
 	},
 }

@@ -2,9 +2,22 @@ local use_google = require("utils").use_google
 
 return {
 	{
+		"dgox16/oldworld.nvim",
+		lazy = false,
+		cond = not use_google(),
+		priority = 1000,
+		opts = {
+			variant = "cooler",
+		},
+		config = function()
+			vim.cmd("colorscheme oldworld")
+		end,
+	},
+	{
 		"bluz71/vim-moonfly-colors",
 		name = "moonfly",
-		cond = not use_google(),
+		-- cond = not use_google(),
+		cond = false,
 		lazy = false,
 		priority = 1000,
 		config = function()

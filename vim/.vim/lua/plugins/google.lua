@@ -276,8 +276,6 @@ return {
     },
     -- here are some mappings you might want:
     keys = {
-      { "]c",         ":CritiqueGotoNextComment<CR>" },
-      { "[c",         ":CritiqueGotoPrevComment<CR>" },
       { "<Leader>lc", ":CritiqueToggleLineComment<CR>" },
       { "<Leader>ac", ":CritiqueToggleAllComments<CR>" },
       { "<Leader>uc", ":CritiqueToggleUnresolvedComments<CR>" },

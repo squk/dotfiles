@@ -28,17 +28,17 @@ local function exe(cmd)
   return vim.split(vim.fn.system(cmd), "\n")
 end
 
-function fig_modified()
+local function fig_modified()
   return exe("chg pstatus -ma -n --no-status --template= | sort")
 end
 
-function fig_all_modified()
+local function fig_all_modified()
   return exe("chg status -ma -n --rev p4base --no-status --template= | sort")
 end
 
 -- stylua: ignore
 local keys = {
-  -- { "<leader>e",  ":lua search_cwd()<CR>",                                                                           desc = "Find Files in Buffer Directory" },
+  { "<leader>e",  ":lua search_cwd()<CR>",                                                                           desc = "Find Files in Buffer Directory" },
   { "<leader>ts", require('telescope.builtin').live_grep },
   { "<leader>tb", ":Telescope buffers<CR>" },
   { "<leader>TS", function() require('telescope.builtin').live_grep { default_text = vim.fn.expand("<cword>") } end, },
@@ -51,14 +51,13 @@ local keys = {
     ,
     desc = "Find Dotfiles"
   },
-  { "<leader>tc",  ":Telescope textcase<CR>",                           desc = "Text case" },
-  { "<leader>tC",  ":CritiqueUnresolvedCommentsTelescope<CR>",          desc = "Critique unresolved comments" },
-  { "<leader>tca", ":CritiqueCommentsTelescope<CR>",                    desc = "Critique all comments" },
-  { "<leader>tg",  ":Telescope git_files<CR>",                          desc = "Git Files" },
-  { "<leader>tk",  ":Telescope keymaps<CR>",                            desc = "Keymaps" },
-  { "<leader>tn",  ":Telescope notify<CR>",                             desc = "Notifications" },
-  { "<leader>tr",  ":Telescope resume<CR>",                             desc = "Telescope Resume" },
-  { "<leader>th",  ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
+  { "<leader>tC", ":Telescope textcase<CR>",                           desc = "Text case" },
+  { "<leader>tc", ":CritiqueCommentsTelescope<CR>",                    desc = "Critique all comments" },
+  { "<leader>tg", ":Telescope git_files<CR>",                          desc = "Git Files" },
+  { "<leader>tk", ":Telescope keymaps<CR>",                            desc = "Keymaps" },
+  { "<leader>tn", ":Telescope notify<CR>",                             desc = "Notifications" },
+  { "<leader>tr", ":Telescope resume<CR>",                             desc = "Telescope Resume" },
+  { "<leader>th", ":lua require('telescope.builtin').help_tags{}<CR>", desc = "[T]elescope [H]elp" },
 }
 
 if use_google() then

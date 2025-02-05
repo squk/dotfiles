@@ -29,11 +29,11 @@ local function exe(cmd)
 end
 
 function fig_modified()
-  return exe("hg pstatus -ma -n --no-status --template= | sort")
+  return exe("chg pstatus -ma -n --no-status --template= | sort")
 end
 
 function fig_all_modified()
-  return exe("hg status -ma -n --rev p4base --no-status --template= | sort")
+  return exe("chg status -ma -n --rev p4base --no-status --template= | sort")
 end
 
 -- stylua: ignore

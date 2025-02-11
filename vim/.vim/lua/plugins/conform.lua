@@ -37,14 +37,14 @@ return {
     keys = {
       -- stylua: ignore
       { "<leader>fmt", function() require("conform").format({ async = true, lsp_fallback = true }) end, mode = "", desc = "Format buffer", },
-    },
-    -- This will provide type hinting with LuaLS
-    ---@module "conform"
-    ---@type conform.setupOpts
-    opts = {
-      log_level = vim.log.levels.DEBUG,
-      formatters_by_ft = {
-
+			{ "<leader>fj", ":%!python -m json.tool" },
+		},
+		-- This will provide type hinting with LuaLS
+		---@module "conform"
+		---@type conform.setupOpts
+		opts = {
+			log_level = vim.log.levels.DEBUG,
+			formatters_by_ft = {
         rust = { "rustfmt", lsp_format = "fallback" },
         -- Conform will run multiple formatters sequentially
         -- go = { "goimports", "gofmt" },

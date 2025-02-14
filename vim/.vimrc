@@ -37,12 +37,6 @@ set hlsearch     " highlight matches
 set splitright     " Puts new vsplit windows to the right of the current
 set splitbelow     " Puts new split windows to the bottom of the current
 
-" When set to a negative number from -1 to -100 this is used as the
-" percentage of the window height.  Thus -50 scrolls half the window
-" height.
-set scrolljump=5   " Line to scroll when cursor leaves screen
-" set scrolloff=3    " Minimum lines to keep above and below cursor
-
 set shortmess=A " disable swapg
 set shortmess+=O
 set modifiable

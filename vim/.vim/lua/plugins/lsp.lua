@@ -106,6 +106,7 @@ return {
 			local lspconfig = require("lspconfig")
 			local configs = require("lspconfig.configs")
 
+<<<<<<< HEAD
 			local nvim_lspconfig = require("lspconfig")
 			local lsp_configs = require("lspconfig.configs")
 
@@ -146,4 +147,39 @@ return {
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
 		end,
 	},
+=======
+      if use_google() then
+        local on_attach = function(client, bufnr)
+          -- local ft = vim.bo[bufnr].filetype
+          -- if ft == "cpp" or ft == "c" then
+          --   if client.server_capabilities.semanticTokensProvider ~= nil then
+          --     client.server_capabilities.semanticTokensProvider = nil
+          --   end
+          -- end
+        end
+
+        configs.ciderlsp = {
+          default_config = {
+            cmd = { '/google/bin/releases/cider/ciderlsp/ciderlsp', '--tooltag=nvim-lsp', '--noforward_sync_responses' },
+            filetypes = { "c", "cpp", "java", "kotlin", "objc", "proto", "textproto", "go", "python", "bzl", "typescript" },
+            offset_encoding = 'utf-8',
+            root_dir = lspconfig.util.root_pattern('.citc'),
+            settings = {},
+          }
+        }
+
+        lspconfig.ciderlsp.setup { on_attach = on_attach }
+      end
+
+      -- Godot
+      lspconfig.gdscript.setup({
+        -- flags = {
+        -- 	debounce_text_changes = 2000, -- Wait 5 seconds before sending didChange
+        -- },
+      })
+      vim.cmd([[autocmd FileType gdscript setlocal commentstring=#\ %s]])
+      vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
+    end,
+  },
+>>>>>>> 0c7bebc (stuff)
 }

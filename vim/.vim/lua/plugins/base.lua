@@ -1,13 +1,6 @@
 local use_google = require("utils").use_google
 
 return {
-	{
-		"adelarsq/image_preview.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("image_preview").setup()
-		end,
-	},
 	"sindrets/diffview.nvim",
 	--{ "mizlan/iswap.nvim", event = "VeryLazy" },
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },

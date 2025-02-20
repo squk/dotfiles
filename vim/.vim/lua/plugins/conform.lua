@@ -77,11 +77,10 @@ return {
 				["_"] = { "trim_whitespace" },
 			},
 			formatters = {
-				ronfmt = {
-					command = "ronfmt",
-					args = { "$FILENAME" },
-					stdin = false,
-				},
+				-- ronfmt = {
+				-- 	command = "ronfmt",
+				-- 	args = { "-d", "$FILENAME" },
+				-- },
 				gdformat = {
 					prepend_args = { "-l", "100" },
 				},

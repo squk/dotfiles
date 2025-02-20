@@ -1,4 +1,5 @@
 -- disable underline
+local use_google = require("utils").use_google
 vim.diagnostic.handlers.underline.show = function() end
 
 local signs = {
@@ -35,34 +36,36 @@ return {
 			{ "]g", ":lua vim.diagnostic.goto_next()<CR>" },
 		},
 	},
-	-- {
-	-- 	"rachartier/tiny-inline-diagnostic.nvim",
-	-- 	event = "LspAttach",
-	-- 	priority = 1000, -- needs to be loaded in first
-	-- 	config = function()
-	-- 		vim.diagnostic.config({ virtual_text = false })
-	--
-	-- 		require("tiny-inline-diagnostic").setup({
-	-- 			preset = "classic", -- Can be: "modern", "classic", "minimal", "powerline", ghost", "simple", "nonerdfont", "amongus"
-	--
-	-- 			-- Show the source of the diagnostic.
-	-- 			show_source = false,
-	--
-	-- 			-- Use your defined signs in the diagnostic config table.
-	-- 			use_icons_from_diagnostic = true,
-	--
-	-- 			-- Enable diagnostic message on all lines.
-	-- 			multilines = true,
-	--
-	-- 			-- Show all diagnostics on the cursor line.
-	-- 			show_all_diags_on_cursorline = false,
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach",
+		priority = 1000, -- needs to be loaded in first
+		cond = not use_google(),
+		config = function()
+			vim.diagnostic.config({ virtual_text = false })
+
+			require("tiny-inline-diagnostic").setup({
+				preset = "classic", -- Can be: "modern", "classic", "minimal", "powerline", ghost", "simple", "nonerdfont", "amongus"
+
+				-- Show the source of the diagnostic.
+				show_source = false,
+
+				-- Use your defined signs in the diagnostic config table.
+				use_icons_from_diagnostic = true,
+
+				-- Enable diagnostic message on all lines.
+				multilines = true,
+
+				-- Show all diagnostics on the cursor line.
+				show_all_diags_on_cursorline = false,
+			})
+		end,
+	},
 	{
 		"ErichDonGubler/lsp_lines.nvim",
 		event = { "LspAttach" },
 		name = "lsp_lines.nvim",
+		cond = use_google(),
 		config = function()
 			require("lsp_lines").setup()
 

@@ -1,26 +1,23 @@
 local use_google = require("utils").use_google
 
 return {
-	"sindrets/diffview.nvim",
-	--{ "mizlan/iswap.nvim", event = "VeryLazy" },
-	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{
-		"MagicDuck/grug-far.nvim",
-		config = function()
-			require("grug-far").setup({
-				-- search and replace engines configuration
-				engines = {
-					-- see https://github.com/BurntSushi/ripgrep
-					ripgrep = {
-						-- ripgrep executable to use, can be a different path if you need to configure
-						path = "rg",
-						-- extraArgs = "-.",
-					},
-				},
-			})
-		end,
-	},
-
+  "sindrets/diffview.nvim",
+  { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+    "MagicDuck/grug-far.nvim",
+    config = function()
+      require("grug-far").setup({
+        -- search and replace engines configuration
+        engines = {
+          -- see https://github.com/BurntSushi/ripgrep
+          ripgrep = {
+            -- ripgrep executable to use, can be a different path if you need to configure
+            path = "rg",
+            -- extraArgs = "-.",
+          },
+        },
+      })
+    end,
+  },
 	{
 		"shellRaining/hlchunk.nvim",
 		event = { "BufReadPre", "BufNewFile" },

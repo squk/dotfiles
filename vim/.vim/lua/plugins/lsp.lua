@@ -2,17 +2,6 @@ local use_google = require("utils").use_google
 local flags = require("utils").flags
 
 return {
-	-- {
-	-- 	"ray-x/lsp_signature.nvim",
-	-- 	event = "VeryLazy",
-	-- 	opts = {
-	-- 		floating_window = true,
-	-- 		hint_prefix = "󰡱 ",
-	-- 	},
-	-- 	config = function(_, opts)
-	-- 		require("lsp_signature").setup(opts)
-	-- 	end,
-	-- },
 	{
 		"kosayoda/nvim-lightbulb",
 		commit = "1cae7b7153ae98dcf1b11173a443ac1b6d8e3d49",

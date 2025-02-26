@@ -1,12 +1,12 @@
 [user]
-	name = Christian Nieves
-	email = cnieves@google.com
+    name = Christian Nieves
+    email = cnieves@google.com
 [color]
-	ui = auto
+    ui = auto
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 [alias]
-    gr = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    gr = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''      %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     # one-line log
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 
@@ -34,18 +34,69 @@
     la = "!git config -l | grep alias | cut -c 7-"
     po = push origin
 [core]
-	autocrlf = false
-	excludesfile = /Users/christian/.gitignore_global
+    autocrlf = false
+    excludesfile = /Users/christian/.gitignore_global
 [icdiff]
-	options = --highlight --line-numbers
+    options = --highlight --line-numbers
 [merge]
     tool = "nvim"
 [mergetool "nvim"]
-	cmd = nvim -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
-[diff]
-	tool = icdiff
+    cmd = nvim -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+
+# clearly makes git better
+
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+	tool = icdiff
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+# why the hell not?
+
+[help]
+    autocorrect = prompt
+[commit]
+    verbose = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[core]
+    excludesfile = ~/.gitignore
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+# a matter of taste (uncomment if you dare)
+
+[core]
+    # fsmonitor = true
+    # untrackedCache = true
+[merge]
+    # (just 'diff3' if git version < 2.3)
+    # conflictstyle = zdiff3
+[pull]
+    # rebase = true

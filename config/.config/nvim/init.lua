@@ -13,13 +13,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.rtp:prepend(vim.env.HOME .. "/.vim")
-vim.opt.rtp:prepend(vim.env.HOME .. "/.vim/lua")
+local luahome = vim.env.HOME .. "/.vim/lua"
+vim.opt.rtp:prepend(luahome)
 
 package.path = package.path .. ";" .. vim.env.HOME .. "/.vim/lua/?.lua"
 
-require("config.clipboard")
-require("config.tmpl")
-require("config.zip")
+for _, file in ipairs(vim.fn.readdir(luahome .. "/config", [[v:val =~ '\.lua$']])) do
+	require("config" .. "." .. file:gsub("%.lua$", ""))
+end
 
 require("lazy").setup({
 	-- this entry tells lazy.nvim to load the list of of *.lua files from plugins/

@@ -5,9 +5,6 @@ return {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
-		config = function()
-			require("config.refactoring")
-		end,
   -- stylua: ignore
 		keys = {
 			-- remap to open the Telescope refactoring menu in visual mode

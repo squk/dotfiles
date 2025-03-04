@@ -16,15 +16,15 @@ opts.vimdiff = -d
 # opts.vimdiff = -c ':call ShowMercurialDiff(argv(0), argv(1))'
 
 [extensions]
-unsupported.tree =
-unsupported.alices =
+# unsupported.tree =
+# unsupported.alices =
 extdiff =
-color =
+# color =
 beautifygraph =
 
-[alices]
-findings.extra_args = --proxy
-summarize.extra_args = --proxy
+# [alices]
+# findings.extra_args = --proxy
+# summarize.extra_args = --proxy
 
 [merge-tools]
 vimdiff.executable = nvim
@@ -51,6 +51,7 @@ dt = icdiff --pager=on
 dtex = dt -r exported(.)
 dtp4 = dt -r p4base
 dtup = dt -r .^
+ra = revert --all
 
 whatsout = status -n --change . --template=hgshort_status
 what = status -n --change . --template=hgshort_status

@@ -7,7 +7,6 @@ return {
 		event = { "InsertEnter", "CmdlineEnter" },
 		cond = not flags.blink,
 		dependencies = {
-			"Exafunction/codeium.nvim",
 			"FelipeLema/cmp-async-path",
 			"amarakon/nvim-cmp-buffer-lines",
 			"chrisgrieser/cmp-nerdfont",
@@ -39,8 +38,6 @@ return {
 			if use_google() then
 				table.insert(conditionalSources, { name = "nvim_ciderlsp", priority = 8 })
 				table.insert(conditionalSources, { name = "buganizer", option = { notifications_enabled = true } })
-			else
-				table.insert(conditionalSources, { name = "codeium", priority = 8 })
 			end
 
 			local lspkind = require("lspkind")
@@ -117,7 +114,6 @@ return {
 							async_path = " path",
 							buffer = " Buf",
 							cmdline = " cmd",
-							codeium = "󰚩 Codeium",
 							crates = " rust",
 							luasnip = " snip",
 							buganizer = " Buganizer",

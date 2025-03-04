@@ -1,7 +1,7 @@
 export ABBR_QUIET=1
 alias grep='grep --colour'
 # abbr cat='bat'
-alias ls='exa'
+# alias ls='exa'
 alias tmux='tmux -2'
 
 alias ..="cd .."

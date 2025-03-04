@@ -20,7 +20,6 @@ return {
     lazy = false, -- lazy loading handled internally
     cond = flags.blink,
     dependencies = {
-      "Exafunction/codeium.nvim",
       "chrisgrieser/cmp-nerdfont",
       "hrsh7th/cmp-nvim-lsp",
       "mikavilpas/blink-ripgrep.nvim",

@@ -25,7 +25,7 @@ end
 
 function M.use_google()
   if M.use_google_cache == nil then
-    M.use_google_cache = M.file_exists(os.getenv("HOME") .. "/use_google")
+    M.use_google_cache = M.file_exists(vim.env.HOME .. "/use_google")
   end
   return M.use_google_cache
 end

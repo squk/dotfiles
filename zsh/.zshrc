@@ -158,11 +158,8 @@ autoload -Uz add-zsh-hook
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export EDITOR='nvim'
+export PATH="$PATH:/opt/nvim/"
 export TERM=xterm-256color
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LANG_ALL="en_US.UTF-8"
 
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 

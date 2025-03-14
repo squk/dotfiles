@@ -1,14 +1,14 @@
 local use_google = require("utils").use_google
 
-local function setup_mercurial(hg_revision)
-	local git_cmd = "git diff --no-color --no-ext-diff -U0 -- %f"
-	local rcs_cmd = "rcsdiff -U0 %f 2>%n"
-	local svn_cmd = "svn diff --diff-cmd %d -x -U0 -- %f"
-	local hg_diff = hg_revision .. " --color=never config aliases.diff= --nodates -U0 -- %f"
-	local hg_cat = hg_revision .. " -- %f"
+local function change_diffbase(hg_revision, git_revision)
+  local git_cmd = "git diff --no-color --no-ext-diff -U0" .. git_revision .. " -- %f"
+  local rcs_cmd = "rcsdiff -U0 %f 2>%n"
+  local svn_cmd = "svn diff --diff-cmd %d -x -U0 -- %f"
+  local hg_diff = hg_revision .. " --color=never config aliases.diff= --nodates -U0 -- %f"
+  local hg_cat = hg_revision .. " -- %f"
 
-	vim.cmd(string.format(
-		[[
+  vim.cmd(string.format(
+    [[
 let g:signify_vcs_cmds = {
       \ 'git':      '%s',
       \ 'rcs':      '%s',
@@ -19,40 +19,40 @@ let g:signify_vcs_cmds_diffmode = {
       \ 'hg':       'chg cat %s',
       \ }
   ]],
-		git_cmd,
-		rcs_cmd,
-		svn_cmd,
-		hg_diff,
-		hg_cat
-	))
+    git_cmd,
+    rcs_cmd,
+    svn_cmd,
+    hg_diff,
+    hg_cat
+  ))
 end
 
 _G.signify_dtup = function()
-	setup_mercurial('-r ".^"')
-	vim.cmd([[:SignifyEnable]])
-	vim.cmd([[:SignifyRefresh]])
+  change_diffbase('-r ".^"', 'HEAD^')
+  vim.cmd([[:SignifyEnable]])
+  vim.cmd([[:SignifyRefresh]])
 end
 
 _G.signify_normal = function()
-	setup_mercurial("-r .")
-	vim.cmd([[:SignifyEnable]])
-	vim.cmd([[:SignifyRefresh]])
+  change_diffbase("-r .", "")
+  vim.cmd([[:SignifyEnable]])
+  vim.cmd([[:SignifyRefresh]])
 end
 
 _G.signify_dtp4 = function()
-	setup_mercurial("-r p4head")
-	vim.cmd([[:SignifyEnable]])
-	vim.cmd([[:SignifyRefresh]])
+  change_diffbase("-r p4head", "HEAD^")
+  vim.cmd([[:SignifyEnable]])
+  vim.cmd([[:SignifyRefresh]])
 end
 
 _G.signify_dtex = function()
-	setup_mercurial("-r exported(.)")
-	vim.cmd([[:SignifyEnable]])
-	vim.cmd([[:SignifyRefresh]])
+  change_diffbase("-r exported(.)", "origin/main")
+  vim.cmd([[:SignifyEnable]])
+  vim.cmd([[:SignifyRefresh]])
 end
 return {
-	"mhinz/vim-signify",
-	event = "VimEnter",
+  "mhinz/vim-signify",
+  event = "VimEnter",
   -- stylua: ignore
   keys = {
     { "]d",          "<plug>(signify-next-hunk)" },
@@ -63,22 +63,22 @@ return {
     { "<leader>sex", ":lua signify_dtex()<CR>" },
     { "<leader>sp4", ":lua signify_dtp4()<CR>" },
   },
-	config = function()
-		vim.g.signify_vcs_list = { "hg", "git" }
-		vim.g.signify_disable_by_default = 0
-		-- vim.g.signify_number_highlight = 1
-		vim.g.signify_sign_show_count = 0
-		local s = "▕"
-		vim.g.signify_sign_add = s
-		vim.g.signify_sign_delete = s
-		vim.g.signify_sign_change = s
-		vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cd9b8" })
-		vim.api.nvim_set_hl(0, "SignifySignChange", { fg = "#849ee3" })
+  config = function()
+    vim.g.signify_vcs_list = { "hg", "git" }
+    vim.g.signify_disable_by_default = 0
+    -- vim.g.signify_number_highlight = 1
+    vim.g.signify_sign_show_count = 0
+    local s = "▕"
+    vim.g.signify_sign_add = s
+    vim.g.signify_sign_delete = s
+    vim.g.signify_sign_change = s
+    vim.api.nvim_set_hl(0, "SignifySignAdd", { fg = "#9cd9b8" })
+    vim.api.nvim_set_hl(0, "SignifySignChange", { fg = "#849ee3" })
 
-		local myred = "#f296a0"
-		vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { fg = myred })
-		vim.api.nvim_set_hl(0, "SignifySignDelete", { fg = myred })
-		vim.api.nvim_set_hl(0, "SignifyLineDelete", { fg = myred })
-		vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { fg = myred })
-	end,
+    local myred = "#f296a0"
+    vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { fg = myred })
+    vim.api.nvim_set_hl(0, "SignifySignDelete", { fg = myred })
+    vim.api.nvim_set_hl(0, "SignifyLineDelete", { fg = myred })
+    vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { fg = myred })
+  end,
 }

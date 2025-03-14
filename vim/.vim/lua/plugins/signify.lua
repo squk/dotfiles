@@ -1,7 +1,7 @@
 local use_google = require("utils").use_google
 
 local function change_diffbase(hg_revision, git_revision)
-  local git_cmd = "git diff --no-color --no-ext-diff -U0" .. git_revision .. " -- %f"
+  local git_cmd = "git diff --no-color --no-ext-diff -U0 " .. git_revision .. " -- %f"
   local rcs_cmd = "rcsdiff -U0 %f 2>%n"
   local svn_cmd = "svn diff --diff-cmd %d -x -U0 -- %f"
   local hg_diff = hg_revision .. " --color=never config aliases.diff= --nodates -U0 -- %f"

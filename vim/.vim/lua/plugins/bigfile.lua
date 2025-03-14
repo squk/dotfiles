@@ -3,7 +3,7 @@ return {
   opts = {
     filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
     pattern = function(bufnr, filesize_mib)
-      vim.cmd(":NoAutoFormatBuffer")
+      vim.b.codefmt_formatt= ""
       vim.cmd(":FormatDisable")
       -- you can't use `nvim_buf_line_count` because this runs on BufReadPre
       local file_contents = vim.fn.readfile(vim.api.nvim_buf_get_name(bufnr))

@@ -1,30 +1,33 @@
 local use_google = require("utils").use_google
 
 local function change_diffbase(hg_revision, git_revision)
-  local git_cmd = "git diff --no-color --no-ext-diff -U0 " .. git_revision .. " -- %f"
-  local rcs_cmd = "rcsdiff -U0 %f 2>%n"
-  local svn_cmd = "svn diff --diff-cmd %d -x -U0 -- %f"
-  local hg_diff = hg_revision .. " --color=never config aliases.diff= --nodates -U0 -- %f"
-  local hg_cat = hg_revision .. " -- %f"
-
-  vim.cmd(string.format(
-    [[
-let g:signify_vcs_cmds = {
-      \ 'git':      '%s',
-      \ 'rcs':      '%s',
-      \ 'svn':      '%s',
-      \ 'hg':       'chg diff %s',
-      \ }
-let g:signify_vcs_cmds_diffmode = {
-      \ 'hg':       'chg cat %s',
-      \ }
-  ]],
-    git_cmd,
-    rcs_cmd,
-    svn_cmd,
-    hg_diff,
-    hg_cat
-  ))
+  vim.g.signify_vcs_cmds = {
+    git = "git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 " .. git_revision .. " -- %f",
+    yadm = 'yadm diff --no-color --no-ext-diff -U0 -- %f',
+    hg = 'chg --config alias.diff=diff diff --color=never --nodates -U0 -- %f',
+    svn = 'svn diff --diff-cmd %d -x -U0 -- %f',
+    bzr = 'bzr diff --using %d --diff-options=-U0 -- %f',
+    darcs = 'darcs diff --no-pause-for-gui --no-unified --diff-opts=-U0 -- %f',
+    fossil = 'fossil diff --unified -c 0 -- %f',
+    cvs = 'cvs diff -U0 -- %f',
+    rcs = 'rcsdiff -U0 %f 2>%n',
+    accurev = 'accurev diff %f -- -U0',
+    tfs = 'tf diff -version=W -noprompt -format=Unified %f'
+  }
+  vim.g.signify_vcs_cmds_diffmode = {
+    git = "git show " .. git_revision .. ":./%f",
+    hg = "chg cat " .. hg_revision .. " -- %f",
+    yadm = 'yadm show HEAD:./%f',
+    svn = 'svn cat %f',
+    bzr = 'bzr cat %f',
+    darcs = 'darcs show contents -- %f',
+    fossil = 'fossil cat %f',
+    cvs = 'cvs up -p -- %f 2>%n',
+    rcs = 'co -q -p %f',
+    accurev = 'accurev cat %f',
+    perforce = 'p4 print %f',
+    tfs = 'tf view -version:W -noprompt %f',
+  }
 end
 
 _G.signify_dtup = function()
@@ -40,7 +43,7 @@ _G.signify_normal = function()
 end
 
 _G.signify_dtp4 = function()
-  change_diffbase("-r p4head", "HEAD^")
+  change_diffbase("-r p4head", "main")
   vim.cmd([[:SignifyEnable]])
   vim.cmd([[:SignifyRefresh]])
 end
@@ -62,6 +65,7 @@ return {
     { "<leader>sup", ":lua signify_dtup()<CR>" },
     { "<leader>sex", ":lua signify_dtex()<CR>" },
     { "<leader>sp4", ":lua signify_dtp4()<CR>" },
+    { "<leader>sb",  ":lua signify_dtp4()<CR>" },
   },
   config = function()
     vim.g.signify_vcs_list = { "hg", "git" }

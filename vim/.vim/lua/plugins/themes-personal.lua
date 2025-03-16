@@ -2,6 +2,19 @@ local use_google = require("utils").use_google
 
 return {
 	{
+		"squk/ableton.nvim",
+		lazy = false,
+		cond = not use_google(),
+		priority = 1000,
+		dir = "~/neovim-plugins/squk/ableton.nvim",
+		opts = {
+			variant = "cooler",
+		},
+		config = function()
+			vim.cmd("colorscheme ableton")
+		end,
+	},
+	{
 		"dgox16/oldworld.nvim",
 		lazy = false,
 		cond = not use_google(),
@@ -10,7 +23,7 @@ return {
 			variant = "cooler",
 		},
 		config = function()
-			vim.cmd("colorscheme oldworld")
+			-- vim.cmd("colorscheme oldworld")
 		end,
 	},
 	{

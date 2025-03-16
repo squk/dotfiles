@@ -13,34 +13,36 @@ decorations = "None"
 [colors]
 draw_bold_text_with_bright_colors = true
 
+# Default colors
+[colors.primary]
+background = '#1e2024'
+foreground = '#a1a3a8'
+
+# Normal colors
+[colors.normal]
+black = '#27272a'
+blue = '#5e7fdd'
+cyan = '#97c3fa'
+green = '#90b99f'
+magenta = '#e29eca'
+red = '#d45d9e'
+white = '#c9c7cd'
+yellow = '#f0ea2d'
+
+# Bright colors
 [colors.bright]
-black = "#949494"
-blue = "#74b2ff"
-cyan = "#85dc85"
-green = "#36c692"
-magenta = "#ae81ff"
-red = "#ff5189"
-white = "#e4e4e4"
-yellow = "#c6c684"
+black = '#353539'
+blue = '#a7b3dd'
+cyan = '#6de6fc'
+green = '#a8fc8d'
+magenta = '#eb4cce'
+red = '#ca72de'
+white = '#c9c7cd'
+yellow = '#f7f48d'
 
 [colors.cursor]
 cursor = "#8e8e8e"
 text = "#080808"
-
-[colors.normal]
-black = "#323437"
-blue = "#80a0ff"
-cyan = "#79dac8"
-green = "#8cc85f"
-magenta = "#cf87e8"
-red = "#ff5454"
-white = "#c6c6c6"
-yellow = "#e3c78a"
-
-[colors.primary]
-background = "#080808"
-bright_foreground = "#eeeeee"
-foreground = "#bdbdbd"
 
 [colors.selection]
 background = "#b2ceee"

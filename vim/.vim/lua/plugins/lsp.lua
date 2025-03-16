@@ -83,7 +83,7 @@ return {
 			{ "<C-g>", ":lua vim.lsp.buf.signature_help()<CR>", mode = "i" },
 		},
 		config = function()
-			local nvim_lspconfig = require("lspconfig")
+			local lspconfig = require("lspconfig")
 			local lsp_configs = require("lspconfig.configs")
 
 			lsp_configs.ciderlsp = {
@@ -107,18 +107,20 @@ return {
 						"typescript",
 					},
 					offset_encoding = "utf-8",
-					root_dir = nvim_lspconfig.util.root_pattern(".citc"),
+					root_dir = lspconfig.util.root_pattern(".citc"),
 					settings = {},
 				},
 			}
 
 			if use_google() then
-				nvim_lspconfig.ciderlsp.setup({})
+				lspconfig.ciderlsp.setup({})
 			end
-			nvim_lspconfig.wgsl_analyzer.setup({})
 
+			require("lspconfig").gdscript.setup({})
 			vim.cmd([[autocmd FileType gdscript setlocal commentstring=#\ %s]])
 			vim.cmd([[autocmd FileType gdscript setlocal autoindent noexpandtab tabstop=4 shiftwidth=4]])
+
+			require("lspconfig").gdshader_lsp.setup({})
 		end,
 	},
 }

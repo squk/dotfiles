@@ -61,12 +61,11 @@ return {
 				-- Conform will run multiple formatters sequentially
 				-- go = { "goimports", "gofmt" },
 				-- Use a sub-list to run only the first available formatter
-				-- javascript = { { "prettierd", "prettier" } },
 				lua = { "stylua" },
 				-- Conform will run multiple formatters sequentially
-				python = { "isort", "black" },
+				python = { "isort" },
 				-- Use a sub-list to run only the first available formatter
-				javascript = { { "prettierd", "prettier" } },
+				javascript = { { "prettier" } },
 				gdscript = { "gdformat" },
 				ron = { "ronfmt" },
 				dashboard = {},

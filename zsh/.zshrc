@@ -165,5 +165,6 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
 
 source ~/.bash_profile
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 export PATH="$HOME/.local/bin:$PATH"
